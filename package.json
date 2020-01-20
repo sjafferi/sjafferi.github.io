@@ -15,15 +15,13 @@
     "rollup-plugin-terser": "^5.0.0",
     "sirv-cli": "^0.4.2",
     "svelte": "^3.4.2",
-    "svelte-routing": "1.4.0"
+    "svelte-routing": "1.4.0",
+    "rollup-plugin-css-porter": "^1.0.2"
   },
   "scripts": {
     "start": "run-p watch server",
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "server": "nodemon server.js --watch server.js --watch public/App.js"
-  },
-  "devDependencies": {
-    "rollup-plugin-css-porter": "^1.0.2"
   }
 }
