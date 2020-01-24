@@ -14,11 +14,17 @@
   }
 </style>
 
+<svelte:head>
+  <title>Me | Sibtain Jafferi</title>
+</svelte:head>
+
 <div class="container-me">
 
   <List title="Code">
     <li>
-      <Link to="https://github.com/sjafferi">github.com/sjafferi</Link>
+      <a href="https://github.com/sjafferi" target="_blank">
+        github.com/sjafferi
+      </a>
     </li>
   </List>
 

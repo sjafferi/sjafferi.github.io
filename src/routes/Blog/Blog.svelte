@@ -20,6 +20,10 @@
   }
 </style>
 
+<svelte:head>
+  <title>Writings | Sibtain Jafferi</title>
+</svelte:head>
+
 <div class="container">
 
   <Router>
