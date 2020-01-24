@@ -19,7 +19,8 @@
     "rollup-plugin-css-porter": "^1.0.2"
   },
   "scripts": {
-    "start": "run-p watch server",
+    "start": "node server.js",
+    "dev": "run-p watch server",
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "server": "nodemon server.js --watch server.js --watch public/App.js"

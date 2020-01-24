@@ -46,7 +46,7 @@ const posts = [
     title: 'EPI 5.19 - Rotate a 2D array',
     subtitle: 'Given a 2D array, return its rotation in constant space complexity',
     tags: ['algorithms'],
-    parent: 'Searching'
+    parent: 'Arrays'
   },
   {
     slug: 'epi-6.9',

@@ -1,5 +1,3 @@
-The proverbial mountain of self-improvement — credits: @leni_eleni
-
 Many lessons can be taken from leading organizations when it comes to growth.
 
 Top companies invest heavily in tracking metrics that expand the bottom line; most click and keyboard events are captured, everything is a/b tested.
