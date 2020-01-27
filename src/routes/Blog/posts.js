@@ -68,6 +68,32 @@ const posts = [
     subtitle: null,
     tags: ['algorithms'],
     parent: 'Arrays'
+  },
+  {
+    slug: 'epi-10.2',
+    title: 'EPI 10.2 - Compute the median of a stream of numbers',
+    subtitle: null,
+    tags: ['algorithms'],
+    parent: 'Priority Queues'
+  },
+  {
+    slug: 'epi-10.4',
+    title: 'EPI 10.4 - Compute k closest',
+    subtitle: null,
+    tags: ['algorithms'],
+    parent: 'Priority Queues'
+  },
+  {
+    slug: 'algo-study-guide',
+    title: 'Algorithm & Data Structures Study Guide',
+    subtitle: null,
+    tags: ['technical']
+  },
+  {
+    slug: 'responsive-svelte-components',
+    title: 'Responsive Svelte Components',
+    subtitle: 'An extensible way to manage differential rendering based on device using Svelte.',
+    tags: ['technical']
   }
 ]
 

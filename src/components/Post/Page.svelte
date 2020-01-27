@@ -1,25 +1,9 @@
 <script>
   import { onMount } from "svelte";
-  import { Remarkable } from "remarkable";
-  import hljs from "highlight.js";
-  // import "highlight.js/styles/agate.css";
+  import Markdown from "../Markdown.svelte";
+  import TOC from "./TOC.svelte";
+
   export let title, subtitle, date, tags, content, slug;
-
-  const md = new Remarkable({
-    highlight: function(str, lang) {
-      if (lang && hljs.getLanguage(lang)) {
-        try {
-          return hljs.highlight(lang, str).value;
-        } catch (err) {}
-      }
-
-      try {
-        return hljs.highlightAuto(str).value;
-      } catch (err) {}
-
-      return ""; // use external default escaping
-    }
-  });
 
   onMount(() => {
     fetch(`/get-post`, {
@@ -37,7 +21,7 @@
 </script>
 
 <style>
-  .page {
+  .markdown {
     width: 70vw;
     max-width: 85ch;
   }
@@ -54,28 +38,14 @@
     letter-spacing: -1px;
   }
 
-  :global(.page h1) {
+  .page h1 {
     font-feature-settings: "smcp";
     font-size: 1.75em;
     line-height: 1.25;
     letter-spacing: -0.75px;
-  }
-
-  :global(.page h1, .page h2, .page h3, .page h4, .page h5, .page h6) {
     margin: 1.25em 0 0.5em -0.75rem;
     font-weight: bold;
     position: relative;
-  }
-
-  :global(.page h2) {
-    text-transform: uppercase;
-    font-size: 1.25em;
-    padding: 0 0.5em 0 0;
-    line-height: 1.25;
-  }
-
-  :global(.page p) {
-    line-height: 1.55;
   }
 </style>
 
@@ -87,9 +57,11 @@
 
   <article>
     <div class="page-metadata" />
-    <div class="table-of-contents" />
+    <div class="table-of-contents">
+      <TOC {content} />
+    </div>
     <div class="markdown">
-      {@html md.render(content)}
+      <Markdown {content} />
     </div>
   </article>
 </div>

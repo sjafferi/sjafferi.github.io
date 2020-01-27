@@ -6,3 +6,7 @@ export const groupBy = (key) => (array) =>
     }),
     {}
   );
+
+export function toSlug(str) {
+  return str.toLowerCase().replace(/[^a-zA-Z\d\s:]/g, "").replace(/ /g, "-")
+}

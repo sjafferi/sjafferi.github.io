@@ -28,7 +28,7 @@
 
   <Router>
     <Route path="/">
-      <List title="Algorithms">
+      <!-- <List title="Algorithms">
         {#each Object.entries(algorithms) as [group, posts]}
           <h4>{group}</h4>
           <ul>
@@ -38,6 +38,16 @@
               </li>
             {/each}
           </ul>
+        {/each}
+      </List> -->
+
+      <List title="Technical">
+        {#each Posts as post}
+          {#if post.tags.includes('technical')}
+            <li>
+              <Link to={post.slug}>{post.title}</Link>
+            </li>
+          {/if}
         {/each}
       </List>
 

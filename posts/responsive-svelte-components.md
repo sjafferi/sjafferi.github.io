@@ -4,6 +4,8 @@ But what if we want to alter the content of the html based on device? In this ca
 
 We can make use of a higher order Svelte component to accomplish this (leveraging [named slots](https://svelte.dev/tutorial/named-slots)). 
 
+## Component
+
 We'll end up with something like this:
 
 ```html
@@ -12,6 +14,8 @@ We'll end up with something like this:
 	<div slot="desktop">...desktop content...</div>
 </Responsive>
 ```
+
+## Implementation
 
 `// Responsive.svelte`
 ```html
