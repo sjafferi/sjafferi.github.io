@@ -24,14 +24,11 @@
   });
 
   function anchors(md) {
-    md.renderer.rules.heading_open = function(tokens, idx /*, options, env */) {
+    md.renderer.rules.heading_open = function(tokens, idx) {
       return `<h${tokens[idx].hLevel} id='${toSlug(tokens[idx + 1].content)}'>`;
     };
 
-    md.renderer.rules.heading_close = function(
-      tokens,
-      idx /*, options, env */
-    ) {
+    md.renderer.rules.heading_close = function(tokens, idx) {
       return `</h${tokens[idx].hLevel}>\n`;
     };
   }
@@ -67,6 +64,10 @@
 
   :global(.markdown ul li) {
     margin: 10px 5px;
+  }
+
+  :global(.markdown table th, .markdown table td) {
+    padding: 5px 10px;
   }
 </style>
 

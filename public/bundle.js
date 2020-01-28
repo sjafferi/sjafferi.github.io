@@ -37363,7 +37363,7 @@
     	let numItems = 0;
 
     	function generate(content) {
-    		const regex = /(#+) ([a-z|A-Z|1-9|\'|\. ]+)/g;
+    		const regex = /(#+) (.+)/g;
     		let match, prev, toc = [];
 
     		while ((match = regex.exec(content)) != null) {
@@ -37903,14 +37903,14 @@
         slug: 'algo-study-guide',
         date: "01/22/2020",
         title: 'Algorithm & Data Structures Study Guide',
-        subtitle: 'Comprehensive guide to prepare for algorithms interviews.',
+        subtitle: 'Comprehensive guide to prepare for algorithms interviews',
         tags: ['technical']
       },
       {
         slug: 'responsive-svelte-components',
         date: "01/09/2020",
         title: 'Responsive Svelte Components',
-        subtitle: 'An extensible way to manage differential rendering based on device using Svelte.',
+        subtitle: 'An extensible way to manage differential rendering based on device using Svelte',
         tags: ['technical']
       }
     ];

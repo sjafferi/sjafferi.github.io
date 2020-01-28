@@ -4,7 +4,7 @@
   let numItems = 0;
 
   function generate(content) {
-    const regex = /(#+) ([a-z|A-Z|1-9|\'|\. ]+)/g;
+    const regex = /(#+) (.+)/g;
     const regex_2 = /#+/g;
     let match,
       prev,

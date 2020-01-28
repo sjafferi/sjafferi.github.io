@@ -20,20 +20,20 @@ We'll end up with something like this:
 `// Responsive.svelte`
 ```html
 <script>
-import { stores } from "@sapper/app";
-import UAParser from "ua-parser-js";
-// session is passed in server.js
-const { preloading, page, session } = stores();
+	import { stores } from "@sapper/app";
+	import UAParser from "ua-parser-js";
+	// session is passed in server.js
+	const { preloading, page, session } = stores();
 
-const parser = new UAParser();
-parser.setUA($session["user-agent"]);
-const mobile = parser.getResult().device["type"] == "mobile";
+	const parser = new UAParser();
+	parser.setUA($session["user-agent"]);
+	const mobile = parser.getResult().device["type"] == "mobile";
 </script>
 
 {#if mobile}
-<slot name="mobile" />
+	<slot name="mobile" />
 {:else}
-<slot name="desktop" />
+	<slot name="desktop" />
 {/if}
 ```
 
