@@ -4,7 +4,7 @@
   let numItems = 0;
 
   function generate(content) {
-    const regex = /(#+) ([a-z|A-Z|\' ]+)/g;
+    const regex = /(#+) ([a-z|A-Z|1-9|\'|\. ]+)/g;
     const regex_2 = /#+/g;
     let match,
       prev,
@@ -50,9 +50,10 @@
         ${toc
           .map(
             ({ hashes, title, children }) =>
-              `<li><a href="#${toSlug(title)}">${title}</a> ${html(
-                children
-              )} </li>`
+              `<li><a href="#${toSlug(title)}">${title.replace(
+                /[1-9].?/g,
+                ""
+              )}</a> ${html(children)} </li>`
           )
           .join("")}
       </ol>

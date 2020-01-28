@@ -6,6 +6,7 @@
   .sidebar {
     display: flex;
     flex-direction: column;
+    margin-top: 4vw;
   }
 </style>
 

@@ -85,12 +85,14 @@ const posts = [
   },
   {
     slug: 'algo-study-guide',
+    date: "01/22/2020",
     title: 'Algorithm & Data Structures Study Guide',
-    subtitle: null,
+    subtitle: 'Comprehensive guide to prepare for algorithms interviews.',
     tags: ['technical']
   },
   {
     slug: 'responsive-svelte-components',
+    date: "01/09/2020",
     title: 'Responsive Svelte Components',
     subtitle: 'An extensible way to manage differential rendering based on device using Svelte.',
     tags: ['technical']

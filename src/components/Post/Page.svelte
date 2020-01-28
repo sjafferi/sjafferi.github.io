@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import moment from "moment";
   import Markdown from "../Markdown.svelte";
   import TOC from "./TOC.svelte";
 
@@ -47,6 +48,22 @@
     font-weight: bold;
     position: relative;
   }
+
+  .page-metadata {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+  }
+  .page-metadata .subtitle {
+    text-align: center;
+    font-style: italic;
+  }
+  .page-metadata .date {
+    font-style: italic;
+  }
+  .page-metadata .date-container {
+    margin-top: 18px;
+  }
 </style>
 
 <div class="page">
@@ -56,7 +73,19 @@
   </header>
 
   <article>
-    <div class="page-metadata" />
+    <div class="page-metadata">
+      {#if subtitle}
+        <span class="subtitle">{subtitle}</span>
+      {/if}
+      {#if date}
+        <span class="date-container">
+          Created:
+          <span class="date">
+            {moment(date, 'MM/DD/YYYY').format('MMM Do YYYY')}
+          </span>
+        </span>
+      {/if}
+    </div>
     <div class="table-of-contents">
       <TOC {content} />
     </div>

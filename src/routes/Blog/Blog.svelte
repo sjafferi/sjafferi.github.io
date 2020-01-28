@@ -13,10 +13,14 @@
 <style>
   .container {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
     padding: 0 20px;
     margin-left: 30px;
+    margin-top: 4vw;
+  }
+  .posts {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2vw;
   }
 </style>
 
@@ -28,7 +32,8 @@
 
   <Router>
     <Route path="/">
-      <!-- <List title="Algorithms">
+      <div class="posts">
+        <!-- <List title="Algorithms">
         {#each Object.entries(algorithms) as [group, posts]}
           <h4>{group}</h4>
           <ul>
@@ -41,26 +46,26 @@
         {/each}
       </List> -->
 
-      <List title="Technical">
-        {#each Posts as post}
-          {#if post.tags.includes('technical')}
-            <li>
-              <Link to={post.slug}>{post.title}</Link>
-            </li>
-          {/if}
-        {/each}
-      </List>
+        <List title="Technical">
+          {#each Posts as post}
+            {#if post.tags.includes('technical')}
+              <li>
+                <Link to={post.slug}>{post.title}</Link>
+              </li>
+            {/if}
+          {/each}
+        </List>
 
-      <List title="Practical">
-        {#each Posts as post}
-          {#if post.tags.includes('practical')}
-            <li>
-              <Link to={post.slug}>{post.title}</Link>
-            </li>
-          {/if}
-        {/each}
-      </List>
-
+        <List title="Practical">
+          {#each Posts as post}
+            {#if post.tags.includes('practical')}
+              <li>
+                <Link to={post.slug}>{post.title}</Link>
+              </li>
+            {/if}
+          {/each}
+        </List>
+      </div>
     </Route>
 
     {#each Posts as post}

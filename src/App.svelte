@@ -13,7 +13,6 @@
   .container {
     max-width: 110ch;
     margin: auto;
-    margin-top: 5vw;
     padding: 0 20px;
     display: flex;
     overflow-x: hidden;

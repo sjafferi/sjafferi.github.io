@@ -64,6 +64,10 @@
   :global(.markdown p) {
     line-height: 1.55;
   }
+
+  :global(.markdown ul li) {
+    margin: 10px 5px;
+  }
 </style>
 
 <div class="markdown">

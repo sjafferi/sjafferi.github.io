@@ -31,20 +31,22 @@ Our aim is to use this framework to achieve alignment between our core values an
 
 Let’s get into it.
 
-1. **Set your objectives**
+### 1. Set your objectives
 
 At a personal level, objectives are that which give (or will give) meaning to your life, translated into achievable action statements.
 
 Typically, the timeline for objectives are quarterly (every 3 months) — but you can modify this timeline to suit your needs. For example, if you have urgent, short-term goals then you may want to consider a 1–2 month timeline.
 
 I like to break objectives down by the most important aspects of my life
-> **Personality: ***Build a lifelong habit of discipline and patience.*
-> **Career: ***Become a world-class engineer.*
-> **Finance: ***Get halfway towards non-reliance on salary-based income.*
+> **Personality**: Build a lifelong habit of discipline and patience.
+
+> **Career**: Become a world-class engineer.
+
+> **Finance**: Get halfway towards non-reliance on salary-based income.
 
 You shouldn’t have more than 5 objectives at a time, so you can focus on what matters.
 
-**2. Determine the key results**
+### 2. Determine the key results
 
 The point of key results are, if they’re all accomplished, then the objective will be achieved. The success of a KR should be measurable by some metric.
 
@@ -60,7 +62,7 @@ The success of each KR is evaluated based on completion of it’s metric. For ex
 
 You can add your metrics onto [Junoon](http://junoon.io/) to make reviews a breeze.
 
-**3. Translate key results to day-to-day tasks**
+### 3. Translate key results to day-to-day tasks
 
 Now that we have our desired metrics, let’s create an action plan for hitting those numbers.
 
@@ -93,7 +95,7 @@ Now that we’ve determined exactly what needs to be done, let’s dive into exe
 
 The first 2 rules of 4DX are similar to the goal-setting process we described above, the last 2 are relevant to execution and useful to us (described below).
 
-**4. Keep a compelling scoreboard**
+### 4. Keep a compelling scoreboard
 > “People play differently when they keep the score.”
 
 A scoreboard visually indicates progress on goal-specific measures. You should have constant access to the scoreboard to build awareness of progress.
@@ -112,7 +114,7 @@ Otherwise, you can keep track of your metrics with:
 
 * iOS notes
 
-**5. Create a cadence of accountability — MOST IMPORTANT**
+### 5. Create a cadence of accountability — MOST IMPORTANT
 
 This binds the whole system together. You need a daily / weekly / monthly / quarterly review of progress. The 4DX authors argue that it’s this discipline where “execution really happens”.
 
