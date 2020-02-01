@@ -19,9 +19,9 @@ The plan of attack is as follows:
 
 ## Spaced Repetiton with Anki Cards
 
-Knowing algorithms commonly used for specific purposes can greatly boost on-demand problem solving ability by enabling crafting of a solution using some combination of past knowledge. 
+Knowing algorithms commonly used for specific purposes can greatly boost on-demand problem solving ability by enabling crafting of a solution using some combination of past knowledge. There are "template problems" that other problems of the same sort can be reduced to that greatly help with this (e.g [Sliding Window Problems](https://medium.com/outco/how-to-solve-sliding-window-problems-28d67601a66)].
 
-It follows that having a vast and diverse knowledge of algorithms correlates with a higher success rate in interviews. The amount of material required to do predictably exceptional in interviews can get staggering.
+The amount of material required to do predictably exceptional in interviews can get staggering. This is where spaced repetition and anki cards come in.
 
 [Spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition) is a well researched technique to improve long term recall of information through the use of meaningful spaces in review.  ...research
 
@@ -34,13 +34,89 @@ This guide includes Anki cards for each major topic (theory + problems) that can
 
 ## Divide and Conquer
 
-Divide and conquer involves dividing the problem into smaller parts, solving those individually, and then combining them back together for a meaningful result.
+Divide and conquer involves dividing the problem into smaller parts, solving those individually, and then combining them back together for a meaningful result. Merge sort is a classic example of divide and conquer.
+
+[This set of slides](https://www.ics.uci.edu/~goodrich/teach/cs260P/notes/DivideAndConquer.pdf) goes over merge sort and recurrence relations in divide and conquer problems.
 
 Formally:
 
 - Divide the problem instance I into smaller subproblems `I1...In`
 - Solve `I1... In` recursively to get solutions `S1...Sn`
 - Use `S1...Sn` to compute `S`. 
+
+Let's explore a couple of introductory problems.
+
+### Non-dominated points
+
+We say a point is non-dominated in a set if there is no other point `(x', y')` in the set such that `x <= x'` and `y <= y'` 
+
+![Set of points](https://i.imgur.com/YWPJRpo.png)
+
+The non-dominated point set here is `{A, H, I, G, D}`
+
+We can apply divide and conquer here by:
+
+1. Sort the points lexographically (first by x, then by y if x's are equal). 
+2. Split the sorted set of points in half
+3. Find non-dominated points in each half
+4. Combine: Using the observation that any non-dominated point on the left with have to be as high or higher than all non-dominated points on the right, we can filter the left points by checking them against any right point and return `[filtered_left, right]`.  (we can use the first element in right as the highest because non-dominated point sets non-increasing).
+
+The code looks like this:
+
+```python
+def non_dominated(points):
+  points = sorted(points, key=lambda p: p.x)
+  if len(points) == 1: return {points[0]}
+  pivot = floor(len(points) / 2)
+  left = non_dominated(points[:i])
+  right = non_dominated(points[pivot + 1:])
+  i = 0
+  while i < len(left) and left[i].y > right[0]:
+    i += 1
+  return left[:i] + right
+```
+
+Complexity...
+
+### Find the Kth largest element
+
+The kth largest element in a set `A` is `sorted(A)[n - k]`. The trivial solution is sorting the set and returning the element with `O(nlogn)` time complexity. Sorting is overkill since we don't need all that computation. Using a heap would reduce the time complexity to `O(nlogk)`. This approach is faster, but still does more than what's required (finds the k largest).
+
+A divide and conquer approach leveraging randomization leads to `quick select`.
+
+1. We pick a random pivot
+2. Partition the elements such that the pivot is < the right half and > the left half
+3. Check if the element is kth largest 
+4. If no, recurse on half containing the kth largest
+5. If yes, return left[k - 1]
+   
+  
+Code:
+
+```python
+def quick_select(arr, k):
+  pivot = random.randint(0, len(arr) - 1)
+  partition1, partition2 = [x for x in array if x > pivot], [x for x in array if x < pivot]
+  if k - 1 == len(partition1):
+    return pivot
+  elif k - 1 < len(partition1):
+    return quick_select(partition1, k)
+  else:
+    return quick_select(partition2, k - len(patition1) - 1)
+```
+
+Comlexity:
+
+Unlike quicksort, there's only one recursive call in each invocation. On average, the pivot will be good about 50% of the time, where a good pivot is one that is within 25th and 75th percentile inclusive. So on average, every other call would have partitions that are of size at most 75% of the array's size. Therefore, on average the size of the subproblem would be reduced by 25% on every other call, which makes this function `O(n) average case`.
+
+The worst case is the same as quick sort `O(n^2)`, however it can become highly unlikely to hit this worst case as n gets larger.
+
+
+### Template problems
+
+... split, combine
+... solve first, deal with rest
+
 
 
 ## Greedy
@@ -148,6 +224,8 @@ def max_profit_greedy(prices):
 ```
 
 ## Strings
+
+### Minimum window problem
 
 ## Stacks & Queues
 

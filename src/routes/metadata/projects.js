@@ -35,15 +35,15 @@ export default [
     description: "Student meal plans powered by local restaurants.",
     images: [
       {
-        thumbnail: 'images/projects/grubgrab-1.png',
+        thumbnail: 'images/projects/grubgrab-1-full.png',
         src: 'images/projects/grubgrab-1.png'
       },
       {
-        thumbnail: 'images/projects/grubgrab-2.png',
+        thumbnail: 'images/projects/grubgrab-2-full.png',
         src: 'images/projects/grubgrab-2.png'
       },
       {
-        thumbnail: 'images/projects/grubgrab-3.png',
+        thumbnail: 'images/projects/grubgrab-3-full.png',
         src: 'images/projects/grubgrab-3.png'
       },
     ],

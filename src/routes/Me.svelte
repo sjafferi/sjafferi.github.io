@@ -1,15 +1,6 @@
 <script>
   import { Router, Link, Route } from "svelte-routing";
-  import { Images } from "svelte-images";
   import List from "../components/List.svelte";
-
-  const images = [];
-  for (let i = 0; i < 14; i++) {
-    images.push({
-      src:
-        "https://cdn-images-1.medium.com/max/2632/1*FPLyijI0bj-bv8wBJ78pnA.png"
-    });
-  }
 </script>
 
 <style>
@@ -28,15 +19,16 @@
   <title>Me | Sibtain Jafferi</title>
 </svelte:head>
 
-<!-- <Images {images} /> -->
-
 <div class="container-me">
 
-  <div class="description">
+  <div class="description list">
     <p>Greetings. I'm a frontend engineer @ sumo logic</p>
     <p>
-      Right now I'm most interested in writing svelte open source components,
-      writing and side projects (check out the projects tab).
+      Right now I'm most interested in developing open source svelte components,
+      <a href="/writings">writing</a>
+      and
+      <a href="/projects">a few notable projects</a>
+      .
     </p>
   </div>
 

@@ -1,7 +1,7 @@
 <script>
   import { Remarkable } from "remarkable";
   import hljs from "highlight.js";
-  // import "highlight.js/styles/agate.css";
+  import "highlight.js/styles/agate.css";
 
   import { toSlug } from "../util.js";
 
@@ -85,6 +85,60 @@
   :global(.markdown p.image-container + em) {
     width: 100%;
     text-align: center;
+  }
+
+  :global(.markdown code) {
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px;
+    font-size: 85%;
+    margin: 0;
+    padding: 0.2em 0.4em;
+  }
+
+  :global(.markdown pre) {
+    word-wrap: normal;
+  }
+
+  :global(.markdown pre > code) {
+    background: transparent;
+    border: 0;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+    word-break: normal;
+  }
+
+  :global(.markdown .highlight) {
+    margin-bottom: 16px;
+  }
+
+  :global(.markdown .highlight pre) {
+    margin-bottom: 0;
+    word-break: normal;
+  }
+
+  :global(.markdown .highlight pre),
+  :global(.markdown pre) {
+    background-color: #2b2b2b;
+    border-radius: 3px;
+    font-size: 85%;
+    line-height: 1.45;
+    overflow: auto;
+    padding: 16px;
+  }
+
+  :global(.markdown pre code) {
+    color: #b8b8b8;
+    background-color: transparent;
+    border: 0;
+    display: inline;
+    line-height: inherit;
+    margin: 0;
+    max-width: auto;
+    overflow: visible;
+    padding: 0;
+    word-wrap: normal;
   }
 </style>
 

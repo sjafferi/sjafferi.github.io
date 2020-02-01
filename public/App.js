@@ -1000,14 +1000,14 @@ function fade(node, { delay = 0, duration = 400, easing = identity }) {
 
 const css$2 = {
 	code: ".gallery.svelte-18y9yg1{display:flex;flex-flow:row wrap}img.svelte-18y9yg1{width:100%;height:auto !important;cursor:pointer;margin:calc(var(--gutter) * 2px)}img.svelte-18y9yg1:hover{opacity:0.5;filter:grayscale(0.5) blur(1px)}",
-	map: "{\"version\":3,\"file\":\"Images.svelte\",\"sources\":[\"Images.svelte\"],\"sourcesContent\":[\"<script>\\n  import { getContext } from \\\"svelte\\\";\\n  import Carousel from \\\"./Carousel.svelte\\\";\\n\\n  export let images = [];\\n  export let gutter = 2;\\n  export let numCols;\\n\\n  const { open } = getContext(\\\"simple-modal\\\");\\n\\n  const popModal = idx => {\\n    open(Carousel, { images, curr_idx: idx });\\n  };\\n</script>\\n\\n<style>\\n  .gallery {\\n    display: flex;\\n    flex-flow: row wrap;\\n  }\\n\\n  img {\\n    width: 100%;\\n    height: auto !important;\\n    cursor: pointer;\\n    margin: calc(var(--gutter) * 2px);\\n  }\\n  img:hover {\\n    opacity: 0.5;\\n    filter: grayscale(0.5) blur(1px);\\n  }\\n</style>\\n\\n<div class=\\\"gallery\\\" style=\\\"--gutter: {gutter};\\\">\\n  {#each images as image, i}\\n    <img\\n      style={numCols != undefined ? `width: ${100 / images.length - 2}%;` : 'max-width: 200px;'}\\n      {...image}\\n      src={image.thumbnail || image.src}\\n      alt={image.alt || ''}\\n      on:click={() => popModal(i)} />\\n  {/each}\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAgBE,QAAQ,eAAC,CAAC,AACR,OAAO,CAAE,IAAI,CACb,SAAS,CAAE,GAAG,CAAC,IAAI,AACrB,CAAC,AAED,GAAG,eAAC,CAAC,AACH,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CAAC,UAAU,CACvB,MAAM,CAAE,OAAO,CACf,MAAM,CAAE,KAAK,IAAI,QAAQ,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC,AACnC,CAAC,AACD,kBAAG,MAAM,AAAC,CAAC,AACT,OAAO,CAAE,GAAG,CACZ,MAAM,CAAE,UAAU,GAAG,CAAC,CAAC,KAAK,GAAG,CAAC,AAClC,CAAC\"}"
+	map: "{\"version\":3,\"file\":\"Images.svelte\",\"sources\":[\"Images.svelte\"],\"sourcesContent\":[\"<script>\\n  import { getContext } from \\\"svelte\\\";\\n  import Carousel from \\\"./Carousel.svelte\\\";\\n\\n  export let images = [];\\n  export let gutter = 2;\\n  export let numCols;\\n\\n  const { open, close } = getContext(\\\"simple-modal\\\");\\n\\n  const popModal = idx =>\\n    setTimeout(() => {\\n      open(Carousel, { images, curr_idx: idx, close });\\n    }, 0);\\n</script>\\n\\n<style>\\n  .gallery {\\n    display: flex;\\n    flex-flow: row wrap;\\n  }\\n\\n  img {\\n    width: 100%;\\n    height: auto !important;\\n    cursor: pointer;\\n    margin: calc(var(--gutter) * 2px);\\n  }\\n  img:hover {\\n    opacity: 0.5;\\n    filter: grayscale(0.5) blur(1px);\\n  }\\n</style>\\n\\n<div class=\\\"gallery\\\" style=\\\"--gutter: {gutter};\\\">\\n  {#each images as image, i}\\n    <img\\n      style={numCols != undefined ? `width: ${100 / images.length - 2}%;` : 'max-width: 200px;'}\\n      {...image}\\n      src={image.thumbnail || image.src}\\n      alt={image.alt || ''}\\n      on:click={() => popModal(i)} />\\n  {/each}\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAiBE,QAAQ,eAAC,CAAC,AACR,OAAO,CAAE,IAAI,CACb,SAAS,CAAE,GAAG,CAAC,IAAI,AACrB,CAAC,AAED,GAAG,eAAC,CAAC,AACH,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CAAC,UAAU,CACvB,MAAM,CAAE,OAAO,CACf,MAAM,CAAE,KAAK,IAAI,QAAQ,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC,AACnC,CAAC,AACD,kBAAG,MAAM,AAAC,CAAC,AACT,OAAO,CAAE,GAAG,CACZ,MAAM,CAAE,UAAU,GAAG,CAAC,CAAC,KAAK,GAAG,CAAC,AAClC,CAAC\"}"
 };
 
 const Images = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 	let { images = [] } = $$props;
 	let { gutter = 2 } = $$props;
 	let { numCols } = $$props;
-	const { open } = getContext("simple-modal");
+	const { open, close } = getContext("simple-modal");
 
 	if ($$props.images === void 0 && $$bindings.images && images !== void 0) $$bindings.images(images);
 	if ($$props.gutter === void 0 && $$bindings.gutter && gutter !== void 0) $$bindings.gutter(gutter);
@@ -1164,15 +1164,15 @@ var Projects = [
     description: "Student meal plans powered by local restaurants.",
     images: [
       {
-        thumbnail: 'images/projects/grubgrab-1.png',
+        thumbnail: 'images/projects/grubgrab-1-full.png',
         src: 'images/projects/grubgrab-1.png'
       },
       {
-        thumbnail: 'images/projects/grubgrab-2.png',
+        thumbnail: 'images/projects/grubgrab-2-full.png',
         src: 'images/projects/grubgrab-2.png'
       },
       {
-        thumbnail: 'images/projects/grubgrab-3.png',
+        thumbnail: 'images/projects/grubgrab-3-full.png',
         src: 'images/projects/grubgrab-3.png'
       },
     ],
@@ -36398,11 +36398,41 @@ highlight.registerLanguage('zephir', zephir);
 
 var lib = highlight;
 
+function styleInject(css, ref) {
+  if ( ref === void 0 ) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') { return; }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var css$6 = "/*!\n * Agate by Taufik Nurrohman <https://github.com/tovic>\n * ----------------------------------------------------\n *\n * #ade5fc\n * #a2fca2\n * #c6b4f0\n * #d36363\n * #fcc28c\n * #fc9b9b\n * #ffa\n * #fff\n * #333\n * #62c8f3\n * #888\n *\n */\n\n.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  background: #333;\n  color: white;\n}\n\n.hljs-name,\n.hljs-strong {\n  font-weight: bold;\n}\n\n.hljs-code,\n.hljs-emphasis {\n  font-style: italic;\n}\n\n.hljs-tag {\n  color: #62c8f3;\n}\n\n.hljs-variable,\n.hljs-template-variable,\n.hljs-selector-id,\n.hljs-selector-class {\n  color: #ade5fc;\n}\n\n.hljs-string,\n.hljs-bullet {\n  color: #a2fca2;\n}\n\n.hljs-type,\n.hljs-title,\n.hljs-section,\n.hljs-attribute,\n.hljs-quote,\n.hljs-built_in,\n.hljs-builtin-name {\n  color: #ffa;\n}\n\n.hljs-number,\n.hljs-symbol,\n.hljs-bullet {\n  color: #d36363;\n}\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal {\n  color: #fcc28c;\n}\n\n.hljs-comment,\n.hljs-deletion,\n.hljs-code {\n  color: #888;\n}\n\n.hljs-regexp,\n.hljs-link {\n  color: #c6b4f0;\n}\n\n.hljs-meta {\n  color: #fc9b9b;\n}\n\n.hljs-deletion {\n  background-color: #fc9b9b;\n  color: #333;\n}\n\n.hljs-addition {\n  background-color: #a2fca2;\n  color: #333;\n}\n\n.hljs a {\n  color: inherit;\n}\n\n.hljs a:focus,\n.hljs a:hover {\n  color: inherit;\n  text-decoration: underline;\n}\n";
+styleInject(css$6);
+
 /* src/components/Markdown.svelte generated by Svelte v3.17.1 */
 
-const css$6 = {
-	code: ".markdown h1, .page h1{font-feature-settings:\"smcp\";font-size:1.75em;line-height:1.25;letter-spacing:-0.75px}.page h1, .markdown h1, .markdown h2, .markdown h3, .markdown\n      h4, .markdown h5, .markdown h6{margin:1.25em 0 0.5em -0.75rem;font-weight:bold;position:relative}.markdown h2{text-transform:uppercase;font-size:1.25em;padding:0 0.5em 0 0;line-height:1.25}.markdown p{line-height:1.55}.markdown ul li{margin:10px 5px}.markdown table th, .markdown table td{padding:5px 10px}.markdown p.image-container{transform:translateX(-50%)}.markdown p.image-container + em{width:100%;text-align:center}",
-	map: "{\"version\":3,\"file\":\"Markdown.svelte\",\"sources\":[\"Markdown.svelte\"],\"sourcesContent\":[\"<script>\\n  import { Remarkable } from \\\"remarkable\\\";\\n  import hljs from \\\"highlight.js\\\";\\n  // import \\\"highlight.js/styles/agate.css\\\";\\n\\n  import { toSlug } from \\\"../util.js\\\";\\n\\n  export let content;\\n\\n  const md = new Remarkable({\\n    highlight: function(str, lang) {\\n      if (lang && hljs.getLanguage(lang)) {\\n        try {\\n          return hljs.highlight(lang, str).value;\\n        } catch (err) {}\\n      }\\n\\n      try {\\n        return hljs.highlightAuto(str).value;\\n      } catch (err) {}\\n\\n      return \\\"\\\"; // use external default escaping\\n    }\\n  });\\n\\n  function plugin(md) {\\n    md.renderer.rules.heading_open = function(tokens, idx) {\\n      return `<h${tokens[idx].hLevel} id='${toSlug(tokens[idx + 1].content)}'>`;\\n    };\\n\\n    md.renderer.rules.heading_close = function(tokens, idx) {\\n      return `</h${tokens[idx].hLevel}>\\\\n`;\\n    };\\n\\n    md.renderer.rules.image = function(tokens, idx, options /*, env */) {\\n      const src = ` src=\\\"${tokens[idx].src}\\\"`;\\n      const title = tokens[idx].title ? ` title=\\\"${tokens[idx].title}\\\"` : \\\"\\\";\\n      const alt = ' alt=\\\"' + (tokens[idx].alt ? tokens[idx].alt : \\\"\\\") + '\\\"';\\n      const suffix = options.xhtmlOut ? \\\" /\\\" : \\\"\\\";\\n      return `<p class=\\\"image-container\\\"> <img ${src} ${alt} ${title} ${suffix}> </p>`;\\n    };\\n  }\\n\\n  md.use(plugin);\\n</script>\\n\\n<style>\\n  :global(.markdown h1, .page h1) {\\n    font-feature-settings: \\\"smcp\\\";\\n    font-size: 1.75em;\\n    line-height: 1.25;\\n    letter-spacing: -0.75px;\\n  }\\n\\n  :global(.page h1, .markdown h1, .markdown h2, .markdown h3, .markdown\\n      h4, .markdown h5, .markdown h6) {\\n    margin: 1.25em 0 0.5em -0.75rem;\\n    font-weight: bold;\\n    position: relative;\\n  }\\n\\n  :global(.markdown h2) {\\n    text-transform: uppercase;\\n    font-size: 1.25em;\\n    padding: 0 0.5em 0 0;\\n    line-height: 1.25;\\n  }\\n\\n  :global(.markdown p) {\\n    line-height: 1.55;\\n  }\\n\\n  :global(.markdown ul li) {\\n    margin: 10px 5px;\\n  }\\n\\n  :global(.markdown table th, .markdown table td) {\\n    padding: 5px 10px;\\n  }\\n\\n  :global(.markdown p.image-container) {\\n    transform: translateX(-50%);\\n  }\\n\\n  :global(.markdown p.image-container + em) {\\n    width: 100%;\\n    text-align: center;\\n  }\\n</style>\\n\\n<div class=\\\"markdown\\\">\\n  {@html md.render(content)}\\n</div>\\n\"],\"names\":[],\"mappings\":\"AA+CU,sBAAsB,AAAE,CAAC,AAC/B,qBAAqB,CAAE,MAAM,CAC7B,SAAS,CAAE,MAAM,CACjB,WAAW,CAAE,IAAI,CACjB,cAAc,CAAE,OAAO,AACzB,CAAC,AAEO;oCAC0B,AAAE,CAAC,AACnC,MAAM,CAAE,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,QAAQ,CAC/B,WAAW,CAAE,IAAI,CACjB,QAAQ,CAAE,QAAQ,AACpB,CAAC,AAEO,YAAY,AAAE,CAAC,AACrB,cAAc,CAAE,SAAS,CACzB,SAAS,CAAE,MAAM,CACjB,OAAO,CAAE,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CACpB,WAAW,CAAE,IAAI,AACnB,CAAC,AAEO,WAAW,AAAE,CAAC,AACpB,WAAW,CAAE,IAAI,AACnB,CAAC,AAEO,eAAe,AAAE,CAAC,AACxB,MAAM,CAAE,IAAI,CAAC,GAAG,AAClB,CAAC,AAEO,sCAAsC,AAAE,CAAC,AAC/C,OAAO,CAAE,GAAG,CAAC,IAAI,AACnB,CAAC,AAEO,2BAA2B,AAAE,CAAC,AACpC,SAAS,CAAE,WAAW,IAAI,CAAC,AAC7B,CAAC,AAEO,gCAAgC,AAAE,CAAC,AACzC,KAAK,CAAE,IAAI,CACX,UAAU,CAAE,MAAM,AACpB,CAAC\"}"
+const css$7 = {
+	code: ".markdown h1, .page h1{font-feature-settings:\"smcp\";font-size:1.75em;line-height:1.25;letter-spacing:-0.75px}.page h1, .markdown h1, .markdown h2, .markdown h3, .markdown\n      h4, .markdown h5, .markdown h6{margin:1.25em 0 0.5em -0.75rem;font-weight:bold;position:relative}.markdown h2{text-transform:uppercase;font-size:1.25em;padding:0 0.5em 0 0;line-height:1.25}.markdown p{line-height:1.55}.markdown ul li{margin:10px 5px}.markdown table th, .markdown table td{padding:5px 10px}.markdown p.image-container{transform:translateX(-50%)}.markdown p.image-container + em{width:100%;text-align:center}.markdown code{background-color:rgba(27, 31, 35, 0.05);border-radius:3px;font-size:85%;margin:0;padding:0.2em 0.4em}.markdown pre{word-wrap:normal}.markdown pre > code{background:transparent;border:0;font-size:100%;margin:0;padding:0;white-space:pre;word-break:normal}.markdown .highlight{margin-bottom:16px}.markdown .highlight pre{margin-bottom:0;word-break:normal}.markdown .highlight pre,.markdown pre{background-color:#2b2b2b;border-radius:3px;font-size:85%;line-height:1.45;overflow:auto;padding:16px}.markdown pre code{color:#b8b8b8;background-color:transparent;border:0;display:inline;line-height:inherit;margin:0;max-width:auto;overflow:visible;padding:0;word-wrap:normal}",
+	map: "{\"version\":3,\"file\":\"Markdown.svelte\",\"sources\":[\"Markdown.svelte\"],\"sourcesContent\":[\"<script>\\n  import { Remarkable } from \\\"remarkable\\\";\\n  import hljs from \\\"highlight.js\\\";\\n  import \\\"highlight.js/styles/agate.css\\\";\\n\\n  import { toSlug } from \\\"../util.js\\\";\\n\\n  export let content;\\n\\n  const md = new Remarkable({\\n    highlight: function(str, lang) {\\n      if (lang && hljs.getLanguage(lang)) {\\n        try {\\n          return hljs.highlight(lang, str).value;\\n        } catch (err) {}\\n      }\\n\\n      try {\\n        return hljs.highlightAuto(str).value;\\n      } catch (err) {}\\n\\n      return \\\"\\\"; // use external default escaping\\n    }\\n  });\\n\\n  function plugin(md) {\\n    md.renderer.rules.heading_open = function(tokens, idx) {\\n      return `<h${tokens[idx].hLevel} id='${toSlug(tokens[idx + 1].content)}'>`;\\n    };\\n\\n    md.renderer.rules.heading_close = function(tokens, idx) {\\n      return `</h${tokens[idx].hLevel}>\\\\n`;\\n    };\\n\\n    md.renderer.rules.image = function(tokens, idx, options /*, env */) {\\n      const src = ` src=\\\"${tokens[idx].src}\\\"`;\\n      const title = tokens[idx].title ? ` title=\\\"${tokens[idx].title}\\\"` : \\\"\\\";\\n      const alt = ' alt=\\\"' + (tokens[idx].alt ? tokens[idx].alt : \\\"\\\") + '\\\"';\\n      const suffix = options.xhtmlOut ? \\\" /\\\" : \\\"\\\";\\n      return `<p class=\\\"image-container\\\"> <img ${src} ${alt} ${title} ${suffix}> </p>`;\\n    };\\n  }\\n\\n  md.use(plugin);\\n</script>\\n\\n<style>\\n  :global(.markdown h1, .page h1) {\\n    font-feature-settings: \\\"smcp\\\";\\n    font-size: 1.75em;\\n    line-height: 1.25;\\n    letter-spacing: -0.75px;\\n  }\\n\\n  :global(.page h1, .markdown h1, .markdown h2, .markdown h3, .markdown\\n      h4, .markdown h5, .markdown h6) {\\n    margin: 1.25em 0 0.5em -0.75rem;\\n    font-weight: bold;\\n    position: relative;\\n  }\\n\\n  :global(.markdown h2) {\\n    text-transform: uppercase;\\n    font-size: 1.25em;\\n    padding: 0 0.5em 0 0;\\n    line-height: 1.25;\\n  }\\n\\n  :global(.markdown p) {\\n    line-height: 1.55;\\n  }\\n\\n  :global(.markdown ul li) {\\n    margin: 10px 5px;\\n  }\\n\\n  :global(.markdown table th, .markdown table td) {\\n    padding: 5px 10px;\\n  }\\n\\n  :global(.markdown p.image-container) {\\n    transform: translateX(-50%);\\n  }\\n\\n  :global(.markdown p.image-container + em) {\\n    width: 100%;\\n    text-align: center;\\n  }\\n\\n  :global(.markdown code) {\\n    background-color: rgba(27, 31, 35, 0.05);\\n    border-radius: 3px;\\n    font-size: 85%;\\n    margin: 0;\\n    padding: 0.2em 0.4em;\\n  }\\n\\n  :global(.markdown pre) {\\n    word-wrap: normal;\\n  }\\n\\n  :global(.markdown pre > code) {\\n    background: transparent;\\n    border: 0;\\n    font-size: 100%;\\n    margin: 0;\\n    padding: 0;\\n    white-space: pre;\\n    word-break: normal;\\n  }\\n\\n  :global(.markdown .highlight) {\\n    margin-bottom: 16px;\\n  }\\n\\n  :global(.markdown .highlight pre) {\\n    margin-bottom: 0;\\n    word-break: normal;\\n  }\\n\\n  :global(.markdown .highlight pre),\\n  :global(.markdown pre) {\\n    background-color: #2b2b2b;\\n    border-radius: 3px;\\n    font-size: 85%;\\n    line-height: 1.45;\\n    overflow: auto;\\n    padding: 16px;\\n  }\\n\\n  :global(.markdown pre code) {\\n    color: #b8b8b8;\\n    background-color: transparent;\\n    border: 0;\\n    display: inline;\\n    line-height: inherit;\\n    margin: 0;\\n    max-width: auto;\\n    overflow: visible;\\n    padding: 0;\\n    word-wrap: normal;\\n  }\\n</style>\\n\\n<div class=\\\"markdown\\\">\\n  {@html md.render(content)}\\n</div>\\n\"],\"names\":[],\"mappings\":\"AA+CU,sBAAsB,AAAE,CAAC,AAC/B,qBAAqB,CAAE,MAAM,CAC7B,SAAS,CAAE,MAAM,CACjB,WAAW,CAAE,IAAI,CACjB,cAAc,CAAE,OAAO,AACzB,CAAC,AAEO;oCAC0B,AAAE,CAAC,AACnC,MAAM,CAAE,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,QAAQ,CAC/B,WAAW,CAAE,IAAI,CACjB,QAAQ,CAAE,QAAQ,AACpB,CAAC,AAEO,YAAY,AAAE,CAAC,AACrB,cAAc,CAAE,SAAS,CACzB,SAAS,CAAE,MAAM,CACjB,OAAO,CAAE,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CACpB,WAAW,CAAE,IAAI,AACnB,CAAC,AAEO,WAAW,AAAE,CAAC,AACpB,WAAW,CAAE,IAAI,AACnB,CAAC,AAEO,eAAe,AAAE,CAAC,AACxB,MAAM,CAAE,IAAI,CAAC,GAAG,AAClB,CAAC,AAEO,sCAAsC,AAAE,CAAC,AAC/C,OAAO,CAAE,GAAG,CAAC,IAAI,AACnB,CAAC,AAEO,2BAA2B,AAAE,CAAC,AACpC,SAAS,CAAE,WAAW,IAAI,CAAC,AAC7B,CAAC,AAEO,gCAAgC,AAAE,CAAC,AACzC,KAAK,CAAE,IAAI,CACX,UAAU,CAAE,MAAM,AACpB,CAAC,AAEO,cAAc,AAAE,CAAC,AACvB,gBAAgB,CAAE,KAAK,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,IAAI,CAAC,CACxC,aAAa,CAAE,GAAG,CAClB,SAAS,CAAE,GAAG,CACd,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,KAAK,CAAC,KAAK,AACtB,CAAC,AAEO,aAAa,AAAE,CAAC,AACtB,SAAS,CAAE,MAAM,AACnB,CAAC,AAEO,oBAAoB,AAAE,CAAC,AAC7B,UAAU,CAAE,WAAW,CACvB,MAAM,CAAE,CAAC,CACT,SAAS,CAAE,IAAI,CACf,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,CACV,WAAW,CAAE,GAAG,CAChB,UAAU,CAAE,MAAM,AACpB,CAAC,AAEO,oBAAoB,AAAE,CAAC,AAC7B,aAAa,CAAE,IAAI,AACrB,CAAC,AAEO,wBAAwB,AAAE,CAAC,AACjC,aAAa,CAAE,CAAC,CAChB,UAAU,CAAE,MAAM,AACpB,CAAC,AAEO,wBAAwB,AAAC,CACzB,aAAa,AAAE,CAAC,AACtB,gBAAgB,CAAE,OAAO,CACzB,aAAa,CAAE,GAAG,CAClB,SAAS,CAAE,GAAG,CACd,WAAW,CAAE,IAAI,CACjB,QAAQ,CAAE,IAAI,CACd,OAAO,CAAE,IAAI,AACf,CAAC,AAEO,kBAAkB,AAAE,CAAC,AAC3B,KAAK,CAAE,OAAO,CACd,gBAAgB,CAAE,WAAW,CAC7B,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,MAAM,CACf,WAAW,CAAE,OAAO,CACpB,MAAM,CAAE,CAAC,CACT,SAAS,CAAE,IAAI,CACf,QAAQ,CAAE,OAAO,CACjB,OAAO,CAAE,CAAC,CACV,SAAS,CAAE,MAAM,AACnB,CAAC\"}"
 };
 
 function plugin(md) {
@@ -36448,7 +36478,7 @@ const Markdown = create_ssr_component(($$result, $$props, $$bindings, $$slots) =
 
 	md.use(plugin);
 	if ($$props.content === void 0 && $$bindings.content && content !== void 0) $$bindings.content(content);
-	$$result.css.add(css$6);
+	$$result.css.add(css$7);
 
 	return `<div class="${"markdown"}">
   ${md.render(content)}
@@ -36457,7 +36487,7 @@ const Markdown = create_ssr_component(($$result, $$props, $$bindings, $$slots) =
 
 /* src/components/Post/TOC.svelte generated by Svelte v3.17.1 */
 
-const css$7 = {
+const css$8 = {
 	code: ".toc a{color:#3c3c3c;text-decoration:none;padding-left:3px}.toc a:hover{color:#888}.toc > ul{counter-reset:htoc_1}.toc ul{list-style-type:none;padding-left:0;margin-bottom:0;margin-top:4px;padding-left:1.4em;text-indent:0;padding:0}ol{counter-reset:item}ol > li{counter-increment:item}.toc ol ol > li{display:block;font-size:0.9em;padding:3px 5px}.toc ol ol > li:before{content:counters(item, \".\") \". \";margin-left:-20px}.toc.svelte-1mr1vz7{float:left;max-width:35ch;border:1px solid #ccc;background-color:#f9f9f9;margin:0 2rem 1.5rem 0;line-height:1.25;padding:5px 15px;position:relative;z-index:1}",
 	map: "{\"version\":3,\"file\":\"TOC.svelte\",\"sources\":[\"TOC.svelte\"],\"sourcesContent\":[\"<script>\\n  import { toSlug } from \\\"../../util.js\\\";\\n  export let content;\\n  let numItems = 0;\\n\\n  function generate(content) {\\n    const regex = /(#+) (.+)/g;\\n    const regex_2 = /#+/g;\\n    let match,\\n      prev,\\n      toc = [];\\n    while ((match = regex.exec(content)) != null) {\\n      const item = {\\n        hashes: match[1],\\n        title: match[2],\\n        children: [],\\n        parent: null\\n      };\\n      if (prev && prev.hashes.length < match[1].length) {\\n        prev.children.push(item);\\n        item.parent = prev;\\n      } else if (prev && prev.hashes.length == match[1].length && prev.parent) {\\n        prev.parent.children.push(item);\\n        item.parent = prev.parent;\\n      } else if (prev && prev.hashes.length > match[1].length && prev.parent) {\\n        let parent = prev.parent;\\n        while (parent && parent.hashes.length >= match[1].length) {\\n          parent = parent.parent;\\n        }\\n        if (parent) {\\n          parent.children.push(item);\\n          item.parent = parent;\\n        } else {\\n          toc.push(item);\\n        }\\n      } else {\\n        toc.push(item);\\n      }\\n      numItems++;\\n      prev = item;\\n    }\\n\\n    return toc;\\n  }\\n\\n  function html(toc) {\\n    return toc.length > 0\\n      ? `\\n      <ol>\\n        ${toc\\n          .map(\\n            ({ hashes, title, children }) =>\\n              `<li><a href=\\\"#${toSlug(title)}\\\">${title.replace(\\n                /[1-9].?/g,\\n                \\\"\\\"\\n              )}</a> ${html(children)} </li>`\\n          )\\n          .join(\\\"\\\")}\\n      </ol>\\n    `\\n      : \\\"\\\";\\n  }\\n\\n  $: toc = html(generate(content));\\n</script>\\n\\n<style>\\n  :global(.toc a) {\\n    color: #3c3c3c;\\n    text-decoration: none;\\n    padding-left: 3px;\\n  }\\n  :global(.toc a:hover) {\\n    color: #888;\\n  }\\n  :global(.toc > ul) {\\n    counter-reset: htoc_1;\\n  }\\n  :global(.toc ul) {\\n    list-style-type: none;\\n    padding-left: 0;\\n    margin-bottom: 0;\\n    margin-top: 4px;\\n    padding-left: 1.4em;\\n    text-indent: 0;\\n    padding: 0;\\n  }\\n  :global(ol) {\\n    counter-reset: item;\\n  }\\n\\n  :global(ol > li) {\\n    counter-increment: item;\\n  }\\n\\n  :global(.toc ol ol > li) {\\n    display: block;\\n    font-size: 0.9em;\\n    padding: 3px 5px;\\n  }\\n\\n  :global(.toc ol ol > li:before) {\\n    content: counters(item, \\\".\\\") \\\". \\\";\\n    margin-left: -20px;\\n  }\\n  .toc {\\n    float: left;\\n    max-width: 35ch;\\n    border: 1px solid #ccc;\\n    background-color: #f9f9f9;\\n    margin: 0 2rem 1.5rem 0;\\n    line-height: 1.25;\\n    padding: 5px 15px;\\n    position: relative;\\n    z-index: 1;\\n  }\\n</style>\\n\\n{#if numItems > 3}\\n  <div class=\\\"toc\\\">\\n    {@html toc}\\n  </div>\\n{/if}\\n\"],\"names\":[],\"mappings\":\"AAmEU,MAAM,AAAE,CAAC,AACf,KAAK,CAAE,OAAO,CACd,eAAe,CAAE,IAAI,CACrB,YAAY,CAAE,GAAG,AACnB,CAAC,AACO,YAAY,AAAE,CAAC,AACrB,KAAK,CAAE,IAAI,AACb,CAAC,AACO,SAAS,AAAE,CAAC,AAClB,aAAa,CAAE,MAAM,AACvB,CAAC,AACO,OAAO,AAAE,CAAC,AAChB,eAAe,CAAE,IAAI,CACrB,YAAY,CAAE,CAAC,CACf,aAAa,CAAE,CAAC,CAChB,UAAU,CAAE,GAAG,CACf,YAAY,CAAE,KAAK,CACnB,WAAW,CAAE,CAAC,CACd,OAAO,CAAE,CAAC,AACZ,CAAC,AACO,EAAE,AAAE,CAAC,AACX,aAAa,CAAE,IAAI,AACrB,CAAC,AAEO,OAAO,AAAE,CAAC,AAChB,iBAAiB,CAAE,IAAI,AACzB,CAAC,AAEO,eAAe,AAAE,CAAC,AACxB,OAAO,CAAE,KAAK,CACd,SAAS,CAAE,KAAK,CAChB,OAAO,CAAE,GAAG,CAAC,GAAG,AAClB,CAAC,AAEO,sBAAsB,AAAE,CAAC,AAC/B,OAAO,CAAE,SAAS,IAAI,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CACjC,WAAW,CAAE,KAAK,AACpB,CAAC,AACD,IAAI,eAAC,CAAC,AACJ,KAAK,CAAE,IAAI,CACX,SAAS,CAAE,IAAI,CACf,MAAM,CAAE,GAAG,CAAC,KAAK,CAAC,IAAI,CACtB,gBAAgB,CAAE,OAAO,CACzB,MAAM,CAAE,CAAC,CAAC,IAAI,CAAC,MAAM,CAAC,CAAC,CACvB,WAAW,CAAE,IAAI,CACjB,OAAO,CAAE,GAAG,CAAC,IAAI,CACjB,QAAQ,CAAE,QAAQ,CAClB,OAAO,CAAE,CAAC,AACZ,CAAC\"}"
 };
@@ -36519,7 +36549,7 @@ const TOC = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 	}
 
 	if ($$props.content === void 0 && $$bindings.content && content !== void 0) $$bindings.content(content);
-	$$result.css.add(css$7);
+	$$result.css.add(css$8);
 	let toc = html(generate(content));
 
 	return `${numItems > 3
@@ -36531,7 +36561,7 @@ const TOC = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 
 /* src/components/Post/Page.svelte generated by Svelte v3.17.1 */
 
-const css$8 = {
+const css$9 = {
 	code: ".markdown.svelte-ntr7ek.svelte-ntr7ek{width:70vw;max-width:85ch}header.svelte-ntr7ek h1.svelte-ntr7ek{margin:0.75em 0;margin-top:0;text-align:center;text-transform:none;font-variant:small-caps;font-size:2.5em;line-height:1.15;font-weight:600;letter-spacing:-1px}.page.svelte-ntr7ek h1.svelte-ntr7ek{font-feature-settings:\"smcp\";font-size:1.75em;line-height:1.25;letter-spacing:-0.75px;margin:1.25em 0 0.5em -0.75rem;font-weight:bold;position:relative}.page-metadata.svelte-ntr7ek.svelte-ntr7ek{display:flex;flex-direction:column;margin:20px 0}.page-metadata.svelte-ntr7ek .subtitle.svelte-ntr7ek{text-align:center;font-style:italic}.page-metadata.svelte-ntr7ek .date.svelte-ntr7ek{font-style:italic}.page-metadata.svelte-ntr7ek .date-container.svelte-ntr7ek{margin-top:18px}",
 	map: "{\"version\":3,\"file\":\"Page.svelte\",\"sources\":[\"Page.svelte\"],\"sourcesContent\":[\"<script>\\n  import { onMount } from \\\"svelte\\\";\\n  import moment from \\\"moment\\\";\\n  import Markdown from \\\"../Markdown.svelte\\\";\\n  import TOC from \\\"./TOC.svelte\\\";\\n\\n  export let title, subtitle, date, tags, content, slug;\\n\\n  onMount(() => {\\n    fetch(`/get-post`, {\\n      method: \\\"post\\\",\\n      headers: {\\n        \\\"Content-Type\\\": \\\"application/json\\\"\\n      },\\n      body: JSON.stringify({ slug })\\n    })\\n      .then(resp => resp.json())\\n      .then(({ post }) => {\\n        content = post;\\n      });\\n  });\\n</script>\\n\\n<style>\\n  .markdown {\\n    width: 70vw;\\n    max-width: 85ch;\\n  }\\n\\n  header h1 {\\n    margin: 0.75em 0;\\n    margin-top: 0;\\n    text-align: center;\\n    text-transform: none;\\n    font-variant: small-caps;\\n    font-size: 2.5em;\\n    line-height: 1.15;\\n    font-weight: 600;\\n    letter-spacing: -1px;\\n  }\\n\\n  .page h1 {\\n    font-feature-settings: \\\"smcp\\\";\\n    font-size: 1.75em;\\n    line-height: 1.25;\\n    letter-spacing: -0.75px;\\n    margin: 1.25em 0 0.5em -0.75rem;\\n    font-weight: bold;\\n    position: relative;\\n  }\\n\\n  .page-metadata {\\n    display: flex;\\n    flex-direction: column;\\n    margin: 20px 0;\\n  }\\n  .page-metadata .subtitle {\\n    text-align: center;\\n    font-style: italic;\\n  }\\n  .page-metadata .date {\\n    font-style: italic;\\n  }\\n  .page-metadata .date-container {\\n    margin-top: 18px;\\n  }\\n</style>\\n\\n<div class=\\\"page\\\">\\n\\n  <header>\\n    <h1>{title}</h1>\\n  </header>\\n\\n  <article>\\n    <div class=\\\"page-metadata\\\">\\n      {#if subtitle}\\n        <span class=\\\"subtitle\\\">{subtitle}</span>\\n      {/if}\\n      {#if date}\\n        <span class=\\\"date-container\\\">\\n          Created:\\n          <span class=\\\"date\\\">\\n            {moment(date, 'MM/DD/YYYY').format('MMM Do YYYY')}\\n          </span>\\n        </span>\\n      {/if}\\n    </div>\\n    <div class=\\\"table-of-contents\\\">\\n      <TOC {content} />\\n    </div>\\n    <div class=\\\"markdown\\\">\\n      <Markdown {content} />\\n    </div>\\n  </article>\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAwBE,SAAS,4BAAC,CAAC,AACT,KAAK,CAAE,IAAI,CACX,SAAS,CAAE,IAAI,AACjB,CAAC,AAED,oBAAM,CAAC,EAAE,cAAC,CAAC,AACT,MAAM,CAAE,MAAM,CAAC,CAAC,CAChB,UAAU,CAAE,CAAC,CACb,UAAU,CAAE,MAAM,CAClB,cAAc,CAAE,IAAI,CACpB,YAAY,CAAE,UAAU,CACxB,SAAS,CAAE,KAAK,CAChB,WAAW,CAAE,IAAI,CACjB,WAAW,CAAE,GAAG,CAChB,cAAc,CAAE,IAAI,AACtB,CAAC,AAED,mBAAK,CAAC,EAAE,cAAC,CAAC,AACR,qBAAqB,CAAE,MAAM,CAC7B,SAAS,CAAE,MAAM,CACjB,WAAW,CAAE,IAAI,CACjB,cAAc,CAAE,OAAO,CACvB,MAAM,CAAE,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,QAAQ,CAC/B,WAAW,CAAE,IAAI,CACjB,QAAQ,CAAE,QAAQ,AACpB,CAAC,AAED,cAAc,4BAAC,CAAC,AACd,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,MAAM,CAAE,IAAI,CAAC,CAAC,AAChB,CAAC,AACD,4BAAc,CAAC,SAAS,cAAC,CAAC,AACxB,UAAU,CAAE,MAAM,CAClB,UAAU,CAAE,MAAM,AACpB,CAAC,AACD,4BAAc,CAAC,KAAK,cAAC,CAAC,AACpB,UAAU,CAAE,MAAM,AACpB,CAAC,AACD,4BAAc,CAAC,eAAe,cAAC,CAAC,AAC9B,UAAU,CAAE,IAAI,AAClB,CAAC\"}"
 };
@@ -36560,7 +36590,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 	if ($$props.tags === void 0 && $$bindings.tags && tags !== void 0) $$bindings.tags(tags);
 	if ($$props.content === void 0 && $$bindings.content && content !== void 0) $$bindings.content(content);
 	if ($$props.slug === void 0 && $$bindings.slug && slug !== void 0) $$bindings.slug(slug);
-	$$result.css.add(css$8);
+	$$result.css.add(css$9);
 
 	return `<div class="${"page svelte-ntr7ek"}">
 
@@ -36594,7 +36624,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 
 /* src/components/List.svelte generated by Svelte v3.17.1 */
 
-const css$9 = {
+const css$a = {
 	code: ".list.svelte-1hnkl9k h3.svelte-1hnkl9k{font-size:1.5em;font-weight:700;font-variant:small-caps;margin-top:4px;line-height:1.125}.list li{line-height:1.55}.list a, .list p{color:#333}.list a:hover{color:#888}",
 	map: "{\"version\":3,\"file\":\"List.svelte\",\"sources\":[\"List.svelte\"],\"sourcesContent\":[\"<script>\\n  export let title;\\n</script>\\n\\n<style>\\n  .list h3 {\\n    font-size: 1.5em;\\n    font-weight: 700;\\n    font-variant: small-caps;\\n    margin-top: 4px;\\n    line-height: 1.125;\\n  }\\n\\n  :global(.list li) {\\n    line-height: 1.55;\\n  }\\n\\n  :global(.list a, .list p) {\\n    color: #333;\\n  }\\n  :global(.list a:hover) {\\n    color: #888;\\n  }\\n</style>\\n\\n<div class=\\\"list\\\">\\n  <h3>{title}</h3>\\n  <ul>\\n    <slot />\\n  </ul>\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAKE,oBAAK,CAAC,EAAE,eAAC,CAAC,AACR,SAAS,CAAE,KAAK,CAChB,WAAW,CAAE,GAAG,CAChB,YAAY,CAAE,UAAU,CACxB,UAAU,CAAE,GAAG,CACf,WAAW,CAAE,KAAK,AACpB,CAAC,AAEO,QAAQ,AAAE,CAAC,AACjB,WAAW,CAAE,IAAI,AACnB,CAAC,AAEO,gBAAgB,AAAE,CAAC,AACzB,KAAK,CAAE,IAAI,AACb,CAAC,AACO,aAAa,AAAE,CAAC,AACtB,KAAK,CAAE,IAAI,AACb,CAAC\"}"
 };
@@ -36602,7 +36632,7 @@ const css$9 = {
 const List = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 	let { title } = $$props;
 	if ($$props.title === void 0 && $$bindings.title && title !== void 0) $$bindings.title(title);
-	$$result.css.add(css$9);
+	$$result.css.add(css$a);
 
 	return `<div class="${"list svelte-1hnkl9k"}">
   <h3 class="${"svelte-1hnkl9k"}">${escape(title)}</h3>
@@ -36715,14 +36745,14 @@ const posts = [
 
 /* src/routes/Blog/Blog.svelte generated by Svelte v3.17.1 */
 
-const css$a = {
+const css$b = {
 	code: ".container.svelte-o561e7{width:100%;padding:0 20px;margin-left:30px;margin-top:4vw}.posts.svelte-o561e7{display:flex;flex-wrap:wrap;margin-top:2vw}",
 	map: "{\"version\":3,\"file\":\"Blog.svelte\",\"sources\":[\"Blog.svelte\"],\"sourcesContent\":[\"<script>\\n  import { Router, Link, Route } from \\\"svelte-routing\\\";\\n  import { groupBy } from \\\"../../util.js\\\";\\n  import Post from \\\"../../components/Post/Page.svelte\\\";\\n  import List from \\\"../../components/List.svelte\\\";\\n  import Posts from \\\"../metadata/posts.js\\\";\\n\\n  const algorithms = groupBy(\\\"parent\\\")(\\n    Posts.filter(({ tags }) => tags.includes(\\\"algorithms\\\"))\\n  );\\n</script>\\n\\n<style>\\n  .container {\\n    width: 100%;\\n    padding: 0 20px;\\n    margin-left: 30px;\\n    margin-top: 4vw;\\n  }\\n  .posts {\\n    display: flex;\\n    flex-wrap: wrap;\\n    margin-top: 2vw;\\n  }\\n</style>\\n\\n<svelte:head>\\n  <title>Writings | Sibtain Jafferi</title>\\n</svelte:head>\\n\\n<div class=\\\"container\\\">\\n\\n  <Router>\\n    <Route path=\\\"/\\\">\\n      <div class=\\\"posts\\\">\\n        <!-- <List title=\\\"Algorithms\\\">\\n        {#each Object.entries(algorithms) as [group, posts]}\\n          <h4>{group}</h4>\\n          <ul>\\n            {#each posts as post}\\n              <li>\\n                <Link to={post.slug}>{post.title}</Link>\\n              </li>\\n            {/each}\\n          </ul>\\n        {/each}\\n      </List> -->\\n\\n        <List title=\\\"Technical\\\">\\n          {#each Posts as post}\\n            {#if post.tags.includes('technical')}\\n              <li>\\n                <Link to={post.slug}>{post.title}</Link>\\n              </li>\\n            {/if}\\n          {/each}\\n        </List>\\n\\n        <List title=\\\"Practical\\\">\\n          {#each Posts as post}\\n            {#if post.tags.includes('practical')}\\n              <li>\\n                <Link to={post.slug}>{post.title}</Link>\\n              </li>\\n            {/if}\\n          {/each}\\n        </List>\\n      </div>\\n    </Route>\\n\\n    {#each Posts as post}\\n      <Route path={post.slug}>\\n        <Post {...post} />\\n      </Route>\\n    {/each}\\n  </Router>\\n\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAaE,UAAU,cAAC,CAAC,AACV,KAAK,CAAE,IAAI,CACX,OAAO,CAAE,CAAC,CAAC,IAAI,CACf,WAAW,CAAE,IAAI,CACjB,UAAU,CAAE,GAAG,AACjB,CAAC,AACD,MAAM,cAAC,CAAC,AACN,OAAO,CAAE,IAAI,CACb,SAAS,CAAE,IAAI,CACf,UAAU,CAAE,GAAG,AACjB,CAAC\"}"
 };
 
 const Blog = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 	const algorithms = groupBy("parent")(posts.filter(({ tags }) => tags.includes("algorithms")));
-	$$result.css.add(css$a);
+	$$result.css.add(css$b);
 
 	return `${($$result.head += `${($$result.title = `<title>Writings | Sibtain Jafferi</title>`, "")}`, "")}
 
@@ -36771,26 +36801,26 @@ const Blog = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 
 /* src/routes/Me.svelte generated by Svelte v3.17.1 */
 
-const css$b = {
+const css$c = {
 	code: ".container-me.svelte-la639p{width:100%;display:flex;flex-direction:column;flex-wrap:wrap;padding:0 20px;margin-left:30px;margin-top:4vw}",
-	map: "{\"version\":3,\"file\":\"Me.svelte\",\"sources\":[\"Me.svelte\"],\"sourcesContent\":[\"<script>\\n  import { Router, Link, Route } from \\\"svelte-routing\\\";\\n  import { Images } from \\\"svelte-images\\\";\\n  import List from \\\"../components/List.svelte\\\";\\n\\n  const images = [];\\n  for (let i = 0; i < 14; i++) {\\n    images.push({\\n      src:\\n        \\\"https://cdn-images-1.medium.com/max/2632/1*FPLyijI0bj-bv8wBJ78pnA.png\\\"\\n    });\\n  }\\n</script>\\n\\n<style>\\n  .container-me {\\n    width: 100%;\\n    display: flex;\\n    flex-direction: column;\\n    flex-wrap: wrap;\\n    padding: 0 20px;\\n    margin-left: 30px;\\n    margin-top: 4vw;\\n  }\\n</style>\\n\\n<svelte:head>\\n  <title>Me | Sibtain Jafferi</title>\\n</svelte:head>\\n\\n<!-- <Images {images} /> -->\\n\\n<div class=\\\"container-me\\\">\\n\\n  <div class=\\\"description\\\">\\n    <p>Greetings. I'm a frontend engineer @ sumo logic</p>\\n    <p>\\n      Right now I'm most interested in writing svelte open source components,\\n      writing and side projects (check out the projects tab).\\n    </p>\\n  </div>\\n\\n  <List title=\\\"Code\\\">\\n    <li>\\n      <a href=\\\"https://github.com/sjafferi\\\" target=\\\"_blank\\\">\\n        github.com/sjafferi\\n      </a>\\n    </li>\\n  </List>\\n\\n  <List title=\\\"Experience\\\">\\n    <li>\\n      <p>2019 - Sumo Logic: Frontend Engineer</p>\\n    </li>\\n    <li>\\n      <p>2018 - Faire: Frontend Engineer</p>\\n    </li>\\n    <li>\\n      <p>2018 - Shoplogix: Frontend Engineer</p>\\n    </li>\\n    <li>\\n      <p>2016 - OpenText: Software Developer</p>\\n    </li>\\n  </List>\\n\\n  <List title=\\\"Education\\\">\\n    <li>\\n      <p>2019 - University of Waterloo: Bachelors of Computer Science</p>\\n    </li>\\n  </List>\\n\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAeE,aAAa,cAAC,CAAC,AACb,KAAK,CAAE,IAAI,CACX,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,SAAS,CAAE,IAAI,CACf,OAAO,CAAE,CAAC,CAAC,IAAI,CACf,WAAW,CAAE,IAAI,CACjB,UAAU,CAAE,GAAG,AACjB,CAAC\"}"
+	map: "{\"version\":3,\"file\":\"Me.svelte\",\"sources\":[\"Me.svelte\"],\"sourcesContent\":[\"<script>\\n  import { Router, Link, Route } from \\\"svelte-routing\\\";\\n  import List from \\\"../components/List.svelte\\\";\\n</script>\\n\\n<style>\\n  .container-me {\\n    width: 100%;\\n    display: flex;\\n    flex-direction: column;\\n    flex-wrap: wrap;\\n    padding: 0 20px;\\n    margin-left: 30px;\\n    margin-top: 4vw;\\n  }\\n</style>\\n\\n<svelte:head>\\n  <title>Me | Sibtain Jafferi</title>\\n</svelte:head>\\n\\n<div class=\\\"container-me\\\">\\n\\n  <div class=\\\"description list\\\">\\n    <p>Greetings. I'm a frontend engineer @ sumo logic</p>\\n    <p>\\n      Right now I'm most interested in developing open source svelte components,\\n      <a href=\\\"/writings\\\">writing</a>\\n      and\\n      <a href=\\\"/projects\\\">a few notable projects</a>\\n      .\\n    </p>\\n  </div>\\n\\n  <List title=\\\"Code\\\">\\n    <li>\\n      <a href=\\\"https://github.com/sjafferi\\\" target=\\\"_blank\\\">\\n        github.com/sjafferi\\n      </a>\\n    </li>\\n  </List>\\n\\n  <List title=\\\"Experience\\\">\\n    <li>\\n      <p>2019 - Sumo Logic: Frontend Engineer</p>\\n    </li>\\n    <li>\\n      <p>2018 - Faire: Frontend Engineer</p>\\n    </li>\\n    <li>\\n      <p>2018 - Shoplogix: Frontend Engineer</p>\\n    </li>\\n    <li>\\n      <p>2016 - OpenText: Software Developer</p>\\n    </li>\\n  </List>\\n\\n  <List title=\\\"Education\\\">\\n    <li>\\n      <p>2019 - University of Waterloo: Bachelors of Computer Science</p>\\n    </li>\\n  </List>\\n\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAME,aAAa,cAAC,CAAC,AACb,KAAK,CAAE,IAAI,CACX,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,SAAS,CAAE,IAAI,CACf,OAAO,CAAE,CAAC,CAAC,IAAI,CACf,WAAW,CAAE,IAAI,CACjB,UAAU,CAAE,GAAG,AACjB,CAAC\"}"
 };
 
 const Me = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
-
-	$$result.css.add(css$b);
+	$$result.css.add(css$c);
 
 	return `${($$result.head += `${($$result.title = `<title>Me | Sibtain Jafferi</title>`, "")}`, "")}
 
-
-
 <div class="${"container-me svelte-la639p"}">
 
-  <div class="${"description"}">
+  <div class="${"description list"}">
     <p>Greetings. I&#39;m a frontend engineer @ sumo logic</p>
     <p>
-      Right now I&#39;m most interested in writing svelte open source components,
-      writing and side projects (check out the projects tab).
+      Right now I&#39;m most interested in developing open source svelte components,
+      <a href="${"/writings"}">writing</a>
+      and
+      <a href="${"/projects"}">a few notable projects</a>
+      .
     </p>
   </div>
 
@@ -36834,7 +36864,7 @@ const Me = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 
 /* src/App.svelte generated by Svelte v3.17.1 */
 
-const css$c = {
+const css$d = {
 	code: ".container.svelte-rfw4x3{max-width:110ch;margin:auto;padding:0 20px;display:flex}.page.svelte-rfw4x3{width:100%}",
 	map: "{\"version\":3,\"file\":\"App.svelte\",\"sources\":[\"App.svelte\"],\"sourcesContent\":[\"<script>\\n  import { Router, Route } from \\\"svelte-routing\\\";\\n  import Nav from \\\"./routes/Nav.svelte\\\";\\n  import Projects from \\\"./routes/Projects.svelte\\\";\\n  import Blog from \\\"./routes/Blog/Blog.svelte\\\";\\n  import Me from \\\"./routes/Me.svelte\\\";\\n\\n  // Used for SSR. A falsy value is ignored by the Router.\\n  export let url = \\\"\\\";\\n</script>\\n\\n<style>\\n  .container {\\n    max-width: 110ch;\\n    margin: auto;\\n    padding: 0 20px;\\n    display: flex;\\n  }\\n\\n  .page {\\n    width: 100%;\\n  }\\n</style>\\n\\n<div class=\\\"container\\\">\\n  <Router {url}>\\n    <Nav />\\n    <div class=\\\"page\\\">\\n      <Route path=\\\"projects\\\" component={Projects} />\\n      <Route path=\\\"/\\\" component={Me} />\\n      <Route path=\\\"writings/*\\\" component={Blog} />\\n    </div>\\n  </Router>\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAYE,UAAU,cAAC,CAAC,AACV,SAAS,CAAE,KAAK,CAChB,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,CAAC,CAAC,IAAI,CACf,OAAO,CAAE,IAAI,AACf,CAAC,AAED,KAAK,cAAC,CAAC,AACL,KAAK,CAAE,IAAI,AACb,CAAC\"}"
 };
@@ -36842,7 +36872,7 @@ const css$c = {
 const App = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 	let { url = "" } = $$props;
 	if ($$props.url === void 0 && $$bindings.url && url !== void 0) $$bindings.url(url);
-	$$result.css.add(css$c);
+	$$result.css.add(css$d);
 
 	return `<div class="${"container svelte-rfw4x3"}">
   ${validate_component(Router, "Router").$$render($$result, { url }, {}, {
