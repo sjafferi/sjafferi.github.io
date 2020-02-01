@@ -15,14 +15,17 @@
     margin: auto;
     padding: 0 20px;
     display: flex;
-    overflow-x: hidden;
+  }
+
+  .page {
+    width: 100%;
   }
 </style>
 
 <div class="container">
   <Router {url}>
     <Nav />
-    <div>
+    <div class="page">
       <Route path="projects" component={Projects} />
       <Route path="/" component={Me} />
       <Route path="writings/*" component={Blog} />

@@ -83,7 +83,7 @@ KR 2. Do 20 hours of deep work (no distractions whatsoever) per week
 
 Translation: Pictured below on [Junoon](http://junoon.io/)
 
-![Key results to daily tasks with Junoon](https://cdn-images-1.medium.com/max/2632/1*FPLyijI0bj-bv8wBJ78pnA.png)*Key results to daily tasks with Junoon*
+![Key results to daily tasks with Junoon](https://cdn-images-1.medium.com/max/2632/1*FPLyijI0bj-bv8wBJ78pnA.png)
 
 KR 2. Take 10m every night to review your patience and discipline throughout the day
 
@@ -104,7 +104,7 @@ Once this connection of metrics with progress becomes clear, it adds an extra la
 
 By adding your metrics into [Junoon](http://junoon.io/) and filling out daily reviews, you can set a pretty compelling scoreboard.
 
-![4. Keep a compelling scoreboard](https://cdn-images-1.medium.com/max/2400/1*iRMUCOjz1yq1I6uDoBmqFQ.png)*4. Keep a compelling scoreboard*
+![4. Keep a compelling scoreboard](https://cdn-images-1.medium.com/max/2400/1*iRMUCOjz1yq1I6uDoBmqFQ.png)
 
 Otherwise, you can keep track of your metrics with:
 
@@ -129,7 +129,7 @@ Here’s Cal Newport talking about it in *Deep Work.*
 > *It tells us that if you simply stop whatever you are doing at five p.m and declare, “I’m done with work until tomorrow,” you’ll likely struggle to keep your mind clear of professional issues, as the many **obligations left unresolved **in your mind will, as in Bluma Zeigarnik’s experiments, **keep battling for your attention throughout the evening**...*
 > *This ritual ensures that no task will be forgotten: Each will be reviewed daily and tackled when the time is appropriate. **Your mind**, in other words, is **released from its duty** to **keep track of these obligations** at every moment—your shutdown ritual has taken over that responsibility.*
 
-![Junoon — Daily Review](https://cdn-images-1.medium.com/max/2626/1*q1ihvsQIHKCHymwWVuY8fg.png)*Junoon — Daily Review*
+![Junoon — Daily Review](https://cdn-images-1.medium.com/max/2626/1*q1ihvsQIHKCHymwWVuY8fg.png)
 
 Although it took me about a week to fully routinize daily reviews, it’s now become an integral part of my evenings. The biggest benefit I’ve seen from this ritual has been its effect on my sleep: it takes me considerably less time to fall asleep than it did previously (about 20-30m, tracked by my sleeping app).
 

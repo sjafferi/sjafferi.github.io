@@ -2364,6 +2364,11 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
+svelte-images@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/svelte-images/-/svelte-images-0.0.7.tgz#b563f17eaa29d9f160db562f9b92fa809d71647d"
+  integrity sha512-uYrol3zNR6khuVN/Ac5LXabWagXHIhb7cgfQZC1T3G2C6ZMTb4ApVnov1FYgAHvQ2vPqsC35eqqQg2lixHJHvQ==
+
 svelte-routing@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/svelte-routing/-/svelte-routing-1.4.0.tgz#09285f3c7b19f509dfb1289fbc1235b348aa7d80"

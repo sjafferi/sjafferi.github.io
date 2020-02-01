@@ -1,6 +1,6 @@
 # What's in this guide
 
-This is meant to be a comprehensive guide for mastering technical interviews on algorithms and data structures. It includes a ground up understanding of the theory (relying on [UWaterloo's CS341](https://www.student.cs.uwaterloo.ca/~cs341/) and Skiena's Algorithm Design Manual) as well as problems aggregated from books and the web. 
+This is meant to be a comprehensive guide for mastering technical interviews on algorithms and data structures. It includes a ground up understanding of the theory (relying on [UWaterloo's CS341](https://www.student.cs.uwaterloo.ca/~cs341/) and [Skiena's Algorithm Design Manual](http://www.algorist.com/)) as well as problems aggregated from books (relying heavily on [Elements of Programming Interviews](https://www.amazon.com/gp/product/1537713949?ie=UTF8&tag=sjafferi-20&camp=1789&linkCode=xm2&creativeASIN=1537713949)) and the web. 
 
 This guide assumes you have some background in algorithms and hence won't reiterate common definitions.
 
@@ -48,9 +48,19 @@ Formally:
 
 # Data Structures
 
+Data structures can be split into two categories:
+
+1. **Contiguously-allocated** data structures are a single block of memory used for arrays, matrices, heaps and hash tables.
+
+2. **Linked** data structures are composed of distinct chunks of memory 
+
 ## Arrays
 
 Arrays are contiguous blocks of memory representing a list of elements. 
+
+Steven Skiena quotes a great analogy in ADM (Algorithm Design Manual)
+
+>
 
 ### Complexities
 

@@ -3,7 +3,7 @@
   import { groupBy } from "../../util.js";
   import Post from "../../components/Post/Page.svelte";
   import List from "../../components/List.svelte";
-  import Posts from "./posts.js";
+  import Posts from "../metadata/posts.js";
 
   const algorithms = groupBy("parent")(
     Posts.filter(({ tags }) => tags.includes("algorithms"))

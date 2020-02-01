@@ -23,7 +23,7 @@
     }
   });
 
-  function anchors(md) {
+  function plugin(md) {
     md.renderer.rules.heading_open = function(tokens, idx) {
       return `<h${tokens[idx].hLevel} id='${toSlug(tokens[idx + 1].content)}'>`;
     };
@@ -31,9 +31,17 @@
     md.renderer.rules.heading_close = function(tokens, idx) {
       return `</h${tokens[idx].hLevel}>\n`;
     };
+
+    md.renderer.rules.image = function(tokens, idx, options /*, env */) {
+      const src = ` src="${tokens[idx].src}"`;
+      const title = tokens[idx].title ? ` title="${tokens[idx].title}"` : "";
+      const alt = ' alt="' + (tokens[idx].alt ? tokens[idx].alt : "") + '"';
+      const suffix = options.xhtmlOut ? " /" : "";
+      return `<p class="image-container"> <img ${src} ${alt} ${title} ${suffix}> </p>`;
+    };
   }
 
-  md.use(anchors);
+  md.use(plugin);
 </script>
 
 <style>
@@ -68,6 +76,15 @@
 
   :global(.markdown table th, .markdown table td) {
     padding: 5px 10px;
+  }
+
+  :global(.markdown p.image-container) {
+    transform: translateX(-50%);
+  }
+
+  :global(.markdown p.image-container + em) {
+    width: 100%;
+    text-align: center;
   }
 </style>
 
