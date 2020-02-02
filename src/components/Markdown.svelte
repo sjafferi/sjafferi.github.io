@@ -3,7 +3,7 @@
   import hljs from "highlight.js";
   import "highlight.js/styles/agate.css";
 
-  import { toSlug } from "../util.js";
+  import { toSlug } from "util/index.js";
 
   export let content;
 

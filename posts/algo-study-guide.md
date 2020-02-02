@@ -134,9 +134,12 @@ Data structures can be split into two categories:
 
 Arrays are contiguous blocks of memory representing a list of elements. 
 
-Steven Skiena quotes a great analogy in ADM (Algorithm Design Manual)
+A few tips from Elements of Programming Interviews that are notable:
 
->
+> When dealing with integers encoded by an array consider processing the digits from the back of the array so the least-significant digit is the first entry.
+> When operating on 2D arrays, use parallel logic for rows and columns
+
+We'll explore problems concerning modifying arrays in-place such that some property is satisfied, traversing and multi-dimensional datasets.
 
 ### Complexities
 
@@ -161,7 +164,31 @@ binary search
 quick select
 ```
 
-### Problems
+### 3-way partition
+Also known as the dutch national flag problem from EPI page 44.
+
+Given an array A and an index i, rearrange the elements such that all elements less than A[i] appear first, followed by elements equal to the pivot, followed by elements greater than the pivot.
+
+The trivial solution is to form the 3 lists and combine them, but let's try to avoid O(n) space complexity by rearring the list in place.
+
+We can do this by maintaing four subarrays: bottom (elements < pivot), middle (elements == pivot), unclassified, and top (elements > pivot). Initially all elements are unclassified. We iterate through elements in unclassified, and move elements into one of bottom, middle, and top groups according to the relative order between the incoming unclassified element and the pivot. (epi pg. 44)
+
+Code:
+
+```python
+def three_way_partition(arr, i):
+    pivot_value = arr[i]
+    smaller, equal, larger = 0, 0, len(arr)
+    while equal < larger:
+        if arr[equal] < pivot:
+            arr[smaller], arr[equal] = arr[equal], arr[smaller]
+            smaller, equal = smaller + 1, equal + 1
+        elif arr[equal] == pivot:
+            equal += 1
+        else: # arr[equal] > pivot
+            larger -= 1
+            arr[equal], arr[larger] = arr[larger], arr[equal]
+```
 
 
 #### Compute max profit from one buy and sell
@@ -226,6 +253,10 @@ def max_profit_greedy(prices):
 ## Strings
 
 ### Minimum window problem
+
+## Tries
+
+### Longest common prefix
 
 ## Stacks & Queues
 

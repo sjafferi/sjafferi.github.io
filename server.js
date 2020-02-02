@@ -16,7 +16,6 @@ server.post('/get-post', function (req, res) {
 
 server.get("*", function (req, res) {
   const { html } = app.render({ url: req.url });
-
   res.write(`
     <!DOCTYPE html>
     <link rel='stylesheet' href='/global.css'>

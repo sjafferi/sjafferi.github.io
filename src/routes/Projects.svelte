@@ -1,6 +1,6 @@
 <script>
   import { Images } from "svelte-images";
-  import Projects from "./metadata/projects.js";
+  import Projects from "metadata/projects.js";
 </script>
 
 <style>

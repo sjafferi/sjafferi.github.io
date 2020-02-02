@@ -1,6 +1,6 @@
 <script>
   import { Router, Link, Route } from "svelte-routing";
-  import List from "../components/List.svelte";
+  import List from "components/List.svelte";
 </script>
 
 <style>

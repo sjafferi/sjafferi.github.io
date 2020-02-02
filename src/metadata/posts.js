@@ -96,6 +96,13 @@ const posts = [
     title: 'Responsive Svelte Components',
     subtitle: 'An extensible way to manage differential rendering based on device using Svelte',
     tags: ['technical']
+  },
+  {
+    slug: 'absolute-paths-svelte',
+    date: "02/02/2020",
+    title: "Absolute Paths & Aliases in Svelte",
+    subtitle: "How to avoid tedious nested relative paths with rollup",
+    tags: ['technical']
   }
 ]
 

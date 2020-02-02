@@ -1,5 +1,5 @@
 <script>
-  import { toSlug } from "../../util.js";
+  import { toSlug } from "util/index.js";
   export let content;
   let numItems = 0;
 

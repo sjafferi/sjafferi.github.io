@@ -2480,7 +2480,7 @@
     	return child_ctx;
     }
 
-    // (120:10) {:else}
+    // (128:10) {:else}
     function create_else_block_1(ctx) {
     	let div;
 
@@ -2495,7 +2495,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "empty svelte-9je2ou");
+    			attr(div, "class", "empty svelte-7aq76f");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -2509,7 +2509,7 @@
     	};
     }
 
-    // (108:10) {#if blink && curr_idx > 0}
+    // (116:10) {#if blink && curr_idx > 0}
     function create_if_block_1$1(ctx) {
     	let button;
     	let svg;
@@ -2544,8 +2544,8 @@
     			attr(path, "d", "M15.422 16.078l-1.406 1.406-6-6 6-6 1.406 1.406-4.594\n                  4.594z");
     			attr(svg, "role", "presentation");
     			attr(svg, "viewBox", "0 0 24 24");
-    			attr(svg, "class", "svelte-9je2ou");
-    			attr(button, "class", "svelte-9je2ou");
+    			attr(svg, "class", "svelte-7aq76f");
+    			attr(button, "class", "svelte-7aq76f");
     		},
     		m(target, anchor) {
     			insert(target, button, anchor);
@@ -2589,7 +2589,7 @@
     	};
     }
 
-    // (134:10) {:else}
+    // (142:10) {:else}
     function create_else_block$1(ctx) {
     	let div;
 
@@ -2604,7 +2604,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "empty svelte-9je2ou");
+    			attr(div, "class", "empty svelte-7aq76f");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -2618,7 +2618,7 @@
     	};
     }
 
-    // (123:10) {#if blink && curr_idx < images.length - 1}
+    // (131:10) {#if blink && curr_idx < images.length - 1}
     function create_if_block$1(ctx) {
     	let button;
     	let svg;
@@ -2653,8 +2653,8 @@
     			attr(path, "d", "M9.984 6l6 6-6 6-1.406-1.406 4.594-4.594-4.594-4.594z");
     			attr(svg, "role", "presentation");
     			attr(svg, "viewBox", "0 0 24 24");
-    			attr(svg, "class", "svelte-9je2ou");
-    			attr(button, "class", "svelte-9je2ou");
+    			attr(svg, "class", "svelte-7aq76f");
+    			attr(button, "class", "svelte-7aq76f");
     		},
     		m(target, anchor) {
     			insert(target, button, anchor);
@@ -2698,7 +2698,7 @@
     	};
     }
 
-    // (102:4) <ClickOutside       className="click-outside-wrapper"       on:clickoutside={close}       exclude={[...left_nav_buttons, ...right_nav_buttons]}>
+    // (110:4) <ClickOutside       className="click-outside-wrapper"       on:clickoutside={close}       exclude={[...left_nav_buttons, ...right_nav_buttons]}>
     function create_default_slot$2(ctx) {
     	let div1;
     	let div0;
@@ -2766,10 +2766,10 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "nav svelte-9je2ou");
+    			attr(div0, "class", "nav svelte-7aq76f");
     			set_attributes(img, img_data);
-    			toggle_class(img, "svelte-9je2ou", true);
-    			attr(div1, "class", "img-container svelte-9je2ou");
+    			toggle_class(img, "svelte-7aq76f", true);
+    			attr(div1, "class", "img-container svelte-7aq76f");
     		},
     		m(target, anchor) {
     			insert(target, div1, anchor);
@@ -2836,7 +2836,7 @@
     				dirty & /*images*/ 2 && ({ alt: /*image*/ ctx[13].alt || "" })
     			]));
 
-    			toggle_class(img, "svelte-9je2ou", true);
+    			toggle_class(img, "svelte-7aq76f", true);
     		},
     		i(local) {
     			if (current) return;
@@ -2858,7 +2858,7 @@
     	};
     }
 
-    // (101:2) {#each images as image, i}
+    // (109:2) {#each images as image, i}
     function create_each_block(ctx) {
     	let current;
 
@@ -2946,7 +2946,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "carousel svelte-9je2ou");
+    			attr(div, "class", "carousel svelte-7aq76f");
     			attr(div, "style", div_style_value = `transform: translate3d(${/*translateX*/ ctx[5]}px, 0, 0);`);
     		},
     		m(target, anchor) {
@@ -3117,7 +3117,7 @@
     	let img_levels = [
     		{
     			style: /*numCols*/ ctx[2] != undefined
-    			? `width: ${100 / /*images*/ ctx[0].length - 2}%;`
+    			? `width: ${100 / /*numCols*/ ctx[2] - 6}%;`
     			: "max-width: 200px;"
     		},
     		/*image*/ ctx[7],
@@ -3158,9 +3158,9 @@
     			ctx = new_ctx;
 
     			set_attributes(img, get_spread_update(img_levels, [
-    				dirty & /*numCols, undefined, images*/ 5 && ({
+    				dirty & /*numCols, undefined*/ 4 && ({
     					style: /*numCols*/ ctx[2] != undefined
-    					? `width: ${100 / /*images*/ ctx[0].length - 2}%;`
+    					? `width: ${100 / /*numCols*/ ctx[2] - 6}%;`
     					: "max-width: 200px;"
     				}),
     				dirty & /*images*/ 1 && /*image*/ ctx[7],
@@ -3260,7 +3260,7 @@
     function instance$6($$self, $$props, $$invalidate) {
     	let { images = [] } = $$props;
     	let { gutter = 2 } = $$props;
-    	let { numCols } = $$props;
+    	let { numCols = 2 } = $$props;
     	const { open, close } = getContext("simple-modal");
 
     	const popModal = idx => setTimeout(
@@ -38072,6 +38072,13 @@
         date: "01/09/2020",
         title: 'Responsive Svelte Components',
         subtitle: 'An extensible way to manage differential rendering based on device using Svelte',
+        tags: ['technical']
+      },
+      {
+        slug: 'absolute-paths-svelte',
+        date: "02/02/2020",
+        title: "Absolute Paths & Aliases in Svelte",
+        subtitle: "How to avoid tedious nested relative paths with rollup",
         tags: ['technical']
       }
     ];

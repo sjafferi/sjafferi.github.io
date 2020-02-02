@@ -1,5 +1,5 @@
 <script>
-  import NavLink from "../components/NavLink.svelte";
+  import NavLink from "components/NavLink.svelte";
 </script>
 
 <style>

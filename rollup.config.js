@@ -3,6 +3,7 @@ import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
 import postcss from 'rollup-plugin-postcss'
+import aliasPlugin from '@rollup/plugin-alias';
 import { terser } from "rollup-plugin-terser";
 import md from 'rollup-plugin-md';
 
@@ -10,6 +11,14 @@ const isDev = Boolean(process.env.ROLLUP_WATCH);
 
 const onwarn = (warning, onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
 const dedupe = importee => importee === 'svelte' || importee.startsWith('svelte/');
+const alias = aliasPlugin({
+  resolve: ['.svelte', '.js'], //optional, by default this will just look for .js files or folders
+  entries: [
+    { find: 'components', replacement: 'src/components' },
+    { find: 'metadata', replacement: 'src/metadata' },
+    { find: 'util', replacement: 'src/util' },
+  ]
+});
 
 export default [
   // Browser bundle
@@ -48,7 +57,8 @@ export default [
       }),
       postcss({
         plugins: []
-      })
+      }),
+      alias
     ]
   },
   // Server bundle
@@ -69,7 +79,8 @@ export default [
       !isDev && terser(),
       postcss({
         plugins: []
-      })
+      }),
+      alias
     ]
   }
 ];
