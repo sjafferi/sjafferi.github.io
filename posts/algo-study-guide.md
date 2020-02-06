@@ -44,7 +44,58 @@ Formally:
 - Solve `I1... In` recursively to get solutions `S1...Sn`
 - Use `S1...Sn` to compute `S`. 
 
-Let's explore a couple of introductory problems.
+Let's explore a couple of problems.
+
+### Merge-sort
+
+A classic divide & conquer algorithm. Merge sort is a recursive algorithm that continually splits a list in half. If the list is empty or has one item, it is sorted by definition (the base case). If the list has more than one item, we split the list and recursively invoke a merge sort on both halves. Once the two halves are sorted, a merge is performed.
+
+The basic routine of merge sort:
+
+1. Divide the array into two halves
+2. Recursively sort each half
+3. Merge two halves
+   
+Merging is the process of taking two smaller sorted lists and combining them together into a single, sorted, new list. 
+
+The merge subroutine:
+```python
+def merge(array, auxillary_array, lo, mid, hi):
+  for k in range(lo, hi + 1):
+    auxillary_array[k] = array[k]
+  
+  i, j = lo, mid + 1
+  for k in range(lo, hi + 1):
+    if i > mid:
+      array[k] = auxillary_array[j]
+      j += 1
+    elif j > hi:
+      array[k] = auxillary_array[i]
+      i += 1
+    elif array[j] < array[i]:
+      array[k] = auxillary_array[j]
+      j += 1
+    else:
+      array[k] = auxillary_array[i]
+      i += 1
+```
+
+```python
+def merge_sort(array):
+  aux = [0] * len(array)
+  sort(array, aux, 0, len(array) - 1)
+  return array
+
+def helper(array, auxillary_array, lo, mid, hi):
+  if (hi <= lo) return
+  mid = lo + (hi - lo) / 2
+  sort(a, aux, lo, mid)
+  helper(a, aux, mid+1, hi)
+  helper(a, aux, lo, mid, hi)
+```
+
+
+
 
 ### Non-dominated points
 
@@ -112,14 +163,68 @@ Unlike quicksort, there's only one recursive call in each invocation. On average
 The worst case is the same as quick sort `O(n^2)`, however it can become highly unlikely to hit this worst case as n gets larger.
 
 
-### Template problems
+### Search for an element in a circular sorted array
 
-... split, combine
-... solve first, deal with rest
+Given a circular sorted array of distinct integers, search for an element k.
 
+For example,
 
+`search_circular_sorted([8, 9, 10, 2, 5, 6], 10) == 2`
+`search_circular_sorted([9, 10, 2, 5, 6, 8], 5) == 3`
+
+There is a non-divide and conquer solution to this that employs a modified binary search with the same time complexity `O(logn)`.
+
+The divide and conquer solution is similar but solves the problem recursively.
+
+```python
+def dnc_search_cyclically_sorted(arr, k):
+    def helper(left, right):
+        mid = (left + right) // 2
+        if right < left:
+            return -1
+        if arr[mid] == k:
+            return mid
+        if arr[mid] <= arr[right]:
+            if arr[mid] < k <= arr[right]:
+                return helper(mid + 1, right)
+            else:
+                return helper(left, mid - 1)
+        else:
+            if arr[left] <= k < arr[mid]:
+                return helper(left, mid - 1)
+            else:
+                return helper(mid + 1, right)
+
+    return helper(0, len(arr) - 1)
+```
 
 ## Greedy
+
+### Compute optimum assignment of tasks
+Source: EPI 17.1, page 282
+
+Consider a problem of assigning tasks to workers. Each worker must be assigned exactly two tasks. Each task takes a fixed amount of time. Tasks are independent. Any task can be assigned to any worker.
+
+We want to minimize the amount of time it takes for all tasks to be completed. 
+
+Example:
+Tasks: [5, 2, 1, 6, 4, 4]
+Assignment: [[5,2], [1,6], [4,4]] (total task time = 8 hours)
+
+A simple greedy heuristic would be to pair the longest task with the shortest one in order to minimize total task time for that worker. This intuition ends up leading to an optimal solution.
+
+Code:
+
+```python
+def optimum_task_assignment(durations):
+  durations.sort()
+  return [
+    [task_durations[i], task_durations[~i]],
+    for i in range(len(task_durations) // 2)
+  ]
+```
+
+
 ## Dynamic Programming
 
 # Data Structures
@@ -146,23 +251,9 @@ We'll explore problems concerning modifying arrays in-place such that some prope
 | Routine | Dynamic Array | Sorted Dynamic Array |
 | :------ | :-----------: | -------------------: |
 | select  |     O(1)      |                 O(1) |
-| search  |     O(n)      |              O(logn) |  |
-| insert  |     O(1)      |                 O(n) |  |
-| remove  |     O(1)      |                 O(n) |  |
-
-### Common Algorithms
-
-**Search (sorted)**
-
-```
-binary search
-```
-
-**Search (unsorted)**
-
-```
-quick select
-```
+| search  |     O(n)      |              O(logn) |
+| insert  |     O(1)      |                 O(n) |
+| remove  |     O(1)      |                 O(n) |
 
 ### 3-way partition
 Also known as the dutch national flag problem from EPI page 44.
@@ -185,13 +276,13 @@ def three_way_partition(arr, i):
             smaller, equal = smaller + 1, equal + 1
         elif arr[equal] == pivot:
             equal += 1
-        else: # arr[equal] > pivot
+        else: 
             larger -= 1
             arr[equal], arr[larger] = arr[larger], arr[equal]
 ```
 
 
-#### Compute max profit from one buy and sell
+### Compute max profit from one buy and sell
 **Source:** Elements of Programming Interviews 5.6
 
 **Problem Statement**
@@ -248,6 +339,89 @@ def max_profit_greedy(prices):
         max_profit = max(max_profit, max_profit_sell_today)
         min_price_so_far = min(min_price_so_far, price)
     return max_profit
+```
+
+### Maximum Sum Circular Subarray
+ 
+Given a circular array of integers, find subarray in it which has the largest sum.
+
+For example,
+
+Input:  {2, 1, -5, 4, -3, 1, -3, 4, -1}
+Output: Subarray with the largest sum is {4, -1, 2, 1} with sum 6.
+ 
+Input:  {-3, 1, -3, 4, -1, 2, 1, -5, 4}
+Output: Subarray with the largest sum is {4, -1, 2, 1} with sum 6.
+
+Let's first try to find the max subarray of a regular array. The brute-force algorithm would be to have a nested loop and determine the max at each index, return the total max.
+
+The brute force approach leads to the insight that we're trying to find the max index somehow. We can alter this problem slightly and look for the max ending at an index i. This value can be calculated using the previous max:
+
+`max_at_i = max(max_at_i-1, arr[i])`
+
+This leads to a linear solution:
+
+```python
+def max_subarray(arr):
+    max_sum = 0
+    max_at_i = arr[0]
+    for i in range(1, len(arr)):
+        max_at_i = max(max_at_i + arr[i], arr[i])
+        max_sum = max(max_sum, max_at_i)
+    
+    return max_sum
+```
+
+To find the max of a circular subarray, we can just concatenate the array to itself and find use the max_subarray routine.
+
+```python
+def max_subarray_circular(arr):
+    return max_subarray(arr + arr)
+```
+
+### Container with maximum water
+
+Let us suppose we have a two dimensional plane where the the length of lines determine the height of a container. We need to determine the maximum capacity of water this kind of an arrangement can hold. The heights are represented by an array.
+
+Input: [1, 8, 6, 2, 5, 4, 8, 3, 7]
+
+Output: 49
+
+![Max water](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg)
+
+The brute force solution is to have a nested for loop find the max water starting at an index i. 
+
+```python
+def max_area(height: List[int]) {
+    max_area = 0
+ 
+    for i in range(len(height)):
+        for j in range(i + 1, len(height)):
+          max_area = max(max_area, Math.min(height[i], height[j]) * (j - i))
+
+    return max_area
+}
+```
+
+The nested loop can be avoided with a heuristic for moving either left or right when considering start and end indices. 
+
+This works because if we move away from a larger tower then we'll definitely decrease our max area since the width decreases and we are limited in area by the height of the shorter towe. Hence, move away from the shorter one.
+
+
+```python
+def max_area(height: List[int]) -> int:
+    left, right = 0, len(height) - 1
+    max_area = 0
+    
+    while (left < right):
+        area = min(height[left], height[right]) * (right - left)
+        max_area = max(max_area,  area)
+        if height[left] < height[right]:
+            left += 1
+        else:
+            right -= 1
+        
+    return max_area
 ```
 
 ## Strings
