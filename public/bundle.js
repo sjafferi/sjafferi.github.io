@@ -37519,12 +37519,16 @@
     	};
     }
 
+    const codeRegex = /(\n```python.*?```)/gms;
+
     function instance$a($$self, $$props, $$invalidate) {
     	let { content } = $$props;
     	let numItems = 0;
 
-    	function generate(content) {
+    	function generate(md) {
+    		if (!md) return [];
     		const regex = /(#+) (.+)/g;
+    		const content = md.replace(codeRegex, "");
     		let match, prev, toc = [];
 
     		while ((match = regex.exec(content)) != null) {

@@ -2,10 +2,12 @@
   import { toSlug } from "util/index.js";
   export let content;
   let numItems = 0;
+  const codeRegex = /(\n```python.*?```)/gms;
 
-  function generate(content) {
+  function generate(md) {
+    if (!md) return [];
     const regex = /(#+) (.+)/g;
-    const regex_2 = /#+/g;
+    const content = md.replace(codeRegex, "");
     let match,
       prev,
       toc = [];

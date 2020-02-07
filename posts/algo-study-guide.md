@@ -200,6 +200,14 @@ def dnc_search_cyclically_sorted(arr, k):
 
 ## Greedy
 
+Greedy algorithms are often used for optimization problems, which are problems where the goal is to find a solution that both satisfies the problem constraints, and maximizes/minimizes an objective/profit/cost function. 
+
+We essentially greedily pick the locally optimal solution at every step in order to determine a globally optimal solution (or approximate).
+
+Greedy algorithms do no backtracking or lookahead - they only consider the elements of the choice set at each step. That means they are often faster than algorithms that do backtracking, but the solution is possibly not as good. When implementing greedy algorithms, it is often efficient to do a preprocessing step to compute the local evaluation criterion, like sorting the elements of an array.
+
+For some greedy algorithms, it is possible to always obtain an optimal solution. However, these proofs are often rather difficult.
+
 ### Compute optimum assignment of tasks
 Source: EPI 17.1, page 282
 
@@ -222,6 +230,153 @@ def optimum_task_assignment(durations):
     [task_durations[i], task_durations[~i]],
     for i in range(len(task_durations) // 2)
   ]
+```
+
+### The Interval Covering Problem
+Source: EPI 17.2, page 285
+
+Consider a foreman responsible for visiting a factory to check on the running tasks. In each visit, he can check on all the tasks taking place at the time of the visit. We want to minimize the number of visits. 
+
+Given a set of intervals containing start and end times for tasks, return the minimum number of visits required to cover each interval.
+
+Input: [[1,2], [2,3], [3,4], [2,3], [3,4], [4,5]]
+Output: 2
+
+A greedy approach could be to focous on extreme cases. Consider the interval that ends first, i.e. the interval whose right endpoint is minimum. To cover it, we must pick a number that appears in it. Hence we can eliminate any other intervals covered by it, and repeat for the next right endpoint.
+
+```python
+import operator
+
+def find_min_visits(intervals):
+    intervals.sort(key=lambda x: x[1])
+    last_visit_time = intervals[0][1]
+    num_visits = 1
+    for interval in intervals:
+        if interval[0] > last_visit_time:
+            last_visit_time = interval[1]
+            num_visits += 1
+    
+    return num_visits
+```
+
+Complexity: O(nlogn) - Dominated by sort
+
+
+### Kruskal's Minimum Spanning Tree 
+
+Kruskal's algorithm is a minimum-spanning-tree algorithm which finds an edge of the least possible weight that connects any two trees in the forest. It is a greedy algorithm in graph theory as it finds a minimum spanning tree for a connected weighted graph adding increasing cost edges at each step.
+
+Steps:
+
+1. Sort all the edges in non-decreasing order of their weight.
+2. Pick the smallest edge. Check if it forms a cycle with the spanning tree formed so far using Union Find data-structure. If cycle is not formed, include this edge else, discard it.
+3. Repeat Step 2 until there are (V-1) edges in the spanning tree.
+
+Code (from [GeeksForGeeks - Neelam Yadav ](https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/))
+```python
+# Python program for Kruskal's algorithm to find 
+# Minimum Spanning Tree of a given connected,  
+# undirected and weighted graph 
+  
+from collections import defaultdict 
+  
+#Class to represent a graph 
+class Graph: 
+  
+    def __init__(self,vertices): 
+        self.V= vertices #No. of vertices 
+        self.graph = [] # default dictionary  
+                                # to store graph 
+          
+   
+    # function to add an edge to graph 
+    def addEdge(self,u,v,w): 
+        self.graph.append([u,v,w]) 
+  
+    # A utility function to find set of an element i 
+    # (uses path compression technique) 
+    def find(self, parent, i): 
+        if parent[i] == i: 
+            return i 
+        return self.find(parent, parent[i]) 
+  
+    # A function that does union of two sets of x and y 
+    # (uses union by rank) 
+    def union(self, parent, rank, x, y): 
+        xroot = self.find(parent, x) 
+        yroot = self.find(parent, y) 
+  
+        # Attach smaller rank tree under root of  
+        # high rank tree (Union by Rank) 
+        if rank[xroot] < rank[yroot]: 
+            parent[xroot] = yroot 
+        elif rank[xroot] > rank[yroot]: 
+            parent[yroot] = xroot 
+  
+        # If ranks are same, then make one as root  
+        # and increment its rank by one 
+        else : 
+            parent[yroot] = xroot 
+            rank[xroot] += 1
+  
+    # The main function to construct MST using Kruskal's  
+        # algorithm 
+    def KruskalMST(self): 
+  
+        result =[] #This will store the resultant MST 
+  
+        i = 0 # An index variable, used for sorted edges 
+        e = 0 # An index variable, used for result[] 
+  
+            # Step 1:  Sort all the edges in non-decreasing  
+                # order of their 
+                # weight.  If we are not allowed to change the  
+                # given graph, we can create a copy of graph 
+        self.graph =  sorted(self.graph,key=lambda item: item[2]) 
+  
+        parent = [] ; rank = [] 
+  
+        # Create V subsets with single elements 
+        for node in range(self.V): 
+            parent.append(node) 
+            rank.append(0) 
+      
+        # Number of edges to be taken is equal to V-1 
+        while e < self.V -1 : 
+  
+            # Step 2: Pick the smallest edge and increment  
+                    # the index for next iteration 
+            u,v,w =  self.graph[i] 
+            i = i + 1
+            x = self.find(parent, u) 
+            y = self.find(parent ,v) 
+  
+            # If including this edge does't cause cycle,  
+                        # include it in result and increment the index 
+                        # of result for next edge 
+            if x != y: 
+                e = e + 1     
+                result.append([u,v,w]) 
+                self.union(parent, rank, x, y)             
+            # Else discard the edge 
+  
+        # print the contents of result[] to display the built MST 
+        print "Following are the edges in the constructed MST"
+        for u,v,weight  in result: 
+            #print str(u) + " -- " + str(v) + " == " + str(weight) 
+            print ("%d -- %d == %d" % (u,v,weight)) 
+  
+# Driver code 
+g = Graph(4) 
+g.addEdge(0, 1, 10) 
+g.addEdge(0, 2, 6) 
+g.addEdge(0, 3, 5) 
+g.addEdge(1, 3, 15) 
+g.addEdge(2, 3, 4) 
+  
+g.KruskalMST() 
+  
+#This code is contributed by Neelam Yadav 
 ```
 
 
