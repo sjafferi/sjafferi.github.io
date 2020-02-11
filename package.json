@@ -19,7 +19,7 @@
     "rollup-plugin-terser": "^5.0.0",
     "sirv-cli": "^0.4.2",
     "svelte": "^3.4.2",
-    "svelte-images": "^0.0.76",
+    "svelte-images": "0.0.89",
     "svelte-routing": "1.4.0"
   },
   "scripts": {

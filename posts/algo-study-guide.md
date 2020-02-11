@@ -261,6 +261,88 @@ def find_min_visits(intervals):
 
 Complexity: O(nlogn) - Dominated by sort
 
+### Maximum Sum Circular Subarray
+ 
+Given a circular array of integers, find subarray in it which has the largest sum.
+
+For example,
+
+Input:  {2, 1, -5, 4, -3, 1, -3, 4, -1}
+Output: Subarray with the largest sum is {4, -1, 2, 1} with sum 6.
+ 
+Input:  {-3, 1, -3, 4, -1, 2, 1, -5, 4}
+Output: Subarray with the largest sum is {4, -1, 2, 1} with sum 6.
+
+Let's first try to find the max subarray of a regular array. The brute-force algorithm would be to have a nested loop and determine the max at each index, return the total max.
+
+The brute force approach leads to the insight that we're trying to find the max index somehow. We can alter this problem slightly and look for the max ending at an index i. This value can be calculated using the previous max:
+
+`max_at_i = max(max_at_i-1, arr[i])`
+
+This leads to a linear solution:
+
+```python
+def max_subarray(arr):
+    max_sum = 0
+    max_at_i = arr[0]
+    for i in range(1, len(arr)):
+        max_at_i = max(max_at_i + arr[i], arr[i])
+        max_sum = max(max_sum, max_at_i)
+    
+    return max_sum
+```
+
+To find the max of a circular subarray, we can just concatenate the array to itself and find use the max_subarray routine.
+
+```python
+def max_subarray_circular(arr):
+    return max_subarray(arr + arr)
+```
+
+### Container with maximum water
+
+Let us suppose we have a two dimensional plane where the the length of lines determine the height of a container. We need to determine the maximum capacity of water this kind of an arrangement can hold. The heights are represented by an array.
+
+Input: [1, 8, 6, 2, 5, 4, 8, 3, 7]
+
+Output: 49
+
+![Max water](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg)
+
+The brute force solution is to have a nested for loop find the max water starting at an index i. 
+
+```python
+def max_area(height: List[int]) {
+    max_area = 0
+ 
+    for i in range(len(height)):
+        for j in range(i + 1, len(height)):
+          max_area = max(max_area, Math.min(height[i], height[j]) * (j - i))
+
+    return max_area
+}
+```
+
+The nested loop can be avoided with a heuristic for moving either left or right when considering start and end indices. 
+
+This works because if we move away from a larger tower then we'll definitely decrease our max area since the width decreases and we are limited in area by the height of the shorter towe. Hence, move away from the shorter one.
+
+
+```python
+def max_area(height: List[int]) -> int:
+    left, right = 0, len(height) - 1
+    max_area = 0
+    
+    while (left < right):
+        area = min(height[left], height[right]) * (right - left)
+        max_area = max(max_area,  area)
+        if height[left] < height[right]:
+            left += 1
+        else:
+            right -= 1
+        
+    return max_area
+```
 
 ### Kruskal's Minimum Spanning Tree 
 
@@ -496,88 +578,45 @@ def max_profit_greedy(prices):
     return max_profit
 ```
 
-### Maximum Sum Circular Subarray
- 
-Given a circular array of integers, find subarray in it which has the largest sum.
+### Spiral Matrix
 
-For example,
+Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
 
-Input:  {2, 1, -5, 4, -3, 1, -3, 4, -1}
-Output: Subarray with the largest sum is {4, -1, 2, 1} with sum 6.
- 
-Input:  {-3, 1, -3, 4, -1, 2, 1, -5, 4}
-Output: Subarray with the largest sum is {4, -1, 2, 1} with sum 6.
+### Merge meeting times
 
-Let's first try to find the max subarray of a regular array. The brute-force algorithm would be to have a nested loop and determine the max at each index, return the total max.
+Given a set of intervals, condense the list so overlapping intervals are merged.
 
-The brute force approach leads to the insight that we're trying to find the max index somehow. We can alter this problem slightly and look for the max ending at an index i. This value can be calculated using the previous max:
+For example:
+[(0, 1), (3, 5), (4, 8), (10, 12), (9, 10)] => [(0, 1), (3, 8), (9, 12)]
 
-`max_at_i = max(max_at_i-1, arr[i])`
+We first sort our list of intervals by start time so potentially mergeable candidates are adjacent.
 
-This leads to a linear solution:
+Then, we iterate through the list, keeping track of the last merged interval to see if we can continually condense it further or add a new one.
 
+Solution:
 ```python
-def max_subarray(arr):
-    max_sum = 0
-    max_at_i = arr[0]
-    for i in range(1, len(arr)):
-        max_at_i = max(max_at_i + arr[i], arr[i])
-        max_sum = max(max_sum, max_at_i)
-    
-    return max_sum
-```
+def merge_meeting_times(times):
+    sorted_times = sorted(times)
+    intervals = [sorted_times[0]]
 
-To find the max of a circular subarray, we can just concatenate the array to itself and find use the max_subarray routine.
-
-```python
-def max_subarray_circular(arr):
-    return max_subarray(arr + arr)
-```
-
-### Container with maximum water
-
-Let us suppose we have a two dimensional plane where the the length of lines determine the height of a container. We need to determine the maximum capacity of water this kind of an arrangement can hold. The heights are represented by an array.
-
-Input: [1, 8, 6, 2, 5, 4, 8, 3, 7]
-
-Output: 49
-
-![Max water](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg)
-
-The brute force solution is to have a nested for loop find the max water starting at an index i. 
-
-```python
-def max_area(height: List[int]) {
-    max_area = 0
- 
-    for i in range(len(height)):
-        for j in range(i + 1, len(height)):
-          max_area = max(max_area, Math.min(height[i], height[j]) * (j - i))
-
-    return max_area
-}
-```
-
-The nested loop can be avoided with a heuristic for moving either left or right when considering start and end indices. 
-
-This works because if we move away from a larger tower then we'll definitely decrease our max area since the width decreases and we are limited in area by the height of the shorter towe. Hence, move away from the shorter one.
-
-
-```python
-def max_area(height: List[int]) -> int:
-    left, right = 0, len(height) - 1
-    max_area = 0
-    
-    while (left < right):
-        area = min(height[left], height[right]) * (right - left)
-        max_area = max(max_area,  area)
-        if height[left] < height[right]:
-            left += 1
-        else:
-            right -= 1
+    for curr_start, curr_end in sorted_times[1:]:
+        last_start, last_end = intervals[-1]
         
-    return max_area
+        if curr_start <= last_end:
+            intervals[-1] = last_start, max(curr_end, last_end)
+        else:
+            intervals.append((curr_start, curr_end))
+        
+        
+    return intervals
+
+## tests
+test(merge_meeting_times([(0, 1), (3, 5), (4, 8), (10, 12), (9, 10)]), [(0, 1), (3, 8), (9, 12)])
+test(merge_meeting_times([(1, 5), (2, 3)]), [(1, 5)])
+test(merge_meeting_times([(1, 10), (2, 6), (3, 5), (7, 9)]), [(1, 10)])
 ```
+
+
 
 ## Strings
 
