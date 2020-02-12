@@ -23,6 +23,7 @@
 
   @media (max-width: 550px) {
     .container {
+      overflow-x: hidden;
       flex-flow: column;
       padding: 0;
     }

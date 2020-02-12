@@ -38807,7 +38807,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "page svelte-144n10j");
+    			attr(div, "class", "page svelte-1fegxp7");
     		},
     		m(target, anchor) {
     			mount_component(nav, target, anchor);
@@ -38883,7 +38883,7 @@
     		h() {
     			attr(meta, "name", "viewport");
     			attr(meta, "content", "width=device-width, initial-scale=1");
-    			attr(div, "class", "container svelte-144n10j");
+    			attr(div, "class", "container svelte-1fegxp7");
     		},
     		m(target, anchor) {
     			append(document.head, meta);
