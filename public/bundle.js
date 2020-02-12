@@ -3352,7 +3352,7 @@
     	return child_ctx;
     }
 
-    // (100:8) {#if images && images.length > 0}
+    // (104:8) {#if images && images.length > 0}
     function create_if_block$2(ctx) {
     	let div;
     	let current;
@@ -3375,7 +3375,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "images svelte-yftfa0");
+    			attr(div, "class", "images svelte-1a74pvh");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -3399,7 +3399,7 @@
     	};
     }
 
-    // (106:10) {#each tags as tag}
+    // (110:10) {#each tags as tag}
     function create_each_block_2(ctx) {
     	let div;
     	let t_value = /*tag*/ ctx[12] + "";
@@ -3419,7 +3419,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "tag svelte-yftfa0");
+    			attr(div, "class", "tag svelte-1a74pvh");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -3432,7 +3432,7 @@
     	};
     }
 
-    // (112:8) {#each links as { link, text }}
+    // (116:8) {#each links as { link, text }}
     function create_each_block_1(ctx) {
     	let a;
     	let t_value = /*text*/ ctx[9] + "";
@@ -3453,7 +3453,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link-btn svelte-yftfa0");
+    			attr(a, "class", "link-btn svelte-1a74pvh");
     			attr(a, "target", "_blank");
     			attr(a, "href", a_href_value = /*link*/ ctx[8]);
     		},
@@ -3468,7 +3468,7 @@
     	};
     }
 
-    // (95:2) {#each Projects as { title, titleLink, description, images, tags, links }}
+    // (99:2) {#each Projects as { title, titleLink, description, images, tags, links }}
     function create_each_block$2(ctx) {
     	let div3;
     	let div1;
@@ -3570,14 +3570,14 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "header-link svelte-yftfa0");
+    			attr(a, "class", "header-link svelte-1a74pvh");
     			attr(a, "href", a_href_value = /*titleLink*/ ctx[1]);
     			attr(a, "target", "_blank");
-    			attr(p, "class", "description svelte-yftfa0");
-    			attr(div0, "class", "tags svelte-yftfa0");
-    			attr(div1, "class", "content svelte-yftfa0");
-    			attr(div2, "class", "links svelte-yftfa0");
-    			attr(div3, "class", "tile svelte-yftfa0");
+    			attr(p, "class", "description svelte-1a74pvh");
+    			attr(div0, "class", "tags svelte-1a74pvh");
+    			attr(div1, "class", "content svelte-1a74pvh");
+    			attr(div2, "class", "links svelte-1a74pvh");
+    			attr(div3, "class", "tile svelte-1a74pvh");
     		},
     		m(target, anchor) {
     			insert(target, div3, anchor);
@@ -3715,7 +3715,7 @@
     		},
     		h() {
     			document.title = "Projects | Sibtain Jafferi";
-    			attr(div, "class", "projects svelte-yftfa0");
+    			attr(div, "class", "projects svelte-1a74pvh");
     		},
     		m(target, anchor) {
     			insert(target, t, anchor);

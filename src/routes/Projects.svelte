@@ -12,18 +12,22 @@
     width: 110%;
   }
 
-  @media (max-width: 550px) {
-    .projects {
-      margin: 0;
-      width: 100%;
-    }
-  }
-
   .tile {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #e1e4e8;
     margin: 30px 0;
+  }
+
+  @media (max-width: 550px) {
+    .projects {
+      margin: 0;
+      width: 100%;
+    }
+    .tile {
+      flex-flow: column;
+      padding: 20px;
+    }
   }
 
   .content,
