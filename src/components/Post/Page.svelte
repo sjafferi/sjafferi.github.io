@@ -64,6 +64,12 @@
   .page-metadata .date-container {
     margin-top: 18px;
   }
+
+  @media (max-width: 550px) {
+    .markdown {
+      width: auto;
+    }
+  }
 </style>
 
 <div class="page">

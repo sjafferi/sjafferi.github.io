@@ -12,6 +12,13 @@
     width: 110%;
   }
 
+  @media (max-width: 550px) {
+    .projects {
+      margin: 0;
+      width: 100%;
+    }
+  }
+
   .tile {
     display: flex;
     justify-content: space-between;

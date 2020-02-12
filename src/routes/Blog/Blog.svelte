@@ -17,6 +17,11 @@
     margin-left: 30px;
     margin-top: 4vw;
   }
+  @media (max-width: 550px) {
+    .container {
+      margin: 0;
+    }
+  }
   .posts {
     display: flex;
     flex-wrap: wrap;

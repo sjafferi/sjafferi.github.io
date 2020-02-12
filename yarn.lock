@@ -3396,6 +3396,11 @@ svelte-images@0.0.89:
   resolved "https://registry.yarnpkg.com/svelte-images/-/svelte-images-0.0.89.tgz#39954ea0ccafa5c73772f6aab2b1996205f81755"
   integrity sha512-mpLOS7axP0hOfyQAwHkfB1PwLl853BnSFop9RHq9vGmjAGELL5bHw425zlTH1lb1QV+qlFLttsnuVg5jyN/zfg==
 
+svelte-media-query@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/svelte-media-query/-/svelte-media-query-0.0.4.tgz#3f3c6b858b280d007be814fe2ea6baaa7e317efb"
+  integrity sha512-vRooDe/2dSSA3HCwzELtOpAv/OPw35SA/pPxkKCuYToIBi5/Hg1Zq6T3vjL6GyjfPxZIazWTXThBbR59H5yY3w==
+
 svelte-routing@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/svelte-routing/-/svelte-routing-1.4.0.tgz#09285f3c7b19f509dfb1289fbc1235b348aa7d80"

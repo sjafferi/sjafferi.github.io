@@ -1,4 +1,5 @@
 <script>
+  import MediaQuery from "svelte-media-query";
   import NavLink from "components/NavLink.svelte";
 </script>
 
@@ -7,6 +8,14 @@
     display: flex;
     flex-direction: column;
     margin-top: 4vw;
+  }
+
+  @media (max-width: 550px) {
+    .sidebar {
+      flex-flow: row;
+      margin: 0;
+      justify-content: space-evenly;
+    }
   }
 </style>
 

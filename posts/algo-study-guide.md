@@ -617,8 +617,27 @@ test(merge_meeting_times([(1, 10), (2, 6), (3, 5), (7, 9)]), [(1, 10)])
 ```
 
 
-
 ## Strings
+
+Hopefully we all know about strings so let's just get into problems.
+
+### Reverse a list of characters in place
+
+This is the same problem as reversing any list in place.
+
+```python
+def reverse_list(chars):
+    for i in range(len(chars) // 2):
+        chars[i], chars[~i] = chars[~i], chars[i]
+    return chars
+
+## tests
+test(reverse_list("a b c d".split(" ")), "d c b a".split(" "))
+test(reverse_list("a b c d e".split(" ")), "e d c b a".split(" "))
+```
+
+### Reverse words in a sentence
+
 
 ### Minimum window problem
 

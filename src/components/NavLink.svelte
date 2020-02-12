@@ -22,6 +22,16 @@
     text-decoration: none !important;
     color: #3c3c3c;
   }
+  @media (max-width: 900px) {
+    :global(.link a) {
+      font-size: 1.5em;
+    }
+  }
+  @media (max-width: 550px) {
+    :global(.link a) {
+      font-size: 1em;
+    }
+  }
   .link {
     margin: 2px 0;
   }

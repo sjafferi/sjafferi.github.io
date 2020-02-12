@@ -13,6 +13,11 @@
     margin-left: 30px;
     margin-top: 4vw;
   }
+  @media (max-width: 550px) {
+    .container-me {
+      margin: 0;
+    }
+  }
 </style>
 
 <svelte:head>

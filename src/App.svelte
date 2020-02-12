@@ -20,7 +20,18 @@
   .page {
     width: 100%;
   }
+
+  @media (max-width: 550px) {
+    .container {
+      flex-flow: column;
+      padding: 0;
+    }
+  }
 </style>
+
+<svelte:head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</svelte:head>
 
 <div class="container">
   <Router {url}>
