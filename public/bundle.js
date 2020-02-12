@@ -3059,12 +3059,12 @@
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[5] = list[i];
-    	child_ctx[7] = i;
+    	child_ctx[9] = list[i];
+    	child_ctx[11] = i;
     	return child_ctx;
     }
 
-    // (33:2) {#each images as image, i}
+    // (48:2) {#each images as image, i}
     function create_each_block$1(ctx) {
     	let img;
     	let dispose;
@@ -3075,11 +3075,11 @@
     			? `width: ${100 / /*numCols*/ ctx[2] - 6}%;`
     			: "max-width: 200px;"
     		},
-    		/*image*/ ctx[5],
+    		/*image*/ ctx[9],
     		{
-    			src: /*image*/ ctx[5].thumbnail || /*image*/ ctx[5].src
+    			src: /*image*/ ctx[9].thumbnail || /*image*/ ctx[9].src
     		},
-    		{ alt: /*image*/ ctx[5].alt || "" }
+    		{ alt: /*image*/ ctx[9].alt || "" }
     	];
 
     	let img_data = {};
@@ -3089,7 +3089,7 @@
     	}
 
     	function click_handler(...args) {
-    		return /*click_handler*/ ctx[4](/*i*/ ctx[7], ...args);
+    		return /*click_handler*/ ctx[7](/*i*/ ctx[11], ...args);
     	}
 
     	return {
@@ -3103,7 +3103,7 @@
     		},
     		h() {
     			set_attributes(img, img_data);
-    			toggle_class(img, "svelte-18y9yg1", true);
+    			toggle_class(img, "svelte-foh56", true);
     		},
     		m(target, anchor) {
     			insert(target, img, anchor);
@@ -3118,14 +3118,14 @@
     					? `width: ${100 / /*numCols*/ ctx[2] - 6}%;`
     					: "max-width: 200px;"
     				}),
-    				dirty & /*images*/ 1 && /*image*/ ctx[5],
+    				dirty & /*images*/ 1 && /*image*/ ctx[9],
     				dirty & /*images*/ 1 && ({
-    					src: /*image*/ ctx[5].thumbnail || /*image*/ ctx[5].src
+    					src: /*image*/ ctx[9].thumbnail || /*image*/ ctx[9].src
     				}),
-    				dirty & /*images*/ 1 && ({ alt: /*image*/ ctx[5].alt || "" })
+    				dirty & /*images*/ 1 && ({ alt: /*image*/ ctx[9].alt || "" })
     			]));
 
-    			toggle_class(img, "svelte-18y9yg1", true);
+    			toggle_class(img, "svelte-foh56", true);
     		},
     		d(detaching) {
     			if (detaching) detach(img);
@@ -3134,9 +3134,41 @@
     	};
     }
 
+    // (58:0) {#if showModal}
+    function create_if_block$2(ctx) {
+    	let current;
+    	const modal = new Modal({});
+
+    	return {
+    		c() {
+    			create_component(modal.$$.fragment);
+    		},
+    		l(nodes) {
+    			claim_component(modal.$$.fragment, nodes);
+    		},
+    		m(target, anchor) {
+    			mount_component(modal, target, anchor);
+    			current = true;
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(modal.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(modal.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(modal, detaching);
+    		}
+    	};
+    }
+
     function create_fragment$8(ctx) {
     	let div;
     	let t;
+    	let if_block_anchor;
     	let current;
     	let each_value = /*images*/ ctx[0];
     	let each_blocks = [];
@@ -3145,7 +3177,7 @@
     		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
     	}
 
-    	const modal = new Modal({});
+    	let if_block = /*showModal*/ ctx[4] && create_if_block$2();
 
     	return {
     		c() {
@@ -3156,7 +3188,8 @@
     			}
 
     			t = space();
-    			create_component(modal.$$.fragment);
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
     			this.h();
     		},
     		l(nodes) {
@@ -3169,11 +3202,12 @@
 
     			div_nodes.forEach(detach);
     			t = claim_space(nodes);
-    			claim_component(modal.$$.fragment, nodes);
+    			if (if_block) if_block.l(nodes);
+    			if_block_anchor = empty();
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "gallery svelte-18y9yg1");
+    			attr(div, "class", "svelte-images-gallery svelte-foh56");
     			set_style(div, "--gutter", /*gutter*/ ctx[1]);
     		},
     		m(target, anchor) {
@@ -3183,12 +3217,14 @@
     				each_blocks[i].m(div, null);
     			}
 
+    			/*div_binding*/ ctx[8](div);
     			insert(target, t, anchor);
-    			mount_component(modal, target, anchor);
+    			if (if_block) if_block.m(target, anchor);
+    			insert(target, if_block_anchor, anchor);
     			current = true;
     		},
     		p(ctx, [dirty]) {
-    			if (dirty & /*numCols, undefined, images, popModal*/ 13) {
+    			if (dirty & /*numCols, undefined, images, popModal*/ 37) {
     				each_value = /*images*/ ctx[0];
     				let i;
 
@@ -3214,21 +3250,42 @@
     			if (!current || dirty & /*gutter*/ 2) {
     				set_style(div, "--gutter", /*gutter*/ ctx[1]);
     			}
+
+    			if (/*showModal*/ ctx[4]) {
+    				if (!if_block) {
+    					if_block = create_if_block$2();
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				} else {
+    					transition_in(if_block, 1);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
     		},
     		i(local) {
     			if (current) return;
-    			transition_in(modal.$$.fragment, local);
+    			transition_in(if_block);
     			current = true;
     		},
     		o(local) {
-    			transition_out(modal.$$.fragment, local);
+    			transition_out(if_block);
     			current = false;
     		},
     		d(detaching) {
     			if (detaching) detach(div);
     			destroy_each(each_blocks, detaching);
+    			/*div_binding*/ ctx[8](null);
     			if (detaching) detach(t);
-    			destroy_component(modal, detaching);
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach(if_block_anchor);
     		}
     	};
     }
@@ -3245,7 +3302,23 @@
     		0
     	);
 
+    	let galleryElems;
+    	let galleryElem;
+    	let showModal;
+
+    	onMount(() => {
+    		galleryElems = document.getElementsByClassName("svelte-images-gallery");
+    		const index = Array.prototype.findIndex.call(galleryElems, elem => elem === galleryElem);
+    		$$invalidate(4, showModal = index === 0);
+    	});
+
     	const click_handler = i => popModal(i);
+
+    	function div_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(3, galleryElem = $$value);
+    		});
+    	}
 
     	$$self.$set = $$props => {
     		if ("images" in $$props) $$invalidate(0, images = $$props.images);
@@ -3253,7 +3326,17 @@
     		if ("numCols" in $$props) $$invalidate(2, numCols = $$props.numCols);
     	};
 
-    	return [images, gutter, numCols, popModal, click_handler];
+    	return [
+    		images,
+    		gutter,
+    		numCols,
+    		galleryElem,
+    		showModal,
+    		popModal,
+    		galleryElems,
+    		click_handler,
+    		div_binding
+    	];
     }
 
     class Images extends SvelteComponent {
@@ -3352,8 +3435,8 @@
     	return child_ctx;
     }
 
-    // (104:8) {#if images && images.length > 0}
-    function create_if_block$2(ctx) {
+    // (112:8) {#if images && images.length > 0}
+    function create_if_block$3(ctx) {
     	let div;
     	let current;
 
@@ -3375,7 +3458,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "images svelte-1a74pvh");
+    			attr(div, "class", "images svelte-n5mxrn");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -3399,7 +3482,7 @@
     	};
     }
 
-    // (110:10) {#each tags as tag}
+    // (118:10) {#each tags as tag}
     function create_each_block_2(ctx) {
     	let div;
     	let t_value = /*tag*/ ctx[12] + "";
@@ -3419,7 +3502,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "tag svelte-1a74pvh");
+    			attr(div, "class", "tag svelte-n5mxrn");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -3432,7 +3515,7 @@
     	};
     }
 
-    // (116:8) {#each links as { link, text }}
+    // (124:8) {#each links as { link, text }}
     function create_each_block_1(ctx) {
     	let a;
     	let t_value = /*text*/ ctx[9] + "";
@@ -3453,7 +3536,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link-btn svelte-1a74pvh");
+    			attr(a, "class", "link-btn svelte-n5mxrn");
     			attr(a, "target", "_blank");
     			attr(a, "href", a_href_value = /*link*/ ctx[8]);
     		},
@@ -3468,7 +3551,7 @@
     	};
     }
 
-    // (99:2) {#each Projects as { title, titleLink, description, images, tags, links }}
+    // (107:2) {#each Projects as { title, titleLink, description, images, tags, links }}
     function create_each_block$2(ctx) {
     	let div3;
     	let div1;
@@ -3487,7 +3570,7 @@
     	let div2;
     	let t6;
     	let current;
-    	let if_block = /*images*/ ctx[3] && /*images*/ ctx[3].length > 0 && create_if_block$2(ctx);
+    	let if_block = /*images*/ ctx[3] && /*images*/ ctx[3].length > 0 && create_if_block$3(ctx);
     	let each_value_2 = /*tags*/ ctx[4];
     	let each_blocks_1 = [];
 
@@ -3570,14 +3653,14 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "header-link svelte-1a74pvh");
+    			attr(a, "class", "header-link svelte-n5mxrn");
     			attr(a, "href", a_href_value = /*titleLink*/ ctx[1]);
     			attr(a, "target", "_blank");
-    			attr(p, "class", "description svelte-1a74pvh");
-    			attr(div0, "class", "tags svelte-1a74pvh");
-    			attr(div1, "class", "content svelte-1a74pvh");
-    			attr(div2, "class", "links svelte-1a74pvh");
-    			attr(div3, "class", "tile svelte-1a74pvh");
+    			attr(p, "class", "description svelte-n5mxrn");
+    			attr(div0, "class", "tags svelte-n5mxrn");
+    			attr(div1, "class", "content svelte-n5mxrn");
+    			attr(div2, "class", "links svelte-n5mxrn");
+    			attr(div3, "class", "tile svelte-n5mxrn");
     		},
     		m(target, anchor) {
     			insert(target, div3, anchor);
@@ -3715,7 +3798,7 @@
     		},
     		h() {
     			document.title = "Projects | Sibtain Jafferi";
-    			attr(div, "class", "projects svelte-1a74pvh");
+    			attr(div, "class", "projects svelte-n5mxrn");
     		},
     		m(target, anchor) {
     			insert(target, t, anchor);
@@ -36945,7 +37028,7 @@
 
     /* src/components/Post/TOC.svelte generated by Svelte v3.17.1 */
 
-    function create_if_block$3(ctx) {
+    function create_if_block$4(ctx) {
     	let div;
 
     	return {
@@ -36976,7 +37059,7 @@
 
     function create_fragment$b(ctx) {
     	let if_block_anchor;
-    	let if_block = /*numItems*/ ctx[0] > 3 && create_if_block$3(ctx);
+    	let if_block = /*numItems*/ ctx[0] > 3 && create_if_block$4(ctx);
 
     	return {
     		c() {
@@ -36996,7 +37079,7 @@
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block$3(ctx);
+    					if_block = create_if_block$4(ctx);
     					if_block.c();
     					if_block.m(if_block_anchor.parentNode, if_block_anchor);
     				}
@@ -37132,7 +37215,7 @@
     }
 
     // (86:6) {#if date}
-    function create_if_block$4(ctx) {
+    function create_if_block$5(ctx) {
     	let span1;
     	let t0;
     	let span0;
@@ -37192,7 +37275,7 @@
     	let div2;
     	let current;
     	let if_block0 = /*subtitle*/ ctx[2] && create_if_block_1$1(ctx);
-    	let if_block1 = /*date*/ ctx[3] && create_if_block$4(ctx);
+    	let if_block1 = /*date*/ ctx[3] && create_if_block$5(ctx);
     	const toc = new TOC({ props: { content: /*content*/ ctx[0] } });
     	const markdown = new Markdown({ props: { content: /*content*/ ctx[0] } });
 
@@ -37296,7 +37379,7 @@
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
     				} else {
-    					if_block1 = create_if_block$4(ctx);
+    					if_block1 = create_if_block$5(ctx);
     					if_block1.c();
     					if_block1.m(div0, null);
     				}
@@ -37814,7 +37897,7 @@
     }
 
     // (66:12) {#if post.tags.includes('practical')}
-    function create_if_block$5(ctx) {
+    function create_if_block$6(ctx) {
     	let li;
     	let t;
     	let current;
@@ -37898,7 +37981,7 @@
     	let show_if = /*post*/ ctx[1].tags.includes("practical");
     	let if_block_anchor;
     	let current;
-    	let if_block = show_if && create_if_block$5(ctx);
+    	let if_block = show_if && create_if_block$6(ctx);
 
     	return {
     		c() {

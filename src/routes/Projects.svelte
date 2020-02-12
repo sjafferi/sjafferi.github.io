@@ -28,6 +28,10 @@
       flex-flow: column;
       padding: 20px;
     }
+    .tags {
+      flex-flow: wrap;
+      justify-content: center;
+    }
   }
 
   .content,
@@ -89,6 +93,10 @@
 
   .images {
     padding-bottom: 20px;
+  }
+
+  :global(.images .nav button) {
+    background: #b0afafc9 !important;
   }
 </style>
 
