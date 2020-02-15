@@ -636,8 +636,147 @@ test(reverse_list("a b c d".split(" ")), "d c b a".split(" "))
 test(reverse_list("a b c d e".split(" ")), "e d c b a".split(" "))
 ```
 
-### Reverse words in a sentence
+### String to int
 
+We'll go with the [leetcode description](https://leetcode.com/problems/string-to-integer-atoi/).
+
+The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.
+
+Valid inputs:
+
+`"42" => 42`
+`"    -42" => -42`
+
+```python
+def stoi(self, str: str) -> int:
+    index = 0
+    while index < len(str) - 1 and str[index] == ' ':
+        index += 1
+
+    is_neg = str[index] == '-'
+    num = functools.reduce(lambda running_sum, c: running_sum * 10 + string.digits.index(c), str[index + int(is_neg):], 0) * (-1 if is_neg else 1)
+        
+    return num
+```
+
+### Palindromic Permutation
+
+Given a string determine if any permutation of that string is a palindrome. You can disregard whitespace.
+
+Example: 
+
+`"acta tac"` => `True` (`"taco cat"`)
+
+The definition of a palindrome can be reduced to a string with at most one character that has an odd frequency of occurences. So if all but one letters are even, we can form a palindrome. This leads to the following algorithm:
+
+```python
+import functools
+import collections
+
+def palindromic_permutation(str):
+    letters = collections.defaultdict(lambda: 0)
+    for letter in str:
+        if letter != ' ':
+            letters[letter] += 1
+        
+    return functools.reduce(lambda odd_count, a: odd_count + 1 if letters[a] % 2 != 0 else odd_count, str, 0) <= 1
+
+assert palindromic_permutation('acto tac') == True
+assert palindromic_permutation('acbtc') == False
+```
+
+### Replace and remove
+Source: EPI 6.4, page 76
+
+Consider the following two rules that are to be applied to an array of characters:
+
+1. Replace each 'a' by two 'd's
+2. Delete each entry containing 'b'
+
+The array will always be big enough to contain the final string.
+
+Examples:
+
+`[a, b, a, c, _] => [d, d, d, d, c]`
+`[a, c, d, b, b, c, a] => [d, d, c, d, c, d, d]`
+
+The solution should be in-place in O(n) time. This implies we can't shift the characters over to make room for a's or shift back for b's because that would entail O(n^2).
+
+One problem solving technique leads to an algorithm here: solve an easier version of the problem first.
+
+If there are no a's, we can implement the function in-place with one iteration by skipping 'b's and copying the other characters.
+
+If there are no b's, we first compute the final length of the resulting string and then write the result character by character starting from the last character working backwards.
+
+```python
+def replace_and_remove(size, s):
+    write_idx, a_count = 0, 0
+    # Remove b's and count the number of a's
+    for i in range(size):
+        if s[i] != 'b':
+            s[write_idx] = s[i]
+            write_idx += 1
+        if s[i] == 'a':
+            a_count += 1
+    
+    curr_idx = write_idx - 1
+    write_idx += a_count - 1
+    final_size = write_idx + 1
+    # Replace a's with dd's starting from the end
+    while curr_idx >= 0:
+        if s[curr_idx] == 'a':
+            s[write_idx - 1: write_idx + 1] = 'dd'
+            write_idx -= 2
+        else:
+            s[write_idx] = s[curr_idx]
+            write_idx -= 1
+        curr_idx -= 1
+        
+    return s
+```
+
+### Convert Base
+
+### Reverse words in a sentence
+Source: EPI 6.6
+
+Given an array of characters representign a sentence, reverse the order of the words (space delimeted) in the sentence.
+
+Example: 
+
+Input: `['w', 'h', a', 't', ' ', 'i', 's', ' ', 'u', 'p']`
+
+Output: `['u', 'p', ' ', 'i', 's', ' ', 'w', 'h', a', 't']`
+
+We'll approach this problem with 2 passes. In the first pass, we'll reverse the entire array. In the following pass we'll reverse each word. 
+
+```python
+def reverse_words(words):
+    def reverse_range(chars, start, end):
+        while start < end:
+            chars[start], chars[end] = chars[end], chars[start]
+            start, end = start + 1, end - 1
+    
+    reverse_range(words, 0, len(words) - 1)
+    start = 0
+
+    while True:
+        finish = start
+        while finish < len(words) and words[finish] != ' ':
+            finish += 1
+        
+        if finish == len(words):
+            break
+        
+        reverse_range(words, start, finish - 1)
+        start = finish + 1
+
+    reverse_range(words, start, len(words) - 1)
+    
+    return words
+
+assert reverse_words(['w', 'h', 'a', 't', ' ', 'i', 's', ' ', 'u', 'p']) == ['u', 'p', ' ', 'i', 's', ' ', 'w', 'h', 'a', 't']
+```
 
 ### Minimum window problem
 

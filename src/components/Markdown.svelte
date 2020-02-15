@@ -79,7 +79,8 @@
   }
 
   :global(.markdown p.image-container) {
-    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
   }
 
   :global(.markdown p.image-container + em) {
