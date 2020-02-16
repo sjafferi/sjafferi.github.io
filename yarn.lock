@@ -3391,10 +3391,10 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-svelte-images@0.0.93:
-  version "0.0.93"
-  resolved "https://registry.yarnpkg.com/svelte-images/-/svelte-images-0.0.93.tgz#8dd77fc6bd2278c2c80e41ecf56099ccf9061774"
-  integrity sha512-BfqJm1E2c4OYOTIvtw4w3HB/nKlc+tPUOoQ0HlSpjK9lSHFsVoOpb6I59up9rqyK9RwESAWE/wKvlVZ9l8PubA==
+svelte-images@0.0.94:
+  version "0.0.94"
+  resolved "https://registry.yarnpkg.com/svelte-images/-/svelte-images-0.0.94.tgz#087a0c5df3c69190b90fc17597a6d45c73f73482"
+  integrity sha512-H/d88A8zQ/R5w28qhzWkvEWdgKrrGOQMpKYKCvuP+wkc58Ao+4RK5TJ16ALasm5UjGUy18/SU0NeqQ+WcGJn7Q==
 
 svelte-media-query@^0.0.4:
   version "0.0.4"

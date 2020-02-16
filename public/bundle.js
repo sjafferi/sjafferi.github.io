@@ -2246,15 +2246,16 @@
     		h() {
     			set_attributes(img, img_data);
     			toggle_class(img, "blur", !/*loaded*/ ctx[2]);
+    			toggle_class(img, "after-load", /*afterLoad*/ ctx[3]);
     			toggle_class(img, "loaded", /*loaded*/ ctx[2]);
-    			toggle_class(img, "svelte-11jifa5", true);
+    			toggle_class(img, "svelte-1ayq9qu", true);
     		},
     		m(target, anchor) {
     			insert(target, img, anchor);
 
     			dispose = [
     				listen(img, "click", /*onClick*/ ctx[1]),
-    				action_destroyer(load_action = /*load*/ ctx[3].call(null, img))
+    				action_destroyer(load_action = /*load*/ ctx[4].call(null, img))
     			];
     		},
     		p(ctx, [dirty]) {
@@ -2264,8 +2265,9 @@
     			]));
 
     			toggle_class(img, "blur", !/*loaded*/ ctx[2]);
+    			toggle_class(img, "after-load", /*afterLoad*/ ctx[3]);
     			toggle_class(img, "loaded", /*loaded*/ ctx[2]);
-    			toggle_class(img, "svelte-11jifa5", true);
+    			toggle_class(img, "svelte-1ayq9qu", true);
     		},
     		i: noop,
     		o: noop,
@@ -2285,24 +2287,28 @@
     	} } = $$props;
 
     	let loaded = !lazy;
+    	let afterLoad = false;
 
     	function load(img) {
-    		img.onload = () => $$invalidate(2, loaded = true);
+    		img.onload = () => {
+    			$$invalidate(2, loaded = true);
+    			setTimeout(() => $$invalidate(3, afterLoad = true), 1500);
+    		};
     	}
 
     	$$self.$set = $$props => {
-    		if ("lazy" in $$props) $$invalidate(4, lazy = $$props.lazy);
+    		if ("lazy" in $$props) $$invalidate(5, lazy = $$props.lazy);
     		if ("imageProps" in $$props) $$invalidate(0, imageProps = $$props.imageProps);
     		if ("onClick" in $$props) $$invalidate(1, onClick = $$props.onClick);
     	};
 
-    	return [imageProps, onClick, loaded, load, lazy];
+    	return [imageProps, onClick, loaded, afterLoad, load, lazy];
     }
 
     class Image extends SvelteComponent {
     	constructor(options) {
     		super();
-    		init(this, options, instance$4, create_fragment$5, safe_not_equal, { lazy: 4, imageProps: 0, onClick: 1 });
+    		init(this, options, instance$4, create_fragment$5, safe_not_equal, { lazy: 5, imageProps: 0, onClick: 1 });
     	}
     }
 
