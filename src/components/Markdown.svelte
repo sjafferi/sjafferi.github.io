@@ -83,6 +83,10 @@
     justify-content: center;
   }
 
+  :global(.markdown p.image-container img) {
+    max-width: 85vw;
+  }
+
   :global(.markdown p.image-container + em) {
     width: 100%;
     text-align: center;
