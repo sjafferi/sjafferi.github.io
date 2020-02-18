@@ -38,19 +38,6 @@
   <Router>
     <Route path="/">
       <div class="posts">
-        <!-- <List title="Algorithms">
-        {#each Object.entries(algorithms) as [group, posts]}
-          <h4>{group}</h4>
-          <ul>
-            {#each posts as post}
-              <li>
-                <Link to={post.slug}>{post.title}</Link>
-              </li>
-            {/each}
-          </ul>
-        {/each}
-      </List> -->
-
         <List title="Technical">
           {#each Posts as post}
             {#if post.tags.includes('technical')}

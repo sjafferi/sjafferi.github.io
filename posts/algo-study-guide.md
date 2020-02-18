@@ -735,8 +735,6 @@ def replace_and_remove(size, s):
     return s
 ```
 
-### Convert Base
-
 ### Reverse words in a sentence
 Source: EPI 6.6
 
@@ -778,7 +776,60 @@ def reverse_words(words):
 assert reverse_words(['w', 'h', 'a', 't', ' ', 'i', 's', ' ', 'u', 'p']) == ['u', 'p', ' ', 'i', 's', ' ', 'w', 'h', 'a', 't']
 ```
 
-### Minimum window problem
+### One Away
+Source: Crack the Coding Interview, page 199
+
+There are 3 types of edits. Replace, insert and remove. Determine if two strings are one edit away from being equal.
+
+Examples:
+```python
+assert one_away('abc', 'abd') == True
+assert one_away('ab', 'abd') == True
+assert one_away('ad', 'abd') == False
+assert one_away('abc', 'abde') == False
+```
+
+It helps to analyze each case separately. 
+
+1. Replace: There must be at most 1 element that is different and length must be the same.
+2. Insert: There must be 1 character difference in the strings and the existing characters must match.
+3. Remove: Opposite of insert.
+
+Here's the algorithm:
+
+```python
+def one_away(str1, str2):
+    n1 = len(str1)
+    n2 = len(str2)
+    if abs(n1 - n2) > 1:
+        return False
+    elif n1 == n2:
+        # replace
+        found_diff = False
+        for i in range(n1):
+            if str1[i] != str2[i] and not found_diff:
+                found_diff = True
+            elif str1[i] != str2[i]:
+                return False
+    else:
+        # remove or insert
+        i, j = 0, 0
+        found_diff = False
+        while i < n1 and j < n2:
+            if str1[i] != str2[j]:
+                if found_diff:
+                    return False
+                found_diff = True
+                if n1 < n2:
+                    j += 1
+                else:
+                    i += 1
+            else:
+                i += 1
+                j += 1
+
+    return True
+```
 
 ## Tries
 
@@ -786,9 +837,89 @@ assert reverse_words(['w', 'h', 'a', 't', ' ', 'i', 's', ' ', 'u', 'p']) == ['u'
 
 ## Stacks & Queues
 
+### Stack with min. API
+
+Design a stack data structure such that you can query the minimum element in O(1) time.
+
+This problem is easily solved with an additional stack. Specifically, we can use another stack to store the current min. for the stack.
+
+
+```python
+class Stack:
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
+    
+    def pop(self):
+        if self.stack[-1] == self.min_stack[-1]:
+            self.min_stack.pop()
+        
+        self.stack.pop()
+    
+    def push(self, x):
+        if not self.min_stack or x < self.min_stack[-1]:
+            self.min_stack.append(x)
+        
+        self.stack.append(x)
+        
+    def get_min(self):
+        return self.min_stack[-1]
+```
+
+### Shortest Equivalent Path
+Source: EPI 8.4
+
+Given a pathname (absolute or relative), return the shortest equivalent pathname.
+
+## Examples
+
+`"/usr/lib/../bin/gcc"` => `"/usr/bin/gcc"`
+
+`"scripts//./../scripts/awkscripts/././"` => `"scripts/awkscripts"`
+
+Since each path is going to be conditionally shortened based on succeeding entries, a stack works well here.
+
+In particular, we can push entries on to a stack if they're actual paths and pop if they're `../` or `//, ./`
+
+We can return the final stack joined with `/` as the shortened pathname.
+
+What remains is just addressing edge cases like maintaining absolute pathname structure, throwing errors when paths are invalid.
+
+## Code
+
+```python
+def shorten_pathnames(paths):
+    if not paths:
+        raise ValueError('Paths cannot be an empty string')
+    shortened_paths = []
+    for path in paths.split("/"):
+        if path == '' or path == '.':
+            continue
+        if path == '..':
+            if not shortened_paths or shortened_paths[-1] == '..':
+                shortened_paths.append('..')
+            else:
+                if shortened_paths[-1][0] == '/':
+                    raise ValueError('Invalid directory')
+                shortened_paths.pop()
+        else:
+            shortened_paths.append(path)
+    if paths[0] == '/':
+        shortened_paths[0] = '/' + shortened_paths[0]
+    return '/'.join(shortened_paths)
+
+assert shorten_pathnames("../bin/../gc/lol") == "../gc/lol"
+assert shorten_pathnames("/user/bin/../gc/lol") == "/user/gc/lol"
+assert shorten_pathnames("scripts//./../scripts/awkscripts/./.") == "scripts/awkscripts"
+```
+
 ## Binary Trees
 
 ## Heaps
+
+### K closest stars
+
+### Merge sorted arrays
 
 ## Hash Tables
 

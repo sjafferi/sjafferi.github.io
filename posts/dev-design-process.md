@@ -1,14 +1,16 @@
 ## Problem
 If you're anything like me, you may have trouble coming up with designs for your project web pages. 
 
-Translating a set of functional requirements into components can be a daunting process. There are some ways to make the ideation and design phase easier, which usually leads to a simpler implementation. 
+Translating a set of functional requirements into components can be a daunting process. 
 
-I'll briefly go over my current process using my projects page as an example.
+There are some ways to make the ideation and design phase easier, which usually leads to a simpler implementation. 
+
+I'll briefly go over my current process using [my personal projects page](https://sibta.in/projects) as an example.
 
 ![Projects page](https://i.imgur.com/PFerhK5.png)
 
 ## Ideation
-Now I knew the basic information I wanted to show for each project: name, description, pictures and links.
+I knew the basic information I wanted to show for each project: name, description, pictures and links. Now, I just had to come up with a visual format to display this info in.
 
 I had trouble coming up with my own ideas so I looked to the internetz.
 
@@ -24,13 +26,21 @@ Another notable mention was [Samantha Ming's Code Tidbits page](https://www.sama
 
 I decided I wanted to keep a minimalistic theme for my site and hence went with the repository view.
 
+So, when looking for ideas on how to display your web page, list out all of the content that should be displayed. 
+
+Then, accumulate a list of webpages that visually display the content in a way that you find appealing and relevant. List out your own ideas for the visual hierarchy as well.
+
+This will give you a good starting point 
+
 Next up is modification and design.
 
 ## Design
 
 Now we need to modify our chosen design to fit the functional requirements. 
 
-I draw out rough designs on paper as a starting point and customize it as necessary. In the project's page, I knew I needed images and links, and hence found the appropriate spot for them in the github repo component.
+It helps to draw out a rough sketch of your designs and customize as necessary.
+
+For the project's page, I knew I needed images and links, and hence found the appropriate spot for them in the designs.
 
 Note: my artistic ability is very limited :(
 
@@ -55,7 +65,7 @@ For example this implies we'll need something like:
 
 ## Development
 
-Once we have an idea of the component structure, development is a breeze. We're essentially just plugging the structure into data and styling. 
+Once we have an idea of the component structure, development becomes a breeze. We're essentially just plugging data into the structure (and styling it).
 
 This is the implementation using Svelte.
 

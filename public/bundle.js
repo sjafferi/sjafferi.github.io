@@ -37712,7 +37712,7 @@
     	return child_ctx;
     }
 
-    // (56:12) {#if post.tags.includes('technical')}
+    // (43:12) {#if post.tags.includes('technical')}
     function create_if_block_1$2(ctx) {
     	let li;
     	let t;
@@ -37770,7 +37770,7 @@
     	};
     }
 
-    // (58:16) <Link to={post.slug}>
+    // (45:16) <Link to={post.slug}>
     function create_default_slot_6(ctx) {
     	let t_value = /*post*/ ctx[1].title + "";
     	let t;
@@ -37792,7 +37792,7 @@
     	};
     }
 
-    // (55:10) {#each Posts as post}
+    // (42:10) {#each Posts as post}
     function create_each_block_2$1(ctx) {
     	let show_if = /*post*/ ctx[1].tags.includes("technical");
     	let if_block_anchor;
@@ -37832,7 +37832,7 @@
     	};
     }
 
-    // (54:8) <List title="Technical">
+    // (41:8) <List title="Technical">
     function create_default_slot_5(ctx) {
     	let each_1_anchor;
     	let current;
@@ -37923,7 +37923,7 @@
     	};
     }
 
-    // (66:12) {#if post.tags.includes('practical')}
+    // (53:12) {#if post.tags.includes('practical')}
     function create_if_block$6(ctx) {
     	let li;
     	let t;
@@ -37981,7 +37981,7 @@
     	};
     }
 
-    // (68:16) <Link to={post.slug}>
+    // (55:16) <Link to={post.slug}>
     function create_default_slot_4(ctx) {
     	let t_value = /*post*/ ctx[1].title + "";
     	let t;
@@ -38003,7 +38003,7 @@
     	};
     }
 
-    // (65:10) {#each Posts as post}
+    // (52:10) {#each Posts as post}
     function create_each_block_1$1(ctx) {
     	let show_if = /*post*/ ctx[1].tags.includes("practical");
     	let if_block_anchor;
@@ -38043,7 +38043,7 @@
     	};
     }
 
-    // (64:8) <List title="Practical">
+    // (51:8) <List title="Practical">
     function create_default_slot_3(ctx) {
     	let each_1_anchor;
     	let current;
@@ -38218,7 +38218,7 @@
     	};
     }
 
-    // (77:6) <Route path={post.slug}>
+    // (64:6) <Route path={post.slug}>
     function create_default_slot_1$1(ctx) {
     	let t;
     	let current;
@@ -38268,7 +38268,7 @@
     	};
     }
 
-    // (76:4) {#each Posts as post}
+    // (63:4) {#each Posts as post}
     function create_each_block$3(ctx) {
     	let current;
 
