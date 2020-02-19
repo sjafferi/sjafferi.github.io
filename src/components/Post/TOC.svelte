@@ -107,7 +107,7 @@
   }
   .toc {
     float: left;
-    max-width: 35ch;
+    max-width: 40ch;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
     margin: 0 2rem 1.5rem 0;

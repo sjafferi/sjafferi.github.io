@@ -344,125 +344,314 @@ def max_area(height: List[int]) -> int:
     return max_area
 ```
 
-### Kruskal's Minimum Spanning Tree 
+### Maximum Subarray - Divide & Conquer
 
-Kruskal's algorithm is a minimum-spanning-tree algorithm which finds an edge of the least possible weight that connects any two trees in the forest. It is a greedy algorithm in graph theory as it finds a minimum spanning tree for a connected weighted graph adding increasing cost edges at each step.
-
-Steps:
-
-1. Sort all the edges in non-decreasing order of their weight.
-2. Pick the smallest edge. Check if it forms a cycle with the spanning tree formed so far using Union Find data-structure. If cycle is not formed, include this edge else, discard it.
-3. Repeat Step 2 until there are (V-1) edges in the spanning tree.
-
-Code (from [GeeksForGeeks - Neelam Yadav ](https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/))
-```python
-# Python program for Kruskal's algorithm to find 
-# Minimum Spanning Tree of a given connected,  
-# undirected and weighted graph 
-  
-from collections import defaultdict 
-  
-#Class to represent a graph 
-class Graph: 
-  
-    def __init__(self,vertices): 
-        self.V= vertices #No. of vertices 
-        self.graph = [] # default dictionary  
-                                # to store graph 
-          
-   
-    # function to add an edge to graph 
-    def addEdge(self,u,v,w): 
-        self.graph.append([u,v,w]) 
-  
-    # A utility function to find set of an element i 
-    # (uses path compression technique) 
-    def find(self, parent, i): 
-        if parent[i] == i: 
-            return i 
-        return self.find(parent, parent[i]) 
-  
-    # A function that does union of two sets of x and y 
-    # (uses union by rank) 
-    def union(self, parent, rank, x, y): 
-        xroot = self.find(parent, x) 
-        yroot = self.find(parent, y) 
-  
-        # Attach smaller rank tree under root of  
-        # high rank tree (Union by Rank) 
-        if rank[xroot] < rank[yroot]: 
-            parent[xroot] = yroot 
-        elif rank[xroot] > rank[yroot]: 
-            parent[yroot] = xroot 
-  
-        # If ranks are same, then make one as root  
-        # and increment its rank by one 
-        else : 
-            parent[yroot] = xroot 
-            rank[xroot] += 1
-  
-    # The main function to construct MST using Kruskal's  
-        # algorithm 
-    def KruskalMST(self): 
-  
-        result =[] #This will store the resultant MST 
-  
-        i = 0 # An index variable, used for sorted edges 
-        e = 0 # An index variable, used for result[] 
-  
-            # Step 1:  Sort all the edges in non-decreasing  
-                # order of their 
-                # weight.  If we are not allowed to change the  
-                # given graph, we can create a copy of graph 
-        self.graph =  sorted(self.graph,key=lambda item: item[2]) 
-  
-        parent = [] ; rank = [] 
-  
-        # Create V subsets with single elements 
-        for node in range(self.V): 
-            parent.append(node) 
-            rank.append(0) 
-      
-        # Number of edges to be taken is equal to V-1 
-        while e < self.V -1 : 
-  
-            # Step 2: Pick the smallest edge and increment  
-                    # the index for next iteration 
-            u,v,w =  self.graph[i] 
-            i = i + 1
-            x = self.find(parent, u) 
-            y = self.find(parent ,v) 
-  
-            # If including this edge does't cause cycle,  
-                        # include it in result and increment the index 
-                        # of result for next edge 
-            if x != y: 
-                e = e + 1     
-                result.append([u,v,w]) 
-                self.union(parent, rank, x, y)             
-            # Else discard the edge 
-  
-        # print the contents of result[] to display the built MST 
-        print "Following are the edges in the constructed MST"
-        for u,v,weight  in result: 
-            #print str(u) + " -- " + str(v) + " == " + str(weight) 
-            print ("%d -- %d == %d" % (u,v,weight)) 
-  
-# Driver code 
-g = Graph(4) 
-g.addEdge(0, 1, 10) 
-g.addEdge(0, 2, 6) 
-g.addEdge(0, 3, 5) 
-g.addEdge(1, 3, 15) 
-g.addEdge(2, 3, 4) 
-  
-g.KruskalMST() 
-  
-#This code is contributed by Neelam Yadav 
-```
+### Subarray Sum - Divid & Conquer
 
 
 ## Dynamic Programming
+
+DP is a generalized technique that enables solving searching, counting and optimization problems by breaking them down into subproblems. It's great for tabulation or memoization when there isn't a clearly efficient solution.
+
+[Geeks for geeks](https://www.geeksforgeeks.org/optimal-substructure-property-in-dynamic-programming-dp-2/) provides a way of identifying DP problems.
+
+There are two main properties that suggest a problem can be sovled with DP:
+
+1. Overlapping subproblems -> memoization
+2. Optimal substructure -> If an optimal solution of the given problem can be determined using optimal solutions of subproblems
+
+From Geeks for Geeks:
+
+> For example, the Shortest Path problem has following optimal substructure property:
+If a node x lies in the shortest path from a source node u to destination node v then the shortest path from u to v is combination of shortest path from u to x and shortest path from x to v. 
+
+
+### Maximum subarray
+
+### Edit Distance
+
+The [Edit Distance](https://en.wikipedia.org/wiki/Edit_distance) between two words is the minimum number of "edits" it would take to transform one word into another. A single edit is either a insertion, deletion, or substitution.
+
+Compute the minimum edit distance for two strings.
+
+**Examples**
+
+Saturday, Sunday => 3
+abcd, fgcd => 2
+
+Firstly, let's define some terminology and our subproblems.
+
+For two strings:
+
+- X of length n,
+- Y of length m
+
+We define ED(i, j) as:
+
+- The edit distance between X[0:i] and Y[0:j]
+  
+Therefore, the solution to our problem is ED(n, m)
+
+Looking at the last characters of the each string leads us to this observation:
+
+- If the last character of X == last character of Y, then ED(n, m) = ED(n - 1, m - 1)
+- If the last characters are not equal, then we have the following options:
+  - Replace the last character of X -> ED(n, m) = ED(n - 1, m - 1) + 1
+  - Delete the last character of X -> ED(n, m) = ED(n - 1, m) + 1
+  - Insert the last character of Y at the end of X -> ED(n, m) = ED(n, m - 1) + 1
+  - The minimum of these three is equal to ED(n, m)
+
+This leads to the following algorithm:
+
+```python
+def edit_distance(str1, str2):
+    def compute_distances(str1_idx, str2_idx):
+        if str1_idx < 0:
+            return str2_idx + 1
+        elif str2_idx < 0:
+            return str1_idx + 1
+        
+        if edit_distances[str1_idx][str2_idx] == -1:
+            if str1[str1_idx] == str2[str2_idx]:
+                edit_distances[str1_idx][str2_idx] = compute_distances(str1_idx - 1, str2_idx - 1)
+            else:
+                replace_last = compute_distances(str1_idx - 1, str2_idx - 1)
+                insert_last = compute_distances(str1_idx, str2_idx - 1)
+                delete_last = compute_distances(str1_idx - 1, str2_idx)
+                edit_distances[str1_idx][str2_idx] = 1 + min(replace_last, insert_last, delete_last)
+            
+        return edit_distances[str1_idx][str2_idx]
+        
+    n = len(str1)
+    m = len(str2)
+    edit_distances = [[-1] * m for i in range(n)]
+    return compute_distances(n - 1, m - 1)
+
+assert edit_distance("saturday", "sunday") == 3
+assert edit_distance("gfcd", "abcd") == 2
+assert edit_distance("gf", "abcd") == 4
+assert edit_distance("", "abcd") == 4
+```
+
+### Count number of ways to move down 2d grid
+
+Given an nxm 2d array, determine the number of paths you can take to go from top left to bottom right.
+
+Again, lets start with some definitions.
+
+Let N(i, j) be the number of ways to traverse to A[i][j] from A[0][0]
+
+Then, our answer is N(n - 1, m - 1)
+
+N(i, j) can be defined as:
+- N(i - 1, j) + N(i, j - 1)
+- i.e. the number of ways to get directly above + number of ways to get directly left of A[i][j]
+
+
+```python
+def num_ways_traverse(A):
+    n = len(A)
+    m = len(A[0])
+    
+    def find_num_ways(i, j):
+        if i == j == 0:
+            return 1
+        
+        if num_ways[i][j] == 0:
+            ways_top = 0 if i == 0 else find_num_ways(i - 1, j)
+            ways_left = 0 if j == 0 else find_num_ways(i, j - 1)
+            num_ways[i][j] = ways_top + ways_left
+        
+        return num_ways[i][j]
+    
+    num_ways = [[0] * m for _ in range(n)]
+    return find_num_ways(n - 1, m - 1)
+
+assert num_ways_traverse([[0] * 5 for _ in range(5)]) == 70
+```
+
+
+### Search for a sequence in a 2D array
+
+Given a 2D array, A, determine if a pattern (1D array) exists in A.
+
+The pattern exists in A if you can start from some netry in A and traverse adjacent entries in the order of the pattern until all elements of the pattern are found.
+
+**Example**
+A = [
+    [1, 2, 3],
+    [3, 4, 1],
+    [5, 6, 7]
+]
+P = [1, 3, 4, 6]
+Pattern exists @ [ (0, 0), (1, 0), (1, 1), (2, 1) ]
+
+We can define the subproblem as:
+
+- Exists(x, y, offset) = True iff P[offset:] is found ending at A[x][y]
+
+Then our answer becomes:
+    at least 1 of [Exists(i, j, 0) for all i in range(A) and all j in range(A[i])] is True
+
+In order to find Exists(i, j, offset), we have to determine:
+- if we have finished pattern -> return True
+- if we A[i][j] is out of bounds or A[i][j] != P[offset] -> return False
+  - Note: we can return early here by keeping track of unsuccesful combinations of (i, j, offset),
+- if for all neighbors of (i, j) at least one Exists(neighbor_x, neighbor_y, offset + 1) is True -> True
+- else -> False
+
+Now, this essentially becomes a backtracking search with an added cache for early returns.
+
+```python
+def search_for_sequence(A, P):
+    def find_pattern(x, y, offset):
+        if offset == len(P):
+            return True
+        
+        if (not (0 <= x < len(A) and 0 <= y < len(A[x]))
+            or A[x][y] != P[offset]
+            or (x, y, offset) in prev_attempts
+        ):
+            return False
+
+        if any(
+            find_pattern(x + a, y + b, offset + 1)
+            for a, b in ((-1, 0), (0, -1), (1, 0), (0, 1))
+        ):
+            return True
+        
+        prev_attempts.add((x, y, offset))
+        return False
+        
+    prev_attempts = set()
+    return any(
+        find_pattern(i, j, 0) 
+        for i in range(len(A))
+        for j in range(len(A[i]))
+    )
+    
+A = [
+    [1, 2, 3],
+    [3, 4, 1],
+    [5, 6, 7]
+]
+assert search_for_sequence(A, [1, 3, 4, 6]) == True
+assert search_for_sequence(A, [6, 4, 1]) == True
+assert search_for_sequence(A, [1, 2, 3, 4]) == False
+assert search_for_sequence(A, [6, 4, 7]) == False
+# assert search_for_sequence(A, [6, 4, 3, 4]) == False -> This one breaks. Can you fix it?
+```
+
+### Sliding Window Problems
+
+[This blog post](https://medium.com/outco/how-to-solve-sliding-window-problems-28d67601a66) goes over sliding window problems very well.
+
+Essentially, they are a subset of DP problems that have certain similar properties. The advantage to identifying sliding window problems is that they can be reduced a few different traversal routines.
+
+The properties are:
+
+1. You are looking for a subrange in your problem input set
+2. This subrange must be **optimal** (like longest, or shortest)
+
+There are 4 types of sliding window problems with different traversal routines involved for solving.
+
+1. Fast / Slow
+2. Fast / Catchup
+3. Fast / Lag
+4. Front / Back
+
+Note: The speed here refers to how the window will shrink / grow
+
+#### Fast / Slow
+
+The window will grow with the fast pointer until your condition is met.
+
+The window will shrink with the slow pointer until you no longer have a valid window.
+
+##### Minimum window substring
+
+Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
+
+This falls in the bucket of fast / slow because we need to grow our window until we have a valid substring that contains all the letters we are looking for, and then shrink that window until we no longer have a valid substring.
+
+Now we need to determine when to grow or shrink.
+
+We want to continue growing until we have a valid window (i.e. the window contains all letters of T). Then we want to shrink until the window is no longer valid.
+
+We'll iterate through the characters in S using an index called fast. We'll also initialize a slow counter to 0.
+
+We can use a dict to keep track of characters currently within the window, and a counter for the current number of missing elements in the window.
+
+Once we have configure the dict and counter to update properly, we can use the counter to detect if the window is valid (num_missing == 0). 
+
+Then, we can use a while loop to bring the slow pointer up until the window is no longer valid. 
+
+We'll end up searching all valid substrings in at most O(2n) time. 
+
+```python
+def min_window(s: str, t: str) -> str:
+    if not t or not s:
+        return ""
+
+    chars_in_window = {}
+    freq_t = collections.defaultdict(lambda: 0)
+    
+    for char in t:
+        chars_in_window[char] = 0
+        freq_t[char] += 1
+
+    num_missing = len(t)
+    result = float('-inf'), float('inf')
+    
+    slow = 0
+    for fast in range(len(s)):
+        if s[fast] in chars_in_window:
+            if chars_in_window[s[fast]] < freq_t[s[fast]]:
+                num_missing -= 1
+            
+            chars_in_window[s[fast]] += 1
+
+        while slow <= fast and num_missing == 0:
+            if fast - slow < result[1] - result[0]:
+                result = slow, fast
+            
+            if s[slow] in chars_in_window:
+                if chars_in_window[s[slow]] <= freq_t[s[slow]]:
+                    num_missing += 1
+                
+                chars_in_window[s[slow]] -= 1
+
+            slow += 1
+
+    
+    return s[result[0]:result[1] + 1] if result[0] > float('-inf') and result[1] < float('inf') else ''
+```
+
+##### Bit flip
+##### Consecutive sum subarray
+
+#### Fast / Catchup
+
+The fast pointer works the same way as mentioned above.
+
+The catchup pointer will jump to the fast pointer once a condition is met.
+
+##### Max consecutive sum
+##### Buy / sell stocks
+
+#### Fast / Lag
+
+The lag pointer is referencing a few indices behind the fast.
+
+##### Knapsack problem
+
+#### Front / back
+
+You have one pointer at the back and one at the front. You move either or both according to some condition.
+
+##### Trapped rainwater
+##### Sorted two sum
+
 
 # Data Structures
 
@@ -871,7 +1060,7 @@ Source: EPI 8.4
 
 Given a pathname (absolute or relative), return the shortest equivalent pathname.
 
-## Examples
+**Examples**
 
 `"/usr/lib/../bin/gcc"` => `"/usr/bin/gcc"`
 
@@ -885,7 +1074,7 @@ We can return the final stack joined with `/` as the shortened pathname.
 
 What remains is just addressing edge cases like maintaining absolute pathname structure, throwing errors when paths are invalid.
 
-## Code
+**Code**
 
 ```python
 def shorten_pathnames(paths):
@@ -921,6 +1110,22 @@ assert shorten_pathnames("scripts//./../scripts/awkscripts/./.") == "scripts/awk
 
 ### Merge sorted arrays
 
-## Hash Tables
+## Hashmaps
+
+### Subarray sum
+https://leetcode.com/problems/subarray-sum-equals-k/
+
+```python
+def subarraySum(self, nums: List[int], k: int) -> int:
+    num_sums, curr_sum = 0, 0
+    sum_map = collections.defaultdict(lambda: 0)
+    sum_map[0] += 1
+    for i in range(len(nums)):
+        curr_sum += nums[i]
+        num_sums += sum_map[curr_sum - k]
+        sum_map[curr_sum] += 1
+    
+    return num_sums
+```
 
 

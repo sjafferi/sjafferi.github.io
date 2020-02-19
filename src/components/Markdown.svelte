@@ -66,6 +66,10 @@
     line-height: 1.25;
   }
 
+  :global(.markdown h5) {
+    font-size: 1em;
+  }
+
   :global(.markdown p) {
     line-height: 1.55;
   }

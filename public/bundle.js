@@ -2066,7 +2066,7 @@
     	};
     }
 
-    // (24:2) <NavLink to="projects">
+    // (25:2) <NavLink to="projects">
     function create_default_slot_1(ctx) {
     	let t;
 
@@ -2086,7 +2086,7 @@
     	};
     }
 
-    // (25:2) <NavLink to="/">
+    // (26:2) <NavLink to="/">
     function create_default_slot$1(ctx) {
     	let t;
 
@@ -2158,7 +2158,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "sidebar svelte-y1uee6");
+    			attr(div, "class", "sidebar svelte-5pibhv");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -37176,7 +37176,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "toc svelte-1mr1vz7");
+    			attr(div, "class", "toc svelte-1tsi91f");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);

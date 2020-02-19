@@ -14,6 +14,7 @@
     .sidebar {
       flex-flow: row;
       margin: 0;
+      margin-top: 13px;
       justify-content: space-evenly;
     }
   }
