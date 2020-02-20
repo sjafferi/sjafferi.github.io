@@ -627,7 +627,54 @@ def min_window(s: str, t: str) -> str:
     return s[result[0]:result[1] + 1] if result[0] > float('-inf') and result[1] < float('inf') else ''
 ```
 
-##### Bit flip
+
+#### Repeating Characters
+Source: [swecareers](https://www.swecareers.com/problem/maximum-substring-with-non-repeating-characters)
+
+Given a string, find the length of the longest substring without repeating characters.
+
+**Examples**
+
+Example 1:
+Input: "abcabcbb"
+Output: 3 
+Explanation: The answer is "abc", with the length of 3. 
+
+Example 2:
+Input: "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+
+Example 3:
+Input: "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3. 
+
+In this problem, we have to traverse all substrings without repeating characters. Hence our window will increase until we have an invalid substring, and then shrink until it's valid again. 
+
+We'll keep a mapping of current characters in the window and their indices in order to determine if there are repeating characters. We'll use the indices to calculate how far we'll bring up the slow pointer to get a valid window.
+
+```python
+import collections
+
+def longest_substring(s: str) -> int:
+    char_map = collections.defaultdict(lambda: -1)
+    slow = 0
+    max_len = 0
+    for fast in range(len(s)):
+        if char_map[s[fast]] != -1:
+            while slow <= char_map[s[fast]]:
+                char_map[s[slow]] = -1
+                slow += 1
+            ## slow == char_map[s[fast]] + 1 (1 element above the index we last saw s[fast], hence the window becomes valid again)
+        else:
+            max_len = max(fast - slow, max_len)
+            
+        char_map[s[fast]] = fast
+        
+    return max_len + 1
+```
+
 ##### Consecutive sum subarray
 
 #### Fast / Catchup
@@ -637,6 +684,21 @@ The fast pointer works the same way as mentioned above.
 The catchup pointer will jump to the fast pointer once a condition is met.
 
 ##### Max consecutive sum
+
+
+##### Bit flip
+Source: [Maximize number of 0s by flipping a subarray](https://www.geeksforgeeks.org/maximize-number-0s-flipping-subarray/)
+
+Given a binary array, find the maximum number zeros in an array with one flip of a subarray allowed. A flip operation switches all 0s to 1s and 1s to 0s.
+
+**Examples**
+Input: arr[] = {0, 1, 0, 0, 1, 1, 0}
+Output: 6
+We can get 6 zeros by flipping the subarray {4, 5}
+
+Input: arr[] = {0, 0, 0, 1, 0, 1}
+Output: 5
+
 ##### Buy / sell stocks
 
 #### Fast / Lag
@@ -651,6 +713,280 @@ You have one pointer at the back and one at the front. You move either or both a
 
 ##### Trapped rainwater
 ##### Sorted two sum
+
+
+## Graph Theory
+
+### Searching
+
+#### Maze traversal (DFS)
+
+Given a 2D array of black and white entries representing a mazy with designated entrance and exit points, find a path from the entrance to the exit, if one exists.
+
+The question does not ask for shortest possible path, so we can use DFS since the implementation is simpler.
+
+This is a great base problem for DFS. Most DFS's follow a similar pattern in implementation.
+
+```python
+def dfs(graph, s, t):
+    ## Check if search is invalid
+
+    ## Update paths travelled
+
+    ## Check if search has ended
+        ## return True
+
+    ## Search neighbors 
+        ## return True if any of the neighbors return True
+
+    ## return False
+```
+
+Let's see in this in action with a maze traversal.
+
+```python
+import collections
+
+Coordinate = collections.namedtuple('Coordinate', ('x', 'y'))
+
+def search_maze(maze, s, t):
+    
+    def search_maze_helper(curr):
+        if not (0 <= curr.x < len(maze) and 0 <= curr.y < len(maze[curr.x]) and maze[curr.x][curr.y] == 0):
+            return False
+        
+        maze[curr.x][curr.y] = 1
+        path.append((curr.x, curr.y))
+        
+        if t.x == curr.x and t.y == curr.y:
+            return True
+        
+        if any(
+            map(search_maze_helper, 
+                map(Coordinate, (curr.x - 1, curr.x + 1, curr.x, curr.x),
+                    (curr.y, curr.y, curr.y - 1, curr.y + 1)))):
+            return True
+        
+        del path[-1]
+        return False
+        
+    path = []
+    search_maze_helper(s)
+    return len(path) > 0
+
+maze = [
+    [0, 1, 0, 1],
+    [1, 0, 0, 0],
+    [0, 1, 0, 0]
+]
+
+assert search_maze(maze, Coordinate(0, 0), Coordinate(1, 3)) == False
+assert search_maze(maze, Coordinate(1, 1), Coordinate(1, 3)) == True
+```
+
+#### Flip Color (BFS) 
+
+Implement a routine that takes an nxm Boolean array A together with an entry (x, y) and flips the color of the region associated with (x, y). i.e. all elements reachable from x, y that have the same color as it will flip their color.
+
+BFS is natural to use for region finding problems since it explores neighbors in order of distance from starting point. Hence it grows outward from the starting point until all reachable points are found. 
+
+BFS follows this pattern:
+
+```python
+def bfs(graph, s, t):
+    queue = [s] # initialize a queue of vertices to explore
+    while len(queue) > 0:
+        coords = queue.pop()
+        # do something with coords
+        # add all valid neighbors of coords to next queue
+        next_queue = map(get_valid_neighbors, coords)
+        if len(next_queue) > 0:
+            queue += next_queue
+```
+
+See test cases for examples.
+
+```python
+def flip_color(maze, x, y):
+    color = maze[x][y]
+    queue = collections.deque([(x, y)])
+    maze[x][y] = int(not color)
+
+    while queue:
+        x, y = queue.popleft()
+        for next_x, next_y in ((x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y)):
+            if 0 <= next_x < len(maze) and 0 <= next_y < len(maze[next_x]) and maze[next_x][next_y] == color:
+                maze[next_x][next_y] = int(not color)
+                queue.append((next_x, next_y))
+
+    return maze
+
+
+maze = [
+    [0, 1, 0, 1],
+    [1, 0, 0, 0],
+    [0, 1, 0, 0]
+]
+
+assert flip_color(maze, 0, 0) = [
+    [1, 1, 0, 1],
+    [1, 0, 0, 0],
+    [0, 1, 0, 0]
+]
+
+assert flip_color(maze, 1, 2) = [
+    [0, 1, 1, 1],
+    [1, 1, 1, 1],
+    [0, 1, 1, 1]
+]
+
+assert flip_color(maze, 0, 1) = [
+    [0, 0, 0, 1],
+    [1, 0, 0, 0],
+    [0, 1, 0, 0]
+]
+```
+
+Let's do the DFS implementation for fun.
+
+```python
+def flip_color_dfs(maze, x, y):
+    color = maze[x][y]
+    maze[x][y] = int(not color)
+    
+    for next_x, next_y in ((x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y)):
+        if 0 <= next_x < len(maze) and 0 <= next_y < len(maze[next_x]) and maze[next_x][next_y] == color:
+            flip_color_dfs(maze, next_x, next_y)
+    
+    return maze
+```
+
+
+#### Compute enclosed region
+
+Let A be a 2D binary array. Write a program that takes A, and replaces all 0's that cannot reach the boundary with a 1. i.e. if there does not exist a path from an enclosed 0 to the outer edges of the array, it has to be flipped.
+
+See test cases for examples below.
+
+Computing whether or not all enclosed 0 entries can reach the boundary may be a bit difficult, hence lets consider the converse. 
+
+How do we find the 0's that can reach the boundary? These are the elements that won't be flipped.
+
+We can find these 0's by traversing all reachable 0's from boundary 0's.
+
+Then, we can mark these with some flag. These marked entries will become the only 0 entries in the the grid.
+
+Finally, we go back and turn all entries that weren't marked into 1 and the marked ones into 0.
+
+```python
+def compute_enclosed_regions(maze):
+    n, m = len(maze), len(maze[0])
+    queue = collections.deque(
+        [(i, j) for k in range(n) for i, j in ((k, 0), (k, m - 1))] +
+        [(i, j) for k in range(m) for i, j in ((0, k), (n - 1, k))]
+    )
+    
+    while queue:
+        x, y = queue.popleft()
+        if maze[x][y] == 0:
+            maze[x][y] = 'T'
+            for next_x, next_y in (x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y):
+                if 0 <= next_x < len(maze) and 0 <= next_y < len(maze[next_x]) and maze[next_x][next_y] == 0:
+                    queue.append((next_x, next_y))
+                
+        
+    return [[0 if c == 'T' else 1 for c in row] for row in maze]
+    
+assert compute_enclosed_regions([
+    [0, 1, 1, 1],
+    [1, 0, 0, 1],
+    [0, 1, 1, 0]
+]) == [
+    [0, 1, 1, 1],
+    [1, 1, 1, 1],
+    [0, 1, 1, 0]
+]
+
+assert compute_enclosed_regions([
+    [0, 1, 1, 1],
+    [1, 0, 1, 1],
+    [0, 1, 1, 0]
+]) == [
+    [0, 1, 1, 1],
+    [1, 1, 1, 1],
+    [0, 1, 1, 0]
+]
+
+assert compute_enclosed_regions([
+    [0, 1, 0, 1],
+    [1, 0, 0, 1],
+    [0, 1, 1, 0]
+]) == [
+    [0, 1, 0, 1],
+    [1, 0, 0, 1],
+    [0, 1, 1, 0]
+]
+```
+
+#### Cycle detection with DFS
+
+DFS can be used to detect cycles in graphs because it maintains a color for each vertex. All vertices start out white. When a vertex is first discovered it's colored grey. After a vertex has been processed it becomes black.
+
+The algorithm is straightforward DFS while check for vertex color.
+
+```python
+class GraphVertex:
+    
+    WHITE, GREY, BLACK = range(3)
+    
+    def __init__(self, edges = []):
+        self.color = GraphVertex.WHITE
+        self.edges = edges
+
+def has_cycle(graph):
+    
+    def has_cycle_helper(curr):
+        if curr.color == GraphVertex.GREY:
+            return True
+        
+        curr.color = GraphVertex.GREY
+        
+        if any(next.color != GraphVertex.BLACK and has_cycle_helper(next) for next in curr.edges):
+            return True
+        
+        curr.color = GraphVertex.BLACK
+        return False
+    
+    
+    return any(node.color == GraphVertex.WHITE and has_cycle_helper(node) for node in graph)
+    
+
+x = GraphVertex()
+y = GraphVertex([x])
+x.edges = [y]
+z = GraphVertex()
+
+graph_1 = [
+    GraphVertex([GraphVertex([GraphVertex()]), z]),
+    GraphVertex([z]),
+    GraphVertex()
+]
+
+assert has_cycle(graph_1) == False
+
+x = GraphVertex()
+graph_2 = [
+    GraphVertex([GraphVertex([GraphVertex([x, y])]), z]),
+    GraphVertex([x]),
+    GraphVertex()
+]
+
+assert has_cycle(graph_2) == True
+```
+
+
+## Backtracking / Comprehensive Search
+
 
 
 # Data Structures
@@ -672,7 +1008,7 @@ A few tips from Elements of Programming Interviews that are notable:
 
 We'll explore problems concerning modifying arrays in-place such that some property is satisfied, traversing and multi-dimensional datasets.
 
-### Complexities
+**Complexities**
 
 | Routine | Dynamic Array | Sorted Dynamic Array |
 | :------ | :-----------: | -------------------: |
