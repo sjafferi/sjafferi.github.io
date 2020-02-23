@@ -542,6 +542,25 @@ assert search_for_sequence(A, [6, 4, 7]) == False
 # assert search_for_sequence(A, [6, 4, 3, 4]) == False -> This one breaks. Can you fix it?
 ```
 
+### Word break
+
+```python
+def word_break(s: str, wordDict: List[str]) -> bool:
+    def is_word(j):
+        if j < 1:
+            return True
+        
+        if words[j - 1] == -1:
+            words[j - 1] = any(s[i:j] in wordDict and is_word(i) for i in range(j))
+            
+        return words[j - 1]
+        
+    n = len(s)
+    words = [-1] * n
+    
+    return is_word(n)
+```
+
 ### Sliding Window Problems
 
 [This blog post](https://medium.com/outco/how-to-solve-sliding-window-problems-28d67601a66) goes over sliding window problems very well.
@@ -984,10 +1003,150 @@ graph_2 = [
 assert has_cycle(graph_2) == True
 ```
 
+#### Clone a graph
+
+Given a vertex, create a copy of the graph on the vertices reachable from this vertex. Vertex = { Label, Edges }.
+
+Any standard graph traversal algorithm will work here. As we traverse, we'll add new vertices / edges to our cloned graph. We'll use a hashmap of vertices to do this.
+
+```python
+```
+
+#### Transform one string into another
+
+Given a dictionary D, and two string s and t, write a program to determine if s produces t. s can produce t if there exists a sequence of words in the dictionary that consecutively differ in one letter starting at s and ending at t.
+
+Modeling this as a graph problem we can have words be vertices and edges are formed if a word is one away from another word.
+
+```python
+import collections, string
+
+def transform_string(dictionary, s, t):
+    StringWithDistances = collections.namedtuple('StringWithDistances',\
+                                                ('candidate_string', 'distance'))
+    queue = collections.deque([StringWithDistances(s, 0)])
+    dictionary.remove(s)
+
+    while queue:
+        word = queue.popleft()
+        if word.candidate_string == t:
+            return word.distance
+        for i in range(len(word.candidate_string)):
+            for c in string.ascii_lowercase:
+                candidate = word.candidate_string[:i] + c + word.candidate_string[i+1:]
+                if candidate in dictionary:
+                    queue.append(StringWithDistances(candidate, word.distance + 1))
+                    dictionary.remove(candidate)
+    return -1
+    
+dictionary = set(['bat', 'cot', 'dog', 'dag', 'dot', 'cat', 'mad', 'sad'])
+assert transform_string(dictionary, 'cat', 'dog') > 0
+assert transform_string(dictionary, 'cat', 'mad') == -1
+```
+
+### Shortest Path
+
+It's imperative to know the algorithm to obtain the shortest path from any given vertex to another. It's a question that's commonly asked in interviews that you should knock out of the park.
+
+Namely, Dijkstra's Algorithm
+
+#### Dikjstra's Shortest Path Algorithm
+
+[The Wikipedia page](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) has all the info you'd need plus this great illustration.
+
+![Dijjkstra's](https://upload.wikimedia.org/wikipedia/commons/5/57/Dijkstra_Animation.gif)
+
+This is essentially BFS accounting for weights in graphs. Instead of picking the first neighbor we find in BFS, we instead choose the neighbor with the lowest distance from the start vertex. We continue picking the least weighted path until we reach the end vertex.
+
+This is broken down into the following steps: 
+
+Given G, s, t
+
+1. Create an array `dist` where dist[u] denotes the distance from s to u
+2. Initialize the array with all vertices being infinity and dist[s] to 0
+3. Use BFS to traverse the graph, pick the vertex that is minimum distance from s when popping from the queue
+4. For each unvisited neighbors from the current node, calculate the distance to that node (if there is already a distance, choose smaller one)
+5. Mark the current node as unvisited
+6. If the destination node has been reached or if the smallest distance among unvisited nodes is inifinity, then stop
+
+This is a modified version of [Maria Boldyreva's solution on dev.to](https://dev.to/mxl/dijkstras-algorithm-in-python-algorithms-for-beginners-dkc)
+```python
+# Dijkstra's
+import collections, functools, heapq
+
+Edge = collections.namedtuple('Edge', ('start', 'end', 'cost'))
+
+class Graph:
+    def __init__(self, edges=[]):
+        self.edges = [Edge(*edge) for edge in edges]
+    
+    @property
+    def vertices(self):
+        return set(
+            functools.reduce(lambda acc, e: acc + [e.start, e.end], self.edges, [])
+        )
+    
+    @property
+    def neighbours(self):
+        neighbours = {vertex: set() for vertex in self.vertices}
+        for edge in self.edges:
+            neighbours[edge.start].add((edge.end, edge.cost))
+
+        return neighbours
+    
+    def dijkstra(self, s, t):
+        vertices = self.vertices.copy()
+        neighbours = self.neighbours.copy()
+        distances = {vertex: float('inf') for vertex in vertices}
+        prev = {
+            vertex: None for vertex in vertices
+        }
+        
+        distances[s] = 0
+        min_queue = [(distances[vertex], vertex) for vertex in distances.keys()]
+        heapq.heapify(min_queue)
+        while min_queue:
+            curr_dist, curr_vertex = heapq.heappop(min_queue)
+            if curr_dist == float('inf'):
+                break
+            for neighbour, cost in neighbours[curr_vertex]:
+                alt_cost = curr_dist + cost
+                if alt_cost < distances[neighbour]:
+                    distances[neighbour] = alt_cost
+                    prev[neighbour] = curr_vertex
+            
+            # Rebuild heap based on new distances
+            unvisited_vertices = []
+            while min_queue:
+                _, v = heapq.heappop(min_queue)
+                unvisited_vertices.append((distances[v], v))
+            
+            heapq.heapify(unvisited_vertices)
+            min_queue = unvisited_vertices
+            
+        path, current_vertex = collections.deque(), t
+        while prev[current_vertex] is not None:
+            path.appendleft(current_vertex)
+            current_vertex = prev[current_vertex]
+        if path:
+            path.appendleft(current_vertex)
+        return path
+    
+graph = Graph([
+    ("a", "b", 7),  ("a", "c", 9),  ("a", "f", 14), ("b", "c", 10),
+    ("b", "d", 15), ("c", "d", 11), ("c", "f", 2),  ("d", "e", 6),
+    ("e", "f", 9), ("y", "z", 1)])
+assert graph.dijkstra("a", "e") == collections.deque(['a', 'c', 'd', 'e'])
+assert graph.dijkstra("a", "y") == collections.deque([])
+```
+
+### Minimum Spanning Tree
+
+### Matching
+
+### Maximum Flow
 
 ## Backtracking / Comprehensive Search
-
-
 
 # Data Structures
 
@@ -1438,7 +1597,226 @@ assert shorten_pathnames("/user/bin/../gc/lol") == "/user/gc/lol"
 assert shorten_pathnames("scripts//./../scripts/awkscripts/./.") == "scripts/awkscripts"
 ```
 
-## Binary Trees
+## Binary Search Trees
+
+From EPI (page 211):
+
+> BST's are a workhorse of data structure and can be used to solve almost every data structures problem reasonably efficiently. They can efficiently search for a key as well as find the min and max elements, look for the successor or predecessor of a search key and enumerate the keys in a range in sorted order.
+
+### Is a Binary Tree also a BST?
+
+Given a tree T, determine if it satisfies the BST property.
+
+Three approaches:
+
+1. Traverse the tree, maintaining a lower and upper bound for each recursive call. If the lower and upper are violated then return False else True. 
+2. Complete an inorder traversal, and see if the nodes are in sorted order. A sorted in order traversal implies the BST property is satisfied.
+3. Traverse the tree in depth order (using BFS), maintaining a lower and upper bound and return false if the constraint is violated else True
+
+
+Approach # 1:
+
+```python
+def is_bst(tree):
+    def is_in_range(tree, lower=float('-inf'), upper=float('inf')):
+        if not tree:
+            return True
+        if not lower <= tree.data <= upper:
+            return False
+        return is_in_range(tree.left, lower, tree.data) and \
+            is_in_range(tree.right, tree.data, upper)
+
+    return is_in_range(tree)
+    
+tree_1 = BinaryTreeNode(19, BinaryTreeNode(7, 
+                                       BinaryTreeNode(3, 
+                                                      BinaryTreeNode(2), 
+                                                      BinaryTreeNode(5)),
+                                       BinaryTreeNode(11, 
+                                                      None,
+                                                      BinaryTreeNode(17, 
+                                                                     BinaryTreeNode(13)))),
+                        BinaryTreeNode(43,
+                                       BinaryTreeNode(23, 
+                                                      None, 
+                                                      BinaryTreeNode(37, 
+                                                                     BinaryTreeNode(29),
+                                                                     BinaryTreeNode(41))),
+                                       BinaryTreeNode(47, 
+                                                      None,
+                                                      BinaryTreeNode(53))))
+
+
+tree_2 = BinaryTreeNode(19, BinaryTreeNode(7, 
+                                       BinaryTreeNode(3, 
+                                                      BinaryTreeNode(21),
+                                                      BinaryTreeNode(5)),
+                                       BinaryTreeNode(11, 
+                                                      None,
+                                                      BinaryTreeNode(17,
+                                                                     BinaryTreeNode(13)))),
+                        BinaryTreeNode(43,
+                                       BinaryTreeNode(23, 
+                                                      None, 
+                                                      BinaryTreeNode(37,
+                                                                     BinaryTreeNode(29),
+                                                                     BinaryTreeNode(41))),
+                                       BinaryTreeNode(27, 
+                                                      None, 
+                                                      BinaryTreeNode(53))))
+
+assert is_bst_2(tree_1) == True
+assert is_bst_2(tree_2) == False
+```
+
+Approach # 2:
+```python
+def is_bst_2(tree):
+    def is_in_range(tree):
+        if not tree:
+            return True
+        
+        left_satisfied = is_in_range(tree.left)
+        
+        if tree.data < prev['val']:
+            return False
+        
+        prev['val'] = tree.data
+        
+        return left_satisfied and is_in_range(tree.right)
+    
+    prev = {}
+    prev['val'] = float('-inf') # use object in order to reference prev.val in helper
+    return is_in_range(tree)
+```
+
+Approach # 3:
+
+```python
+import collections
+
+QueueEntry = collections.namedtuple('QueueEntry', ('node', 'lower', 'upper'))
+
+def is_binary_tree_bst(tree):
+    bfs_queue = collections.deque([QueueEntry(tree, float('-inf'), float('inf'))])
+    
+    while bfs_queue:
+        entry = bfs_queue.popleft()
+        if entry.node:
+            if not entry.lower <= entry.node.data <= entry.upper:
+                return False
+            bfs_queue.extend(
+                (QueueEntry(entry.node.left, entry.lower, entry.node.data),
+                 QueueEntry(entry.node.right, entry.node.data, entry.upper)))
+            
+    return True
+
+assert is_binary_tree_bst(tree_1) == True
+assert is_binary_tree_bst(tree_2) == False
+```
+
+This approach has the advantage that we'll return early if the bst property is violated early in depth or if it lies in the right subtree (the other approaches explore the left subtree first).
+
+### First value greater than key in BST
+
+Given a tree T and integer k, return the value that would appear after k in an in order traversal of T.
+
+We could do an in order traversal to find the first greater than k, but this does not take advantage of the BST property and hence does more work than required (O(n)). 
+
+Instead, we'll traverse through the tree, keeping a candidate value and updating it when we encounter a value greater than k. We traverse right if k >= curr_node.data else left.
+
+```python
+def find_first_greater_than(tree, k):
+    def find_greater(tree, candidate=None):
+        if not tree:
+            return candidate
+        
+        if k < tree.data:
+            return find_greater(tree.left, tree.data)
+        else: # k >= tree.data
+            return find_greater(tree.right, candidate)
+        
+        
+    return find_greater(tree)
+
+def find_first_greater_than_iterative(tree, k):
+    candidate, subtree = None, tree
+    
+    while subtree:
+        if k < subtree.data:
+            candidate, subtree = subtree.data, subtree.left
+        else:
+            subtree = subtree.right
+
+    return candidate
+    
+assert find_first_greater_than(tree_1, 23) == 29
+assert find_first_greater_than(tree_1, 13) == 17
+assert find_first_greater_than(tree_1, 31) == 37
+```
+
+### Find the K largest elements in a BST
+
+Given a BST T, and an integer k return the k largest elements in T in descending order.
+
+We can do a reverse in-order traversal, store the elements we encounter and return when we have k elements.
+
+```python
+def find_k_largest_bst(tree, k):
+    def reverse_in_order(tree):
+        if tree and len(candidates) < k:
+            reverse_in_order(tree.right)
+            if len(candidates) < k:
+                candidates.append(tree.data)
+                reverse_in_order(tree.left)
+        
+    
+    candidates = []
+    reverse_in_order(tree)
+    return candidates
+    
+assert find_k_largest_bst(tree_1, 5) == [53, 47, 43, 41, 37]
+assert find_k_largest_bst(tree_1, 2) == [53, 47]
+```
+
+### Compute LCA in a BST
+
+Given a BST T and two nodes s and t. Find the LCA of s and t in T.
+
+In a BST, the LCA of two nodes is the first node that is in between the range of the s and t. This is the last point at which they break into separate subtrees.
+
+Using this fact, we can traverse through the tree and return the first element that matches this condition.
+
+```python
+def lca_bst(tree, a, b):
+    min_node, max_node = (a, b) if a < b else (b, a)
+    
+    def find_lca(tree):
+        if not tree:
+            return None
+        if min_node <= tree.data <= max_node:
+            return tree.data
+        if tree.data > max_node:
+            return find_lca(tree.left)
+        return find_lca(tree.right)
+    
+    return find_lca(tree)
+
+
+def lca_bst_iterative(tree, a, b):
+    while tree and not (a.data <= tree.data <= b.data):
+        while tree.data < a.data:
+            tree = tree.right
+        
+        while tree.data > b.data:
+            tree = tree.left
+        
+    return tree
+
+assert lca_bst(tree_1, 31, 53) == 43
+assert lca_bst(tree_1, 7, 13) == 7
+assert lca_bst(tree_1, 2, 53) == 19
+```
 
 ## Heaps
 

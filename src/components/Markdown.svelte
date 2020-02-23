@@ -70,7 +70,7 @@
     font-size: 1em;
   }
 
-  :global(.markdown p) {
+  :global(.markdown p, .markdown li) {
     line-height: 1.55;
   }
 
@@ -145,6 +145,10 @@
     overflow: visible;
     padding: 0;
     word-wrap: normal;
+  }
+
+  :global(.markdown ol > li) {
+    margin: 10px 0;
   }
 </style>
 
