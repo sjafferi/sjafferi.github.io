@@ -1614,7 +1614,7 @@ Three approaches:
 3. Traverse the tree in depth order (using BFS), maintaining a lower and upper bound and return false if the constraint is violated else True
 
 
-Approach # 1:
+Approach 1:
 
 ```python
 def is_bst(tree):
@@ -1669,7 +1669,7 @@ assert is_bst_2(tree_1) == True
 assert is_bst_2(tree_2) == False
 ```
 
-Approach # 2:
+Approach 2:
 ```python
 def is_bst_2(tree):
     def is_in_range(tree):
@@ -1690,7 +1690,7 @@ def is_bst_2(tree):
     return is_in_range(tree)
 ```
 
-Approach # 3:
+Approach 3:
 
 ```python
 import collections
@@ -1818,6 +1818,109 @@ assert lca_bst(tree_1, 7, 13) == 7
 assert lca_bst(tree_1, 2, 53) == 19
 ```
 
+### Reconstruct a BST from traversal data
+
+Given a preorder traversal of a BST with unique keys, reconstruct the BST.
+
+Note: A preorder traversal sequence has 1-1 mapping to a BST (inorder does not).
+
+The first element of the sequence always contains the root node. All following elements that are less than the root are in the left subtree, greater elements are in the right subtree.
+
+We can apply this reasoning recursively and end up with this algorithm.
+
+```python
+tree_3 = BinaryTreeNode(5, 
+                        BinaryTreeNode(3, BinaryTreeNode(2, BinaryTreeNode(1)), BinaryTreeNode(4)),
+                        BinaryTreeNode(8, BinaryTreeNode(7)))
+
+def bst_from_preorder_traversal(sequence):
+    def create_tree(sequence):
+        if len(sequence) == 0:
+            return None
+        return BinaryTreeNode(
+            sequence[0],
+            create_tree([i for i in sequence if i < sequence[0]]),
+            create_tree([i for i in sequence if i > sequence[0]]))
+        
+    return create_tree(sequence)
+
+assert is_bst_equal(bst_from_preorder_traversal(preorder(tree_3)), tree_3)
+assert is_bst_equal(bst_from_preorder_traversal(preorder(tree_1)), tree_1)
+```
+
+However, this approach takes O(n^2) in the worst case (a left-skewed tree) where n is the length of the sequence.
+
+The recurrence relation is T(n) = T(n - 1) + O(n) = O(n^2)
+
+This approach does repeated calculation to determine smaller and larger elements from the root. Instead, we can do this comparison as we're creating the subtree. 
+
+We can do this by providing a range of valid values for each subtree. This leads to the following algorithms:
+
+```python
+def bst_from_preorder_efficient(sequence):
+    def create_tree(lower, upper):
+        if root_idx[0] == len(sequence):
+            return None
+        
+        root = sequence[root_idx[0]]
+
+        if not lower <= root <= upper:
+            return None
+        
+        root_idx[0] += 1
+        
+        left = create_tree(lower, root)
+        right = create_tree(root, upper)
+        
+        return BinaryTreeNode(root, left, right)
+        
+    root_idx = [0]
+    return create_tree(float('-inf'), float('inf'))
+```
+
+### Closest entries in k sorted arrays
+
+Given k sorted arrays, find the minimum interval containing at least 1 element from each array.
+
+The insight that leads to an algorithm is that we can keep a candidate range starting with the smallest in all arrays and then iteratively check the next possible range by removing the smallest elenent from the range and adding the next smallest element from the same array.
+
+This is because removing the smallest element from a candidate range will shorten the range. We continue to check ranges in this manner until at least one of the arrays runs out of elements.
+
+We use the `bintrees` module to implement a red black tree. This is because we need efficient retrieval of min, max and insertion, deletion for our candidate range. A BST is perfect for this.
+
+
+```python
+import bintrees
+
+def find_closest(sorted_arrays):
+    iters = bintrees.RBTree()
+    
+    for idx, sorted_array in enumerate(sorted_arrays):
+        it = iter(sorted_array)
+        first_min = next(it, None)
+        if first_min is not None:
+            iters.insert((first_min, idx), it)
+
+    min_range = [float('-inf'), float('inf')]
+    while True:
+        min_value, min_idx = iters.min_key()
+        max_value = iters.max_key()[0]
+        
+        if min_value - max_value < min_range[1] - min_range[0]:
+            min_range = [min_value, max_value]
+        it = iters.pop_min()[1] # key, val
+        next_min = next(it, None)
+        if next_min is None:
+            return min_range
+        iters.insert((next_min, min_idx), it)
+```
+
+### Build a min height BST from a sorted array
+
+Given a sorted array, build a minimum height BST with it's elements.
+
+
+
 ## Heaps
 
 ### K closest stars
@@ -1830,7 +1933,7 @@ assert lca_bst(tree_1, 2, 53) == 19
 https://leetcode.com/problems/subarray-sum-equals-k/
 
 ```python
-def subarraySum(self, nums: List[int], k: int) -> int:
+def subarray_sum(self, nums: List[int], k: int) -> int:
     num_sums, curr_sum = 0, 0
     sum_map = collections.defaultdict(lambda: 0)
     sum_map[0] += 1
