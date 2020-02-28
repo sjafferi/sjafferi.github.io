@@ -561,6 +561,55 @@ def word_break(s: str, wordDict: List[str]) -> bool:
     return is_word(n)
 ```
 
+### Concatenate words
+Source: https://leetcode.com/problems/concatenated-words/
+
+Given a list of words (without duplicates), please write a program that returns all concatenated words in the given list of words.
+A concatenated word is defined as a string that is comprised entirely of at least two shorter words in the given array.
+
+```
+Example:
+Input: ["cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"]
+
+Output: ["catsdogcats","dogcatsdog","ratcatdogcat"]
+
+Explanation: "catsdogcats" can be concatenated by "cats", "dog" and "cats"; 
+ "dogcatsdog" can be concatenated by "dog", "cats" and "dog"; 
+"ratcatdogcat" can be concatenated by "rat", "cat", "dog" and "cat".
+```
+
+The approach we'll take will be similar to the word break problem. Specifically, we'll determine if a word in the list of words is concatenable by treating the list of words as the dict and re-using a similar subproblem. 
+
+Namely, is_concat(word) = word[:i] in dict and (word[i:] in dict or is_concat(word[i:])) for i in range(1, len(words))
+
+Note the differences here: 
+
+```python
+def concatenated_words(self, words: List[str]) -> List[str]:
+    dict_words = set(words)
+    
+    if len(words) < 2:
+        return []
+    
+    def is_concat(word):
+        if word in is_concat_table:
+            return is_concat_table[word]
+        
+        is_concat_table[word] = False
+        
+        for i in range(1, len(word)):
+            if word[:i] in dict_words and (word[i:] in dict_words or is_concat(word[i:])):
+                is_concat_table[word] = True
+                break
+
+        return is_concat_table[word]
+        
+    is_concat_table = {}
+    
+    results = [word for word in words if is_concat(word)]
+    return results
+```
+
 ### Sliding Window Problems
 
 [This blog post](https://medium.com/outco/how-to-solve-sliding-window-problems-28d67601a66) goes over sliding window problems very well.
@@ -1300,10 +1349,133 @@ test(merge_meeting_times([(1, 5), (2, 3)]), [(1, 5)])
 test(merge_meeting_times([(1, 10), (2, 6), (3, 5), (7, 9)]), [(1, 10)])
 ```
 
+### Two sum
+
+Given an array of integers A, and an integer k, return the indices of two numbers that add up to k
+
+There are a few approaches we can take here.
+
+1. Use a hashmap to see if the sum has been found while iterating through the array
+2. Sort the array and run binary search on each element k - arr[i]
+3. Use the front / back sliding window method by keeping two pointers at start and end and close the window to check all possible options.
+   This can be done because we can positively say that if arr[left] + arr[right] > k, then increasing left will not move us closer to the target. Vice versa.
+
+```python
+def two_sum(arr, k):
+    if not arr:
+        return None
+    
+    idx_map = {}
+    
+    for i in range(len(arr)):
+        target = (arr[i] - k)*-1
+        if target in idx_map:
+            return [idx_map[target], i]
+        idx_map[arr[i]] = i
+        
+    return None
+```
+
+```python
+def sorted_two_sum_1(arr, k):
+    if not arr:
+        return None
+    
+    def bin_search(arr, k):
+        left, right = 0, len(arr) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if arr[mid] == k:
+                return mid
+            if arr[mid] > k:
+                right = mid - 1
+            else:
+                left = mid + 1
+                
+        return -1
+    
+    for i in range(len(arr)):
+        idx = bin_search(arr, k - arr[i])
+        if idx > -1:
+            return [i, idx]
+        
+    return None
+```
+
+```python   
+def sorted_two_sum_2(arr, k):
+    if not arr:
+        return None
+    
+    left, right = 0, len(arr) - 1
+    while left < right:
+        curr_sum = arr[left] + arr[right]
+        if curr_sum == k:
+            return [left, right]
+        if curr_sum > k:
+            right -= 1
+        else:
+            left += 1
+    
+    return None
+```
+
+### Delete duplicates in array
+Delete repeated elements from a sorted array.
+
+```python
+def delete_duplicates(A: List[int]) -> int:
+     if not A:
+          return 0
+     
+     write_index = 1
+     for i in range(1, len(A)):
+          if A[write_index - 1] != A[i]:
+               A[write_index] = A[i]
+               write_index += 1
+
+     return write_index
+```
+
 
 ## Strings
 
-Hopefully we all know about strings so let's just get into problems.
+### Compute Valid IP's
+
+Given a string of digits, determine all the possible ip addresses that can be made out of it (if any).
+
+An IP address is considered valid if it's the form `xxx.xxx.xxx.xxx`, where `0 <= xxx <= 255`
+
+**Input**
+`"19216811'`
+
+**Possible outputs**
+`["192.168.1.1", "19.216.8.11", ... 7 more]`
+
+The solution that EPI goes with is very straight forward. Find the first part and determine it's validity. If the first part is valid, find the second part and determine its validity and so on until we find parts that are all valid and add it to our solution set. 
+
+The insight I gleaned from this solution is to apply Occam's Razor when dealing with seemingly simple problems. Go with the approach that you would logically use to solve this by hand. Iterate and optimize on top of that if necessary. 
+
+**Solution (EPI, pg. 52)**
+```python
+def compute_valid_ip(ip):
+    def is_valid_parts(parts):
+        return len(parts) == 1 or (parts[0] != '0' and int(parts) <= 255)
+
+    result, parts = [], [''] * 4
+    for i in range(1, min(4, len(ip))):
+        parts[0] = ip[:i]
+        if is_valid_parts(parts[0]):
+            for j in range(1, min(len(ip) - i, 4)):
+                parts[1] = ip[i: i + j]
+                if is_valid_parts(parts[1]):
+                    for k in range(1, min(len(ip) - i - j, 4)):
+                        parts[2], parts[3] = ip[i + j: i + j + k], ip[i + j + k:]
+                        if is_valid_parts(parts[2]) and is_valid_parts(parts[3]):
+                            result.append('.'.join(parts))
+    return result
+```
+
 
 ### Reverse a list of characters in place
 
@@ -1517,6 +1689,114 @@ def one_away(str1, str2):
 
 ## Tries
 
+### Find words
+Source: https://leetcode.com/problems/word-search-ii/
+
+Given a 2D board and a list of words from the dictionary, find all words in the board.
+
+Each word must be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.
+
+Example:
+```
+Input: 
+board = [
+  ['o','a','a','n'],
+  ['e','t','a','e'],
+  ['i','h','k','r'],
+  ['i','f','l','v']
+]
+words = ["oath","pea","eat","rain"]
+
+Output: ["eat","oath"]
+```
+
+The problem here is essentially a graph search on all vertices, looking for any word (treated as a path).
+
+Simple enough, but we have to come up with some way to efficiently check if a current letter is in the search path. We can do this by adding all words to a trie.
+
+A trie simplifies our path checking logic because we just have to check if the current node contains the current letter.
+
+If it does, then we:
+
+1. Update the path to the next node
+2. Update the current word
+3. Mark the current point in the board as visited (just an empty string '')
+4. Check if we've reached the end of a word, if so, store it.
+5. Check all valid neighbours for the remaining path
+6. Unmark the current point
+
+```python
+def find_words(board, words):
+    def search_board(i, j, node, path):
+        if board[i][j] in node:
+            board[i][j], letter = '', board[i][j]
+            node, path = node[letter], path + letter
+            
+            if '$' in node:
+                result.add(path)
+                
+            for x,y in (i + 1, j), (i - 1, j), (i, j - 1), (i, j + 1):
+                if 0 <= x < n and 0 <= y < m:
+                    search_board(x, y, node, path)
+            
+            board[i][j] = letter
+    
+    trie = Trie()
+    for word in words:
+        trie.add_word(word)
+        
+    result = set()
+    n = len(board)
+    m = len(board) and len(board[0])
+    
+    [search_board(i, j, trie.root_node, '') for i in range(n) for j in range(m)]
+    
+    return list(result)
+```
+
+Trie implementation
+```python
+class Trie:
+    def __init__(self):
+        self.root_node = {}
+    
+    def add_word(self, word):
+        is_new_word = False
+        current_node = self.root_node
+        
+        for char in word:
+            if char not in current_node:
+                is_new_word = True
+                current_node[char] = {}
+            
+            current_node = current_node[char]
+        
+        if "$" not in current_node:
+            is_new_word = True
+            current_node["$"] = {}
+            
+        return is_new_word
+```
+
+### Concatenated Words
+
+```python
+        # add all words to a trie
+        trie = Trie()
+        for word in words:
+            trie.add_word(word)
+    
+        # for each word
+            # traverse through trie till end of word
+            # every time a word is found
+                # search rest of word using root trie
+                # continue search with current trie
+                # increment number of found words
+            # once end of word is reached
+                # if any non-root search has also ended,
+                    # add to result
+```
+
 ### Longest common prefix
 
 ## Stacks & Queues
@@ -1595,6 +1875,186 @@ def shorten_pathnames(paths):
 assert shorten_pathnames("../bin/../gc/lol") == "../gc/lol"
 assert shorten_pathnames("/user/bin/../gc/lol") == "/user/gc/lol"
 assert shorten_pathnames("scripts//./../scripts/awkscripts/./.") == "scripts/awkscripts"
+```
+
+### Compute Buildings with Sunset View
+
+You are given a series of buildings that face west. The buildings are in a straight line, and any building which is to the east of the building of equal or greater height cannot view the sunset.
+
+Return the buildings with a sunset view given a list of buildings in east-to-west order.
+
+```python
+def sunset_view(buildings):
+    stack = []
+    
+    for building in buildings:
+        while stack and stack[-1] <= building:
+            stack.pop()
+
+        stack.append(building)
+
+    return stack
+    
+    
+assert sunset_view([2, 1, 3, 4, 5, 4]) == [5, 4]
+assert sunset_view([0, 1, 1, 3, 2, 3]) == [3]
+```
+
+### Compute binary tree nodes in order of increasing depth
+
+
+```python
+def increasing_depth_binary_tree(tree):
+    queue = collections.deque([[tree]])
+    
+    results = []
+    
+    while queue:
+        nodes = queue.popleft()
+        results.append([node.data for node in nodes])
+        q2 = []
+        for node in nodes:
+            if node.left:
+                q2.append(node.left)
+            if node.right:
+                q2.append(node.right)
+        
+        if q2:
+            queue.append(q2)
+    
+    return results
+```
+
+### Implement a circular queue
+
+Implement a queue with O(1) enqueue and dequeue operations using two additional fields (beginning and end indices). You are given the initial size of the queue in the constructor. Resize the inner array dynamically as needed.
+
+We can solve this problem by keeping track of the head and tail as well as current size of the queue. 
+
+For enqueues:
+
+If current size exceeds limit, we must resize
+    to resize, move all elements in order of head to tail to another array
+    increase this new array size by some factor
+    change the pointers of head and tail to reflect new array
+
+Then, we can just add the element to the tail
+
+For dequeues:
+
+We just move the head pointer to the next element in the queue
+
+
+```python
+class CircularQueue:
+    SCALE_FACTOR = 2
+    
+    def __init__(self, size):
+        self.entries = [0] * size
+        self.head = self.tail = self.num_elems = 0
+    
+    def enqueue(self, elem):
+        if self.num_elems == len(self.entries):
+            self.entries = self.entries[self.head:] + self.entries[:self.head]
+            self.head, self.tail = 0, self.num_elems
+            self.entries += [0] * (CircularQueue.SCALE_FACTOR * len(self.entries) - len(self.entries))
+
+        self.entries[self.tail] = elem
+        self.tail = (self.tail + 1) % len(self.entries)
+        self.num_elems += 1
+        
+    def dequeue(self):
+        result = self.entries[self.head]
+        self.head = (self.head + 1) % len(self.entries)
+        self.num_elems -= 1
+        return result
+    
+    def size():
+        return self.num_elems
+```
+
+### Implement a queue using stacks
+
+How would you implement a queue using stacks?
+
+This can be done with 2 stacks. Namely, a stack for enqueues and a stack for dequeus.
+
+For enqueues:
+
+We just append to the enqueue stack
+
+For dequeues:
+
+If the dequeue stack is empty, fill it by pushing all elements of the enqueue stack onto dequeue.
+
+Then, dequeue[-1] should be deleted.
+
+
+```python
+class QueueWithStacks:
+    def __init__(self):
+        self.enq, self.deq = [], []
+    
+    def enqueue(self, val):
+        self.enq.append(val)
+            
+    def get_head(self):
+        if not self.deq:
+            while self.enq:
+                self.deq.append(self.enq.pop())
+                
+        return self.deq[-1]
+        
+    def dequeue(self):
+        result = self.get_head()
+        del self.deq[-1]
+        return result
+```
+
+### Queue With Max
+
+Implement a queue with a O(1) get_max method.
+
+The brute force approach here is to keep track of the current max on enqueue and dequeue. Enqueue is fast, dequeue is slow since you must search through the list to find the next max.
+
+The insight that leads to a better algorithm is that once we add an element to queue, any elements previously added that are less than the current element can never be the max. Hence we can iteratively remove these from consideration. 
+
+We can use another queue to store our max candidates. 
+
+On enqueue:
+
+While the element is larger than the tail of the max queue, remove tail from max queue
+
+Now append the element to the max queue. 
+
+Note that it is less than all preceding elements. Hence, we have that the max queue head contains the max element.
+
+On dequeue:
+
+If the max element is equal to current element to be dequeued. Dequeue max queue.
+
+```python
+class QueueWithMax:
+    def __init__(self):
+        self.queue, self.max_queue = collections.deque([]), collections.deque([])
+    
+    def enqueue(self, val):
+        self.queue.append(val)
+        
+        while self.max_queue and self.max_queue[-1] < val:
+            self.max_queue.pop()
+        
+        self.max_queue.append(val)
+        
+    def dequeue(self):
+        result = self.queue.popleft()
+        if result == self.max_queue[0]:
+            self.max_queue.popleft()
+        
+        return result
+    
+    def get_max(self):
+        return self.max_queue[0]
 ```
 
 ## Binary Search Trees
@@ -1919,11 +2379,201 @@ def find_closest(sorted_arrays):
 
 Given a sorted array, build a minimum height BST with it's elements.
 
+The minimum height subtree is obtained by recursively taking the median element as root in each subtree. Intuitively this is because this leads to the most balanced tree possible.
+
+```python
+def build_bst_from_sorted_array(arr):
+    def build_bst(start, end):
+        if end <= start:
+            return None
+        mid = (start + end) // 2
+        return BinaryTreeNode(arr[mid], build_bst(start, mid), build_bst(mid + 1, end))
+    
+    return build_bst(0, len(arr))
+```
+
+### Determine if 3 nodes are totally ordered
+
+Begin search from both nodes until mid is encountered. Continue searching until unfound is encountered.
+
+```python
+def is_totally_ordered(tree, middle, node1, node2):
+    next_node = middle
+    found_mid = False
+    found_dec = False
+    
+    curr_node1 = node1
+    curr_node2 = node2
+    
+    while (curr_node1 or curr_node2) and not found_dec:
+        if curr_node1:
+            if curr_node1.data == next_node.data:
+                if not found_mid:
+                    next_node = node2
+                    found_mid = True
+                else:
+                    found_dec = True
+            
+            curr_node1 = curr_node1.left if curr_node1.data > next_node.data else curr_node1.right
+            
+        if curr_node2:
+            if curr_node2.data == next_node.data:
+                if not found_mid:
+                    next_node = node1
+                    found_mid = True
+                else:
+                    found_dec = True
+            
+            curr_node2 = curr_node2.left if curr_node2.data > next_node.data else curr_node2.right
+
+        
+    return found_dec
+
+assert is_totally_ordered(tree_1, tree_1.get_node(23), tree_1.get_node(43), tree_1.get_node(37)) == True
+assert is_totally_ordered(tree_1, tree_1.get_node(3), tree_1.get_node(7), tree_1.get_node(5)) == True
+assert is_totally_ordered(tree_1, tree_1.get_node(43), tree_1.get_node(41), tree_1.get_node(53)) == False
+```
+
+## Range search
+
+Given a BST and a range [a, b] return all the elements in the BST that fall into [a, b]
+
+We'll prune the search using the BST property. If the current node's key is less than the minimum, 
+then the left subtree cannot contain anything in the range, same argument if key is greater than max for right subtree.
+
+Otherwise, the current node is within range
+
+```python
+def range_search(tree, lower, upper):
+    def range_search_helper(tree):
+        if not tree:
+            return
+        if lower <= tree.data <= upper:
+            range_search_helper(tree.left)
+            items.append(tree.data)
+            range_search_helper(tree.right)
+        elif upper < tree.data:
+            range_search_helper(tree.left)
+        else:
+            range_search_helper(tree.right)
+        
+    items = []
+    range_search_helper(tree)
+    return items
+    
+assert range_search(tree_1, 16, 31) == [17, 19, 23, 29]
+assert range_search(tree_1, 4, 20) == [5, 7, 11, 13, 17, 19]
+```
+
+### Depth Order Binary Tree Traversal
+
+Compute binary tree nodes in increasing depth order
+
+```
+      1
+  2       3
+4   5   6   7
+```
+=>
+
+```
+[[1], [2, 3], [4, 5, 6, 7]]
+```
+
+```python
+from collections import deque
+
+def depth_order_binary_tree(root):
+    q1, q2 = deque(), deque()
+    q1.append(root)
+    result = []
+    while len(q1) > 0:
+        result.append([node.data for node in q1])
+        q2 = []
+        for node in q1:
+            if node.left:
+                q2.append(node.left)
+            if node.right:
+                q2.append(node.right)
+        q1 = q2
+    return result
+```
 
 
 ## Heaps
 
-### K closest stars
+https://medium.com/@codingfreak/heap-practice-problems-and-interview-questions-b678ff3b694c
+
+### Stream median
+
+**Problem Statement**
+
+Given a continuous stream of numbers, return the running median at every input.
+
+**Intuition**
+
+In order to avoid a full blown search every time we add a new number, we have to somehow leverage the result of previous computations.
+
+We can do this by splitting the running numbers into two roughly equal halves. A max heap for the bottom half and min heap for the top. 
+
+Then querying for the median becomes a straight forward case of either averaging the max of the bottom and min of top if the halves are equal or returning the priority element in the larger half.
+
+A further simplification can be made to reduce some code complexity by adding all of the numbers to the min heap initially and evicting it's min element into the max heap immediately. And then adding a check to ensure that the length of the max heap is not larger than the min heap.
+
+This ensures that the min heap is always the larger half and hence contains the median when the stream length is odd.
+
+**Solution**
+
+```python
+def stream_median(nums):
+    min_heap, max_heap = [], []
+    result = []
+    
+    for x in nums:
+        heapq.heappush(max_heap, -heapq.heappushpop(min_heap, x))
+        
+        if len(max_heap) > len(min_heap):
+            heapq.heappush(min_heap, -heapq.heappop(max_heap))
+        
+        result.append(0.5 * (min_heap[0] + -max_heap[0]) if len(max_heap) == len(min_heap) else min_heap[0])
+    
+    return result
+
+test_1 = [1, 0, 3, 5, 9, 7]
+test(stream_median(test_1), [1, 0.5, 1, 2, 3, 4])
+```
+
+### K Closest Stars (Amazon Question)
+
+**Problem statement**
+
+Given a very large set of distances, return the k smallest ones.
+
+**Approach**
+
+As soon as you read "k smallest" or "k largest" alarm bells should go off for usage of a heap data structure.
+
+In this particular problem, the set of distances is very large, hence the trivial solution of sorting the set and returning the first k elements may be too computationally heavy.
+
+Instead, we'll add the first k elements we see into a max heap, and then evict the max from the heap every time we encounter a lower number. Thus ensuring that we'll have the k smallest elements in the heap by the end of the iterations (because all larger elements would have been evicted).
+
+**Solution**
+
+```python
+def k_closest_stars(distances, k):
+    max_heap = []
+    
+    for distance in distances:
+        heapq.heappush(max_heap, -distance)
+        if len(max_heap) == k + 1 and -max_heap[0] >= distance:
+            heapq.heappop(max_heap)
+    
+    return sorted([-x for x in max_heap]) # sort is not needed, doing for testing output
+
+test_1 = [52, 33, 24, 67, 28, 19, 13, 76, 7, 412, 331, 13, 1312, 31, 3, 331, 56, 52, 32]
+test(k_closest_stars([52, 33, 24, 67, 28, 19, 13], 4), [13, 19, 24, 28])
+test(k_closest_stars(test_1, 10), sorted(test_1)[0:10])
+```
 
 ### Merge sorted arrays
 

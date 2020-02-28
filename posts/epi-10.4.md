@@ -1,8 +1,8 @@
-## Problem statement
+**Problem statement**
 
 Given a very large set of distances, return the k smallest ones.
 
-## Approach
+**Approach**
 
 As soon as you read "k smallest" or "k largest" alarm bells should go off for usage of a heap data structure.
 
@@ -10,7 +10,7 @@ In this particular problem, the set of distances is very large, hence the trivia
 
 Instead, we'll add the first k elements we see into a max heap, and then evict the max from the heap every time we encounter a lower number. Thus ensuring that we'll have the k smallest elements in the heap by the end of the iterations (because all larger elements would have been evicted).
 
-## Solution
+**Solution**
 
 ```python
 def k_closest_stars(distances, k):

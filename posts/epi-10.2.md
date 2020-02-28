@@ -1,8 +1,8 @@
-## Problem Statement
+**Problem Statement**
 
 Given a continuous stream of numbers, return the running median at every input.
 
-## Intuition
+**Intuition**
 
 In order to avoid a full blown search every time we add a new number, we have to somehow leverage the result of previous computations.
 
@@ -14,7 +14,7 @@ A further simplification can be made to reduce some code complexity by adding al
 
 This ensures that the min heap is always the larger half and hence contains the median when the stream length is odd.
 
-## Solution
+**Solution**
 
 ```python
 def stream_median(nums):
