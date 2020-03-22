@@ -9,13 +9,13 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    padding: 0 20px;
-    margin-left: 30px;
-    margin-top: 4vw;
+    margin-left: 85px;
+    margin-top: 65px;
   }
   @media (max-width: 550px) {
     .container-me {
       margin: 0;
+      padding: 10px 7px;
     }
   }
 </style>

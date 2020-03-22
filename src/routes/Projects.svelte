@@ -1,5 +1,6 @@
 <script>
   import { Images } from "svelte-images";
+  import Tag from "components/Tag.svelte";
   import Projects from "metadata/projects.js";
 </script>
 
@@ -9,6 +10,7 @@
     flex-flow: column;
     margin-left: 4vw;
     margin-top: 4vw;
+    padding-left: 30px;
     width: 110%;
   }
 
@@ -22,6 +24,7 @@
   @media (max-width: 550px) {
     .projects {
       margin: 0;
+      padding: 0;
       width: 100%;
     }
     .tile {
@@ -82,14 +85,6 @@
   .tags {
     display: flex;
   }
-  .tag {
-    display: inline-block;
-    padding: 0.3em 0.9em;
-    margin: 0 0.5em 0.5em 0;
-    white-space: nowrap;
-    background-color: #f1f8ff;
-    border-radius: 3px;
-  }
 
   .images {
     padding-bottom: 20px;
@@ -116,7 +111,7 @@
         {/if}
         <div class="tags">
           {#each tags as tag}
-            <div class="tag">{tag}</div>
+            <Tag>{tag}</Tag>
           {/each}
         </div>
       </div>
