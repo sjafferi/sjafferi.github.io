@@ -1,10 +1,10 @@
 # What's in this guide
 
-This is meant to be a comprehensive guide for mastering technical interviews on algorithms and data structures. It includes a ground up understanding of the theory (relying on [UWaterloo's CS341](https://www.student.cs.uwaterloo.ca/~cs341/) and [Skiena's Algorithm Design Manual](http://www.algorist.com/)) as well as problems aggregated from books (relying heavily on [Elements of Programming Interviews](https://www.amazon.com/gp/product/1537713949?ie=UTF8&tag=sjafferi-20&camp=1789&linkCode=xm2&creativeASIN=1537713949)) and the web. 
+This is meant to be a comprehensive guide for mastering technical interviews on algorithms and data structures. It includes a ground up understanding of the theory (relying on [UWaterloo's CS341](https://www.student.cs.uwaterloo.ca/~cs341/) and [Skiena's Algorithm Design Manual](http://www.algorist.com/)) as well as problems aggregated from books (relying heavily on [Elements of Programming Interviews](https://www.amazon.com/gp/product/1537713949?ie=UTF8&tag=sjafferi-20&camp=1789&linkCode=xm2&creativeASIN=1537713949)) and the web.
 
 This guide assumes you have some background in algorithms and hence won't reiterate common definitions.
 
-By the end of each section, you should have the tools necessary to come up with on the spot solutions to related problems.  
+By the end of each section, you should have the tools necessary to come up with on the spot solutions to related problems.
 
 ## Study Plan
 
@@ -23,12 +23,11 @@ Knowing algorithms commonly used for specific purposes can greatly boost on-dema
 
 The amount of material required to do predictably exceptional in interviews can get staggering. This is where spaced repetition and anki cards come in.
 
-[Spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition) is a well researched technique to improve long term recall of information through the use of meaningful spaces in review.  ...research
+[Spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition) is a well researched technique to improve long term recall of information through the use of meaningful spaces in review. ...research
 
 [Anki cards](https://apps.ankiweb.net/) are flash cards that are shown to you based on an algorithm that uses a rating of how difficult the problem was to calculate when you'll be shown the card next. ...research
 
 This guide includes Anki cards for each major topic (theory + problems) that can be used as supplemental material.
-
 
 # Algorithms
 
@@ -42,7 +41,7 @@ Formally:
 
 - Divide the problem instance I into smaller subproblems `I1...In`
 - Solve `I1... In` recursively to get solutions `S1...Sn`
-- Use `S1...Sn` to compute `S`. 
+- Use `S1...Sn` to compute `S`.
 
 Let's explore a couple of problems.
 
@@ -55,15 +54,16 @@ The basic routine of merge sort:
 1. Divide the array into two halves
 2. Recursively sort each half
 3. Merge two halves
-   
-Merging is the process of taking two smaller sorted lists and combining them together into a single, sorted, new list. 
+
+Merging is the process of taking two smaller sorted lists and combining them together into a single, sorted, new list.
 
 The merge subroutine:
+
 ```python
 def merge(array, auxillary_array, lo, mid, hi):
   for k in range(lo, hi + 1):
     auxillary_array[k] = array[k]
-  
+
   i, j = lo, mid + 1
   for k in range(lo, hi + 1):
     if i > mid:
@@ -94,12 +94,9 @@ def helper(array, auxillary_array, lo, mid, hi):
   helper(a, aux, lo, mid, hi)
 ```
 
-
-
-
 ### Non-dominated points
 
-We say a point is non-dominated in a set if there is no other point `(x', y')` in the set such that `x <= x'` and `y <= y'` 
+We say a point is non-dominated in a set if there is no other point `(x', y')` in the set such that `x <= x'` and `y <= y'`
 
 ![Set of points](https://i.imgur.com/YWPJRpo.png)
 
@@ -107,10 +104,10 @@ The non-dominated point set here is `{A, H, I, G, D}`
 
 We can apply divide and conquer here by:
 
-1. Sort the points lexographically (first by x, then by y if x's are equal). 
+1. Sort the points lexographically (first by x, then by y if x's are equal).
 2. Split the sorted set of points in half
 3. Find non-dominated points in each half
-4. Combine: Using the observation that any non-dominated point on the left with have to be as high or higher than all non-dominated points on the right, we can filter the left points by checking them against any right point and return `[filtered_left, right]`.  (we can use the first element in right as the highest because non-dominated point sets non-increasing).
+4. Combine: Using the observation that any non-dominated point on the left with have to be as high or higher than all non-dominated points on the right, we can filter the left points by checking them against any right point and return `[filtered_left, right]`. (we can use the first element in right as the highest because non-dominated point sets non-increasing).
 
 The code looks like this:
 
@@ -137,11 +134,10 @@ A divide and conquer approach leveraging randomization leads to `quick select`.
 
 1. We pick a random pivot
 2. Partition the elements such that the pivot is < the right half and > the left half
-3. Check if the element is kth largest 
+3. Check if the element is kth largest
 4. If no, recurse on half containing the kth largest
 5. If yes, return left[k - 1]
-   
-  
+
 Code:
 
 ```python
@@ -161,7 +157,6 @@ Comlexity:
 Unlike quicksort, there's only one recursive call in each invocation. On average, the pivot will be good about 50% of the time, where a good pivot is one that is within 25th and 75th percentile inclusive. So on average, every other call would have partitions that are of size at most 75% of the array's size. Therefore, on average the size of the subproblem would be reduced by 25% on every other call, which makes this function `O(n) average case`.
 
 The worst case is the same as quick sort `O(n^2)`, however it can become highly unlikely to hit this worst case as n gets larger.
-
 
 ### Search for an element in a circular sorted array
 
@@ -200,7 +195,7 @@ def dnc_search_cyclically_sorted(arr, k):
 
 ## Greedy
 
-Greedy algorithms are often used for optimization problems, which are problems where the goal is to find a solution that both satisfies the problem constraints, and maximizes/minimizes an objective/profit/cost function. 
+Greedy algorithms are often used for optimization problems, which are problems where the goal is to find a solution that both satisfies the problem constraints, and maximizes/minimizes an objective/profit/cost function.
 
 We essentially greedily pick the locally optimal solution at every step in order to determine a globally optimal solution (or approximate).
 
@@ -209,11 +204,12 @@ Greedy algorithms do no backtracking or lookahead - they only consider the eleme
 For some greedy algorithms, it is possible to always obtain an optimal solution. However, these proofs are often rather difficult.
 
 ### Compute optimum assignment of tasks
+
 Source: EPI 17.1, page 282
 
 Consider a problem of assigning tasks to workers. Each worker must be assigned exactly two tasks. Each task takes a fixed amount of time. Tasks are independent. Any task can be assigned to any worker.
 
-We want to minimize the amount of time it takes for all tasks to be completed. 
+We want to minimize the amount of time it takes for all tasks to be completed.
 
 Example:
 Tasks: [5, 2, 1, 6, 4, 4]
@@ -233,9 +229,10 @@ def optimum_task_assignment(durations):
 ```
 
 ### The Interval Covering Problem
+
 Source: EPI 17.2, page 285
 
-Consider a foreman responsible for visiting a factory to check on the running tasks. In each visit, he can check on all the tasks taking place at the time of the visit. We want to minimize the number of visits. 
+Consider a foreman responsible for visiting a factory to check on the running tasks. In each visit, he can check on all the tasks taking place at the time of the visit. We want to minimize the number of visits.
 
 Given a set of intervals containing start and end times for tasks, return the minimum number of visits required to cover each interval.
 
@@ -255,22 +252,22 @@ def find_min_visits(intervals):
         if interval[0] > last_visit_time:
             last_visit_time = interval[1]
             num_visits += 1
-    
+
     return num_visits
 ```
 
 Complexity: O(nlogn) - Dominated by sort
 
 ### Maximum Sum Circular Subarray
- 
+
 Given a circular array of integers, find subarray in it which has the largest sum.
 
 For example,
 
-Input:  {2, 1, -5, 4, -3, 1, -3, 4, -1}
+Input: {2, 1, -5, 4, -3, 1, -3, 4, -1}
 Output: Subarray with the largest sum is {4, -1, 2, 1} with sum 6.
- 
-Input:  {-3, 1, -3, 4, -1, 2, 1, -5, 4}
+
+Input: {-3, 1, -3, 4, -1, 2, 1, -5, 4}
 Output: Subarray with the largest sum is {4, -1, 2, 1} with sum 6.
 
 Let's first try to find the max subarray of a regular array. The brute-force algorithm would be to have a nested loop and determine the max at each index, return the total max.
@@ -288,7 +285,7 @@ def max_subarray(arr):
     for i in range(1, len(arr)):
         max_at_i = max(max_at_i + arr[i], arr[i])
         max_sum = max(max_sum, max_at_i)
-    
+
     return max_sum
 ```
 
@@ -309,12 +306,12 @@ Output: 49
 
 ![Max water](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg)
 
-The brute force solution is to have a nested for loop find the max water starting at an index i. 
+The brute force solution is to have a nested for loop find the max water starting at an index i.
 
 ```python
 def max_area(height: List[int]) {
     max_area = 0
- 
+
     for i in range(len(height)):
         for j in range(i + 1, len(height)):
           max_area = max(max_area, Math.min(height[i], height[j]) * (j - i))
@@ -323,16 +320,15 @@ def max_area(height: List[int]) {
 }
 ```
 
-The nested loop can be avoided with a heuristic for moving either left or right when considering start and end indices. 
+The nested loop can be avoided with a heuristic for moving either left or right when considering start and end indices.
 
 This works because if we move away from a larger tower then we'll definitely decrease our max area since the width decreases and we are limited in area by the height of the shorter towe. Hence, move away from the shorter one.
-
 
 ```python
 def max_area(height: List[int]) -> int:
     left, right = 0, len(height) - 1
     max_area = 0
-    
+
     while (left < right):
         area = min(height[left], height[right]) * (right - left)
         max_area = max(max_area,  area)
@@ -340,14 +336,13 @@ def max_area(height: List[int]) -> int:
             left += 1
         else:
             right -= 1
-        
+
     return max_area
 ```
 
 ### Maximum Subarray - Divide & Conquer
 
 ### Subarray Sum - Divid & Conquer
-
 
 ## Dynamic Programming
 
@@ -363,8 +358,7 @@ There are two main properties that suggest a problem can be sovled with DP:
 From Geeks for Geeks:
 
 > For example, the Shortest Path problem has following optimal substructure property:
-If a node x lies in the shortest path from a source node u to destination node v then the shortest path from u to v is combination of shortest path from u to x and shortest path from x to v. 
-
+> If a node x lies in the shortest path from a source node u to destination node v then the shortest path from u to v is combination of shortest path from u to x and shortest path from x to v.
 
 ### Maximum subarray
 
@@ -389,7 +383,7 @@ For two strings:
 We define ED(i, j) as:
 
 - The edit distance between X[0:i] and Y[0:j]
-  
+
 Therefore, the solution to our problem is ED(n, m)
 
 Looking at the last characters of the each string leads us to this observation:
@@ -410,7 +404,7 @@ def edit_distance(str1, str2):
             return str2_idx + 1
         elif str2_idx < 0:
             return str1_idx + 1
-        
+
         if edit_distances[str1_idx][str2_idx] == -1:
             if str1[str1_idx] == str2[str2_idx]:
                 edit_distances[str1_idx][str2_idx] = compute_distances(str1_idx - 1, str2_idx - 1)
@@ -419,9 +413,9 @@ def edit_distance(str1, str2):
                 insert_last = compute_distances(str1_idx, str2_idx - 1)
                 delete_last = compute_distances(str1_idx - 1, str2_idx)
                 edit_distances[str1_idx][str2_idx] = 1 + min(replace_last, insert_last, delete_last)
-            
+
         return edit_distances[str1_idx][str2_idx]
-        
+
     n = len(str1)
     m = len(str2)
     edit_distances = [[-1] * m for i in range(n)]
@@ -444,32 +438,31 @@ Let N(i, j) be the number of ways to traverse to A[i][j] from A[0][0]
 Then, our answer is N(n - 1, m - 1)
 
 N(i, j) can be defined as:
+
 - N(i - 1, j) + N(i, j - 1)
 - i.e. the number of ways to get directly above + number of ways to get directly left of A[i][j]
-
 
 ```python
 def num_ways_traverse(A):
     n = len(A)
     m = len(A[0])
-    
+
     def find_num_ways(i, j):
         if i == j == 0:
             return 1
-        
+
         if num_ways[i][j] == 0:
             ways_top = 0 if i == 0 else find_num_ways(i - 1, j)
             ways_left = 0 if j == 0 else find_num_ways(i, j - 1)
             num_ways[i][j] = ways_top + ways_left
-        
+
         return num_ways[i][j]
-    
+
     num_ways = [[0] * m for _ in range(n)]
     return find_num_ways(n - 1, m - 1)
 
 assert num_ways_traverse([[0] * 5 for _ in range(5)]) == 70
 ```
-
 
 ### Search for a sequence in a 2D array
 
@@ -479,9 +472,9 @@ The pattern exists in A if you can start from some netry in A and traverse adjac
 
 **Example**
 A = [
-    [1, 2, 3],
-    [3, 4, 1],
-    [5, 6, 7]
+[1, 2, 3],
+[3, 4, 1],
+[5, 6, 7]
 ]
 P = [1, 3, 4, 6]
 Pattern exists @ [ (0, 0), (1, 0), (1, 1), (2, 1) ]
@@ -491,9 +484,10 @@ We can define the subproblem as:
 - Exists(x, y, offset) = True iff P[offset:] is found ending at A[x][y]
 
 Then our answer becomes:
-    at least 1 of [Exists(i, j, 0) for all i in range(A) and all j in range(A[i])] is True
+at least 1 of [Exists(i, j, 0) for all i in range(A) and all j in range(A[i])] is True
 
 In order to find Exists(i, j, offset), we have to determine:
+
 - if we have finished pattern -> return True
 - if we A[i][j] is out of bounds or A[i][j] != P[offset] -> return False
   - Note: we can return early here by keeping track of unsuccesful combinations of (i, j, offset),
@@ -507,7 +501,7 @@ def search_for_sequence(A, P):
     def find_pattern(x, y, offset):
         if offset == len(P):
             return True
-        
+
         if (not (0 <= x < len(A) and 0 <= y < len(A[x]))
             or A[x][y] != P[offset]
             or (x, y, offset) in prev_attempts
@@ -519,17 +513,17 @@ def search_for_sequence(A, P):
             for a, b in ((-1, 0), (0, -1), (1, 0), (0, 1))
         ):
             return True
-        
+
         prev_attempts.add((x, y, offset))
         return False
-        
+
     prev_attempts = set()
     return any(
-        find_pattern(i, j, 0) 
+        find_pattern(i, j, 0)
         for i in range(len(A))
         for j in range(len(A[i]))
     )
-    
+
 A = [
     [1, 2, 3],
     [3, 4, 1],
@@ -549,19 +543,20 @@ def word_break(s: str, wordDict: List[str]) -> bool:
     def is_word(j):
         if j < 1:
             return True
-        
+
         if words[j - 1] == -1:
             words[j - 1] = any(s[i:j] in wordDict and is_word(i) for i in range(j))
-            
+
         return words[j - 1]
-        
+
     n = len(s)
     words = [-1] * n
-    
+
     return is_word(n)
 ```
 
 ### Concatenate words
+
 Source: https://leetcode.com/problems/concatenated-words/
 
 Given a list of words (without duplicates), please write a program that returns all concatenated words in the given list of words.
@@ -573,39 +568,39 @@ Input: ["cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ra
 
 Output: ["catsdogcats","dogcatsdog","ratcatdogcat"]
 
-Explanation: "catsdogcats" can be concatenated by "cats", "dog" and "cats"; 
- "dogcatsdog" can be concatenated by "dog", "cats" and "dog"; 
+Explanation: "catsdogcats" can be concatenated by "cats", "dog" and "cats";
+ "dogcatsdog" can be concatenated by "dog", "cats" and "dog";
 "ratcatdogcat" can be concatenated by "rat", "cat", "dog" and "cat".
 ```
 
-The approach we'll take will be similar to the word break problem. Specifically, we'll determine if a word in the list of words is concatenable by treating the list of words as the dict and re-using a similar subproblem. 
+The approach we'll take will be similar to the word break problem. Specifically, we'll determine if a word in the list of words is concatenable by treating the list of words as the dict and re-using a similar subproblem.
 
 Namely, is_concat(word) = word[:i] in dict and (word[i:] in dict or is_concat(word[i:])) for i in range(1, len(words))
 
-Note the differences here: 
+Note the differences here:
 
 ```python
 def concatenated_words(self, words: List[str]) -> List[str]:
     dict_words = set(words)
-    
+
     if len(words) < 2:
         return []
-    
+
     def is_concat(word):
         if word in is_concat_table:
             return is_concat_table[word]
-        
+
         is_concat_table[word] = False
-        
+
         for i in range(1, len(word)):
             if word[:i] in dict_words and (word[i:] in dict_words or is_concat(word[i:])):
                 is_concat_table[word] = True
                 break
 
         return is_concat_table[word]
-        
+
     is_concat_table = {}
-    
+
     results = [word for word in words if is_concat(word)]
     return results
 ```
@@ -650,11 +645,11 @@ We'll iterate through the characters in S using an index called fast. We'll also
 
 We can use a dict to keep track of characters currently within the window, and a counter for the current number of missing elements in the window.
 
-Once we have configure the dict and counter to update properly, we can use the counter to detect if the window is valid (num_missing == 0). 
+Once we have configure the dict and counter to update properly, we can use the counter to detect if the window is valid (num_missing == 0).
 
-Then, we can use a while loop to bring the slow pointer up until the window is no longer valid. 
+Then, we can use a while loop to bring the slow pointer up until the window is no longer valid.
 
-We'll end up searching all valid substrings in at most O(2n) time. 
+We'll end up searching all valid substrings in at most O(2n) time.
 
 ```python
 def min_window(s: str, t: str) -> str:
@@ -663,40 +658,40 @@ def min_window(s: str, t: str) -> str:
 
     chars_in_window = {}
     freq_t = collections.defaultdict(lambda: 0)
-    
+
     for char in t:
         chars_in_window[char] = 0
         freq_t[char] += 1
 
     num_missing = len(t)
     result = float('-inf'), float('inf')
-    
+
     slow = 0
     for fast in range(len(s)):
         if s[fast] in chars_in_window:
             if chars_in_window[s[fast]] < freq_t[s[fast]]:
                 num_missing -= 1
-            
+
             chars_in_window[s[fast]] += 1
 
         while slow <= fast and num_missing == 0:
             if fast - slow < result[1] - result[0]:
                 result = slow, fast
-            
+
             if s[slow] in chars_in_window:
                 if chars_in_window[s[slow]] <= freq_t[s[slow]]:
                     num_missing += 1
-                
+
                 chars_in_window[s[slow]] -= 1
 
             slow += 1
 
-    
+
     return s[result[0]:result[1] + 1] if result[0] > float('-inf') and result[1] < float('inf') else ''
 ```
 
-
 #### Repeating Characters
+
 Source: [swecareers](https://www.swecareers.com/problem/maximum-substring-with-non-repeating-characters)
 
 Given a string, find the length of the longest substring without repeating characters.
@@ -705,8 +700,8 @@ Given a string, find the length of the longest substring without repeating chara
 
 Example 1:
 Input: "abcabcbb"
-Output: 3 
-Explanation: The answer is "abc", with the length of 3. 
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
 
 Example 2:
 Input: "bbbbb"
@@ -716,9 +711,9 @@ Explanation: The answer is "b", with the length of 1.
 Example 3:
 Input: "pwwkew"
 Output: 3
-Explanation: The answer is "wke", with the length of 3. 
+Explanation: The answer is "wke", with the length of 3.
 
-In this problem, we have to traverse all substrings without repeating characters. Hence our window will increase until we have an invalid substring, and then shrink until it's valid again. 
+In this problem, we have to traverse all substrings without repeating characters. Hence our window will increase until we have an invalid substring, and then shrink until it's valid again.
 
 We'll keep a mapping of current characters in the window and their indices in order to determine if there are repeating characters. We'll use the indices to calculate how far we'll bring up the slow pointer to get a valid window.
 
@@ -737,9 +732,9 @@ def longest_substring(s: str) -> int:
             ## slow == char_map[s[fast]] + 1 (1 element above the index we last saw s[fast], hence the window becomes valid again)
         else:
             max_len = max(fast - slow, max_len)
-            
+
         char_map[s[fast]] = fast
-        
+
     return max_len + 1
 ```
 
@@ -753,8 +748,8 @@ The catchup pointer will jump to the fast pointer once a condition is met.
 
 ##### Max consecutive sum
 
-
 ##### Bit flip
+
 Source: [Maximize number of 0s by flipping a subarray](https://www.geeksforgeeks.org/maximize-number-0s-flipping-subarray/)
 
 Given a binary array, find the maximum number zeros in an array with one flip of a subarray allowed. A flip operation switches all 0s to 1s and 1s to 0s.
@@ -780,8 +775,8 @@ The lag pointer is referencing a few indices behind the fast.
 You have one pointer at the back and one at the front. You move either or both according to some condition.
 
 ##### Trapped rainwater
-##### Sorted two sum
 
+##### Sorted two sum
 
 ## Graph Theory
 
@@ -804,7 +799,7 @@ def dfs(graph, s, t):
     ## Check if search has ended
         ## return True
 
-    ## Search neighbors 
+    ## Search neighbors
         ## return True if any of the neighbors return True
 
     ## return False
@@ -818,26 +813,26 @@ import collections
 Coordinate = collections.namedtuple('Coordinate', ('x', 'y'))
 
 def search_maze(maze, s, t):
-    
+
     def search_maze_helper(curr):
         if not (0 <= curr.x < len(maze) and 0 <= curr.y < len(maze[curr.x]) and maze[curr.x][curr.y] == 0):
             return False
-        
+
         maze[curr.x][curr.y] = 1
         path.append((curr.x, curr.y))
-        
+
         if t.x == curr.x and t.y == curr.y:
             return True
-        
+
         if any(
-            map(search_maze_helper, 
+            map(search_maze_helper,
                 map(Coordinate, (curr.x - 1, curr.x + 1, curr.x, curr.x),
                     (curr.y, curr.y, curr.y - 1, curr.y + 1)))):
             return True
-        
+
         del path[-1]
         return False
-        
+
     path = []
     search_maze_helper(s)
     return len(path) > 0
@@ -852,11 +847,11 @@ assert search_maze(maze, Coordinate(0, 0), Coordinate(1, 3)) == False
 assert search_maze(maze, Coordinate(1, 1), Coordinate(1, 3)) == True
 ```
 
-#### Flip Color (BFS) 
+#### Flip Color (BFS)
 
 Implement a routine that takes an nxm Boolean array A together with an entry (x, y) and flips the color of the region associated with (x, y). i.e. all elements reachable from x, y that have the same color as it will flip their color.
 
-BFS is natural to use for region finding problems since it explores neighbors in order of distance from starting point. Hence it grows outward from the starting point until all reachable points are found. 
+BFS is natural to use for region finding problems since it explores neighbors in order of distance from starting point. Hence it grows outward from the starting point until all reachable points are found.
 
 BFS follows this pattern:
 
@@ -921,14 +916,13 @@ Let's do the DFS implementation for fun.
 def flip_color_dfs(maze, x, y):
     color = maze[x][y]
     maze[x][y] = int(not color)
-    
+
     for next_x, next_y in ((x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y)):
         if 0 <= next_x < len(maze) and 0 <= next_y < len(maze[next_x]) and maze[next_x][next_y] == color:
             flip_color_dfs(maze, next_x, next_y)
-    
+
     return maze
 ```
-
 
 #### Compute enclosed region
 
@@ -936,7 +930,7 @@ Let A be a 2D binary array. Write a program that takes A, and replaces all 0's t
 
 See test cases for examples below.
 
-Computing whether or not all enclosed 0 entries can reach the boundary may be a bit difficult, hence lets consider the converse. 
+Computing whether or not all enclosed 0 entries can reach the boundary may be a bit difficult, hence lets consider the converse.
 
 How do we find the 0's that can reach the boundary? These are the elements that won't be flipped.
 
@@ -953,7 +947,7 @@ def compute_enclosed_regions(maze):
         [(i, j) for k in range(n) for i, j in ((k, 0), (k, m - 1))] +
         [(i, j) for k in range(m) for i, j in ((0, k), (n - 1, k))]
     )
-    
+
     while queue:
         x, y = queue.popleft()
         if maze[x][y] == 0:
@@ -961,10 +955,10 @@ def compute_enclosed_regions(maze):
             for next_x, next_y in (x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y):
                 if 0 <= next_x < len(maze) and 0 <= next_y < len(maze[next_x]) and maze[next_x][next_y] == 0:
                     queue.append((next_x, next_y))
-                
-        
+
+
     return [[0 if c == 'T' else 1 for c in row] for row in maze]
-    
+
 assert compute_enclosed_regions([
     [0, 1, 1, 1],
     [1, 0, 0, 1],
@@ -1004,30 +998,30 @@ The algorithm is straightforward DFS while check for vertex color.
 
 ```python
 class GraphVertex:
-    
+
     WHITE, GREY, BLACK = range(3)
-    
+
     def __init__(self, edges = []):
         self.color = GraphVertex.WHITE
         self.edges = edges
 
 def has_cycle(graph):
-    
+
     def has_cycle_helper(curr):
         if curr.color == GraphVertex.GREY:
             return True
-        
+
         curr.color = GraphVertex.GREY
-        
+
         if any(next.color != GraphVertex.BLACK and has_cycle_helper(next) for next in curr.edges):
             return True
-        
+
         curr.color = GraphVertex.BLACK
         return False
-    
-    
+
+
     return any(node.color == GraphVertex.WHITE and has_cycle_helper(node) for node in graph)
-    
+
 
 x = GraphVertex()
 y = GraphVertex([x])
@@ -1059,6 +1053,7 @@ Given a vertex, create a copy of the graph on the vertices reachable from this v
 Any standard graph traversal algorithm will work here. As we traverse, we'll add new vertices / edges to our cloned graph. We'll use a hashmap of vertices to do this.
 
 ```python
+
 ```
 
 #### Transform one string into another
@@ -1087,7 +1082,7 @@ def transform_string(dictionary, s, t):
                     queue.append(StringWithDistances(candidate, word.distance + 1))
                     dictionary.remove(candidate)
     return -1
-    
+
 dictionary = set(['bat', 'cot', 'dog', 'dag', 'dot', 'cat', 'mad', 'sad'])
 assert transform_string(dictionary, 'cat', 'dog') > 0
 assert transform_string(dictionary, 'cat', 'mad') == -1
@@ -1107,7 +1102,7 @@ Namely, Dijkstra's Algorithm
 
 This is essentially BFS accounting for weights in graphs. Instead of picking the first neighbor we find in BFS, we instead choose the neighbor with the lowest distance from the start vertex. We continue picking the least weighted path until we reach the end vertex.
 
-This is broken down into the following steps: 
+This is broken down into the following steps:
 
 Given G, s, t
 
@@ -1119,6 +1114,7 @@ Given G, s, t
 6. If the destination node has been reached or if the smallest distance among unvisited nodes is inifinity, then stop
 
 This is a modified version of [Maria Boldyreva's solution on dev.to](https://dev.to/mxl/dijkstras-algorithm-in-python-algorithms-for-beginners-dkc)
+
 ```python
 # Dijkstra's
 import collections, functools, heapq
@@ -1128,13 +1124,13 @@ Edge = collections.namedtuple('Edge', ('start', 'end', 'cost'))
 class Graph:
     def __init__(self, edges=[]):
         self.edges = [Edge(*edge) for edge in edges]
-    
+
     @property
     def vertices(self):
         return set(
             functools.reduce(lambda acc, e: acc + [e.start, e.end], self.edges, [])
         )
-    
+
     @property
     def neighbours(self):
         neighbours = {vertex: set() for vertex in self.vertices}
@@ -1142,7 +1138,7 @@ class Graph:
             neighbours[edge.start].add((edge.end, edge.cost))
 
         return neighbours
-    
+
     def dijkstra(self, s, t):
         vertices = self.vertices.copy()
         neighbours = self.neighbours.copy()
@@ -1150,7 +1146,7 @@ class Graph:
         prev = {
             vertex: None for vertex in vertices
         }
-        
+
         distances[s] = 0
         min_queue = [(distances[vertex], vertex) for vertex in distances.keys()]
         heapq.heapify(min_queue)
@@ -1163,16 +1159,16 @@ class Graph:
                 if alt_cost < distances[neighbour]:
                     distances[neighbour] = alt_cost
                     prev[neighbour] = curr_vertex
-            
+
             # Rebuild heap based on new distances
             unvisited_vertices = []
             while min_queue:
                 _, v = heapq.heappop(min_queue)
                 unvisited_vertices.append((distances[v], v))
-            
+
             heapq.heapify(unvisited_vertices)
             min_queue = unvisited_vertices
-            
+
         path, current_vertex = collections.deque(), t
         while prev[current_vertex] is not None:
             path.appendleft(current_vertex)
@@ -1180,7 +1176,7 @@ class Graph:
         if path:
             path.appendleft(current_vertex)
         return path
-    
+
 graph = Graph([
     ("a", "b", 7),  ("a", "c", 9),  ("a", "f", 14), ("b", "c", 10),
     ("b", "d", 15), ("c", "d", 11), ("c", "f", 2),  ("d", "e", 6),
@@ -1197,17 +1193,327 @@ assert graph.dijkstra("a", "y") == collections.deque([])
 
 ## Backtracking / Comprehensive Search
 
+### Attacking queens
+
+Generate all non attacking placements of n-queens in an nxn board. Also known as the [Eight Queens Puzzle](https://en.wikipedia.org/wiki/Eight_queens_puzzle).
+
+This is a classic backtracking problem as there is no other way to compute the results than comprehensive search.
+
+These types of searches will follow a pattern similar to DFS.
+
+Recursive search that has a terminating condition and cycles through all next available possibilities until all valid results are found.
+
+```python
+def non_attacking_queens(n):
+    def non_attacking_helper(row):
+        if row >= n:
+            result.append(partial_result.copy())
+
+        for col in range(n):
+            if all(
+                    abs(c - col) not in (0, row - i)
+                    for i, c in enumerate(partial_result[:row])):
+                partial_result[row] = col
+                non_attacking_helper(row + 1)
+
+
+    result = []
+    partial_result = [0] * n
+    non_attacking_helper(0)
+    return result
+
+assert non_attacking_queens(4) == [[1, 3, 0, 2], [2, 0, 3, 1]]
+```
+
+### Phone Mnemonics
+
+Older phones had numbers mapped to keys, allowing you to create mnemonics to help remember them. Given a phone number, determine all the possible mnemonics that can be generated from it.
+
+Key mappings are given below.
+
+The format follow very closely to the previous problem.
+
+```python
+KEYS = {
+    "2": "abc",
+    "3": "def",
+    "4": "ghi",
+    "5": "jkl",
+    "6": "mno",
+    "7": "pqrs",
+    "8": "tuv",
+    "9": "wxyz"
+}
+
+def phone_mnemonic(number):
+    def mnemonic_helper(i):
+        if i >= len(number):
+            results.append("".join(partial_result))
+            return
+
+        if number[i] in KEYS:
+            for char in KEYS[number[i]]:
+                partial_result[i] = char
+                mnemonic_helper(i + 1)
+
+    results = []
+    partial_result = [0] * len(number)
+    mnemonic_helper(0)
+    return results
+
+assert "acronym" in phone_mnemonic("2276696")
+```
+
+### Generate Permutations
+
+Given an array A, generate all permutations of elements in A.
+
+In order to generate all permutations of A, we have to generate all permutations of A[1...n] as well.
+
+Hence, if we pick a candidate for A[0] and then generate all permutations for the rest of the array, we can apply the same logic recursively.
+
+Then, we can swap A[0] with A[1] and find all permutations starting with A[1].
+
+The format of the algorithm follows a similar sort of structure of the above 2, with one key difference, the partial result uses the original array (meaning we must somehow reset the values after computing partial results).
+
+```python
+def generate_permutations(A):
+    def generate(i):
+        if i == len(A) - 1:
+            result.append(A.copy())
+            return
+
+        for j in range(i, len(A)):
+            A[i], A[j] = A[j], A[i]
+            generate(i + 1)
+            A[i], A[j] = A[j], A[i]
+
+    result = []
+    generate(0)
+    return result
+
+assert generate_permutations([5, 3, 6]) == [[5, 3, 6], [5, 6, 3], [3, 5, 6], [3, 6, 5], [6, 3, 5], [6, 5, 3]]
+```
+
+### Generate Power Set
+
+A power set of a set S is the set of all subsets of S.
+
+A common theme for these generation type problems is performing a directed search based on some recursive heuristic. For the previous problem, we generate all permutations by fixing the first element and then generating all permutations for the rest the list.
+
+After you've determined the proper heuristic to perform this directed search, we have to translate that into recursive calls.
+
+For power set generation, a heuristic that works is generating all subsets that include a particular element and all subsets that don't include that element. Then, the power set is the union of the two sets.
+
+For example, if we have {1, 2, 3}
+
+We first generate all subsets that include 1 and union it with all subsets that don't include 1.
+
+This calculation is done recursively, so we continue generation of the rest, updating our partial computation as we go.
+
+The next recursive call computes all subsets that include 2 and all subsets that don't include 2. This computation is done for all subsets that include 1 and all subsets that don't include 1.
+
+And so on until we reach the end of the list.
+
+```python
+def generate_power_set(input_set):
+    def generate_helper(to_be_selected, selected_so_far):
+        if to_be_selected == len(input_set):
+            result.append(selected_so_far)
+            return
+
+        generate_helper(to_be_selected + 1, selected_so_far)
+        generate_helper(to_be_selected + 1, selected_so_far + [input_set[to_be_selected]])
+
+
+    result = []
+    generate_helper(0, [])
+    return result
+```
+
+### Generate all subsets of size k
+
+Given n and k, generate all subsets of size k in [1, 2, ..., n].
+
+The brute force approach is to generate all possible subsets and filter for sized k subsets. This obviously performs more work than necessary as it continues subset computation for invalid subsets.
+
+We can make this more efficient by implementing the same heuristic as the previous question. i.e. generate all subsets of size k that include some element and all subsets of size k that don't.
+
+For elements that include the element, the remaining size becomes k - 1. The size remains k for the subset that does not include the element.
+
+Instead of using recursive calls to generate all subsets including and not including an element, we'll iterate through the remaining elements and include / disclude them while fixing the current element.
+
+This will make it easier to add exactly k elements.
+
+```python
+def generate_subsets_size_k(n, k):
+    def generate_helper(offset, partial_result):
+        if len(partial_result) == k:
+            result.append(partial_result.copy())
+            return
+
+        num_remaining = k - len(partial_result)
+        i = offset
+        while i <= n and num_remaining <= n - i + 1:
+            generate_helper(offset + 1, partial_result + [i])
+            i += 1
+
+    result = []
+    generate_helper(1, [])
+    return result
+```
+
+### Generate strings of matched parens
+
+Given an integer k, return all strings with tahat number of matched pair of parens
+
+The brute force approach would be to generate all possible strings with parens of size 2k, and filter for strings with valid parens.
+
+This approach does too much work because it continues computing strings that could never be a valid parens.
+
+We can perform a more directed search by using the heuristic that at every step of the generation, our partial result has the possibility of becoming a valid string.
+
+We can break this down into cases:
+
+1. Can we add a left paren? If so, add and continue.
+2. Can we add a right paren? If so, add and continue.
+
+In order to answer these questions, we can keep track of how many left parens are remaining and how many right parens are remaining.
+
+```python
+def generate_matched_parens(k):
+    def generate_helper(num_left_parens_remaining, num_right_parens_remaining, partial_result, result = []):
+        if num_left_parens_remaining > 0:
+            generate_helper(num_left_parens_remaining - 1, num_right_parens_remaining, partial_result + '(')
+
+        if num_left_parens_remaining < num_right_parens_remaining:
+            generate_helper(num_left_parens_remaining, num_right_parens_remaining - 1, partial_result + ')')
+
+        if not num_right_parens_remaining:
+            result.append(partial_result)
+
+        return result
+
+    return generate_helper(k, k, "")
+```
+
+### Generate palindromic decompositions
+
+Given a string s, compute all palindromic decompositions of s.
+
+The brute force approach is to compute all possible decompositions of s and filter for palindromic ones (see a pattern here?)
+
+This does too much computation because it continues computing decompositions that aren't palindromic.
+
+We can perform a more directed search by only continuing with decompositions that are palindromic.
+
+So we'll branch off only when we've gotten a valid palindromic decomposition.
+
+```python
+def generate_palindromic_decomps(input_str):
+    def generate_helper(offset, partial_result):
+        if offset == len(input_str):
+            result.append(partial_result.copy())
+            return
+
+        for i in range(offset + 1, len(input_str) + 1):
+            prefix = input_str[offset:i]
+            if prefix == prefix[::-1]: # prefix == reverse(prefix)
+                generate_helper(i, partial_result + [prefix])
+
+
+    result = []
+    generate_helper(0, [])
+    return result
+```
+
+### Generate binary trees
+
+Generate all binary trees with n nodes.
+
+We can perform a directed search by computing all left subtrees of size i and right subtrees of n - i for i in 1 -> n. This can be done without a helper function.
+
+```python
+def generate_binary_trees(n):
+    if n == 0:
+        return [None]
+
+    result = []
+
+    for i in range(n):
+        left_subtrees = generate_binary_trees(i)
+        right_subtrees = generate_binary_trees(n - i - 1)
+        result += [
+            BinaryTreeNode(0, left, right)
+            for left in left_subtrees
+            for right in right_subtrees
+        ]
+
+    return result
+```
+
+### Sudoku solver
+
+Given a partially completed sudoku board, solve the board if possible.
+
+The brute force approach is to try every combination of board completions and filter for the ones that are valid.
+
+This approach does too much work because it does not stop when there is an invalid board.
+
+A more directed search could only continue with valid boards until the board is complete. We can use the fact that our partial result is a valid board to only check new additions for validity instead of the entire board.
+
+### Compute gray code
+
+Write a program that takes n and returns an n-bit [Gray Code](https://en.wikipedia.org/wiki/Gray_code)
+
+The brute force approach would be to enumerate all permuations of 0, ..., 2^n - 1 and stop once we find a gray code.
+
+This approach does too much work because it continues with permutations that cannot be gray codes.
+
+A more directed approach would be to implement a heuristic that creates a partial valid value at every step. We can do this by, starting of with [0000] (if n = 4) and try changing 1 bit to find the next num that is not already in the set. So [0000, 0001, ...].
+
+```python
+def gray_code(n):
+    num_elems = 2**n
+
+    def directed_search(partial_result):
+        def differs_by_one(x, y):
+            bit_difference = x ^ y
+            return bit_difference and not (bit_difference & (bit_difference - 1))
+
+        if len(partial_result) == num_elems:
+            return differs_by_one(result[0], result[-1])
+
+        for i in range(n):
+            previous_code = result[-1]
+            candidate_next_code = previous_code ^ (1 << i)
+            if candidate_next_code not in partial_result:
+                partial_result.add(candidate_next_code)
+                result.append(candidate_next_code)
+                if directed_search(partial_result):
+                    return True
+
+                del result[-1]
+                partial_result.remove(candidate_next_code)
+
+        return False
+
+    result = [0]
+    directed_search(set([0]))
+    return result
+```
+
 # Data Structures
 
 Data structures can be split into two categories:
 
 1. **Contiguously-allocated** data structures are a single block of memory used for arrays, matrices, heaps and hash tables.
 
-2. **Linked** data structures are composed of distinct chunks of memory 
+2. **Linked** data structures are composed of distinct chunks of memory
 
 ## Arrays
 
-Arrays are contiguous blocks of memory representing a list of elements. 
+Arrays are contiguous blocks of memory representing a list of elements.
 
 A few tips from Elements of Programming Interviews that are notable:
 
@@ -1226,6 +1532,7 @@ We'll explore problems concerning modifying arrays in-place such that some prope
 | remove  |     O(1)      |                 O(n) |
 
 ### 3-way partition
+
 Also known as the dutch national flag problem from EPI page 44.
 
 Given an array A and an index i, rearrange the elements such that all elements less than A[i] appear first, followed by elements equal to the pivot, followed by elements greater than the pivot.
@@ -1246,13 +1553,13 @@ def three_way_partition(arr, i):
             smaller, equal = smaller + 1, equal + 1
         elif arr[equal] == pivot:
             equal += 1
-        else: 
+        else:
             larger -= 1
             arr[equal], arr[larger] = arr[larger], arr[equal]
 ```
 
-
 ### Compute max profit from one buy and sell
+
 **Source:** Elements of Programming Interviews 5.6
 
 **Problem Statement**
@@ -1262,6 +1569,7 @@ Given an input of prices, compute the maximum profit you can get by buying and s
 [6, 5, 3, 10, 0] => 7
 
 **Brute Force Solution**
+
 ```python
 def max_profit_brute_force(prices):
     max_profit = 0
@@ -1272,7 +1580,7 @@ def max_profit_brute_force(prices):
     return max_profit
 ```
 
-Simple enough...but can we do better than `O(n^2)`? We can go through our list of potential algorithm choices and two stand out. 
+Simple enough...but can we do better than `O(n^2)`? We can go through our list of potential algorithm choices and two stand out.
 
 **Divide and Conquer**
 
@@ -1284,7 +1592,7 @@ def split(a_list):
     return a_list[:half], a_list[half:]
 
 def max_profit_divide_and_conquer(prices):
-    if len(prices) == 0 or len(prices) == 1: 
+    if len(prices) == 0 or len(prices) == 1:
         return 0
     A,B = split(prices)
     return max(
@@ -1294,6 +1602,7 @@ def max_profit_divide_and_conquer(prices):
         0
      )
 ```
+
 Worst-case time: `O(nlogn)`
 
 **Greedy**
@@ -1327,6 +1636,7 @@ We first sort our list of intervals by start time so potentially mergeable candi
 Then, we iterate through the list, keeping track of the last merged interval to see if we can continually condense it further or add a new one.
 
 Solution:
+
 ```python
 def merge_meeting_times(times):
     sorted_times = sorted(times)
@@ -1334,13 +1644,13 @@ def merge_meeting_times(times):
 
     for curr_start, curr_end in sorted_times[1:]:
         last_start, last_end = intervals[-1]
-        
+
         if curr_start <= last_end:
             intervals[-1] = last_start, max(curr_end, last_end)
         else:
             intervals.append((curr_start, curr_end))
-        
-        
+
+
     return intervals
 
 ## tests
@@ -1364,15 +1674,15 @@ There are a few approaches we can take here.
 def two_sum(arr, k):
     if not arr:
         return None
-    
+
     idx_map = {}
-    
+
     for i in range(len(arr)):
         target = (arr[i] - k)*-1
         if target in idx_map:
             return [idx_map[target], i]
         idx_map[arr[i]] = i
-        
+
     return None
 ```
 
@@ -1380,7 +1690,7 @@ def two_sum(arr, k):
 def sorted_two_sum_1(arr, k):
     if not arr:
         return None
-    
+
     def bin_search(arr, k):
         left, right = 0, len(arr) - 1
         while left <= right:
@@ -1391,22 +1701,22 @@ def sorted_two_sum_1(arr, k):
                 right = mid - 1
             else:
                 left = mid + 1
-                
+
         return -1
-    
+
     for i in range(len(arr)):
         idx = bin_search(arr, k - arr[i])
         if idx > -1:
             return [i, idx]
-        
+
     return None
 ```
 
-```python   
+```python
 def sorted_two_sum_2(arr, k):
     if not arr:
         return None
-    
+
     left, right = 0, len(arr) - 1
     while left < right:
         curr_sum = arr[left] + arr[right]
@@ -1416,18 +1726,19 @@ def sorted_two_sum_2(arr, k):
             right -= 1
         else:
             left += 1
-    
+
     return None
 ```
 
 ### Delete duplicates in array
+
 Delete repeated elements from a sorted array.
 
 ```python
 def delete_duplicates(A: List[int]) -> int:
      if not A:
           return 0
-     
+
      write_index = 1
      for i in range(1, len(A)):
           if A[write_index - 1] != A[i]:
@@ -1436,7 +1747,6 @@ def delete_duplicates(A: List[int]) -> int:
 
      return write_index
 ```
-
 
 ## Strings
 
@@ -1452,11 +1762,12 @@ An IP address is considered valid if it's the form `xxx.xxx.xxx.xxx`, where `0 <
 **Possible outputs**
 `["192.168.1.1", "19.216.8.11", ... 7 more]`
 
-The solution that EPI goes with is very straight forward. Find the first part and determine it's validity. If the first part is valid, find the second part and determine its validity and so on until we find parts that are all valid and add it to our solution set. 
+The solution that EPI goes with is very straight forward. Find the first part and determine it's validity. If the first part is valid, find the second part and determine its validity and so on until we find parts that are all valid and add it to our solution set.
 
-The insight I gleaned from this solution is to apply Occam's Razor when dealing with seemingly simple problems. Go with the approach that you would logically use to solve this by hand. Iterate and optimize on top of that if necessary. 
+The insight I gleaned from this solution is to apply Occam's Razor when dealing with seemingly simple problems. Go with the approach that you would logically use to solve this by hand. Iterate and optimize on top of that if necessary.
 
 **Solution (EPI, pg. 52)**
+
 ```python
 def compute_valid_ip(ip):
     def is_valid_parts(parts):
@@ -1475,7 +1786,6 @@ def compute_valid_ip(ip):
                             result.append('.'.join(parts))
     return result
 ```
-
 
 ### Reverse a list of characters in place
 
@@ -1501,7 +1811,7 @@ The function first discards as many whitespace characters as necessary until the
 Valid inputs:
 
 `"42" => 42`
-`"    -42" => -42`
+`" -42" => -42`
 
 ```python
 def stoi(self, str: str) -> int:
@@ -1511,7 +1821,7 @@ def stoi(self, str: str) -> int:
 
     is_neg = str[index] == '-'
     num = functools.reduce(lambda running_sum, c: running_sum * 10 + string.digits.index(c), str[index + int(is_neg):], 0) * (-1 if is_neg else 1)
-        
+
     return num
 ```
 
@@ -1519,7 +1829,7 @@ def stoi(self, str: str) -> int:
 
 Given a string determine if any permutation of that string is a palindrome. You can disregard whitespace.
 
-Example: 
+Example:
 
 `"acta tac"` => `True` (`"taco cat"`)
 
@@ -1534,7 +1844,7 @@ def palindromic_permutation(str):
     for letter in str:
         if letter != ' ':
             letters[letter] += 1
-        
+
     return functools.reduce(lambda odd_count, a: odd_count + 1 if letters[a] % 2 != 0 else odd_count, str, 0) <= 1
 
 assert palindromic_permutation('acto tac') == True
@@ -1542,6 +1852,7 @@ assert palindromic_permutation('acbtc') == False
 ```
 
 ### Replace and remove
+
 Source: EPI 6.4, page 76
 
 Consider the following two rules that are to be applied to an array of characters:
@@ -1574,7 +1885,7 @@ def replace_and_remove(size, s):
             write_idx += 1
         if s[i] == 'a':
             a_count += 1
-    
+
     curr_idx = write_idx - 1
     write_idx += a_count - 1
     final_size = write_idx + 1
@@ -1587,22 +1898,23 @@ def replace_and_remove(size, s):
             s[write_idx] = s[curr_idx]
             write_idx -= 1
         curr_idx -= 1
-        
+
     return s
 ```
 
 ### Reverse words in a sentence
+
 Source: EPI 6.6
 
 Given an array of characters representign a sentence, reverse the order of the words (space delimeted) in the sentence.
 
-Example: 
+Example:
 
 Input: `['w', 'h', a', 't', ' ', 'i', 's', ' ', 'u', 'p']`
 
 Output: `['u', 'p', ' ', 'i', 's', ' ', 'w', 'h', a', 't']`
 
-We'll approach this problem with 2 passes. In the first pass, we'll reverse the entire array. In the following pass we'll reverse each word. 
+We'll approach this problem with 2 passes. In the first pass, we'll reverse the entire array. In the following pass we'll reverse each word.
 
 ```python
 def reverse_words(words):
@@ -1610,7 +1922,7 @@ def reverse_words(words):
         while start < end:
             chars[start], chars[end] = chars[end], chars[start]
             start, end = start + 1, end - 1
-    
+
     reverse_range(words, 0, len(words) - 1)
     start = 0
 
@@ -1618,26 +1930,28 @@ def reverse_words(words):
         finish = start
         while finish < len(words) and words[finish] != ' ':
             finish += 1
-        
+
         if finish == len(words):
             break
-        
+
         reverse_range(words, start, finish - 1)
         start = finish + 1
 
     reverse_range(words, start, len(words) - 1)
-    
+
     return words
 
 assert reverse_words(['w', 'h', 'a', 't', ' ', 'i', 's', ' ', 'u', 'p']) == ['u', 'p', ' ', 'i', 's', ' ', 'w', 'h', 'a', 't']
 ```
 
 ### One Away
+
 Source: Crack the Coding Interview, page 199
 
 There are 3 types of edits. Replace, insert and remove. Determine if two strings are one edit away from being equal.
 
 Examples:
+
 ```python
 assert one_away('abc', 'abd') == True
 assert one_away('ab', 'abd') == True
@@ -1645,7 +1959,7 @@ assert one_away('ad', 'abd') == False
 assert one_away('abc', 'abde') == False
 ```
 
-It helps to analyze each case separately. 
+It helps to analyze each case separately.
 
 1. Replace: There must be at most 1 element that is different and length must be the same.
 2. Insert: There must be 1 character difference in the strings and the existing characters must match.
@@ -1690,6 +2004,7 @@ def one_away(str1, str2):
 ## Tries
 
 ### Find words
+
 Source: https://leetcode.com/problems/word-search-ii/
 
 Given a 2D board and a list of words from the dictionary, find all words in the board.
@@ -1697,8 +2012,9 @@ Given a 2D board and a list of words from the dictionary, find all words in the 
 Each word must be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.
 
 Example:
+
 ```
-Input: 
+Input:
 board = [
   ['o','a','a','n'],
   ['e','t','a','e'],
@@ -1731,50 +2047,51 @@ def find_words(board, words):
         if board[i][j] in node:
             board[i][j], letter = '', board[i][j]
             node, path = node[letter], path + letter
-            
+
             if '$' in node:
                 result.add(path)
-                
+
             for x,y in (i + 1, j), (i - 1, j), (i, j - 1), (i, j + 1):
                 if 0 <= x < n and 0 <= y < m:
                     search_board(x, y, node, path)
-            
+
             board[i][j] = letter
-    
+
     trie = Trie()
     for word in words:
         trie.add_word(word)
-        
+
     result = set()
     n = len(board)
     m = len(board) and len(board[0])
-    
+
     [search_board(i, j, trie.root_node, '') for i in range(n) for j in range(m)]
-    
+
     return list(result)
 ```
 
 Trie implementation
+
 ```python
 class Trie:
     def __init__(self):
         self.root_node = {}
-    
+
     def add_word(self, word):
         is_new_word = False
         current_node = self.root_node
-        
+
         for char in word:
             if char not in current_node:
                 is_new_word = True
                 current_node[char] = {}
-            
+
             current_node = current_node[char]
-        
+
         if "$" not in current_node:
             is_new_word = True
             current_node["$"] = {}
-            
+
         return is_new_word
 ```
 
@@ -1785,7 +2102,7 @@ class Trie:
         trie = Trie()
         for word in words:
             trie.add_word(word)
-    
+
         # for each word
             # traverse through trie till end of word
             # every time a word is found
@@ -1807,30 +2124,30 @@ Design a stack data structure such that you can query the minimum element in O(1
 
 This problem is easily solved with an additional stack. Specifically, we can use another stack to store the current min. for the stack.
 
-
 ```python
 class Stack:
     def __init__(self):
         self.stack = []
         self.min_stack = []
-    
+
     def pop(self):
         if self.stack[-1] == self.min_stack[-1]:
             self.min_stack.pop()
-        
+
         self.stack.pop()
-    
+
     def push(self, x):
         if not self.min_stack or x < self.min_stack[-1]:
             self.min_stack.append(x)
-        
+
         self.stack.append(x)
-        
+
     def get_min(self):
         return self.min_stack[-1]
 ```
 
 ### Shortest Equivalent Path
+
 Source: EPI 8.4
 
 Given a pathname (absolute or relative), return the shortest equivalent pathname.
@@ -1886,7 +2203,7 @@ Return the buildings with a sunset view given a list of buildings in east-to-wes
 ```python
 def sunset_view(buildings):
     stack = []
-    
+
     for building in buildings:
         while stack and stack[-1] <= building:
             stack.pop()
@@ -1894,21 +2211,20 @@ def sunset_view(buildings):
         stack.append(building)
 
     return stack
-    
-    
+
+
 assert sunset_view([2, 1, 3, 4, 5, 4]) == [5, 4]
 assert sunset_view([0, 1, 1, 3, 2, 3]) == [3]
 ```
 
 ### Compute binary tree nodes in order of increasing depth
 
-
 ```python
 def increasing_depth_binary_tree(tree):
     queue = collections.deque([[tree]])
-    
+
     results = []
-    
+
     while queue:
         nodes = queue.popleft()
         results.append([node.data for node in nodes])
@@ -1918,10 +2234,10 @@ def increasing_depth_binary_tree(tree):
                 q2.append(node.left)
             if node.right:
                 q2.append(node.right)
-        
+
         if q2:
             queue.append(q2)
-    
+
     return results
 ```
 
@@ -1929,14 +2245,14 @@ def increasing_depth_binary_tree(tree):
 
 Implement a queue with O(1) enqueue and dequeue operations using two additional fields (beginning and end indices). You are given the initial size of the queue in the constructor. Resize the inner array dynamically as needed.
 
-We can solve this problem by keeping track of the head and tail as well as current size of the queue. 
+We can solve this problem by keeping track of the head and tail as well as current size of the queue.
 
 For enqueues:
 
 If current size exceeds limit, we must resize
-    to resize, move all elements in order of head to tail to another array
-    increase this new array size by some factor
-    change the pointers of head and tail to reflect new array
+to resize, move all elements in order of head to tail to another array
+increase this new array size by some factor
+change the pointers of head and tail to reflect new array
 
 Then, we can just add the element to the tail
 
@@ -1944,15 +2260,14 @@ For dequeues:
 
 We just move the head pointer to the next element in the queue
 
-
 ```python
 class CircularQueue:
     SCALE_FACTOR = 2
-    
+
     def __init__(self, size):
         self.entries = [0] * size
         self.head = self.tail = self.num_elems = 0
-    
+
     def enqueue(self, elem):
         if self.num_elems == len(self.entries):
             self.entries = self.entries[self.head:] + self.entries[:self.head]
@@ -1962,13 +2277,13 @@ class CircularQueue:
         self.entries[self.tail] = elem
         self.tail = (self.tail + 1) % len(self.entries)
         self.num_elems += 1
-        
+
     def dequeue(self):
         result = self.entries[self.head]
         self.head = (self.head + 1) % len(self.entries)
         self.num_elems -= 1
         return result
-    
+
     def size():
         return self.num_elems
 ```
@@ -1989,22 +2304,21 @@ If the dequeue stack is empty, fill it by pushing all elements of the enqueue st
 
 Then, dequeue[-1] should be deleted.
 
-
 ```python
 class QueueWithStacks:
     def __init__(self):
         self.enq, self.deq = [], []
-    
+
     def enqueue(self, val):
         self.enq.append(val)
-            
+
     def get_head(self):
         if not self.deq:
             while self.enq:
                 self.deq.append(self.enq.pop())
-                
+
         return self.deq[-1]
-        
+
     def dequeue(self):
         result = self.get_head()
         del self.deq[-1]
@@ -2017,15 +2331,15 @@ Implement a queue with a O(1) get_max method.
 
 The brute force approach here is to keep track of the current max on enqueue and dequeue. Enqueue is fast, dequeue is slow since you must search through the list to find the next max.
 
-The insight that leads to a better algorithm is that once we add an element to queue, any elements previously added that are less than the current element can never be the max. Hence we can iteratively remove these from consideration. 
+The insight that leads to a better algorithm is that once we add an element to queue, any elements previously added that are less than the current element can never be the max. Hence we can iteratively remove these from consideration.
 
-We can use another queue to store our max candidates. 
+We can use another queue to store our max candidates.
 
 On enqueue:
 
 While the element is larger than the tail of the max queue, remove tail from max queue
 
-Now append the element to the max queue. 
+Now append the element to the max queue.
 
 Note that it is less than all preceding elements. Hence, we have that the max queue head contains the max element.
 
@@ -2037,22 +2351,22 @@ If the max element is equal to current element to be dequeued. Dequeue max queue
 class QueueWithMax:
     def __init__(self):
         self.queue, self.max_queue = collections.deque([]), collections.deque([])
-    
+
     def enqueue(self, val):
         self.queue.append(val)
-        
+
         while self.max_queue and self.max_queue[-1] < val:
             self.max_queue.pop()
-        
+
         self.max_queue.append(val)
-        
+
     def dequeue(self):
         result = self.queue.popleft()
         if result == self.max_queue[0]:
             self.max_queue.popleft()
-        
+
         return result
-    
+
     def get_max(self):
         return self.max_queue[0]
 ```
@@ -2069,10 +2383,9 @@ Given a tree T, determine if it satisfies the BST property.
 
 Three approaches:
 
-1. Traverse the tree, maintaining a lower and upper bound for each recursive call. If the lower and upper are violated then return False else True. 
+1. Traverse the tree, maintaining a lower and upper bound for each recursive call. If the lower and upper are violated then return False else True.
 2. Complete an inorder traversal, and see if the nodes are in sorted order. A sorted in order traversal implies the BST property is satisfied.
 3. Traverse the tree in depth order (using BFS), maintaining a lower and upper bound and return false if the constraint is violated else True
-
 
 Approach 1:
 
@@ -2087,42 +2400,42 @@ def is_bst(tree):
             is_in_range(tree.right, tree.data, upper)
 
     return is_in_range(tree)
-    
-tree_1 = BinaryTreeNode(19, BinaryTreeNode(7, 
-                                       BinaryTreeNode(3, 
-                                                      BinaryTreeNode(2), 
-                                                      BinaryTreeNode(5)),
-                                       BinaryTreeNode(11, 
-                                                      None,
-                                                      BinaryTreeNode(17, 
-                                                                     BinaryTreeNode(13)))),
-                        BinaryTreeNode(43,
-                                       BinaryTreeNode(23, 
-                                                      None, 
-                                                      BinaryTreeNode(37, 
-                                                                     BinaryTreeNode(29),
-                                                                     BinaryTreeNode(41))),
-                                       BinaryTreeNode(47, 
-                                                      None,
-                                                      BinaryTreeNode(53))))
 
-
-tree_2 = BinaryTreeNode(19, BinaryTreeNode(7, 
-                                       BinaryTreeNode(3, 
-                                                      BinaryTreeNode(21),
+tree_1 = BinaryTreeNode(19, BinaryTreeNode(7,
+                                       BinaryTreeNode(3,
+                                                      BinaryTreeNode(2),
                                                       BinaryTreeNode(5)),
-                                       BinaryTreeNode(11, 
+                                       BinaryTreeNode(11,
                                                       None,
                                                       BinaryTreeNode(17,
                                                                      BinaryTreeNode(13)))),
                         BinaryTreeNode(43,
-                                       BinaryTreeNode(23, 
-                                                      None, 
+                                       BinaryTreeNode(23,
+                                                      None,
                                                       BinaryTreeNode(37,
                                                                      BinaryTreeNode(29),
                                                                      BinaryTreeNode(41))),
-                                       BinaryTreeNode(27, 
-                                                      None, 
+                                       BinaryTreeNode(47,
+                                                      None,
+                                                      BinaryTreeNode(53))))
+
+
+tree_2 = BinaryTreeNode(19, BinaryTreeNode(7,
+                                       BinaryTreeNode(3,
+                                                      BinaryTreeNode(21),
+                                                      BinaryTreeNode(5)),
+                                       BinaryTreeNode(11,
+                                                      None,
+                                                      BinaryTreeNode(17,
+                                                                     BinaryTreeNode(13)))),
+                        BinaryTreeNode(43,
+                                       BinaryTreeNode(23,
+                                                      None,
+                                                      BinaryTreeNode(37,
+                                                                     BinaryTreeNode(29),
+                                                                     BinaryTreeNode(41))),
+                                       BinaryTreeNode(27,
+                                                      None,
                                                       BinaryTreeNode(53))))
 
 assert is_bst_2(tree_1) == True
@@ -2130,21 +2443,22 @@ assert is_bst_2(tree_2) == False
 ```
 
 Approach 2:
+
 ```python
 def is_bst_2(tree):
     def is_in_range(tree):
         if not tree:
             return True
-        
+
         left_satisfied = is_in_range(tree.left)
-        
+
         if tree.data < prev['val']:
             return False
-        
+
         prev['val'] = tree.data
-        
+
         return left_satisfied and is_in_range(tree.right)
-    
+
     prev = {}
     prev['val'] = float('-inf') # use object in order to reference prev.val in helper
     return is_in_range(tree)
@@ -2159,7 +2473,7 @@ QueueEntry = collections.namedtuple('QueueEntry', ('node', 'lower', 'upper'))
 
 def is_binary_tree_bst(tree):
     bfs_queue = collections.deque([QueueEntry(tree, float('-inf'), float('inf'))])
-    
+
     while bfs_queue:
         entry = bfs_queue.popleft()
         if entry.node:
@@ -2168,7 +2482,7 @@ def is_binary_tree_bst(tree):
             bfs_queue.extend(
                 (QueueEntry(entry.node.left, entry.lower, entry.node.data),
                  QueueEntry(entry.node.right, entry.node.data, entry.upper)))
-            
+
     return True
 
 assert is_binary_tree_bst(tree_1) == True
@@ -2181,7 +2495,7 @@ This approach has the advantage that we'll return early if the bst property is v
 
 Given a tree T and integer k, return the value that would appear after k in an in order traversal of T.
 
-We could do an in order traversal to find the first greater than k, but this does not take advantage of the BST property and hence does more work than required (O(n)). 
+We could do an in order traversal to find the first greater than k, but this does not take advantage of the BST property and hence does more work than required (O(n)).
 
 Instead, we'll traverse through the tree, keeping a candidate value and updating it when we encounter a value greater than k. We traverse right if k >= curr_node.data else left.
 
@@ -2190,18 +2504,18 @@ def find_first_greater_than(tree, k):
     def find_greater(tree, candidate=None):
         if not tree:
             return candidate
-        
+
         if k < tree.data:
             return find_greater(tree.left, tree.data)
         else: # k >= tree.data
             return find_greater(tree.right, candidate)
-        
-        
+
+
     return find_greater(tree)
 
 def find_first_greater_than_iterative(tree, k):
     candidate, subtree = None, tree
-    
+
     while subtree:
         if k < subtree.data:
             candidate, subtree = subtree.data, subtree.left
@@ -2209,7 +2523,7 @@ def find_first_greater_than_iterative(tree, k):
             subtree = subtree.right
 
     return candidate
-    
+
 assert find_first_greater_than(tree_1, 23) == 29
 assert find_first_greater_than(tree_1, 13) == 17
 assert find_first_greater_than(tree_1, 31) == 37
@@ -2229,12 +2543,12 @@ def find_k_largest_bst(tree, k):
             if len(candidates) < k:
                 candidates.append(tree.data)
                 reverse_in_order(tree.left)
-        
-    
+
+
     candidates = []
     reverse_in_order(tree)
     return candidates
-    
+
 assert find_k_largest_bst(tree_1, 5) == [53, 47, 43, 41, 37]
 assert find_k_largest_bst(tree_1, 2) == [53, 47]
 ```
@@ -2250,7 +2564,7 @@ Using this fact, we can traverse through the tree and return the first element t
 ```python
 def lca_bst(tree, a, b):
     min_node, max_node = (a, b) if a < b else (b, a)
-    
+
     def find_lca(tree):
         if not tree:
             return None
@@ -2259,7 +2573,7 @@ def lca_bst(tree, a, b):
         if tree.data > max_node:
             return find_lca(tree.left)
         return find_lca(tree.right)
-    
+
     return find_lca(tree)
 
 
@@ -2267,10 +2581,10 @@ def lca_bst_iterative(tree, a, b):
     while tree and not (a.data <= tree.data <= b.data):
         while tree.data < a.data:
             tree = tree.right
-        
+
         while tree.data > b.data:
             tree = tree.left
-        
+
     return tree
 
 assert lca_bst(tree_1, 31, 53) == 43
@@ -2289,7 +2603,7 @@ The first element of the sequence always contains the root node. All following e
 We can apply this reasoning recursively and end up with this algorithm.
 
 ```python
-tree_3 = BinaryTreeNode(5, 
+tree_3 = BinaryTreeNode(5,
                         BinaryTreeNode(3, BinaryTreeNode(2, BinaryTreeNode(1)), BinaryTreeNode(4)),
                         BinaryTreeNode(8, BinaryTreeNode(7)))
 
@@ -2301,7 +2615,7 @@ def bst_from_preorder_traversal(sequence):
             sequence[0],
             create_tree([i for i in sequence if i < sequence[0]]),
             create_tree([i for i in sequence if i > sequence[0]]))
-        
+
     return create_tree(sequence)
 
 assert is_bst_equal(bst_from_preorder_traversal(preorder(tree_3)), tree_3)
@@ -2312,7 +2626,7 @@ However, this approach takes O(n^2) in the worst case (a left-skewed tree) where
 
 The recurrence relation is T(n) = T(n - 1) + O(n) = O(n^2)
 
-This approach does repeated calculation to determine smaller and larger elements from the root. Instead, we can do this comparison as we're creating the subtree. 
+This approach does repeated calculation to determine smaller and larger elements from the root. Instead, we can do this comparison as we're creating the subtree.
 
 We can do this by providing a range of valid values for each subtree. This leads to the following algorithms:
 
@@ -2321,19 +2635,19 @@ def bst_from_preorder_efficient(sequence):
     def create_tree(lower, upper):
         if root_idx[0] == len(sequence):
             return None
-        
+
         root = sequence[root_idx[0]]
 
         if not lower <= root <= upper:
             return None
-        
+
         root_idx[0] += 1
-        
+
         left = create_tree(lower, root)
         right = create_tree(root, upper)
-        
+
         return BinaryTreeNode(root, left, right)
-        
+
     root_idx = [0]
     return create_tree(float('-inf'), float('inf'))
 ```
@@ -2348,13 +2662,12 @@ This is because removing the smallest element from a candidate range will shorte
 
 We use the `bintrees` module to implement a red black tree. This is because we need efficient retrieval of min, max and insertion, deletion for our candidate range. A BST is perfect for this.
 
-
 ```python
 import bintrees
 
 def find_closest(sorted_arrays):
     iters = bintrees.RBTree()
-    
+
     for idx, sorted_array in enumerate(sorted_arrays):
         it = iter(sorted_array)
         first_min = next(it, None)
@@ -2365,7 +2678,7 @@ def find_closest(sorted_arrays):
     while True:
         min_value, min_idx = iters.min_key()
         max_value = iters.max_key()[0]
-        
+
         if min_value - max_value < min_range[1] - min_range[0]:
             min_range = [min_value, max_value]
         it = iters.pop_min()[1] # key, val
@@ -2388,7 +2701,7 @@ def build_bst_from_sorted_array(arr):
             return None
         mid = (start + end) // 2
         return BinaryTreeNode(arr[mid], build_bst(start, mid), build_bst(mid + 1, end))
-    
+
     return build_bst(0, len(arr))
 ```
 
@@ -2401,10 +2714,10 @@ def is_totally_ordered(tree, middle, node1, node2):
     next_node = middle
     found_mid = False
     found_dec = False
-    
+
     curr_node1 = node1
     curr_node2 = node2
-    
+
     while (curr_node1 or curr_node2) and not found_dec:
         if curr_node1:
             if curr_node1.data == next_node.data:
@@ -2413,9 +2726,9 @@ def is_totally_ordered(tree, middle, node1, node2):
                     found_mid = True
                 else:
                     found_dec = True
-            
+
             curr_node1 = curr_node1.left if curr_node1.data > next_node.data else curr_node1.right
-            
+
         if curr_node2:
             if curr_node2.data == next_node.data:
                 if not found_mid:
@@ -2423,10 +2736,10 @@ def is_totally_ordered(tree, middle, node1, node2):
                     found_mid = True
                 else:
                     found_dec = True
-            
+
             curr_node2 = curr_node2.left if curr_node2.data > next_node.data else curr_node2.right
 
-        
+
     return found_dec
 
 assert is_totally_ordered(tree_1, tree_1.get_node(23), tree_1.get_node(43), tree_1.get_node(37)) == True
@@ -2438,7 +2751,7 @@ assert is_totally_ordered(tree_1, tree_1.get_node(43), tree_1.get_node(41), tree
 
 Given a BST and a range [a, b] return all the elements in the BST that fall into [a, b]
 
-We'll prune the search using the BST property. If the current node's key is less than the minimum, 
+We'll prune the search using the BST property. If the current node's key is less than the minimum,
 then the left subtree cannot contain anything in the range, same argument if key is greater than max for right subtree.
 
 Otherwise, the current node is within range
@@ -2456,11 +2769,11 @@ def range_search(tree, lower, upper):
             range_search_helper(tree.left)
         else:
             range_search_helper(tree.right)
-        
+
     items = []
     range_search_helper(tree)
     return items
-    
+
 assert range_search(tree_1, 16, 31) == [17, 19, 23, 29]
 assert range_search(tree_1, 4, 20) == [5, 7, 11, 13, 17, 19]
 ```
@@ -2474,6 +2787,7 @@ Compute binary tree nodes in increasing depth order
   2       3
 4   5   6   7
 ```
+
 =>
 
 ```
@@ -2499,7 +2813,6 @@ def depth_order_binary_tree(root):
     return result
 ```
 
-
 ## Heaps
 
 https://medium.com/@codingfreak/heap-practice-problems-and-interview-questions-b678ff3b694c
@@ -2514,7 +2827,7 @@ Given a continuous stream of numbers, return the running median at every input.
 
 In order to avoid a full blown search every time we add a new number, we have to somehow leverage the result of previous computations.
 
-We can do this by splitting the running numbers into two roughly equal halves. A max heap for the bottom half and min heap for the top. 
+We can do this by splitting the running numbers into two roughly equal halves. A max heap for the bottom half and min heap for the top.
 
 Then querying for the median becomes a straight forward case of either averaging the max of the bottom and min of top if the halves are equal or returning the priority element in the larger half.
 
@@ -2528,15 +2841,15 @@ This ensures that the min heap is always the larger half and hence contains the 
 def stream_median(nums):
     min_heap, max_heap = [], []
     result = []
-    
+
     for x in nums:
         heapq.heappush(max_heap, -heapq.heappushpop(min_heap, x))
-        
+
         if len(max_heap) > len(min_heap):
             heapq.heappush(min_heap, -heapq.heappop(max_heap))
-        
+
         result.append(0.5 * (min_heap[0] + -max_heap[0]) if len(max_heap) == len(min_heap) else min_heap[0])
-    
+
     return result
 
 test_1 = [1, 0, 3, 5, 9, 7]
@@ -2562,12 +2875,12 @@ Instead, we'll add the first k elements we see into a max heap, and then evict t
 ```python
 def k_closest_stars(distances, k):
     max_heap = []
-    
+
     for distance in distances:
         heapq.heappush(max_heap, -distance)
         if len(max_heap) == k + 1 and -max_heap[0] >= distance:
             heapq.heappop(max_heap)
-    
+
     return sorted([-x for x in max_heap]) # sort is not needed, doing for testing output
 
 test_1 = [52, 33, 24, 67, 28, 19, 13, 76, 7, 412, 331, 13, 1312, 31, 3, 331, 56, 52, 32]
@@ -2580,6 +2893,7 @@ test(k_closest_stars(test_1, 10), sorted(test_1)[0:10])
 ## Hashmaps
 
 ### Subarray sum
+
 https://leetcode.com/problems/subarray-sum-equals-k/
 
 ```python
@@ -2591,8 +2905,6 @@ def subarray_sum(self, nums: List[int], k: int) -> int:
         curr_sum += nums[i]
         num_sums += sum_map[curr_sum - k]
         sum_map[curr_sum] += 1
-    
+
     return num_sums
 ```
-
-
