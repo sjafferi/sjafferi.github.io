@@ -1,5 +1,6 @@
 <script>
   import { Router, Route } from "svelte-routing";
+  import Sun from "components/Sun.svelte";
   import Nav from "./routes/Nav.svelte";
   import Projects from "./routes/Projects.svelte";
   import Blog from "./routes/Blog/Blog.svelte";
@@ -36,6 +37,7 @@
 
 <div class="container">
   <Router {url}>
+    <Sun />
     <Nav />
     <div class="page">
       <Route path="projects" component={Projects} />
