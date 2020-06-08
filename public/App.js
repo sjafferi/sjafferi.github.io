@@ -1223,32 +1223,33 @@ var Projects = [
   {
     title: "Junoon",
     titleLink: "https://junoon.io/?ref=sibta.in",
-    description: "Weekly planning, accountability tracking and personal metrics.",
+    description:
+      "Weekly planning, accountability tracking and personal metrics.",
     images: [
       {
-        thumbnail: '/images/projects/junoon-agenda.png',
-        src: '/images/projects/junoon-agenda-full.png'
+        thumbnail: "/images/projects/junoon-agenda.png",
+        src: "/images/projects/junoon-agenda-full.png",
       },
       {
-        thumbnail: '/images/projects/junoon-analysis.png',
-        src: '/images/projects/junoon-analysis-full.png'
+        thumbnail: "/images/projects/junoon-analysis.png",
+        src: "/images/projects/junoon-analysis-full.png",
       },
       {
-        thumbnail: '/images/projects/junoon-accountability.png',
-        src: '/images/projects/junoon-accountability-full.png'
-      }
+        thumbnail: "/images/projects/junoon-accountability.png",
+        src: "/images/projects/junoon-accountability-full.png",
+      },
     ],
     tags: ["SaaS", "React", "Draftjs", "Node.js", "Postgres"],
     links: [
       {
         link: "https://junoon.io/?ref=sibta.in",
-        text: "Landing Page"
+        text: "Landing Page",
       },
       {
         link: "https://app.junoon.io/?sample=true&ref=sibta.in",
-        text: "Application Page"
+        text: "Application Page",
       },
-    ]
+    ],
   },
   {
     title: "Grub Grab",
@@ -1256,29 +1257,29 @@ var Projects = [
     description: "Student meal plans powered by local restaurants.",
     images: [
       {
-        thumbnail: 'images/projects/grubgrab-1-full.png',
-        src: 'images/projects/grubgrab-1.png'
+        thumbnail: "images/projects/grubgrab-1.png",
+        src: "images/projects/grubgrab-1-full.jpg",
       },
       {
-        thumbnail: 'images/projects/grubgrab-2-full.png',
-        src: 'images/projects/grubgrab-2.png'
+        thumbnail: "images/projects/grubgrab-2.png",
+        src: "images/projects/grubgrab-2-full.png",
       },
       {
-        thumbnail: 'images/projects/grubgrab-3-full.png',
-        src: 'images/projects/grubgrab-3.png'
+        thumbnail: "images/projects/grubgrab-3.png",
+        src: "images/projects/grubgrab-3-full.png",
       },
     ],
     tags: ["SaaS", "React", "Node.js", "Postgres"],
     links: [
       {
         link: "https://grubgrab.io",
-        text: "Landing Page"
+        text: "Landing Page",
       },
       {
         link: "https://explorer.grubgrab.io",
-        text: "Application Page"
-      }
-    ]
+        text: "Application Page",
+      },
+    ],
   },
 ];
 
@@ -36572,7 +36573,7 @@ const Markdown = create_ssr_component(($$result, $$props, $$bindings, $$slots) =
 
 const css$b = {
 	code: ".toc a{color:#3c3c3c;text-decoration:none;padding-left:3px}.toc a:hover{color:#888}.toc > ul{counter-reset:htoc_1}.toc ul{list-style-type:none;padding-left:0;margin-bottom:0;margin-top:4px;padding-left:1.4em;text-indent:0;padding:0}ol{counter-reset:item}ol > li{counter-increment:item}.toc ol ol > li{display:block;font-size:0.9em;padding:3px 5px}.toc ol ol > li:before{content:counters(item, \".\") \". \";margin-left:-20px}.toc.svelte-1tsi91f{float:left;max-width:40ch;border:1px solid #ccc;background-color:#f9f9f9;margin:0 2rem 1.5rem 0;line-height:1.25;padding:5px 15px;position:relative;z-index:1}",
-	map: "{\"version\":3,\"file\":\"TOC.svelte\",\"sources\":[\"TOC.svelte\"],\"sourcesContent\":[\"<script>\\n  import { toSlug } from \\\"util/index.js\\\";\\n  export let content;\\n  let numItems = 0;\\n  const codeRegex = /(\\\\n```python.*?```)/gms;\\n\\n  function generate(md) {\\n    if (!md) return [];\\n    const regex = /(#+) (.+)/g;\\n    const content = md.replace(codeRegex, \\\"\\\");\\n    let match,\\n      prev,\\n      toc = [];\\n    while ((match = regex.exec(content)) != null) {\\n      const item = {\\n        hashes: match[1],\\n        title: match[2],\\n        children: [],\\n        parent: null\\n      };\\n      if (prev && prev.hashes.length < match[1].length) {\\n        prev.children.push(item);\\n        item.parent = prev;\\n      } else if (prev && prev.hashes.length == match[1].length && prev.parent) {\\n        prev.parent.children.push(item);\\n        item.parent = prev.parent;\\n      } else if (prev && prev.hashes.length > match[1].length && prev.parent) {\\n        let parent = prev.parent;\\n        while (parent && parent.hashes.length >= match[1].length) {\\n          parent = parent.parent;\\n        }\\n        if (parent) {\\n          parent.children.push(item);\\n          item.parent = parent;\\n        } else {\\n          toc.push(item);\\n        }\\n      } else {\\n        toc.push(item);\\n      }\\n      numItems++;\\n      prev = item;\\n    }\\n\\n    return toc;\\n  }\\n\\n  function html(toc) {\\n    return toc.length > 0\\n      ? `\\n      <ol>\\n        ${toc\\n          .map(\\n            ({ hashes, title, children }) =>\\n              `<li><a href=\\\"#${toSlug(title)}\\\">${title.replace(\\n                /[1-9].?/g,\\n                \\\"\\\"\\n              )}</a> ${html(children)} </li>`\\n          )\\n          .join(\\\"\\\")}\\n      </ol>\\n    `\\n      : \\\"\\\";\\n  }\\n\\n  $: toc = html(generate(content));\\n</script>\\n\\n<style>\\n  :global(.toc a) {\\n    color: #3c3c3c;\\n    text-decoration: none;\\n    padding-left: 3px;\\n  }\\n  :global(.toc a:hover) {\\n    color: #888;\\n  }\\n  :global(.toc > ul) {\\n    counter-reset: htoc_1;\\n  }\\n  :global(.toc ul) {\\n    list-style-type: none;\\n    padding-left: 0;\\n    margin-bottom: 0;\\n    margin-top: 4px;\\n    padding-left: 1.4em;\\n    text-indent: 0;\\n    padding: 0;\\n  }\\n  :global(ol) {\\n    counter-reset: item;\\n  }\\n\\n  :global(ol > li) {\\n    counter-increment: item;\\n  }\\n\\n  :global(.toc ol ol > li) {\\n    display: block;\\n    font-size: 0.9em;\\n    padding: 3px 5px;\\n  }\\n\\n  :global(.toc ol ol > li:before) {\\n    content: counters(item, \\\".\\\") \\\". \\\";\\n    margin-left: -20px;\\n  }\\n  .toc {\\n    float: left;\\n    max-width: 40ch;\\n    border: 1px solid #ccc;\\n    background-color: #f9f9f9;\\n    margin: 0 2rem 1.5rem 0;\\n    line-height: 1.25;\\n    padding: 5px 15px;\\n    position: relative;\\n    z-index: 1;\\n  }\\n</style>\\n\\n{#if numItems > 3}\\n  <div class=\\\"toc\\\">\\n    {@html toc}\\n  </div>\\n{/if}\\n\"],\"names\":[],\"mappings\":\"AAqEU,MAAM,AAAE,CAAC,AACf,KAAK,CAAE,OAAO,CACd,eAAe,CAAE,IAAI,CACrB,YAAY,CAAE,GAAG,AACnB,CAAC,AACO,YAAY,AAAE,CAAC,AACrB,KAAK,CAAE,IAAI,AACb,CAAC,AACO,SAAS,AAAE,CAAC,AAClB,aAAa,CAAE,MAAM,AACvB,CAAC,AACO,OAAO,AAAE,CAAC,AAChB,eAAe,CAAE,IAAI,CACrB,YAAY,CAAE,CAAC,CACf,aAAa,CAAE,CAAC,CAChB,UAAU,CAAE,GAAG,CACf,YAAY,CAAE,KAAK,CACnB,WAAW,CAAE,CAAC,CACd,OAAO,CAAE,CAAC,AACZ,CAAC,AACO,EAAE,AAAE,CAAC,AACX,aAAa,CAAE,IAAI,AACrB,CAAC,AAEO,OAAO,AAAE,CAAC,AAChB,iBAAiB,CAAE,IAAI,AACzB,CAAC,AAEO,eAAe,AAAE,CAAC,AACxB,OAAO,CAAE,KAAK,CACd,SAAS,CAAE,KAAK,CAChB,OAAO,CAAE,GAAG,CAAC,GAAG,AAClB,CAAC,AAEO,sBAAsB,AAAE,CAAC,AAC/B,OAAO,CAAE,SAAS,IAAI,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CACjC,WAAW,CAAE,KAAK,AACpB,CAAC,AACD,IAAI,eAAC,CAAC,AACJ,KAAK,CAAE,IAAI,CACX,SAAS,CAAE,IAAI,CACf,MAAM,CAAE,GAAG,CAAC,KAAK,CAAC,IAAI,CACtB,gBAAgB,CAAE,OAAO,CACzB,MAAM,CAAE,CAAC,CAAC,IAAI,CAAC,MAAM,CAAC,CAAC,CACvB,WAAW,CAAE,IAAI,CACjB,OAAO,CAAE,GAAG,CAAC,IAAI,CACjB,QAAQ,CAAE,QAAQ,CAClB,OAAO,CAAE,CAAC,AACZ,CAAC\"}"
+	map: "{\"version\":3,\"file\":\"TOC.svelte\",\"sources\":[\"TOC.svelte\"],\"sourcesContent\":[\"<script type=\\\"text/typescript\\\">\\n  import { toSlug } from \\\"util/index.js\\\";\\n  export let content;\\n  let numItems = 0;\\n  const codeRegex = /(\\\\n```python.*?```)/gms;\\n\\n  function generate(md) {\\n    if (!md) return [];\\n    const regex = /(#+) (.+)/g;\\n    const content = md.replace(codeRegex, \\\"\\\");\\n    let match,\\n      prev,\\n      toc = [];\\n    while ((match = regex.exec(content)) != null) {\\n      const item = {\\n        hashes: match[1],\\n        title: match[2],\\n        children: [],\\n        parent: null\\n      };\\n      if (prev && prev.hashes.length < match[1].length) {\\n        prev.children.push(item);\\n        item.parent = prev;\\n      } else if (prev && prev.hashes.length == match[1].length && prev.parent) {\\n        prev.parent.children.push(item);\\n        item.parent = prev.parent;\\n      } else if (prev && prev.hashes.length > match[1].length && prev.parent) {\\n        let parent = prev.parent;\\n        while (parent && parent.hashes.length >= match[1].length) {\\n          parent = parent.parent;\\n        }\\n        if (parent) {\\n          parent.children.push(item);\\n          item.parent = parent;\\n        } else {\\n          toc.push(item);\\n        }\\n      } else {\\n        toc.push(item);\\n      }\\n      numItems++;\\n      prev = item;\\n    }\\n\\n    return toc;\\n  }\\n\\n  function html(toc) {\\n    return toc.length > 0\\n      ? `\\n      <ol>\\n        ${toc\\n          .map(\\n            ({ hashes, title, children }) =>\\n              `<li><a href=\\\"#${toSlug(title)}\\\">${title.replace(\\n                /[1-9].?/g,\\n                \\\"\\\"\\n              )}</a> ${html(children)} </li>`\\n          )\\n          .join(\\\"\\\")}\\n      </ol>\\n    `\\n      : \\\"\\\";\\n  }\\n\\n  $: toc = html(generate(content));\\n</script>\\n\\n<style>\\n  :global(.toc a) {\\n    color: #3c3c3c;\\n    text-decoration: none;\\n    padding-left: 3px;\\n  }\\n  :global(.toc a:hover) {\\n    color: #888;\\n  }\\n  :global(.toc > ul) {\\n    counter-reset: htoc_1;\\n  }\\n  :global(.toc ul) {\\n    list-style-type: none;\\n    padding-left: 0;\\n    margin-bottom: 0;\\n    margin-top: 4px;\\n    padding-left: 1.4em;\\n    text-indent: 0;\\n    padding: 0;\\n  }\\n  :global(ol) {\\n    counter-reset: item;\\n  }\\n\\n  :global(ol > li) {\\n    counter-increment: item;\\n  }\\n\\n  :global(.toc ol ol > li) {\\n    display: block;\\n    font-size: 0.9em;\\n    padding: 3px 5px;\\n  }\\n\\n  :global(.toc ol ol > li:before) {\\n    content: counters(item, \\\".\\\") \\\". \\\";\\n    margin-left: -20px;\\n  }\\n  .toc {\\n    float: left;\\n    max-width: 40ch;\\n    border: 1px solid #ccc;\\n    background-color: #f9f9f9;\\n    margin: 0 2rem 1.5rem 0;\\n    line-height: 1.25;\\n    padding: 5px 15px;\\n    position: relative;\\n    z-index: 1;\\n  }\\n</style>\\n\\n{#if numItems > 3}\\n  <div class=\\\"toc\\\">\\n    {@html toc}\\n  </div>\\n{/if}\\n\"],\"names\":[],\"mappings\":\"AAqEU,MAAM,AAAE,CAAC,AACf,KAAK,CAAE,OAAO,CACd,eAAe,CAAE,IAAI,CACrB,YAAY,CAAE,GAAG,AACnB,CAAC,AACO,YAAY,AAAE,CAAC,AACrB,KAAK,CAAE,IAAI,AACb,CAAC,AACO,SAAS,AAAE,CAAC,AAClB,aAAa,CAAE,MAAM,AACvB,CAAC,AACO,OAAO,AAAE,CAAC,AAChB,eAAe,CAAE,IAAI,CACrB,YAAY,CAAE,CAAC,CACf,aAAa,CAAE,CAAC,CAChB,UAAU,CAAE,GAAG,CACf,YAAY,CAAE,KAAK,CACnB,WAAW,CAAE,CAAC,CACd,OAAO,CAAE,CAAC,AACZ,CAAC,AACO,EAAE,AAAE,CAAC,AACX,aAAa,CAAE,IAAI,AACrB,CAAC,AAEO,OAAO,AAAE,CAAC,AAChB,iBAAiB,CAAE,IAAI,AACzB,CAAC,AAEO,eAAe,AAAE,CAAC,AACxB,OAAO,CAAE,KAAK,CACd,SAAS,CAAE,KAAK,CAChB,OAAO,CAAE,GAAG,CAAC,GAAG,AAClB,CAAC,AAEO,sBAAsB,AAAE,CAAC,AAC/B,OAAO,CAAE,SAAS,IAAI,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CACjC,WAAW,CAAE,KAAK,AACpB,CAAC,AACD,IAAI,eAAC,CAAC,AACJ,KAAK,CAAE,IAAI,CACX,SAAS,CAAE,IAAI,CACf,MAAM,CAAE,GAAG,CAAC,KAAK,CAAC,IAAI,CACtB,gBAAgB,CAAE,OAAO,CACzB,MAAM,CAAE,CAAC,CAAC,IAAI,CAAC,MAAM,CAAC,CAAC,CACvB,WAAW,CAAE,IAAI,CACjB,OAAO,CAAE,GAAG,CAAC,IAAI,CACjB,QAAQ,CAAE,QAAQ,CAClB,OAAO,CAAE,CAAC,AACZ,CAAC\"}"
 };
 
 const codeRegex = /(\n```python.*?```)/gms;
@@ -36825,7 +36826,7 @@ const Blog = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 
 const css$f = {
 	code: ".container-me.svelte-nzinpq{width:100%;display:flex;flex-direction:column;flex-wrap:wrap;margin-left:85px;margin-top:65px}@media(max-width: 550px){.container-me.svelte-nzinpq{margin:0;padding:10px 7px}}",
-	map: "{\"version\":3,\"file\":\"Me.svelte\",\"sources\":[\"Me.svelte\"],\"sourcesContent\":[\"<script>\\n  import { Router, Link, Route } from \\\"svelte-routing\\\";\\n  import List from \\\"components/List.svelte\\\";\\n</script>\\n\\n<style>\\n  .container-me {\\n    width: 100%;\\n    display: flex;\\n    flex-direction: column;\\n    flex-wrap: wrap;\\n    margin-left: 85px;\\n    margin-top: 65px;\\n  }\\n  @media (max-width: 550px) {\\n    .container-me {\\n      margin: 0;\\n      padding: 10px 7px;\\n    }\\n  }\\n</style>\\n\\n<svelte:head>\\n  <title>Me | Sibtain Jafferi</title>\\n</svelte:head>\\n\\n<div class=\\\"container-me\\\">\\n\\n  <div class=\\\"description list\\\">\\n    <p>Greetings. I'm a frontend engineer @ sumo logic</p>\\n    <p>\\n      Right now I'm most interested in developing open source svelte components,\\n      <a href=\\\"/writings\\\">writing</a>\\n      and\\n      <a href=\\\"/projects\\\">a few notable projects</a>\\n      .\\n    </p>\\n  </div>\\n\\n  <List title=\\\"Code\\\">\\n    <li>\\n      <a href=\\\"https://github.com/sjafferi\\\" target=\\\"_blank\\\">\\n        github.com/sjafferi\\n      </a>\\n    </li>\\n  </List>\\n\\n  <List title=\\\"Experience\\\">\\n    <li>\\n      <p>2019 - Sumo Logic: Frontend Engineer</p>\\n    </li>\\n    <li>\\n      <p>2018 - Faire: Frontend Engineer</p>\\n    </li>\\n    <li>\\n      <p>2018 - Shoplogix: Frontend Engineer</p>\\n    </li>\\n    <li>\\n      <p>2016 - OpenText: Software Developer</p>\\n    </li>\\n  </List>\\n\\n  <List title=\\\"Education\\\">\\n    <li>\\n      <p>2019 - University of Waterloo: Bachelors of Computer Science</p>\\n    </li>\\n  </List>\\n\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAME,aAAa,cAAC,CAAC,AACb,KAAK,CAAE,IAAI,CACX,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,SAAS,CAAE,IAAI,CACf,WAAW,CAAE,IAAI,CACjB,UAAU,CAAE,IAAI,AAClB,CAAC,AACD,MAAM,AAAC,YAAY,KAAK,CAAC,AAAC,CAAC,AACzB,aAAa,cAAC,CAAC,AACb,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,IAAI,CAAC,GAAG,AACnB,CAAC,AACH,CAAC\"}"
+	map: "{\"version\":3,\"file\":\"Me.svelte\",\"sources\":[\"Me.svelte\"],\"sourcesContent\":[\"<script>\\n  import { Router, Link, Route } from \\\"svelte-routing\\\";\\n  import List from \\\"components/List.svelte\\\";\\n</script>\\n\\n<style>\\n  .container-me {\\n    width: 100%;\\n    display: flex;\\n    flex-direction: column;\\n    flex-wrap: wrap;\\n    margin-left: 85px;\\n    margin-top: 65px;\\n  }\\n  @media (max-width: 550px) {\\n    .container-me {\\n      margin: 0;\\n      padding: 10px 7px;\\n    }\\n  }\\n</style>\\n\\n<svelte:head>\\n  <title>Me | Sibtain Jafferi</title>\\n</svelte:head>\\n\\n<div class=\\\"container-me\\\">\\n  <List title=\\\"About\\\">\\n    <div class=\\\"description list\\\">\\n      <p>Greetings. I'm a frontend engineer @ Sumo Logic</p>\\n      <p>\\n        Right now I'm most interested in developing open source svelte components,\\n        <a href=\\\"/writings\\\">writing</a>\\n        and\\n        <a href=\\\"/projects\\\">a few notable projects</a>\\n        .\\n      </p>\\n    </div>\\n  </List>\\n\\n  <List title=\\\"Code\\\">\\n    <li>\\n      <a href=\\\"https://github.com/sjafferi\\\" target=\\\"_blank\\\">\\n        github.com/sjafferi\\n      </a>\\n    </li>\\n  </List>\\n\\n  <List title=\\\"Experience\\\">\\n    <li>\\n      <p>2019 - Sumo Logic: Frontend Engineer</p>\\n    </li>\\n    <li>\\n      <p>2018 - Faire: Frontend Engineer</p>\\n    </li>\\n    <li>\\n      <p>2018 - Shoplogix: Frontend Engineer</p>\\n    </li>\\n    <li>\\n      <p>2016 - OpenText: Software Developer</p>\\n    </li>\\n  </List>\\n\\n  <List title=\\\"Education\\\">\\n    <li>\\n      <p>2019 - University of Waterloo: Bachelors of Computer Science</p>\\n    </li>\\n  </List>\\n\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAME,aAAa,cAAC,CAAC,AACb,KAAK,CAAE,IAAI,CACX,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,SAAS,CAAE,IAAI,CACf,WAAW,CAAE,IAAI,CACjB,UAAU,CAAE,IAAI,AAClB,CAAC,AACD,MAAM,AAAC,YAAY,KAAK,CAAC,AAAC,CAAC,AACzB,aAAa,cAAC,CAAC,AACb,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,IAAI,CAAC,GAAG,AACnB,CAAC,AACH,CAAC\"}"
 };
 
 const Me = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
@@ -36834,17 +36835,20 @@ const Me = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 	return `${($$result.head += `${($$result.title = `<title>Me | Sibtain Jafferi</title>`, "")}`, "")}
 
 <div class="${"container-me svelte-nzinpq"}">
-
-  <div class="${"description list"}">
-    <p>Greetings. I&#39;m a frontend engineer @ sumo logic</p>
-    <p>
-      Right now I&#39;m most interested in developing open source svelte components,
-      <a href="${"/writings"}">writing</a>
-      and
-      <a href="${"/projects"}">a few notable projects</a>
-      .
-    </p>
-  </div>
+  ${validate_component(List, "List").$$render($$result, { title: "About" }, {}, {
+		default: () => `
+    <div class="${"description list"}">
+      <p>Greetings. I&#39;m a frontend engineer @ Sumo Logic</p>
+      <p>
+        Right now I&#39;m most interested in developing open source svelte components,
+        <a href="${"/writings"}">writing</a>
+        and
+        <a href="${"/projects"}">a few notable projects</a>
+        .
+      </p>
+    </div>
+  `
+	})}
 
   ${validate_component(List, "List").$$render($$result, { title: "Code" }, {}, {
 		default: () => `

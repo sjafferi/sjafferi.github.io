@@ -1,4 +1,4 @@
-<script>
+<script type="text/typescript">
   import { toSlug } from "util/index.js";
   export let content;
   let numItems = 0;

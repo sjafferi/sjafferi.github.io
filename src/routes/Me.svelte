@@ -25,17 +25,18 @@
 </svelte:head>
 
 <div class="container-me">
-
-  <div class="description list">
-    <p>Greetings. I'm a frontend engineer @ sumo logic</p>
-    <p>
-      Right now I'm most interested in developing open source svelte components,
-      <a href="/writings">writing</a>
-      and
-      <a href="/projects">a few notable projects</a>
-      .
-    </p>
-  </div>
+  <List title="About">
+    <div class="description list">
+      <p>Greetings. I'm a frontend engineer @ Sumo Logic</p>
+      <p>
+        Right now I'm most interested in developing open source svelte components,
+        <a href="/writings">writing</a>
+        and
+        <a href="/projects">a few notable projects</a>
+        .
+      </p>
+    </div>
+  </List>
 
   <List title="Code">
     <li>
