@@ -11,6 +11,21 @@
 </script>
 
 <style>
+  .overlay-img-container {
+    width: 73%;
+    height: 100%;
+    position: fixed;
+    pointer-events: none;
+    max-width: 170ch;
+  }
+
+  img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 0.2;
+  }
+  
   .container {
     max-width: 110ch;
     margin: auto;
@@ -28,6 +43,13 @@
       flex-flow: column;
       padding: 0;
     }
+    .overlay-img-container {
+      width: 100vw;
+    height: 100vh;
+    }
+    img {
+      max-width: 100vw;
+    }
   }
 </style>
 
@@ -35,7 +57,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </svelte:head>
 
+
 <div class="container">
+  <div class="overlay-img-container">
+    <img src="images/light-background.png" />
+  </div>
   <Router {url}>
     <Sun />
     <Nav />
