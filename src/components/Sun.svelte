@@ -1,17 +1,33 @@
-<style lang="scss">
+<script>
+
+  let hovering = false;
+</script>
+
+
+<style type="text/scss">
   $sun-left: 1%;
   $sun-top: 1%;
   $sun-size: 125px;
   $sun-size-mobile: 75px;
 
   .container {
-    height: 100vw;
-    width: 100vw;
     top: 0;
     left: 0;
     position: absolute;
-    transition: 3s;
-    z-index: -2;
+  }
+
+  .highlight-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* background: rgba(0, 0, 0, 0.31); */
+    background: #FC0101;
+    background: -webkit-linear-gradient(bottom right, #FC0101, #FFD6D6);
+    background: -moz-linear-gradient(bottom right, #FC0101, #FFD6D6);
+    background: linear-gradient(to top left, #FC0101, #FFD6D6);
+    z-index: 0;
   }
 
   #sun {
@@ -23,9 +39,10 @@
     transform: scale(2);
     border-radius: 50%;
     background: radial-gradient(#f1c40f 70%, #e74c3c 100%);
-    transition: all 1s cubic-bezier(0.74, 0, 0.455, 1);
-    transition-delay: 0.4s;
-    z-index: -2;
+    transition: background 1s cubic-bezier(0.74, 0, 0.455, 1);
+    /* transition-delay: 0.4s; */
+    opacity: 0;
+    z-index: 1;
 
     &::after,
     &::before {
@@ -73,11 +90,30 @@
 
     &.animate {
       animation: rays 2s;
+      opacity: 0.75;
       &::before {
         opacity: 0.5;
       }
       &::after {
-        opacity: 0.75;
+        opacity: 0.55;
+      }
+      &:hover {
+        opacity: 1;
+        animation: rays 1.5s infinite;
+        cursor: pointer;
+
+        .outreaching-rays {
+          &::before {
+            content: "";
+            position: absolute;
+            top: -25%;
+            left: -25%;
+            width: 150%;
+            height: 150%;
+            border-radius: 15%;
+            background: repeating-conic-gradient(from 0deg, white 0deg 3deg, transparent 5deg 10deg);
+          }
+        }
       }
     }
 
@@ -92,6 +128,17 @@
       z-index: -2;
       opacity: 0.35;
       animation: scale 2s linear;
+
+      /* &::before {
+            content: "";
+            position: absolute;
+            top: -25%;
+            left: -25%;
+            width: 150%;
+            height: 150%;
+            border-radius: 15%;
+            background: repeating-conic-gradient(from 0deg, white 0deg 4deg, transparent 5deg 10deg);
+          } */
     }
   }
 
@@ -122,7 +169,7 @@
       box-shadow: 0 0 0 0px rgba(255, 26, 0, 0.2);
     }
     100% {
-      box-shadow: 0 0 0 35px rgba(0, 0, 0, 0);
+      box-shadow: 0 0 0 125px rgba(0, 0, 0, 0);
     }
   }
 
@@ -144,11 +191,19 @@
     }
   }
 
-
+  @supports (-moz-appearance:none) {
+    .container {
+      display: none;
+    }
+  }
 </style>
 
+{#if hovering}
+  <div class="highlight-overlay" />
+{/if}
+
 <div class="container">
-  <div id="sun" class="animate">
+  <div id="sun" class="animate"  on:mouseover={() => { hovering = true; }} on:mouseout={() => { hovering = false; }}>
     <div class="overlay" />
     <div class="outreaching-rays" />
   </div>

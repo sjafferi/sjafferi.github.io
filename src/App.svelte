@@ -11,6 +11,14 @@
 </script>
 
 <style>
+  :global(body) {
+    /* background: linear-gradient(
+      rgba(74, 88, 103, 1) 18%,
+      rgba(36, 41, 47, 1) 57%,
+      rgb(0, 0, 0) 100%
+    ); */
+  }
+
   .overlay-img-container {
     width: 73%;
     height: 100%;
@@ -31,10 +39,12 @@
     margin: auto;
     padding: 0 20px;
     display: flex;
+    flex-direction: column;
   }
 
   .page {
     width: 100%;
+    z-index: 2;
   }
 
   @media (max-width: 550px) {
@@ -45,7 +55,7 @@
     }
     .overlay-img-container {
       width: 100vw;
-    height: 100vh;
+      height: 100vh;
     }
     img {
       max-width: 100vw;
@@ -59,9 +69,9 @@
 
 
 <div class="container">
-  <div class="overlay-img-container">
+  <!-- <div class="overlay-img-container">
     <img src="images/light-background.png" />
-  </div>
+  </div> -->
   <Router {url}>
     <Sun />
     <Nav />

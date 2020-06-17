@@ -60,7 +60,7 @@
     display: flex;
   }
 
-  @media (max-width: 550px) {
+  /* @media (max-width: 550px) {
     .container {
       margin: 0;
     }
@@ -74,7 +74,7 @@
     .posts .subtitle {
       line-height: 1.5;
     }
-  }
+  } */
 </style>
 
 <svelte:head>

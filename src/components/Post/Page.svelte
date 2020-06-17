@@ -10,11 +10,11 @@
     fetch(`/get-post`, {
       method: "post",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ slug })
+      body: JSON.stringify({ slug }),
     })
-      .then(resp => resp.json())
+      .then((resp) => resp.json())
       .then(({ post }) => {
         content = post;
       });
@@ -73,7 +73,6 @@
 </style>
 
 <div class="page">
-
   <header>
     <h1>{title}</h1>
   </header>
@@ -81,15 +80,14 @@
   <article>
     <div class="page-metadata">
       {#if subtitle}
-        <span class="subtitle">{subtitle}</span>
-      {/if}
-      {#if date}
-        <span class="date-container">
-          Created:
-          <span class="date">
-            {moment(date, 'MM/DD/YYYY').format('MMM Do YYYY')}
-          </span>
+      <span class="subtitle">{subtitle}</span>
+      {/if} {#if date}
+      <span class="date-container">
+        Created:
+        <span class="date">
+          {moment(date, 'MM/DD/YYYY').format('MMM Do YYYY')}
         </span>
+      </span>
       {/if}
     </div>
     <div class="table-of-contents">

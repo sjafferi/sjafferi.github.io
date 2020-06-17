@@ -1,44 +1,44 @@
-<script type="text/typescript">
+<script>
   import { toSlug } from "util/index.js";
   export let content;
   let numItems = 0;
-  const codeRegex = /(\n```python.*?```)/gms;
+  let maxDepth = 0;
+  const codeRegex = /(\`\`\`python(.|\n)*?\`\`\`)/gm;
 
   function generate(md) {
     if (!md) return [];
-    const regex = /(#+) (.+)/g;
+    const regex = /(#+)\s(.+)/g;
     const content = md.replace(codeRegex, "");
     let match,
       prev,
       toc = [];
     while ((match = regex.exec(content)) != null) {
       const item = {
-        hashes: match[1],
+        hashes: match[1].length,
         title: match[2],
         children: [],
-        parent: null
+        parent: null,
+        depth: 0,
       };
-      if (prev && prev.hashes.length < match[1].length) {
-        prev.children.push(item);
-        item.parent = prev;
-      } else if (prev && prev.hashes.length == match[1].length && prev.parent) {
-        prev.parent.children.push(item);
-        item.parent = prev.parent;
-      } else if (prev && prev.hashes.length > match[1].length && prev.parent) {
-        let parent = prev.parent;
-        while (parent && parent.hashes.length >= match[1].length) {
+
+      if (prev) {
+        let parent = prev;
+        while (parent && parent.hashes >= item.hashes) {
           parent = parent.parent;
         }
         if (parent) {
           parent.children.push(item);
           item.parent = parent;
+          item.depth = parent.depth + 1;
+          maxDepth = Math.max(maxDepth, item.depth);
         } else {
           toc.push(item);
         }
       } else {
         toc.push(item);
       }
-      numItems++;
+
+      numItems += 1;
       prev = item;
     }
 
@@ -116,10 +116,12 @@
     position: relative;
     z-index: 1;
   }
+  .wide {
+    max-width: 80ch;
+    width: 80ch;
+  }
 </style>
 
 {#if numItems > 3}
-  <div class="toc">
-    {@html toc}
-  </div>
+<div class="toc" class:wide="{maxDepth > 3}">{@html toc}</div>
 {/if}

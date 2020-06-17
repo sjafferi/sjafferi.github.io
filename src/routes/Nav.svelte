@@ -6,8 +6,17 @@
 <style>
   .sidebar {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     margin-top: 4vw;
+    z-index: 2;
+  }
+
+  :global(.sidebar > *) {
+    margin: 0 1vw !important;
+  }
+
+  :global(.sidebar a) {
+    font-size: 20px !important;
   }
 
   @media (max-width: 550px) {
