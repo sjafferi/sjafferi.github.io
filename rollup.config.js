@@ -21,6 +21,7 @@ const dedupe = (importee) =>
 const alias = aliasPlugin({
   resolve: [".svelte", ".js"], //optional, by default this will just look for .js files or folders
   entries: [
+    { find: "stores", replacement: "src/stores/index.js" },
     { find: "components", replacement: "src/components" },
     { find: "metadata", replacement: "src/metadata" },
     { find: "util", replacement: "src/util" },

@@ -1,13 +1,17 @@
 <script>
   import { Router, Route } from "svelte-routing";
+  import { themeManager } from 'stores';
   import Sun from "components/Sun.svelte";
+  import Moon from "components/Moon.svelte";
   import Nav from "./routes/Nav.svelte";
   import Projects from "./routes/Projects.svelte";
   import Blog from "./routes/Blog/Blog.svelte";
   import Me from "./routes/Me.svelte";
-
+  import "./main.scss";
   // Used for SSR. A falsy value is ignored by the Router.
   export let url = "";
+
+  // themeManager.toggle();
 </script>
 
 <style>
@@ -17,6 +21,10 @@
       rgba(36, 41, 47, 1) 57%,
       rgb(0, 0, 0) 100%
     ); */
+  }
+
+  :global(body.dark) {
+    background: rgb(44, 62, 80);
   }
 
   .overlay-img-container {
@@ -74,6 +82,7 @@
   </div> -->
   <Router {url}>
     <Sun />
+    <!-- <Moon /> -->
     <Nav />
     <div class="page">
       <Route path="projects" component={Projects} />

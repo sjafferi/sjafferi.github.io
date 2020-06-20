@@ -3,7 +3,7 @@
   import NavLink from "components/NavLink.svelte";
 </script>
 
-<style>
+<style lang="scss">
   .sidebar {
     display: flex;
     justify-content: center;
@@ -17,6 +17,11 @@
 
   :global(.sidebar a) {
     font-size: 20px !important;
+    /* color: $color; */
+  }
+
+  :global(body.dark .sidebar a) {
+    border: black;
   }
 
   @media (max-width: 550px) {
