@@ -4,26 +4,45 @@ $background-color: #eee;
 body {
   font-family: "Raleway", sans-serif !important;
 }
+
+html {
+  --light-theme-text-color: #333;
+  --light-theme-background-color: #eee;
+
+  --dark-theme-text-color: #cacaca;
+  --dark-theme-background-color: #333;
+
+  transition: color, background-color 500ms linear;
+
+  * {
+    transition: color 500ms linear;
+  }
+}
+
 html.dark {
-  background-color: #333 !important;
-  color: #cacaca !important;
+  background-color: var(--dark-theme-background-color);
+  color: var(--dark-theme-text-color);
+
+  --text-color: var(--dark-theme-text-color);
+  --background-color: var(--dark-theme-text-color);
 }
 
 html.light {
-  background-color: #eee;
-  color: #333;
+  background-color: var(--light-theme-background-color);
+  color: var(--light-theme-text-color);
+
+  --text-color: var(--light-theme-text-color);
+  --background-color: var(--light-theme-text-color);
 }
 
 .dark {
   * {
-    // background-color: #333;
-    color: #cacaca !important;
+    color: var(--dark-theme-text-color) !important;
   }
 }
 
 .light {
   * {
-    // background-color: #eee;
-    color: #333;
+    color: var(--light-theme-text-color);
   }
 }

@@ -66,6 +66,7 @@
     :global(.link svg) {
       width: 3rem;
       height: 3rem;
+      fill: var(--text-color);
       @media(hover: hover) and (pointer: fine) {
         &:hover {
           fill: #6c6c6c;
@@ -77,7 +78,6 @@
   :global(html.dark) {
     .links {
       :global(.link svg) {
-        fill: #cacaca;
         @media(hover: hover) and (pointer: fine) {
           &:hover {
             fill: white;
@@ -125,7 +125,7 @@
   <div class="description">
     <span>
       <h1>I'm Sibtain</h1>
-      <p class="phonetic-spelling">/ sib-th-ane /</p>
+      <p class="phonetic-spelling">سبطین</p>
     </span>
     <p class="text">
       Multi-disciplinary engineer working at Sumologic in Redwood City, CA.

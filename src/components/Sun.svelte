@@ -1,5 +1,4 @@
 <script>
-
   let hovering = false;
 </script>
 
@@ -206,7 +205,7 @@
   <div class="highlight-overlay" />
 {/if}
 
-<div class="sun-container">
+<div class="sun-container" on:click>
   <div id="sun" class="animate"  on:mouseover={() => { hovering = true; }} on:mouseout={() => { hovering = false; }}>
     <div class="overlay" />
     <div class="outreaching-rays" />

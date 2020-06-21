@@ -62,9 +62,6 @@
 
   :global(html.dark) {
     :global(.navbar .link) {
-      min-width: 75px;
-      border: 1px solid #939393;
-
       @media(hover: hover) and (pointer: fine) {
         &:hover {
           > a {

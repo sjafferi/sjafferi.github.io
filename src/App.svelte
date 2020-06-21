@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   import { Router, Route } from "svelte-routing";
   import { themeManager } from 'stores';
   import Sun from "components/Sun.svelte";
@@ -11,29 +11,23 @@
   import "./main.scss";
   // Used for SSR. A falsy value is ignored by the Router.
   export let url = "";
+  let theme;
+  const unsubscribe = themeManager.theme.subscribe(value => theme = value);
 
-  
   onMount(() => {
     themeManager.toggle();
     if (location.pathname === '/') {
       location.href = '/about'
     }
   });
+
+  onDestroy(() => {
+    unsubscribe();
+    themeManager.destroy();
+  })
 </script>
 
 <style>
-  :global(body) {
-    /* background: linear-gradient(
-      rgba(74, 88, 103, 1) 18%,
-      rgba(36, 41, 47, 1) 57%,
-      rgb(0, 0, 0) 100%
-    ); */
-  }
-
-  :global(html.dark) {
-    background: rgb(44, 62, 80);
-  }
-
   img {
     position: absolute;
     right: 0;
@@ -74,8 +68,11 @@
 
 <div class="container">
   <Router {url}>
-    <Sun />
-    <Moon />
+    {#if theme == "light"}
+      <Sun on:click={themeManager.toggle} />
+    {:else}
+      <Moon on:click={themeManager.toggle} />
+    {/if}
     <Nav />
     <div class="section">
       <Route path="projects" component={Projects} />

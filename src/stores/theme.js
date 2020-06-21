@@ -2,14 +2,27 @@ import { writable } from "svelte/store";
 
 class ThemeManager {
   constructor() {
-    this.theme = "light";
+    this.theme = writable("light");
+    this.toggle = this.toggle.bind(this);
+    this.handleThemeChange = this.handleThemeChange.bind(this);
+    this.destroy = this.theme.subscribe(this.handleThemeChange);
+  }
+
+  get html() {
+    if (!this.htmlElem)
+      this.htmlElem = document.getElementsByTagName("html")[0];
+    return this.htmlElem;
+  }
+
+  handleThemeChange(theme) {
+    const html = this.html;
+    const oldTheme = html.classList[0];
+    html.classList.remove(oldTheme);
+    html.classList.add(theme);
   }
 
   toggle() {
-    const html = document.getElementsByTagName("html")[0];
-    html.classList.remove(this.theme);
-    this.theme = this.theme === "light" ? "dark" : "light";
-    html.classList.add(this.theme);
+    this.theme.update((theme) => (theme === "light" ? "dark" : "light"));
   }
 }
 
