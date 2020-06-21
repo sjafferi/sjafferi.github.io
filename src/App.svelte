@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import { Router, Route } from "svelte-routing";
   import { themeManager } from 'stores';
   import Sun from "components/Sun.svelte";
@@ -12,6 +13,12 @@
   export let url = "";
 
   // themeManager.toggle();
+
+  onMount(() => {
+    if (location.pathname === '/') {
+      location.href = '/about'
+    }
+  });
 </script>
 
 <style>
@@ -25,14 +32,6 @@
 
   :global(body.dark) {
     background: rgb(44, 62, 80);
-  }
-
-  .overlay-img-container {
-    width: 73%;
-    height: 100%;
-    position: fixed;
-    pointer-events: none;
-    max-width: 170ch;
   }
 
   img {
@@ -61,10 +60,7 @@
       flex-flow: column;
       padding: 0;
     }
-    .overlay-img-container {
-      width: 100vw;
-      height: 100vh;
-    }
+
     img {
       max-width: 100vw;
     }
@@ -77,16 +73,13 @@
 
 
 <div class="container">
-  <!-- <div class="overlay-img-container">
-    <img src="images/light-background.png" />
-  </div> -->
   <Router {url}>
     <Sun />
     <!-- <Moon /> -->
     <Nav />
     <div class="page">
       <Route path="projects" component={Projects} />
-      <Route path="/" component={Me} />
+      <Route path="about" component={Me} />
       <Route path="writings/*" component={Blog} />
     </div>
   </Router>

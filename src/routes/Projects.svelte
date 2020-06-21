@@ -8,8 +8,6 @@
   .projects {
     display: flex;
     flex-flow: column;
-    margin-left: 4vw;
-    margin-top: 4vw;
     padding-left: 30px;
     width: 110%;
   }

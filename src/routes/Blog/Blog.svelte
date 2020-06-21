@@ -14,8 +14,6 @@
   .container {
     width: 100%;
     padding: 0 20px;
-    margin-left: 30px;
-    margin-top: 4vw;
   }
   .posts {
     list-style-type: none;

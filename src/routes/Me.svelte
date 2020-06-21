@@ -3,15 +3,32 @@
   import List from "components/List.svelte";
 </script>
 
-<style>
+<style lang="scss">
   .container-me {
-    width: 100%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    margin-left: 85px;
-    margin-top: 65px;
+    font-family: "Montserrat", sans-serif;
+    max-width: 70ch;
+    margin-left: 15%;
+    margin-top: 25%;
   }
+
+  .description {
+    h1 {
+      font-size: 4rem;
+    }
+    p {
+      font-size: 2rem;
+    }
+    h1,
+    p {
+      color: #4c4c4c;
+      font-weight: 400;
+      line-height: 2;
+    }
+  }
+
   @media (max-width: 550px) {
     .container-me {
       margin: 0;
@@ -25,11 +42,24 @@
 </svelte:head>
 
 <div class="container-me">
-  <List title="About">
+  <div class="description">
+    <h1>I'm Sibtain</h1>
+    <p>
+      Multi-disciplinary designer working with brands in the D.C. metro area.
+      Previously at The Washington Post and National Geographic.
+      <a href="/writings">writing</a>
+      and
+      <a href="/projects">a few notable projects</a>
+      .
+    </p>
+  </div>
+
+  <!-- <List title="I'm Sibtain">
     <div class="description list">
       <p>Greetings. I'm a frontend engineer @ Sumo Logic</p>
       <p>
-        Right now I'm most interested in developing open source svelte components,
+        Right now I'm most interested in developing open source svelte
+        components,
         <a href="/writings">writing</a>
         and
         <a href="/projects">a few notable projects</a>
@@ -65,6 +95,5 @@
     <li>
       <p>2019 - University of Waterloo: Bachelors of Computer Science</p>
     </li>
-  </List>
-
+  </List> -->
 </div>
