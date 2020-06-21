@@ -13,11 +13,12 @@
 <style>
   .container {
     width: 100%;
-    padding: 0 20px;
+    margin-left: 25%;
   }
   .posts {
     list-style-type: none;
-    margin-top: 85px;
+    margin: 0;
+    padding: 0;
   }
 
   .posts li {
@@ -42,7 +43,7 @@
   }
 
   .posts p {
-    line-height: 4px;
+    line-height: 1rem;
   }
 
   .posts .date {
@@ -58,21 +59,17 @@
     display: flex;
   }
 
-  /* @media (max-width: 550px) {
+  @media (max-width: 550px) {
     .container {
       margin: 0;
     }
-    .posts {
-      margin: 0;
-      padding: 0;
+    .posts p {
+      line-height: 1.5rem;
     }
     .posts li {
-      margin: 45px 0;
+      
     }
-    .posts .subtitle {
-      line-height: 1.5;
-    }
-  } */
+  }
 </style>
 
 <svelte:head>

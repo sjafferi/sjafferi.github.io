@@ -15,7 +15,6 @@
     top: 0;
     left: 0;
     position: absolute;
-    z-index: 5;
     display: none;
     --moon-size: 100px;
   }

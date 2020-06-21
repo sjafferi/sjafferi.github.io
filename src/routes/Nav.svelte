@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import { slide, fade } from 'svelte/transition';
   import MediaQuery from "svelte-media-query";
   import NavLink from "components/NavLink.svelte";
@@ -11,15 +12,20 @@
     {title: 'about', link: '/about'}
   ]
   let closed = true;
-  let current_page = location.pathname;
+  let current_page;
   const close_menu = () => closed = !closed;
   const select_menu_option = (link) => {
     current_page = link;
     closed = true;
   }
+
+  onMount(() => {
+    current_page = location.pathname;
+  });
+
 </script>
 
-<style lang="scss">
+<style type="text/scss">
   .navbar {
     display: flex;
     justify-content: center;

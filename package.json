@@ -2,7 +2,6 @@
   "dependencies": {
     "highlight.js": "^9.17.1",
     "moment": "^2.24.0",
-    "node-sass": "^4.14.1",
     "remarkable": "^2.0.0",
     "svelte": "^3.4.2",
     "svelte-images": "0.0.94",
@@ -35,6 +34,7 @@
     "rollup-plugin-terser": "^5.0.0",
     "rollup-plugin-typescript": "^1.0.1",
     "svelte-preprocess": "^3.7.4",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "node-sass": "^4.14.1"
   }
 }

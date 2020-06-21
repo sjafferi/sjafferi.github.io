@@ -8,7 +8,7 @@
   export let content;
 
   const md = new Remarkable({
-    highlight: function(str, lang) {
+    highlight: function (str, lang) {
       if (lang && hljs.getLanguage(lang)) {
         try {
           return hljs.highlight(lang, str).value;
@@ -20,19 +20,19 @@
       } catch (err) {}
 
       return ""; // use external default escaping
-    }
+    },
   });
 
   function plugin(md) {
-    md.renderer.rules.heading_open = function(tokens, idx) {
+    md.renderer.rules.heading_open = function (tokens, idx) {
       return `<h${tokens[idx].hLevel} id='${toSlug(tokens[idx + 1].content)}'>`;
     };
 
-    md.renderer.rules.heading_close = function(tokens, idx) {
+    md.renderer.rules.heading_close = function (tokens, idx) {
       return `</h${tokens[idx].hLevel}>\n`;
     };
 
-    md.renderer.rules.image = function(tokens, idx, options /*, env */) {
+    md.renderer.rules.image = function (tokens, idx, options /*, env */) {
       const src = ` src="${tokens[idx].src}"`;
       const title = tokens[idx].title ? ` title="${tokens[idx].title}"` : "";
       const alt = ' alt="' + (tokens[idx].alt ? tokens[idx].alt : "") + '"';

@@ -11,19 +11,24 @@
   import "./main.scss";
   // Used for SSR. A falsy value is ignored by the Router.
   export let url = "";
-  let theme;
-  const unsubscribe = themeManager.theme.subscribe(value => theme = value);
-
+  let theme, unsubscribe;
+  
   onMount(() => {
+    themeManager.initialize();
     themeManager.toggle();
     if (location.pathname === '/') {
       location.href = '/about'
     }
+    if (!unsubscribe) {
+      unsubscribe = themeManager.theme.subscribe(value => theme = value);
+    }
   });
 
   onDestroy(() => {
-    unsubscribe();
-    themeManager.destroy();
+    if (unsubscribe) {
+      unsubscribe();
+      themeManager.destroy();
+    }
   })
 </script>
 
@@ -46,6 +51,7 @@
   .section {
     width: 100%;
     z-index: 2;
+    margin-top: 5rem;
   }
 
   @media (max-width: 550px) {
@@ -53,6 +59,11 @@
       overflow-x: hidden;
       flex-flow: column;
       padding: 0;
+    }
+
+    .section {
+      margin-top: 2rem;
+      padding: 0.5rem;
     }
 
     img {

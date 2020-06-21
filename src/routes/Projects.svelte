@@ -1,15 +1,14 @@
 <script>
   import { Images } from "svelte-images";
+  import { fade } from 'svelte/transition';
   import Tag from "components/Tag.svelte";
   import Projects from "metadata/projects.js";
 </script>
 
-<style>
+<style lang="scss">
   .projects {
     display: flex;
     flex-flow: column;
-    padding-left: 30px;
-    width: 110%;
   }
 
   .tile {
@@ -17,22 +16,6 @@
     justify-content: space-between;
     border-bottom: 1px solid #e1e4e8;
     margin: 30px 0;
-  }
-
-  @media (max-width: 550px) {
-    .projects {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-    }
-    .tile {
-      flex-flow: column;
-      padding: 20px;
-    }
-    .tags {
-      flex-flow: wrap;
-      justify-content: center;
-    }
   }
 
   .content,
@@ -64,10 +47,18 @@
     border-color: rgba(27, 31, 35, 0.35);
   }
 
+  :global(html.dark .link-btn) {
+    background-image: linear-gradient(-180deg, #505050, #202020 90%);
+    &:hover {
+      background-image: linear-gradient(-180deg, #505050, #686868 100%);
+      border-color: rgba(27, 31, 35, 0.35);
+    }
+  }
+
   .header-link {
     color: #333;
     text-decoration: none;
-    font-size: 1.5em;
+    font-size: 1.75em;
     font-weight: 600;
   }
   .header-link:hover {
@@ -76,7 +67,7 @@
 
   .description {
     color: #586069;
-    font-size: 1em;
+    font-size: 1.25em;
     line-height: 1.5;
   }
 
@@ -90,6 +81,32 @@
 
   :global(.images .nav button) {
     background: #b0afafc9 !important;
+  }
+
+  @media (max-width: 550px) {
+    .projects {
+      margin: 0;
+      margin-top: 2rem;
+      padding: 0;
+      width: 100%;
+    }
+    .tile {
+      flex-flow: column;
+      padding: 20px;
+    }
+    .tags {
+      flex-flow: wrap;
+      justify-content: center;
+    }
+    a, p {
+      text-align: center;
+    }
+    :global(.svelte-images-gallery) {
+      justify-content: center;
+    }
+    .links {
+      margin-top: 1rem;
+    }
   }
 </style>
 
@@ -115,7 +132,7 @@
       </div>
       <div class="links">
         {#each links as { link, text }}
-          <a class="link-btn" target="_blank" href={link}>{text}</a>
+          <a in:fade class="link-btn" target="_blank" href={link}>{text}</a>
         {/each}
       </div>
     </div>

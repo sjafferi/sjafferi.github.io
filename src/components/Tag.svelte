@@ -7,6 +7,10 @@
     background-color: #f1f8ff;
     border-radius: 3px;
   }
+
+  :global(html.dark .tag) {
+    background-color: #4f4f4f;
+  }
 </style>
 
 

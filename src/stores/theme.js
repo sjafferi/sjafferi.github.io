@@ -2,14 +2,18 @@ import { writable } from "svelte/store";
 
 class ThemeManager {
   constructor() {
-    this.theme = writable("light");
     this.toggle = this.toggle.bind(this);
+    this.initialize = this.initialize.bind(this);
     this.handleThemeChange = this.handleThemeChange.bind(this);
+  }
+
+  initialize() {
+    this.theme = writable("light");
     this.destroy = this.theme.subscribe(this.handleThemeChange);
   }
 
   get html() {
-    if (!this.htmlElem)
+    if (!this.htmlElem && document)
       this.htmlElem = document.getElementsByTagName("html")[0];
     return this.htmlElem;
   }

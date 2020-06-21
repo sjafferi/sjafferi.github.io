@@ -85,6 +85,7 @@ export default [
     plugins: [
       svelte({
         generate: "ssr",
+        preprocess: autoPreprocess(),
       }),
       resolve(),
       commonjs(),

@@ -20,7 +20,7 @@
     font-family: "Montserrat", sans-serif;
     max-width: 70ch;
     margin-left: 15%;
-    margin-top: 25%;
+    margin-top: 15%;
   }
 
   .description {
@@ -90,7 +90,7 @@
   @media (max-width: 550px) {
     .about-container {
       margin: 0;
-      padding: 3rem 1.5rem;
+      padding: 3rem 0.5rem;
     }
     .description {
       h1 {
