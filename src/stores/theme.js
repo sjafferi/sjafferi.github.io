@@ -6,9 +6,10 @@ class ThemeManager {
   }
 
   toggle() {
-    document.body.classList.remove(this.theme);
+    const html = document.getElementsByTagName("html")[0];
+    html.classList.remove(this.theme);
     this.theme = this.theme === "light" ? "dark" : "light";
-    document.body.classList.add(this.theme);
+    html.classList.add(this.theme);
   }
 }
 

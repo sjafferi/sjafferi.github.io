@@ -10,10 +10,14 @@
   $sun-size: 125px;
   $sun-size-mobile: 75px;
 
-  .container {
+  .sun-container {
     top: 0;
     left: 0;
     position: absolute;
+  }
+
+  :global(html.dark .sun-container) {
+    display: none;
   }
 
   .highlight-overlay {
@@ -192,7 +196,7 @@
   }
 
   @supports (-moz-appearance:none) {
-    .container {
+    .sun-container {
       display: none;
     }
   }
@@ -202,7 +206,7 @@
   <div class="highlight-overlay" />
 {/if}
 
-<div class="container">
+<div class="sun-container">
   <div id="sun" class="animate"  on:mouseover={() => { hovering = true; }} on:mouseout={() => { hovering = false; }}>
     <div class="overlay" />
     <div class="outreaching-rays" />

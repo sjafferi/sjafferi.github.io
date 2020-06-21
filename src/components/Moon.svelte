@@ -1,17 +1,23 @@
 <style>
-  .container {
+  .moon-container {
     top: 0;
     left: 0;
     position: absolute;
-    z-index: 2;
+    z-index: 5;
     pointer-events: none;
+    display: none;
+    --moon-size: 100px;
+  }
+
+  :global(html.dark .moon-container) {
+    display: block;
   }
 
   /* Moon is down in its initial position */
   #moon {
     position: absolute;
-    height: 100px;
-    width: 100px;
+    width: var(--moon-size);
+    height: var(--moon-size);
     background: silver;
     border-radius: 50%;
     left: 40%;
@@ -33,8 +39,8 @@
   /* this serves for the animation and it's behind the shadow   */
   #moon-shadow {
     position: absolute;
-    height: 100px;
-    width: 100px;
+    width: var(--moon-size);
+    height: var(--moon-size);
     background: silver;
     border-radius: 50%;
     left: 40%;
@@ -50,9 +56,15 @@
     transition-delay: 0.4s;
     z-index: -4;
   }
+
+  @media (max-width: 550px) {
+    .moon-container {
+      --moon-size: 50px;
+    }
+  }
 </style>
 
-<div class="container">
+<div class="moon-container">
   <div id="moon"></div>
   <div id="moon-shadow"></div>
 </div>

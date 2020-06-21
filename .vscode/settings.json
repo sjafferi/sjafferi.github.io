@@ -2,5 +2,8 @@
   "files.associations": {
     "*.svelte": "html"
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/public": true
+  }
 }

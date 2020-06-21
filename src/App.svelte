@@ -12,9 +12,9 @@
   // Used for SSR. A falsy value is ignored by the Router.
   export let url = "";
 
-  // themeManager.toggle();
-
+  
   onMount(() => {
+    themeManager.toggle();
     if (location.pathname === '/') {
       location.href = '/about'
     }
@@ -30,7 +30,7 @@
     ); */
   }
 
-  :global(body.dark) {
+  :global(html.dark) {
     background: rgb(44, 62, 80);
   }
 
@@ -49,7 +49,7 @@
     flex-direction: column;
   }
 
-  .page {
+  .section {
     width: 100%;
     z-index: 2;
   }
@@ -75,9 +75,9 @@
 <div class="container">
   <Router {url}>
     <Sun />
-    <!-- <Moon /> -->
+    <Moon />
     <Nav />
-    <div class="page">
+    <div class="section">
       <Route path="projects" component={Projects} />
       <Route path="about" component={Me} />
       <Route path="writings/*" component={Blog} />

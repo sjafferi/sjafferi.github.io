@@ -1,5 +1,5 @@
 <script>
-  import { slide } from 'svelte/transition';
+  import { slide, fade } from 'svelte/transition';
   import MediaQuery from "svelte-media-query";
   import NavLink from "components/NavLink.svelte";
   import Menu from "components/Icons/Menu.svelte";
@@ -38,8 +38,8 @@
     transition: all 100ms ease-in;
     @media(hover: hover) and (pointer: fine) {
       &:hover {
-        background: #333;
         > a {
+          background: #333;
           color: white !important;
         }
       }
@@ -49,7 +49,7 @@
   :global(.navbar a) {
     font-size: 1rem !important;
     text-align: center;
-    font-weight: 300;
+    font-weight: 300 !important;
     text-transform: uppercase;
     font-family: "Montserrat", sans-serif;
     letter-spacing: 6px;
@@ -58,6 +58,26 @@
 
   :global(.navbar div + div) {
     border-left: none;
+  }
+
+  :global(html.dark) {
+    :global(.navbar .link) {
+      min-width: 75px;
+      border: 1px solid #939393;
+
+      @media(hover: hover) and (pointer: fine) {
+        &:hover {
+          > a {
+            background: #fff !important;
+            color: black !important;
+          }
+        }
+      }
+    }
+
+    :global(.navbar-cta svg) {
+      fill: white;
+    }
   }
 
   @media (max-width: 550px) {
@@ -109,9 +129,13 @@
     </div>
     <div class="navbar-cta">
       {#if closed}
+      <div in:fade>
         <Menu on:click={close_menu} />
+      </div>
       {:else}
+      <div in:fade>
         <Close on:click={close_menu} />
+      </div>
       {/if}
     </div>
   {:else}

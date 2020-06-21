@@ -1,26 +1,29 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Raleway&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway&display=swap");
 $background-color: #eee;
 
 body {
   font-family: "Raleway", sans-serif !important;
 }
+html.dark {
+  background-color: #333 !important;
+  color: #cacaca !important;
+}
+
+html.light {
+  background-color: #eee;
+  color: #333;
+}
 
 .dark {
   * {
-    background-color: #333;
+    // background-color: #333;
     color: #cacaca !important;
   }
-  // $background-color: #333 !global;
-  // $color: #cacaca;
 }
 
 .light {
   * {
-    background-color: #eee;
+    // background-color: #eee;
     color: #333;
   }
 }
-
-// body {
-//   background: $background-color !important;
-// }
