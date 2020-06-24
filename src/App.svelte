@@ -63,7 +63,7 @@
 
     .section {
       margin-top: 2rem;
-      padding: 0.5rem;
+      padding: 0.6rem;
     }
 
     img {

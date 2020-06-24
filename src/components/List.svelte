@@ -16,10 +16,10 @@
   }
 
   :global(.list a, .list p) {
-    color: #333;
+    color: var(--text-color);
   }
   :global(.list a:hover) {
-    color: #888;
+    opacity: 0.75;
   }
 </style>
 

@@ -6,6 +6,8 @@
 </script>
 
 <style lang="scss">
+  $text-color: var(--text-color);
+
   .projects {
     display: flex;
     flex-flow: column;
@@ -32,7 +34,7 @@
     padding: 0.5em 1em;
     margin: 0.1em 0.65em 1em 0;
     white-space: nowrap;
-    color: #24292e;
+    color: var(--text-color);
     background-color: #eff3f6;
     background-image: linear-gradient(-180deg, #fafbfc, #eff3f6 90%);
     border: 1px solid rgba(27, 31, 35, 0.2);
@@ -56,17 +58,17 @@
   }
 
   .header-link {
-    color: #333;
+    color: var(--text-color);
     text-decoration: none;
     font-size: 1.75em;
     font-weight: 600;
   }
   .header-link:hover {
-    color: #888;
+    opacity: 0.75;
   }
 
   .description {
-    color: #586069;
+    color: var(--text-color);
     font-size: 1.25em;
     line-height: 1.5;
   }

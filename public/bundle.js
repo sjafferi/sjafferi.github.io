@@ -1997,7 +1997,7 @@
       }
 
       get html() {
-        if (!this.htmlElem && document)
+        if (!this.htmlElem)
           this.htmlElem = document.getElementsByTagName("html")[0];
         return this.htmlElem;
       }
@@ -2226,7 +2226,7 @@
     			append(div5, div4);
 
     			dispose = [
-    				listen(div0, "click", /*toggleAnimation*/ ctx[1]),
+    				listen(div0, "mouseover", /*toggleAnimation*/ ctx[1]),
     				listen(div5, "click", /*click_handler*/ ctx[2])
     			];
     		},
@@ -2810,7 +2810,7 @@
     	return child_ctx;
     }
 
-    // (117:2) {:else}
+    // (118:2) {:else}
     function create_else_block_1(ctx) {
     	let div;
     	let current;
@@ -2847,7 +2847,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "navbar svelte-106mkc8");
+    			attr(div, "class", "navbar svelte-182tr2k");
     			toggle_class(div, "closed", /*closed*/ ctx[0]);
     		},
     		m(target, anchor) {
@@ -2916,7 +2916,7 @@
     	};
     }
 
-    // (91:2) {#if matches}
+    // (92:2) {#if matches}
     function create_if_block$2(ctx) {
     	let div0;
     	let t;
@@ -2976,9 +2976,9 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "navbar svelte-106mkc8");
+    			attr(div0, "class", "navbar svelte-182tr2k");
     			toggle_class(div0, "closed", /*closed*/ ctx[0]);
-    			attr(div1, "class", "navbar-cta svelte-106mkc8");
+    			attr(div1, "class", "navbar-cta svelte-182tr2k");
     		},
     		m(target, anchor) {
     			insert(target, div0, anchor);
@@ -3078,7 +3078,7 @@
     	};
     }
 
-    // (120:10) <NavLink to={link}>
+    // (121:10) <NavLink to={link}>
     function create_default_slot_2(ctx) {
     	let t_value = /*title*/ ctx[7] + "";
     	let t;
@@ -3100,7 +3100,7 @@
     	};
     }
 
-    // (119:6) {#each options as { title, link }}
+    // (120:6) {#each options as { title, link }}
     function create_each_block_1(ctx) {
     	let current;
 
@@ -3147,7 +3147,7 @@
     	};
     }
 
-    // (94:8) {#if !closed || current_page.startsWith(link)}
+    // (95:8) {#if !closed || current_page.startsWith(link)}
     function create_if_block_2(ctx) {
     	let div;
     	let t;
@@ -3228,7 +3228,7 @@
     	};
     }
 
-    // (96:12) <NavLink             to={link}              on:click={() => select_menu_option(link)}             >
+    // (97:12) <NavLink             to={link}              on:click={() => select_menu_option(link)}             >
     function create_default_slot_1(ctx) {
     	let t_value = /*title*/ ctx[7] + "";
     	let t;
@@ -3250,7 +3250,7 @@
     	};
     }
 
-    // (93:6) {#each options as { title, link }}
+    // (94:6) {#each options as { title, link }}
     function create_each_block(ctx) {
     	let show_if = !/*closed*/ ctx[0] || /*current_page*/ ctx[1].startsWith(/*link*/ ctx[8]);
     	let if_block_anchor;
@@ -3310,7 +3310,7 @@
     	};
     }
 
-    // (111:6) {:else}
+    // (112:6) {:else}
     function create_else_block$1(ctx) {
     	let div;
     	let div_intro;
@@ -3359,7 +3359,7 @@
     	};
     }
 
-    // (107:6) {#if closed}
+    // (108:6) {#if closed}
     function create_if_block_1$1(ctx) {
     	let div;
     	let div_intro;
@@ -3408,7 +3408,7 @@
     	};
     }
 
-    // (90:0) <MediaQuery query="(max-width: 550px)" let:matches>
+    // (91:0) <MediaQuery query="(max-width: 550px)" let:matches>
     function create_default_slot$1(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -5007,7 +5007,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "images svelte-19s9ov2");
+    			attr(div, "class", "images svelte-evht5o");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -5121,7 +5121,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link-btn svelte-19s9ov2");
+    			attr(a, "class", "link-btn svelte-evht5o");
     			attr(a, "target", "_blank");
     			attr(a, "href", a_href_value = /*link*/ ctx[8]);
     		},
@@ -5251,14 +5251,14 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "header-link svelte-19s9ov2");
+    			attr(a, "class", "header-link svelte-evht5o");
     			attr(a, "href", a_href_value = /*titleLink*/ ctx[1]);
     			attr(a, "target", "_blank");
-    			attr(p, "class", "description svelte-19s9ov2");
-    			attr(div0, "class", "tags svelte-19s9ov2");
-    			attr(div1, "class", "content svelte-19s9ov2");
-    			attr(div2, "class", "links svelte-19s9ov2");
-    			attr(div3, "class", "tile svelte-19s9ov2");
+    			attr(p, "class", "description svelte-evht5o");
+    			attr(div0, "class", "tags svelte-evht5o");
+    			attr(div1, "class", "content svelte-evht5o");
+    			attr(div2, "class", "links svelte-evht5o");
+    			attr(div3, "class", "tile svelte-evht5o");
     		},
     		m(target, anchor) {
     			insert(target, div3, anchor);
@@ -5417,7 +5417,7 @@
     		},
     		h() {
     			document.title = "Projects | Sibtain Jafferi";
-    			attr(div, "class", "projects svelte-19s9ov2");
+    			attr(div, "class", "projects svelte-evht5o");
     		},
     		m(target, anchor) {
     			insert(target, t, anchor);
@@ -38542,7 +38542,7 @@
       }
     }
 
-    var css$1 = "/*!\n * Agate by Taufik Nurrohman <https://github.com/tovic>\n * ----------------------------------------------------\n *\n * #ade5fc\n * #a2fca2\n * #c6b4f0\n * #d36363\n * #fcc28c\n * #fc9b9b\n * #ffa\n * #fff\n * #333\n * #62c8f3\n * #888\n *\n */\n\n.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  background: #333;\n  color: white;\n}\n\n.hljs-name,\n.hljs-strong {\n  font-weight: bold;\n}\n\n.hljs-code,\n.hljs-emphasis {\n  font-style: italic;\n}\n\n.hljs-tag {\n  color: #62c8f3;\n}\n\n.hljs-variable,\n.hljs-template-variable,\n.hljs-selector-id,\n.hljs-selector-class {\n  color: #ade5fc;\n}\n\n.hljs-string,\n.hljs-bullet {\n  color: #a2fca2;\n}\n\n.hljs-type,\n.hljs-title,\n.hljs-section,\n.hljs-attribute,\n.hljs-quote,\n.hljs-built_in,\n.hljs-builtin-name {\n  color: #ffa;\n}\n\n.hljs-number,\n.hljs-symbol,\n.hljs-bullet {\n  color: #d36363;\n}\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal {\n  color: #fcc28c;\n}\n\n.hljs-comment,\n.hljs-deletion,\n.hljs-code {\n  color: #888;\n}\n\n.hljs-regexp,\n.hljs-link {\n  color: #c6b4f0;\n}\n\n.hljs-meta {\n  color: #fc9b9b;\n}\n\n.hljs-deletion {\n  background-color: #fc9b9b;\n  color: #333;\n}\n\n.hljs-addition {\n  background-color: #a2fca2;\n  color: #333;\n}\n\n.hljs a {\n  color: inherit;\n}\n\n.hljs a:focus,\n.hljs a:hover {\n  color: inherit;\n  text-decoration: underline;\n}\n";
+    var css$1 = "/*!\n * Agate by Taufik Nurrohman <https://github.com/tovic>\n * ----------------------------------------------------\n *\n * #ade5fc\n * #a2fca2\n * #c6b4f0\n * #d36363\n * #fcc28c\n * #fc9b9b\n * #ffa\n * #fff\n * #333\n * #62c8f3\n * #888\n *\n */\n.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  background: #333;\n  color: white; }\n\n.hljs-name,\n.hljs-strong {\n  font-weight: bold; }\n\n.hljs-code,\n.hljs-emphasis {\n  font-style: italic; }\n\n.hljs-tag {\n  color: #62c8f3; }\n\n.hljs-variable,\n.hljs-template-variable,\n.hljs-selector-id,\n.hljs-selector-class {\n  color: #ade5fc; }\n\n.hljs-string,\n.hljs-bullet {\n  color: #a2fca2; }\n\n.hljs-type,\n.hljs-title,\n.hljs-section,\n.hljs-attribute,\n.hljs-quote,\n.hljs-built_in,\n.hljs-builtin-name {\n  color: #ffa; }\n\n.hljs-number,\n.hljs-symbol,\n.hljs-bullet {\n  color: #d36363; }\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal {\n  color: #fcc28c; }\n\n.hljs-comment,\n.hljs-deletion,\n.hljs-code {\n  color: #888; }\n\n.hljs-regexp,\n.hljs-link {\n  color: #c6b4f0; }\n\n.hljs-meta {\n  color: #fc9b9b; }\n\n.hljs-deletion {\n  background-color: #fc9b9b;\n  color: #333; }\n\n.hljs-addition {\n  background-color: #a2fca2;\n  color: #333; }\n\n.hljs a {\n  color: inherit; }\n\n.hljs a:focus,\n.hljs a:hover {\n  color: inherit;\n  text-decoration: underline; }\n";
     styleInject(css$1);
 
     /* src/components/Markdown.svelte generated by Svelte v3.17.1 */
@@ -38653,7 +38653,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "toc svelte-1rkbnjb");
+    			attr(div, "class", "toc svelte-daegoa");
     			toggle_class(div, "wide", /*maxDepth*/ ctx[1] > 3);
     		},
     		m(target, anchor) {
@@ -39144,7 +39144,7 @@
     	return child_ctx;
     }
 
-    // (86:31) <Link to={slug}>
+    // (85:31) <Link to={slug}>
     function create_default_slot_4(ctx) {
     	let t_value = /*title*/ ctx[4] + "";
     	let t;
@@ -39166,7 +39166,7 @@
     	};
     }
 
-    // (91:16) <Tag>
+    // (90:16) <Tag>
     function create_default_slot_3(ctx) {
     	let t_value = /*tag*/ ctx[11] + "";
     	let t;
@@ -39188,7 +39188,7 @@
     	};
     }
 
-    // (90:14) {#each tags as tag}
+    // (89:14) {#each tags as tag}
     function create_each_block_2$1(ctx) {
     	let current;
 
@@ -39234,7 +39234,7 @@
     	};
     }
 
-    // (84:8) {#each posts as { title, slug, subtitle, date, tags }}
+    // (83:8) {#each posts as { title, slug, subtitle, date, tags }}
     function create_each_block_1$2(ctx) {
     	let li;
     	let div0;
@@ -39325,11 +39325,11 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "title svelte-zzgsc2");
-    			attr(p0, "class", "date svelte-zzgsc2");
-    			attr(p1, "class", "subtitle svelte-zzgsc2");
-    			attr(div1, "class", "tags svelte-zzgsc2");
-    			attr(li, "class", "svelte-zzgsc2");
+    			attr(div0, "class", "title svelte-1sbcy7");
+    			attr(p0, "class", "date svelte-1sbcy7");
+    			attr(p1, "class", "subtitle svelte-1sbcy7");
+    			attr(div1, "class", "tags svelte-1sbcy7");
+    			attr(li, "class", "svelte-1sbcy7");
     		},
     		m(target, anchor) {
     			insert(target, li, anchor);
@@ -39416,7 +39416,7 @@
     	};
     }
 
-    // (82:4) <Route path="/">
+    // (81:4) <Route path="/">
     function create_default_slot_2$1(ctx) {
     	let ul;
     	let current;
@@ -39453,7 +39453,7 @@
     			this.h();
     		},
     		h() {
-    			attr(ul, "class", "posts svelte-zzgsc2");
+    			attr(ul, "class", "posts svelte-1sbcy7");
     		},
     		m(target, anchor) {
     			insert(target, ul, anchor);
@@ -39517,7 +39517,7 @@
     	};
     }
 
-    // (100:6) <Route path={post.slug}>
+    // (99:6) <Route path={post.slug}>
     function create_default_slot_1$1(ctx) {
     	let t;
     	let current;
@@ -39567,7 +39567,7 @@
     	};
     }
 
-    // (99:4) {#each Posts as post}
+    // (98:4) {#each Posts as post}
     function create_each_block$4(ctx) {
     	let current;
 
@@ -39614,7 +39614,7 @@
     	};
     }
 
-    // (81:2) <Router>
+    // (80:2) <Router>
     function create_default_slot$4(ctx) {
     	let t;
     	let each_1_anchor;
@@ -39767,7 +39767,7 @@
     		},
     		h() {
     			document.title = "Writings | Sibtain Jafferi";
-    			attr(div, "class", "container svelte-zzgsc2");
+    			attr(div, "class", "container svelte-1sbcy7");
     		},
     		m(target, anchor) {
     			insert(target, t, anchor);
@@ -40035,7 +40035,7 @@
     	return child_ctx;
     }
 
-    // (110:4) {#each links as { Logo, link }}
+    // (122:4) {#each links as { Logo, link }}
     function create_each_block$5(ctx) {
     	let a;
     	let t;
@@ -40059,7 +40059,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link svelte-15bgp2o");
+    			attr(a, "class", "link svelte-l835xa");
     			attr(a, "href", a_href_value = /*link*/ ctx[2]);
     			attr(a, "target", "_blank");
     		},
@@ -40090,21 +40090,28 @@
     	let t0;
     	let div2;
     	let div0;
-    	let span;
+    	let span0;
     	let h1;
     	let t1;
     	let t2;
-    	let p0;
+    	let p;
     	let t3;
     	let t4;
-    	let p1;
+    	let span5;
     	let t5;
-    	let a0;
+    	let span1;
     	let t6;
     	let t7;
-    	let a1;
+    	let span2;
     	let t8;
     	let t9;
+    	let span3;
+    	let t10;
+    	let t11;
+    	let span4;
+    	let t12;
+    	let t13;
+    	let t14;
     	let div1;
     	let current;
     	let each_value = /*links*/ ctx[0];
@@ -40123,21 +40130,28 @@
     			t0 = space();
     			div2 = element("div");
     			div0 = element("div");
-    			span = element("span");
+    			span0 = element("span");
     			h1 = element("h1");
     			t1 = text("I'm Sibtain");
     			t2 = space();
-    			p0 = element("p");
+    			p = element("p");
     			t3 = text("سبطین");
     			t4 = space();
-    			p1 = element("p");
-    			t5 = text("Multi-disciplinary engineer working at Sumologic in Redwood City, CA.\n      Right now I'm most interested in developing open source svelte components,\n      ");
-    			a0 = element("a");
-    			t6 = text("writing");
-    			t7 = text("\n      and a few notable\n      ");
-    			a1 = element("a");
-    			t8 = text("projects.");
-    			t9 = space();
+    			span5 = element("span");
+    			t5 = text("Currently at Sumo Logic in Redwood City, CA. \n      What drives me: \n      ");
+    			span1 = element("span");
+    			t6 = text("curiosity");
+    			t7 = text(" for ");
+    			span2 = element("span");
+    			t8 = text("all things web");
+    			t9 = text(",\n      creating ");
+    			span3 = element("span");
+    			t10 = text("stellar user experiences");
+    			t11 = text(",\n      and ");
+    			span4 = element("span");
+    			t12 = text("self-development");
+    			t13 = text(".");
+    			t14 = space();
     			div1 = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -40154,34 +40168,45 @@
     			var div2_nodes = children(div2);
     			div0 = claim_element(div2_nodes, "DIV", { class: true });
     			var div0_nodes = children(div0);
-    			span = claim_element(div0_nodes, "SPAN", { class: true });
-    			var span_nodes = children(span);
-    			h1 = claim_element(span_nodes, "H1", { class: true });
+    			span0 = claim_element(div0_nodes, "SPAN", { class: true });
+    			var span0_nodes = children(span0);
+    			h1 = claim_element(span0_nodes, "H1", { class: true });
     			var h1_nodes = children(h1);
     			t1 = claim_text(h1_nodes, "I'm Sibtain");
     			h1_nodes.forEach(detach);
-    			t2 = claim_space(span_nodes);
-    			p0 = claim_element(span_nodes, "P", { class: true });
-    			var p0_nodes = children(p0);
-    			t3 = claim_text(p0_nodes, "سبطین");
-    			p0_nodes.forEach(detach);
-    			span_nodes.forEach(detach);
+    			t2 = claim_space(span0_nodes);
+    			p = claim_element(span0_nodes, "P", { class: true });
+    			var p_nodes = children(p);
+    			t3 = claim_text(p_nodes, "سبطین");
+    			p_nodes.forEach(detach);
+    			span0_nodes.forEach(detach);
     			t4 = claim_space(div0_nodes);
-    			p1 = claim_element(div0_nodes, "P", { class: true });
-    			var p1_nodes = children(p1);
-    			t5 = claim_text(p1_nodes, "Multi-disciplinary engineer working at Sumologic in Redwood City, CA.\n      Right now I'm most interested in developing open source svelte components,\n      ");
-    			a0 = claim_element(p1_nodes, "A", { href: true, class: true });
-    			var a0_nodes = children(a0);
-    			t6 = claim_text(a0_nodes, "writing");
-    			a0_nodes.forEach(detach);
-    			t7 = claim_text(p1_nodes, "\n      and a few notable\n      ");
-    			a1 = claim_element(p1_nodes, "A", { href: true, class: true });
-    			var a1_nodes = children(a1);
-    			t8 = claim_text(a1_nodes, "projects.");
-    			a1_nodes.forEach(detach);
-    			p1_nodes.forEach(detach);
+    			span5 = claim_element(div0_nodes, "SPAN", { class: true });
+    			var span5_nodes = children(span5);
+    			t5 = claim_text(span5_nodes, "Currently at Sumo Logic in Redwood City, CA. \n      What drives me: \n      ");
+    			span1 = claim_element(span5_nodes, "SPAN", { class: true });
+    			var span1_nodes = children(span1);
+    			t6 = claim_text(span1_nodes, "curiosity");
+    			span1_nodes.forEach(detach);
+    			t7 = claim_text(span5_nodes, " for ");
+    			span2 = claim_element(span5_nodes, "SPAN", { class: true });
+    			var span2_nodes = children(span2);
+    			t8 = claim_text(span2_nodes, "all things web");
+    			span2_nodes.forEach(detach);
+    			t9 = claim_text(span5_nodes, ",\n      creating ");
+    			span3 = claim_element(span5_nodes, "SPAN", { class: true });
+    			var span3_nodes = children(span3);
+    			t10 = claim_text(span3_nodes, "stellar user experiences");
+    			span3_nodes.forEach(detach);
+    			t11 = claim_text(span5_nodes, ",\n      and ");
+    			span4 = claim_element(span5_nodes, "SPAN", { class: true });
+    			var span4_nodes = children(span4);
+    			t12 = claim_text(span4_nodes, "self-development");
+    			span4_nodes.forEach(detach);
+    			t13 = claim_text(span5_nodes, ".");
+    			span5_nodes.forEach(detach);
     			div0_nodes.forEach(detach);
-    			t9 = claim_space(div2_nodes);
+    			t14 = claim_space(div2_nodes);
     			div1 = claim_element(div2_nodes, "DIV", { class: true });
     			var div1_nodes = children(div1);
 
@@ -40195,37 +40220,44 @@
     		},
     		h() {
     			document.title = "Me | Sibtain Jafferi";
-    			attr(h1, "class", "svelte-15bgp2o");
-    			attr(p0, "class", "phonetic-spelling svelte-15bgp2o");
-    			attr(span, "class", "svelte-15bgp2o");
-    			attr(a0, "href", "/writings");
-    			attr(a0, "class", "svelte-15bgp2o");
-    			attr(a1, "href", "/projects");
-    			attr(a1, "class", "svelte-15bgp2o");
-    			attr(p1, "class", "text svelte-15bgp2o");
-    			attr(div0, "class", "description svelte-15bgp2o");
-    			attr(div1, "class", "links svelte-15bgp2o");
-    			attr(div2, "class", "about-container svelte-15bgp2o");
+    			attr(h1, "class", "svelte-l835xa");
+    			attr(p, "class", "phonetic-spelling svelte-l835xa");
+    			attr(span0, "class", "header svelte-l835xa");
+    			attr(span1, "class", "inner-text-1 svelte-l835xa");
+    			attr(span2, "class", "inner-text-1 svelte-l835xa");
+    			attr(span3, "class", "inner-text-2 svelte-l835xa");
+    			attr(span4, "class", "inner-text-3 svelte-l835xa");
+    			attr(span5, "class", "text svelte-l835xa");
+    			attr(div0, "class", "description svelte-l835xa");
+    			attr(div1, "class", "links svelte-l835xa");
+    			attr(div2, "class", "about-container svelte-l835xa");
     		},
     		m(target, anchor) {
     			insert(target, t0, anchor);
     			insert(target, div2, anchor);
     			append(div2, div0);
-    			append(div0, span);
-    			append(span, h1);
+    			append(div0, span0);
+    			append(span0, h1);
     			append(h1, t1);
-    			append(span, t2);
-    			append(span, p0);
-    			append(p0, t3);
+    			append(span0, t2);
+    			append(span0, p);
+    			append(p, t3);
     			append(div0, t4);
-    			append(div0, p1);
-    			append(p1, t5);
-    			append(p1, a0);
-    			append(a0, t6);
-    			append(p1, t7);
-    			append(p1, a1);
-    			append(a1, t8);
-    			append(div2, t9);
+    			append(div0, span5);
+    			append(span5, t5);
+    			append(span5, span1);
+    			append(span1, t6);
+    			append(span5, t7);
+    			append(span5, span2);
+    			append(span2, t8);
+    			append(span5, t9);
+    			append(span5, span3);
+    			append(span3, t10);
+    			append(span5, t11);
+    			append(span5, span4);
+    			append(span4, t12);
+    			append(span5, t13);
+    			append(div2, t14);
     			append(div2, div1);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -40300,7 +40332,7 @@
     		},
     		{
     			Logo: LinkedIn,
-    			link: "https://github.com/sjafferi"
+    			link: "https://www.linkedin.com/in/mohammad-sibtain-jafferi-a6ab79a2/"
     		}
     	];
 
@@ -40314,7 +40346,7 @@
     	}
     }
 
-    var css$2 = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway:wght@500;600&&display=swap\");\nbody {\n  font-family: \"Raleway\", sans-serif !important; }\n\nhtml {\n  --light-theme-text-color: #333;\n  --light-theme-background-color: #eee;\n  --dark-theme-text-color: #cacaca;\n  --dark-theme-background-color: #333;\n  transition: color, background-color 500ms linear; }\n  html * {\n    transition: color 500ms linear; }\n\nhtml.dark {\n  background-color: var(--dark-theme-background-color);\n  color: var(--dark-theme-text-color);\n  --text-color: var(--dark-theme-text-color);\n  --background-color: var(--dark-theme-text-color); }\n\nhtml.light {\n  background-color: var(--light-theme-background-color);\n  color: var(--light-theme-text-color);\n  --text-color: var(--light-theme-text-color);\n  --background-color: var(--light-theme-text-color); }\n\n.dark * {\n  color: var(--dark-theme-text-color) !important; }\n\n.light * {\n  color: var(--light-theme-text-color); }\n";
+    var css$2 = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway:wght@500;600&family=Amiri&display=swap\");\nbody {\n  font-family: \"Raleway\", sans-serif !important; }\n\nhtml {\n  --light-theme-text-color-1: black;\n  --light-theme-text-color: #333;\n  --light-theme-background-color: #eee;\n  --dark-theme-text-color-1: white;\n  --dark-theme-text-color: #cacaca;\n  --dark-theme-background-color: #333;\n  transition: color, background-color 500ms linear; }\n  html * {\n    transition: color 500ms linear; }\n\nhtml.dark {\n  background-color: var(--dark-theme-background-color);\n  color: var(--dark-theme-text-color);\n  --text-color-1: var(--dark-theme-text-color-1);\n  --text-color: var(--dark-theme-text-color);\n  --background-color: var(--dark-theme-text-color); }\n\nhtml.light {\n  background-color: var(--light-theme-background-color);\n  color: var(--light-theme-text-color);\n  --text-color-1: var(--light-theme-text-color-1);\n  --text-color: var(--light-theme-text-color);\n  --background-color: var(--light-theme-text-color); }\n\nhtml * {\n  color: var(--text-color); }\n";
     styleInject(css$2);
 
     /* src/App.svelte generated by Svelte v3.17.1 */
@@ -40446,7 +40478,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "section svelte-197tkq");
+    			attr(div, "class", "section svelte-e4rwrr");
     		},
     		m(target, anchor) {
     			if_blocks[current_block_type_index].m(target, anchor);
@@ -40552,7 +40584,7 @@
     		h() {
     			attr(meta, "name", "viewport");
     			attr(meta, "content", "width=device-width, initial-scale=1");
-    			attr(div, "class", "container svelte-197tkq");
+    			attr(div, "class", "container svelte-e4rwrr");
     		},
     		m(target, anchor) {
     			append(document.head, meta);

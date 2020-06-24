@@ -66,14 +66,14 @@
   $: toc = html(generate(content));
 </script>
 
-<style>
+<style lang="scss">
   :global(.toc a) {
-    color: #3c3c3c;
+    color: var(--text-color);
     text-decoration: none;
     padding-left: 3px;
   }
   :global(.toc a:hover) {
-    color: #888;
+    opacity: 0.75;
   }
   :global(.toc > ul) {
     counter-reset: htoc_1;
@@ -119,6 +119,12 @@
   .wide {
     max-width: 80ch;
     width: 80ch;
+  }
+
+  :global(html.dark) {
+    .toc {
+      background-color: #2424243b;
+    }
   }
 </style>
 

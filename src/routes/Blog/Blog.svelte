@@ -13,7 +13,6 @@
 <style>
   .container {
     width: 100%;
-    margin-left: 25%;
   }
   .posts {
     list-style-type: none;
@@ -34,12 +33,12 @@
     font-weight: 600;
     text-decoration: none !important;
     font-variant: small-caps;
-    color: #333;
+    color: var(--text-color);
     line-height: 30px;
   }
 
   :global(.posts .title a:hover) {
-    color: #888;
+    opacity: 0.75;
   }
 
   .posts p {

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway:wght@500;600&&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway:wght@500;600&family=Amiri&display=swap");
 $background-color: #eee;
 
 body {
@@ -6,9 +6,11 @@ body {
 }
 
 html {
+  --light-theme-text-color-1: black;
   --light-theme-text-color: #333;
   --light-theme-background-color: #eee;
 
+  --dark-theme-text-color-1: white;
   --dark-theme-text-color: #cacaca;
   --dark-theme-background-color: #333;
 
@@ -23,6 +25,7 @@ html.dark {
   background-color: var(--dark-theme-background-color);
   color: var(--dark-theme-text-color);
 
+  --text-color-1: var(--dark-theme-text-color-1);
   --text-color: var(--dark-theme-text-color);
   --background-color: var(--dark-theme-text-color);
 }
@@ -31,18 +34,13 @@ html.light {
   background-color: var(--light-theme-background-color);
   color: var(--light-theme-text-color);
 
+  --text-color-1: var(--light-theme-text-color-1);
   --text-color: var(--light-theme-text-color);
   --background-color: var(--light-theme-text-color);
 }
 
-.dark {
+html {
   * {
-    color: var(--dark-theme-text-color) !important;
-  }
-}
-
-.light {
-  * {
-    color: var(--light-theme-text-color);
+    color: var(--text-color);
   }
 }

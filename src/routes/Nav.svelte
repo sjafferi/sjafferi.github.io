@@ -60,6 +60,7 @@
     font-family: "Montserrat", sans-serif;
     letter-spacing: 6px;
     padding: 6px 20px;
+    color: var(--text-color) !important;
   }
 
   :global(.navbar div + div) {

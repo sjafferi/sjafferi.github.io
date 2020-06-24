@@ -13,7 +13,7 @@ class ThemeManager {
   }
 
   get html() {
-    if (!this.htmlElem && document)
+    if (!this.htmlElem)
       this.htmlElem = document.getElementsByTagName("html")[0];
     return this.htmlElem;
   }

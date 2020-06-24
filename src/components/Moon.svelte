@@ -204,7 +204,7 @@
 </style>
 
 <div class="moon-container" on:click class:animate>
-  <div id="moon" on:click="{toggleAnimation}"></div>
+  <div id="moon" on:mouseover="{toggleAnimation}"></div>
   <div id="moon-shadow"></div>
   <div id="star"></div>
   <div id="star1"></div>

@@ -8,7 +8,7 @@
   const links = [
     { Logo: Github, link: 'https://github.com/sjafferi' },
     { Logo: Medium, link: 'https://medium.com/@sjafferi' },
-    { Logo: LinkedIn, link: 'https://github.com/sjafferi' }
+    { Logo: LinkedIn, link: 'https://www.linkedin.com/in/mohammad-sibtain-jafferi-a6ab79a2/' }
   ]
 </script>
 
@@ -24,36 +24,34 @@
   }
 
   .description {
-    h1 {
-      font-size: 4rem;
-    }
-    p {
-      font-size: 2rem;
-    }
-    h1,
-    p {
-      color: #4c4c4c;
-      font-weight: 400;
-      line-height: 2;
-      margin: 0;
-
-      a {
-        color: #000;
-        font-weight: 600;
-        text-decoration: none;
-      }
-    }
-    span {
+    .header {
       display: flex;
       align-items: flex-end;
       .phonetic-spelling {
-        font-size: 1.5rem;
+        font-size: 2.5rem;
         font-weight: bold;
         font-style: italic;
-        line-height: 6.5rem;
+        line-height: 1.5rem;
         margin-left: 25px;
-        color: black;
+        color: var(--text-color);
+        font-family: 'Amiri', serif;
       }
+    }
+    h1,
+    .text {
+      color: var(--text-color);
+      font-weight: 400;
+      line-height: 2;
+      margin: 0;
+      font-size: 2rem;
+      .inner-text-1, .inner-text-2, .inner-text3 {
+        color: var(--text-color);
+        font-weight: bold;
+      }
+    }
+    h1 {
+      font-weight: bold;
+      font-size: 3.5rem !important;
     }
   }
 
@@ -85,6 +83,13 @@
         }
       }
     }
+    .text {
+      color: #cdcdcdb5;
+    }
+    .inner-text-1, .inner-text-2, .inner-text-3 {
+      color: white !important;
+      font-weight: normal !important;
+    }
   }
 
   @media (max-width: 550px) {
@@ -94,15 +99,20 @@
     }
     .description {
       h1 {
-        font-size: 2rem;
+        font-size: 2.25rem !important;
         font-weight: 600;
       }
       .phonetic-spelling {
-        font-size: 12px !important;
-        line-height: 54px !important;
+        font-size: 2rem !important;
+        line-height: 10px !important;
       }
       .text {
         font-size: 1.25rem;
+        color: var(--text-color) !important;
+        .inner-text-1, .inner-text-2, .inner-text-3 {
+          color: var(--text-color) !important;
+          font-weight: normal !important;
+        }
       }
     }
     .links {
@@ -123,17 +133,17 @@
 
 <div class="about-container">
   <div class="description">
-    <span>
+    <span class="header">
       <h1>I'm Sibtain</h1>
       <p class="phonetic-spelling">سبطین</p>
     </span>
-    <p class="text">
-      Multi-disciplinary engineer working at Sumologic in Redwood City, CA.
-      Right now I'm most interested in developing open source svelte components,
-      <a href="/writings">writing</a>
-      and a few notable
-      <a href="/projects">projects.</a>
-    </p>
+    <span class="text">
+      Currently at Sumo Logic in Redwood City, CA. 
+      What drives me: 
+      <span class="inner-text-1">curiosity</span> for <span class="inner-text-1">all things web</span>,
+      creating <span class="inner-text-2">stellar user experiences</span>,
+      and <span class="inner-text-3">self-development</span>.
+    </span>
   </div>
 
   <div class="links">

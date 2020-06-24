@@ -1,7 +1,7 @@
 <script>
   import { Remarkable } from "remarkable";
   import hljs from "highlight.js";
-  import "highlight.js/styles/agate.css";
+  import "highlight.js/scss/agate.scss";
 
   import { toSlug } from "util/index.js";
 
@@ -54,7 +54,7 @@
 
   :global(.page h1, .markdown h1, .markdown h2, .markdown h3, .markdown
       h4, .markdown h5, .markdown h6) {
-    margin: 1.25em 0 0.5em -0.75rem;
+    margin: 1.25em 0 0.5em 0;
     font-weight: bold;
     position: relative;
   }
@@ -88,7 +88,7 @@
   }
 
   :global(.markdown p.image-container img) {
-    max-width: 85vw;
+    max-width: 50vw;
   }
 
   :global(.markdown p.image-container + em) {
@@ -149,6 +149,12 @@
 
   :global(.markdown ol > li) {
     margin: 10px 0;
+  }
+
+  @media screen and (max-width: 550px) {
+    :global(.markdown p.image-container img) {
+      max-width: 85vw;
+    }
   }
 </style>
 
