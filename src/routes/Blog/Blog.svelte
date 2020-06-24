@@ -10,9 +10,13 @@
   const posts = Posts.sort((a, b) => moment(a.date, "MM/DD/YYYY").isBefore(moment(b.date, "MM/DD/YYY")) ? 1 : -1); // descending order of date
 </script>
 
-<style>
+<style lang="scss">
   .container {
     width: 100%;
+    font-family: "Montserrat", sans-serif;
+    :global(*) {
+      font-family: "Montserrat", sans-serif;
+    }
   }
   .posts {
     list-style-type: none;

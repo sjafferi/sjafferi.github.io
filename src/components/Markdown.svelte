@@ -61,7 +61,7 @@
 
   :global(.markdown h2) {
     text-transform: uppercase;
-    font-size: 1.25em;
+    font-size: 1.3em;
     padding: 0 0.5em 0 0;
     line-height: 1.25;
   }
@@ -72,6 +72,7 @@
 
   :global(.markdown p, .markdown li) {
     line-height: 1.55;
+    font-size: 1.25rem;
   }
 
   :global(.markdown ul li) {
@@ -154,6 +155,9 @@
   @media screen and (max-width: 550px) {
     :global(.markdown p.image-container img) {
       max-width: 85vw;
+    }
+    :global(.markdown p, .markdown li) {
+      font-size: 1rem;
     }
   }
 </style>

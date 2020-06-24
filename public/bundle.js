@@ -39144,7 +39144,7 @@
     	return child_ctx;
     }
 
-    // (85:31) <Link to={slug}>
+    // (73:31) <Link to={slug}>
     function create_default_slot_4(ctx) {
     	let t_value = /*title*/ ctx[4] + "";
     	let t;
@@ -39166,7 +39166,7 @@
     	};
     }
 
-    // (90:16) <Tag>
+    // (78:16) <Tag>
     function create_default_slot_3(ctx) {
     	let t_value = /*tag*/ ctx[11] + "";
     	let t;
@@ -39188,7 +39188,7 @@
     	};
     }
 
-    // (89:14) {#each tags as tag}
+    // (77:14) {#each tags as tag}
     function create_each_block_2$1(ctx) {
     	let current;
 
@@ -39234,7 +39234,7 @@
     	};
     }
 
-    // (83:8) {#each posts as { title, slug, subtitle, date, tags }}
+    // (71:8) {#each posts as { title, slug, subtitle, date, tags }}
     function create_each_block_1$2(ctx) {
     	let li;
     	let div0;
@@ -39325,11 +39325,11 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "title svelte-1sbcy7");
-    			attr(p0, "class", "date svelte-1sbcy7");
-    			attr(p1, "class", "subtitle svelte-1sbcy7");
-    			attr(div1, "class", "tags svelte-1sbcy7");
-    			attr(li, "class", "svelte-1sbcy7");
+    			attr(div0, "class", "title svelte-1bcglge");
+    			attr(p0, "class", "date svelte-1bcglge");
+    			attr(p1, "class", "subtitle svelte-1bcglge");
+    			attr(div1, "class", "tags svelte-1bcglge");
+    			attr(li, "class", "svelte-1bcglge");
     		},
     		m(target, anchor) {
     			insert(target, li, anchor);
@@ -39416,7 +39416,7 @@
     	};
     }
 
-    // (81:4) <Route path="/">
+    // (69:4) <Route path="/">
     function create_default_slot_2$1(ctx) {
     	let ul;
     	let current;
@@ -39453,7 +39453,7 @@
     			this.h();
     		},
     		h() {
-    			attr(ul, "class", "posts svelte-1sbcy7");
+    			attr(ul, "class", "posts svelte-1bcglge");
     		},
     		m(target, anchor) {
     			insert(target, ul, anchor);
@@ -39517,7 +39517,7 @@
     	};
     }
 
-    // (99:6) <Route path={post.slug}>
+    // (87:6) <Route path={post.slug}>
     function create_default_slot_1$1(ctx) {
     	let t;
     	let current;
@@ -39567,7 +39567,7 @@
     	};
     }
 
-    // (98:4) {#each Posts as post}
+    // (86:4) {#each Posts as post}
     function create_each_block$4(ctx) {
     	let current;
 
@@ -39614,7 +39614,7 @@
     	};
     }
 
-    // (80:2) <Router>
+    // (68:2) <Router>
     function create_default_slot$4(ctx) {
     	let t;
     	let each_1_anchor;
@@ -39767,7 +39767,7 @@
     		},
     		h() {
     			document.title = "Writings | Sibtain Jafferi";
-    			attr(div, "class", "container svelte-1sbcy7");
+    			attr(div, "class", "container svelte-1bcglge");
     		},
     		m(target, anchor) {
     			insert(target, t, anchor);
