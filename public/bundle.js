@@ -4517,7 +4517,7 @@
     	return child_ctx;
     }
 
-    // (52:2) {#each images as image, i}
+    // (53:2) {#each images as image, i}
     function create_each_block$2(ctx) {
     	let current;
 
@@ -4580,7 +4580,7 @@
     	};
     }
 
-    // (59:0) {#if showModal}
+    // (60:0) {#if showModal}
     function create_if_block$4(ctx) {
     	let current;
     	const modal = new Modal({});
@@ -4657,7 +4657,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "svelte-images-gallery svelte-3owlk0");
+    			attr(div, "class", "svelte-images-gallery svelte-13fsqet");
     			set_style(div, "--gutter", /*gutter*/ ctx[1]);
     		},
     		m(target, anchor) {
@@ -40059,7 +40059,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link svelte-l835xa");
+    			attr(a, "class", "link svelte-1554obs");
     			attr(a, "href", a_href_value = /*link*/ ctx[2]);
     			attr(a, "target", "_blank");
     		},
@@ -40220,17 +40220,17 @@
     		},
     		h() {
     			document.title = "Me | Sibtain Jafferi";
-    			attr(h1, "class", "svelte-l835xa");
-    			attr(p, "class", "phonetic-spelling svelte-l835xa");
-    			attr(span0, "class", "header svelte-l835xa");
-    			attr(span1, "class", "inner-text-1 svelte-l835xa");
-    			attr(span2, "class", "inner-text-1 svelte-l835xa");
-    			attr(span3, "class", "inner-text-2 svelte-l835xa");
-    			attr(span4, "class", "inner-text-3 svelte-l835xa");
-    			attr(span5, "class", "text svelte-l835xa");
-    			attr(div0, "class", "description svelte-l835xa");
-    			attr(div1, "class", "links svelte-l835xa");
-    			attr(div2, "class", "about-container svelte-l835xa");
+    			attr(h1, "class", "svelte-1554obs");
+    			attr(p, "class", "phonetic-spelling svelte-1554obs");
+    			attr(span0, "class", "header svelte-1554obs");
+    			attr(span1, "class", "inner-text-1 svelte-1554obs");
+    			attr(span2, "class", "inner-text-1 svelte-1554obs");
+    			attr(span3, "class", "inner-text-2 svelte-1554obs");
+    			attr(span4, "class", "inner-text-3 svelte-1554obs");
+    			attr(span5, "class", "text svelte-1554obs");
+    			attr(div0, "class", "description svelte-1554obs");
+    			attr(div1, "class", "links svelte-1554obs");
+    			attr(div2, "class", "about-container svelte-1554obs");
     		},
     		m(target, anchor) {
     			insert(target, t0, anchor);

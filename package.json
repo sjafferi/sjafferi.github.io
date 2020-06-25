@@ -4,7 +4,7 @@
     "moment": "^2.24.0",
     "remarkable": "^2.0.0",
     "svelte": "^3.4.2",
-    "svelte-images": "0.0.94",
+    "svelte-images": "0.0.95",
     "svelte-media-query": "^0.0.4",
     "svelte-routing": "1.4.0",
     "express": "^4.17.0",

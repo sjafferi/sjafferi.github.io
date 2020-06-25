@@ -44,7 +44,7 @@
       line-height: 2;
       margin: 0;
       font-size: 2rem;
-      .inner-text-1, .inner-text-2, .inner-text3 {
+      .inner-text-1, .inner-text-2, .inner-text-3 {
         color: var(--text-color);
         font-weight: bold;
       }
