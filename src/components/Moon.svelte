@@ -181,7 +181,7 @@
     transition-delay: 0 !important;
     transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
-
+@media(hover: hover) and (pointer: fine) {
   .animate {
     &.animate {
       #star {
@@ -195,7 +195,7 @@
       }
     }
   }
-
+}
   @media (max-width: 800px) {
     .moon-container {
       --moon-size: 50px;
@@ -204,6 +204,30 @@
     #star1,
     #star2 {
       display: none;
+    }
+    
+    .about {
+      #star,
+      #star1 {
+        display: block;
+      }
+    
+      #star {
+        left: 140%;
+        top: -58%;
+        transform: rotate(13deg) scale(0.3) !important;
+      }
+
+      #star1 {
+        left: -38% !important;
+        top: -45% !important;
+        transform: rotate(-13deg) scale(0.3) !important;
+      }
+
+      #star2 {
+        left: 30%;
+        top: 110%;
+      }
     }
   }
 

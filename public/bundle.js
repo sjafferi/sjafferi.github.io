@@ -2216,16 +2216,16 @@
     		},
     		h() {
     			attr(div0, "id", "star");
-    			attr(div0, "class", "svelte-1lv45g5");
+    			attr(div0, "class", "svelte-17m6a1a");
     			attr(div1, "id", "star1");
-    			attr(div1, "class", "svelte-1lv45g5");
+    			attr(div1, "class", "svelte-17m6a1a");
     			attr(div2, "id", "star2");
-    			attr(div2, "class", "svelte-1lv45g5");
+    			attr(div2, "class", "svelte-17m6a1a");
     			attr(div3, "id", "moon");
-    			attr(div3, "class", "svelte-1lv45g5");
+    			attr(div3, "class", "svelte-17m6a1a");
     			attr(div4, "id", "moon-shadow");
-    			attr(div4, "class", "svelte-1lv45g5");
-    			attr(div5, "class", "moon-container svelte-1lv45g5");
+    			attr(div4, "class", "svelte-17m6a1a");
+    			attr(div5, "class", "moon-container svelte-17m6a1a");
     			toggle_class(div5, "animate", /*animate*/ ctx[1]);
     			toggle_class(div5, "about", /*about*/ ctx[0]);
     		},
