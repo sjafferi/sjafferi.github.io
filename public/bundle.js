@@ -2061,11 +2061,11 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "overlay svelte-5vemvv");
-    			attr(div1, "class", "outreaching-rays svelte-5vemvv");
+    			attr(div0, "class", "overlay svelte-ail5qz");
+    			attr(div1, "class", "outreaching-rays svelte-ail5qz");
     			attr(div2, "id", "sun");
-    			attr(div2, "class", "animate svelte-5vemvv");
-    			attr(div3, "class", "sun-container svelte-5vemvv");
+    			attr(div2, "class", "animate svelte-ail5qz");
+    			attr(div3, "class", "sun-container svelte-ail5qz");
     			toggle_class(div3, "about", /*about*/ ctx[0]);
     		},
     		m(target, anchor) {
@@ -39154,7 +39154,7 @@
     	return child_ctx;
     }
 
-    // (90:31) <Link to={slug}>
+    // (88:31) <Link to={slug}>
     function create_default_slot_4(ctx) {
     	let t_value = /*title*/ ctx[4] + "";
     	let t;
@@ -39176,7 +39176,7 @@
     	};
     }
 
-    // (95:16) <Tag>
+    // (93:16) <Tag>
     function create_default_slot_3(ctx) {
     	let t_value = /*tag*/ ctx[11] + "";
     	let t;
@@ -39198,7 +39198,7 @@
     	};
     }
 
-    // (94:14) {#each tags as tag}
+    // (92:14) {#each tags as tag}
     function create_each_block_2$1(ctx) {
     	let current;
 
@@ -39244,7 +39244,7 @@
     	};
     }
 
-    // (88:8) {#each posts as { title, slug, subtitle, date, tags }}
+    // (86:8) {#each posts as { title, slug, subtitle, date, tags }}
     function create_each_block_1$2(ctx) {
     	let li;
     	let div0;
@@ -39335,11 +39335,11 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "title svelte-m3y3im");
-    			attr(p0, "class", "date svelte-m3y3im");
-    			attr(p1, "class", "subtitle svelte-m3y3im");
-    			attr(div1, "class", "tags svelte-m3y3im");
-    			attr(li, "class", "svelte-m3y3im");
+    			attr(div0, "class", "title svelte-ktaq54");
+    			attr(p0, "class", "date svelte-ktaq54");
+    			attr(p1, "class", "subtitle svelte-ktaq54");
+    			attr(div1, "class", "tags svelte-ktaq54");
+    			attr(li, "class", "svelte-ktaq54");
     		},
     		m(target, anchor) {
     			insert(target, li, anchor);
@@ -39426,7 +39426,7 @@
     	};
     }
 
-    // (86:4) <Route path="/">
+    // (84:4) <Route path="/">
     function create_default_slot_2$1(ctx) {
     	let ul;
     	let current;
@@ -39463,7 +39463,7 @@
     			this.h();
     		},
     		h() {
-    			attr(ul, "class", "posts svelte-m3y3im");
+    			attr(ul, "class", "posts svelte-ktaq54");
     		},
     		m(target, anchor) {
     			insert(target, ul, anchor);
@@ -39527,7 +39527,7 @@
     	};
     }
 
-    // (104:6) <Route path={post.slug}>
+    // (102:6) <Route path={post.slug}>
     function create_default_slot_1$1(ctx) {
     	let t;
     	let current;
@@ -39577,7 +39577,7 @@
     	};
     }
 
-    // (103:4) {#each Posts as post}
+    // (101:4) {#each Posts as post}
     function create_each_block$4(ctx) {
     	let current;
 
@@ -39624,7 +39624,7 @@
     	};
     }
 
-    // (85:2) <Router>
+    // (83:2) <Router>
     function create_default_slot$4(ctx) {
     	let t;
     	let each_1_anchor;
@@ -39777,7 +39777,7 @@
     		},
     		h() {
     			document.title = "Writings | Sibtain Jafferi";
-    			attr(div, "class", "blog-container svelte-m3y3im");
+    			attr(div, "class", "blog-container svelte-ktaq54");
     		},
     		m(target, anchor) {
     			insert(target, t, anchor);
@@ -40045,7 +40045,7 @@
     	return child_ctx;
     }
 
-    // (146:4) {#each links as { Logo, link }}
+    // (167:4) {#each links as { Logo, link }}
     function create_each_block$5(ctx) {
     	let a;
     	let t;
@@ -40069,7 +40069,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link svelte-z4snwi");
+    			attr(a, "class", "link svelte-1wppwy5");
     			attr(a, "href", a_href_value = /*link*/ ctx[2]);
     			attr(a, "target", "_blank");
     		},
@@ -40230,17 +40230,17 @@
     		},
     		h() {
     			document.title = "Me | Sibtain Jafferi";
-    			attr(h1, "class", "svelte-z4snwi");
-    			attr(p, "class", "phonetic-spelling svelte-z4snwi");
-    			attr(span0, "class", "header svelte-z4snwi");
-    			attr(span1, "class", "inner-text-1 svelte-z4snwi");
-    			attr(span2, "class", "inner-text-1 svelte-z4snwi");
-    			attr(span3, "class", "inner-text-2 svelte-z4snwi");
-    			attr(span4, "class", "inner-text-3 svelte-z4snwi");
-    			attr(span5, "class", "text svelte-z4snwi");
-    			attr(div0, "class", "description svelte-z4snwi");
-    			attr(div1, "class", "links svelte-z4snwi");
-    			attr(div2, "class", "about-container svelte-z4snwi");
+    			attr(h1, "class", "svelte-1wppwy5");
+    			attr(p, "class", "phonetic-spelling svelte-1wppwy5");
+    			attr(span0, "class", "header svelte-1wppwy5");
+    			attr(span1, "class", "inner-text-1 svelte-1wppwy5");
+    			attr(span2, "class", "inner-text-1 svelte-1wppwy5");
+    			attr(span3, "class", "inner-text-2 svelte-1wppwy5");
+    			attr(span4, "class", "inner-text-3 svelte-1wppwy5");
+    			attr(span5, "class", "text svelte-1wppwy5");
+    			attr(div0, "class", "description svelte-1wppwy5");
+    			attr(div1, "class", "links svelte-1wppwy5");
+    			attr(div2, "class", "about-container svelte-1wppwy5");
     		},
     		m(target, anchor) {
     			insert(target, t0, anchor);
@@ -40356,7 +40356,7 @@
     	}
     }
 
-    var css$2 = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway:wght@500;600&family=Amiri&Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap\");\nbody {\n  font-family: \"Raleway\", sans-serif !important;\n  overflow-x: hidden; }\n\nhtml {\n  --light-theme-text-color-1: black;\n  --light-theme-text-color: #333;\n  --light-theme-background-color: linear-gradient(\n    to left bottom,\n    #ffffff,\n    #fcc28cbd,\n    #ff6e65\n  );\n  --dark-theme-text-color-1: white;\n  --dark-theme-text-color: #cacaca;\n  --dark-theme-background-color: #333;\n  --theme-changer-top: 0;\n  --theme-changer-left: 0;\n  background-repeat: no-repeat;\n  background-size: cover;\n  transition: color, background, background-color 500ms linear;\n  width: 100%;\n  min-height: 100%;\n  height: fit-content; }\n  html * {\n    transition: color 500ms linear; }\n  @media (max-width: 800px) {\n    html {\n      --dark-theme-background-color: #333; } }\n\nhtml.dark {\n  background: var(--dark-theme-background-color);\n  color: var(--dark-theme-text-color);\n  --text-color-1: var(--dark-theme-text-color-1);\n  --text-color: var(--dark-theme-text-color);\n  --background-color: var(--dark-theme-text-color); }\n\nhtml.light {\n  background: var(--light-theme-background-color);\n  color: var(--light-theme-text-color);\n  --text-color-1: var(--light-theme-text-color-1);\n  --text-color: var(--light-theme-text-color);\n  --background-color: var(--light-theme-text-color); }\n\nhtml * {\n  color: var(--text-color); }\n";
+    var css$2 = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway:wght@500;600&family=Amiri&Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap\");\nbody {\n  font-family: \"Raleway\", sans-serif !important;\n  overflow-x: hidden; }\n\nhtml {\n  --light-theme-text-color-1: black;\n  --light-theme-text-color: #333;\n  --light-theme-background-color: linear-gradient(\n    to left bottom,\n    #ffffff,\n    #fcc28cbd,\n    #ff6e65\n  );\n  --dark-theme-text-color-1: white;\n  --dark-theme-text-color: #cacaca;\n  --dark-theme-background-color: #333;\n  --theme-changer-top: 0;\n  --theme-changer-left: 0;\n  background-repeat: no-repeat;\n  background-size: cover;\n  transition: color, background, background-color 500ms linear;\n  width: 100%;\n  min-height: 100%;\n  height: fit-content; }\n  html * {\n    transition: color 500ms linear; }\n  @media (max-width: 800px) {\n    html {\n      --dark-theme-background-color: #333; } }\n\nhtml.dark {\n  background: var(--dark-theme-background-color);\n  color: var(--dark-theme-text-color);\n  --text-color-1: var(--dark-theme-text-color-1);\n  --text-color: var(--dark-theme-text-color);\n  --background-color: var(--dark-theme-text-color); }\n\nhtml.light {\n  background: var(--light-theme-background-color);\n  color: var(--light-theme-text-color);\n  --text-color-1: var(--light-theme-text-color-1);\n  --text-color: var(--light-theme-text-color);\n  --background-color: var(--light-theme-text-color); }\n\nhtml * {\n  color: var(--text-color); }\n\n.no-scroll {\n  overflow: hidden; }\n";
     styleInject(css$2);
 
     /* src/App.svelte generated by Svelte v3.17.1 */
@@ -40397,7 +40397,7 @@
     	};
     }
 
-    // (96:4) {#if theme == "light"}
+    // (94:4) {#if theme == "light"}
     function create_if_block$7(ctx) {
     	let current;
     	const sun = new Sun({ props: { about: /*about*/ ctx[3] } });
@@ -40434,7 +40434,7 @@
     	};
     }
 
-    // (95:2) <Router {url}>
+    // (93:2) <Router {url}>
     function create_default_slot$5(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -40457,7 +40457,7 @@
     	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
 
     	function nav_currentPage_binding(value) {
-    		/*nav_currentPage_binding*/ ctx[5].call(null, value);
+    		/*nav_currentPage_binding*/ ctx[6].call(null, value);
     	}
 
     	let nav_props = {};
@@ -40509,7 +40509,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "section svelte-5bmzb4");
+    			attr(div, "class", "section svelte-cd0v87");
     		},
     		m(target, anchor) {
     			if_blocks[current_block_type_index].m(target, anchor);
@@ -40625,7 +40625,7 @@
     		h() {
     			attr(meta, "name", "viewport");
     			attr(meta, "content", "width=device-width, initial-scale=1");
-    			attr(div, "class", "container svelte-5bmzb4");
+    			attr(div, "class", "container svelte-cd0v87");
     			toggle_class(div, "about", /*about*/ ctx[3]);
     		},
     		m(target, anchor) {
@@ -40639,7 +40639,7 @@
     			const router_changes = {};
     			if (dirty & /*url*/ 1) router_changes.url = /*url*/ ctx[0];
 
-    			if (dirty & /*$$scope, currentPage, theme, about*/ 78) {
+    			if (dirty & /*$$scope, currentPage, theme, about*/ 142) {
     				router_changes.$$scope = { dirty, ctx };
     			}
 
@@ -40669,7 +40669,7 @@
 
     function instance$l($$self, $$props, $$invalidate) {
     	let { url = "" } = $$props;
-    	let theme, unsubscribe;
+    	let theme, unsubscribe, isMounted = false;
     	let currentPage;
 
     	onMount(() => {
@@ -40683,6 +40683,8 @@
     		if (!unsubscribe) {
     			unsubscribe = themeManager.theme.subscribe(value => $$invalidate(1, theme = value));
     		}
+
+    		isMounted = true;
     	});
 
     	onDestroy(() => {
@@ -40709,7 +40711,15 @@
     		}
     	};
 
-    	return [url, theme, currentPage, about, unsubscribe, nav_currentPage_binding];
+    	return [
+    		url,
+    		theme,
+    		currentPage,
+    		about,
+    		unsubscribe,
+    		isMounted,
+    		nav_currentPage_binding
+    	];
     }
 
     class App extends SvelteComponent {

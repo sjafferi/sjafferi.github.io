@@ -66,3 +66,7 @@ html {
     color: var(--text-color);
   }
 }
+
+.no-scroll {
+  overflow: hidden;
+}

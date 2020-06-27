@@ -15,9 +15,9 @@
     width: 100%;
     font-family: "Playfair Display", sans-serif;
   }
-  :global(html.dark *) {
-    color: #c3c3c3 !important;
-  }
+  // :global(html.dark .blog-container *) {
+  //   color: #c3c3c3;
+  // }
   .posts {
     list-style-type: none;
     margin: 0;
@@ -40,7 +40,7 @@
     font-size: 1.5rem;
     font-weight: 600;
     text-decoration: none !important;
-    // font-variant: small-caps;
+    font-variant: small-caps;
     color: var(--text-color);
     line-height: 30px;
   }

@@ -147,14 +147,6 @@
     }
   }
 
-
-  @media (max-width: 800px) {
-    #sun {
-      width: var(--mobile-sun-size);
-      height: var(--mobile-sun-size);
-    }
-  }
-
   .overlay {
     top: 0;
     left: 0;

@@ -65,6 +65,7 @@
     margin: 1em 0;
     font-weight: bold;
     position: relative;
+    color: #a6ffd6 !important;
   }
 
   // :global(.page .markdown) {
@@ -76,7 +77,7 @@
   // }
 
   :global(.markdown h2) {
-    text-transform: uppercase;
+    // text-transform: uppercase;
     font-size: 1.3em;
     padding: 0 0.5em 0 0;
     line-height: 1.25;
@@ -93,6 +94,10 @@
 
   :global(.markdown ul li) {
     margin: 10px 5px;
+  }
+
+  :global(.markdown a) {
+    color: #baffdc !important;
   }
 
   :global(.markdown table th, .markdown table td) {

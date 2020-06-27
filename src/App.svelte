@@ -11,7 +11,7 @@
   import "./main.scss";
   // Used for SSR. A falsy value is ignored by the Router.
   export let url = "";
-  let theme, unsubscribe;
+  let theme, unsubscribe, isMounted = false;
   let currentPage;
   
   onMount(() => {
@@ -23,6 +23,7 @@
     if (!unsubscribe) {
       unsubscribe = themeManager.theme.subscribe(value => theme = value);
     }
+    isMounted = true;
   });
 
   onDestroy(() => {
@@ -33,9 +34,14 @@
   })
 
   $: about = !currentPage || currentPage === 'about';
+  // $: if (isMounted && about) {
+  //   themeManager.html.classList.add('no-scroll');
+  // } else {
+  //   themeManager.html.classList.remove('no-scroll');
+  // }
 </script>
 
-<style>
+<style lang="scss">
   img {
     position: absolute;
     right: 0;
@@ -49,6 +55,10 @@
     padding: 0 20px;
     display: flex;
     flex-direction: column;
+
+    &.about {
+      overflow: hidden;
+    }
   }
 
   .section {
@@ -68,6 +78,8 @@
     :global(.about > *) {
       --theme-changer-top: 18%;
       --theme-changer-left: calc(50% - 33px);
+      --sun-size: 50px;
+      --moon-size: 50px;
     }
     .container {
       overflow-x: hidden;

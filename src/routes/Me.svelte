@@ -25,7 +25,7 @@
     pointer-events: none;
     min-height: 700px;
   }
-
+ 
   @media (max-height: 1575px) {
     :global(.about > *) {
       --theme-changer-top: 60%;
@@ -33,7 +33,9 @@
 
     @media (max-height: 1090px) {
       :global(.about > *) {
-        --theme-changer-top: 65%;
+        --theme-changer-top: 70%;
+        --sun-size: 120px;
+        --moon-size: 90px;
       }
     }
 
@@ -41,6 +43,8 @@
       :global(.about > *) {
         --theme-changer-top: 18%;
         --theme-changer-left: calc(50% - 33px);
+        --sun-size: 17.5vw;
+        --moon-size: 12.5vw;
       }
     }
   }
@@ -126,9 +130,17 @@
     .about-container {
       margin: 0;
       padding: 3rem 0.5rem;
-      top: calc(50% - 15ch);
-      left: calc(50% - 17ch);
-      max-width: 35ch;
+      top: calc(var(--theme-changer-top) + 10vh);
+      left: 50%;
+      transform: translate(-50%, 0);
+      max-width: 31ch;
+      width: 100%;
+      max-width: 33ch;
+    }
+    @media (min-height: 320px) {
+      .text {
+        font-size: 1rem;
+      }
     }
     .description {
       h1 {
@@ -147,8 +159,14 @@
           font-weight: normal !important;
         }
       }
+      @media (max-width: 320px) {
+        .text {
+          font-size: 1.15rem;
+        }
+      }
     }
     .links {
+      margin-top: 2rem;
       > .link {
         margin: 0 1rem;
       }
