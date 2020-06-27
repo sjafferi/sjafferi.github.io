@@ -27,7 +27,7 @@
       font-size: 1.5em;
     }
   }
-  @media (max-width: 550px) {
+  @media (max-width: 800px) {
     :global(.link a) {
       font-size: 1em;
     }

@@ -152,7 +152,7 @@
     margin: 10px 0;
   }
 
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 800px) {
     :global(.markdown p.image-container img) {
       max-width: 85vw;
     }

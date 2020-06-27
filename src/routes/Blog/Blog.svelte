@@ -62,7 +62,7 @@
     display: flex;
   }
 
-  @media (max-width: 550px) {
+  @media (max-width: 800px) {
     .container {
       margin: 0;
     }

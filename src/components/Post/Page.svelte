@@ -65,7 +65,7 @@
     margin-top: 18px;
   }
 
-  @media (max-width: 550px) {
+  @media (max-width: 800px) {
     .markdown {
       width: auto;
     }

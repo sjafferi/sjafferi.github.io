@@ -3,6 +3,7 @@ $background-color: #eee;
 
 body {
   font-family: "Raleway", sans-serif !important;
+  overflow-x: hidden;
 }
 
 html {
@@ -13,6 +14,9 @@ html {
   --dark-theme-text-color-1: white;
   --dark-theme-text-color: #cacaca;
   --dark-theme-background-color: #333;
+
+  --theme-changer-top: 0;
+  --theme-changer-left: 0;
 
   transition: color, background-color 500ms linear;
 

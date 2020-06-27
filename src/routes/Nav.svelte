@@ -5,6 +5,7 @@
   import NavLink from "components/NavLink.svelte";
   import Menu from "components/Icons/Menu.svelte";
   import Close from "components/Icons/Close.svelte";
+import { link } from 'svelte-routing';
 
   const options = [
     {title: 'writings', link: '/writings'},
@@ -12,15 +13,15 @@
     {title: 'about', link: '/about'}
   ]
   let closed = true;
-  let current_page;
+  export let currentPage;
   const close_menu = () => closed = !closed;
   const select_menu_option = (link) => {
-    current_page = link;
+    currentPage = link.slice(1);
     closed = true;
   }
 
   onMount(() => {
-    current_page = location.pathname;
+    currentPage = location.pathname.split("/")[1];
   });
 
 </script>
@@ -30,7 +31,7 @@
     display: flex;
     justify-content: center;
     margin-top: 4vw;
-    z-index: 2;
+    z-index: 200;
     width: fit-content;
     align-self: center;
   }
@@ -84,7 +85,7 @@
     }
   }
 
-  @media (max-width: 550px) {
+  @media (max-width: 800px) {
     .navbar {
       flex-flow: column;
       margin: 0;
@@ -115,16 +116,16 @@
   }  
 </style>
 
-<MediaQuery query="(max-width: 550px)" let:matches>
+<MediaQuery query="(max-width: 800px)" let:matches>
   {#if matches}
     <div class="navbar" class:closed>
       {#each options as { title, link }}
-        {#if !closed || current_page.startsWith(link)}
+        {#if !closed || link.includes(currentPage)}
         <div transition:slide|local>
-            <NavLink
+          <NavLink
             to={link} 
             on:click={() => select_menu_option(link)}
-            >
+          >
             {title}
           </NavLink>
         </div>
@@ -145,7 +146,12 @@
   {:else}
     <div class="navbar" class:closed>
       {#each options as { title, link }}
-          <NavLink to={link}>{title}</NavLink>
+          <NavLink
+            to={link}
+            on:click={() => select_menu_option(link)}
+          >
+            {title}
+          </NavLink>
       {/each}
     </div>
   {/if}

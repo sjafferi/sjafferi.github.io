@@ -1,22 +1,33 @@
 <script>
   import { onMount } from "svelte";
+  import { slide, fade } from "svelte/transition";
   const ANIMATION_DELAY = 1000;
-  let animate = true;
+  const MESSAGE_DELAY = 5000;
+  let animate = true,
+    showMessage = true;
+  
+  export let about;
+
   const toggleAnimation = () => {
     animate = true;
     setTimeout(() => (animate = false), ANIMATION_DELAY);
   };
+  
   onMount(() => {
     toggleAnimation();
+    // setTimeout(() => (showMessage = false), MESSAGE_DELAY);
   });
 </script>
 <style lang="scss">
   .moon-container {
-    top: 0;
-    left: 0;
+    top: var(--theme-changer-top);
+    left: var(--theme-changer-left);
     position: absolute;
     display: none;
-    --moon-size: 100px;
+    --moon-size: 125px;
+    transition: all 1s ease-in-out;
+    // transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    // transition: all 1s cubic-bezier(0.74, 0, 0.455, 1);
   }
 
   :global(html.dark .moon-container) {
@@ -37,11 +48,11 @@
     -moz-box-shadow: inset -40px 30px 10px -20px rgba(0, 0, 0, 0.48);
     box-shadow: inset -40px 30px 10px -20px rgba(0, 0, 0, 0.48),
       10px 1px 20px 0px rgba(0, 0, 0, 0.3);
-    transition: all 1s cubic-bezier(0.74, 0, 0.455, 1);
+    transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
     /* -webkit-transition: all 1s cubic-bezier(0.740, -0.600, 0.455, 1.650);
-   -moz-transition: all 1s cubic-bezier(0.740, -0.600, 0.455, 1.650);
-     -o-transition: all 1s cubic-bezier(0.740, -0.600, 0.455, 1.650);
-        transition: all 1s cubic-bezier(0.740, -0.600, 0.455, 1.650);   */
+     -moz-transition: all 1s cubic-bezier(0.740, -0.600, 0.455, 1.650);
+       -o-transition: all 1s cubic-bezier(0.740, -0.600, 0.455, 1.650);
+          transition: all 1s cubic-bezier(0.740, -0.600, 0.455, 1.650);   */
     transition-delay: 0.4s;
 
     &:hover {
@@ -68,13 +79,14 @@
 
   #star {
     position: absolute;
-    left: 17rem;
+    left: 10rem;
     top: 2rem;
     height: 90px;
     width: 1px;
     background: radial-gradient(ellipse at center, #f9f9f9 9%, #1e5799 98%);
     border-radius: 50%;
-    transform: rotate(60deg);
+    transform: rotate(13deg) scale(0.4);
+    transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 
   #star:before {
@@ -99,13 +111,14 @@
 
   #star1 {
     position: absolute;
-    left: 12rem;
-    top: 15rem;
+    left: 7rem;
+    top: 8rem;
     height: 60px;
     width: 1px;
     background: radial-gradient(ellipse at center, #f9f9f9 29%, #1e5799 98%);
     border-radius: 50%;
-    transform: rotate(55deg);
+    transform: rotate(55deg) scale(0.5);
+    transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 
   #star1:before {
@@ -131,13 +144,13 @@
 
   #star2 {
     position: absolute;
-    left: 3rem;
-    top: 15rem;
+    left: 4rem;
+    top: 8rem;
     height: 60px;
     width: 1px;
     background: radial-gradient(ellipse at center, #f9f9f9 29%, #1e5799 98%);
     border-radius: 50%;
-    transform: rotate(31deg);
+    transform: rotate(31deg) scale(0.4);
   }
 
   #star2:before {
@@ -166,17 +179,24 @@
   #star2 {
     transition: transform 1000ms ease-in-out;
     transition-delay: 0 !important;
+    transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 
   .animate {
-    #star,
-    #star1,
-    #star2 {
-      transform: rotate(-500deg) !important;
+    &.animate {
+      #star {
+        transform: rotate(-500deg) scale(0.4) !important;
+      }
+      #star1 {
+        transform: rotate(-500deg) scale(0.5) !important;
+      }
+      #star2 {
+        transform: rotate(-500deg) scale(0.4) !important;
+      }
     }
   }
 
-  @media (max-width: 550px) {
+  @media (max-width: 800px) {
     .moon-container {
       --moon-size: 50px;
     }
@@ -201,12 +221,54 @@
       box-shadow: 0 0 90px #ecf0f1;
     }
   }
+
+  .info-msg {
+    display: flex;
+    position: absolute;
+    top: 38%;
+    left: 33%;
+    color: #676767;
+    font-size: 0.5rem;
+    font-weight: 300 !important;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 6px;
+
+    span {
+      color: #c5c5c5;
+    }
+  }
+
+  .about {
+    &.moon-container {
+      z-index: 100;
+    }
+
+    #star {
+      left: 140%;
+      top: -58%;
+    }
+
+    #star1 {
+      left: -33%;
+      top: 45%;
+    }
+
+    #star2 {
+      left: 30%;
+      top: 110%;
+    }
+  }
 </style>
 
-<div class="moon-container" on:click class:animate>
-  <div id="moon" on:mouseover="{toggleAnimation}"></div>
+<div class="moon-container" on:click class:animate class:about>
+  <div id="moon" on:mouseover="{toggleAnimation}">
+    <!-- {#if showMessage}
+    <span class="info-msg" transition:slide>Tap <span>me</span></span>
+    {/if} -->
+    <div id="star"></div>
+    <div id="star1"></div>
+    <div id="star2"></div>
+  </div>
   <div id="moon-shadow"></div>
-  <div id="star"></div>
-  <div id="star1"></div>
-  <div id="star2"></div>
 </div>

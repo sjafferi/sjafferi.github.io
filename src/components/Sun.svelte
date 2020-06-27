@@ -1,18 +1,20 @@
 <script>
+  export let about = true;
   let hovering = false;
 </script>
 
 
 <style type="text/scss">
-  $sun-left: 1%;
-  $sun-top: 1%;
-  $sun-size: 125px;
-  $sun-size-mobile: 75px;
+  :root {
+    --sun-size: 150px;
+    --mobile-sun-size: 50px;
+  }
 
   .sun-container {
-    top: 0;
-    left: 0;
+    top: var(--theme-changer-top);
+    left: var(--theme-changer-left);
     position: absolute;
+    transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 
   :global(html.dark .sun-container) {
@@ -35,10 +37,10 @@
 
   #sun {
     position: absolute;
-    left: $sun-left;
-    top: $sun-top;
-    height: $sun-size;
-    width: $sun-size;
+    left: 1%;
+    top: 1%;
+    height: var(--sun-size);
+    width: var(--sun-size);
     transform: scale(2);
     border-radius: 50%;
     background: radial-gradient(#f1c40f 70%, #e74c3c 100%);
@@ -131,7 +133,7 @@
       z-index: -2;
       opacity: 0.35;
       animation: scale 2s linear;
-
+      overflow: hidden;
       /* &::before {
             content: "";
             position: absolute;
@@ -146,10 +148,10 @@
   }
 
 
-  @media (max-width: 550px) {
+  @media (max-width: 800px) {
     #sun {
-      height: $sun-size-mobile;
-      width: $sun-size-mobile;
+      width: var(--mobile-sun-size);
+      height: var(--mobile-sun-size);
     }
   }
 
@@ -162,7 +164,13 @@
     background: #ffeee3;
     opacity: 0.5;
     pointer-events: none;
-    z-index: 1000;
+    z-index: 200;
+  }
+
+  .about {
+    &.sun-container {
+      z-index: 100;
+    }
   }
 
   /* ANIMATIONS */
@@ -201,13 +209,13 @@
   }
 </style>
 
-{#if hovering}
+<!-- {#if hovering}
   <div class="highlight-overlay" />
-{/if}
+{/if} -->
 
-<div class="sun-container" on:click>
+<div class="overlay" />
+<div class="sun-container" on:click class:about>
   <div id="sun" class="animate"  on:mouseover={() => { hovering = true; }} on:mouseout={() => { hovering = false; }}>
-    <div class="overlay" />
     <div class="outreaching-rays" />
   </div>
 </div>

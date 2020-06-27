@@ -12,6 +12,7 @@
   // Used for SSR. A falsy value is ignored by the Router.
   export let url = "";
   let theme, unsubscribe;
+  let currentPage;
   
   onMount(() => {
     themeManager.initialize();
@@ -30,6 +31,8 @@
       themeManager.destroy();
     }
   })
+
+  $: about = currentPage === 'about';
 </script>
 
 <style>
@@ -50,11 +53,22 @@
 
   .section {
     width: 100%;
-    z-index: 2;
+    z-index: 300;
     margin-top: 5rem;
   }
 
-  @media (max-width: 550px) {
+  .about {
+    --theme-changer-top: 45%;
+    --theme-changer-left: 60%;
+    --sun-size: 125px;
+    --moon-size: 100px;
+  }
+
+  @media (max-width: 800px) {
+    :global(.about > *) {
+      --theme-changer-top: 18%;
+      --theme-changer-left: calc(50% - 33px);
+    }
     .container {
       overflow-x: hidden;
       flex-flow: column;
@@ -76,15 +90,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </svelte:head>
 
-
-<div class="container">
+<div class="container" class:about>
   <Router {url}>
     {#if theme == "light"}
-      <Sun on:click={themeManager.toggle} />
+      <Sun on:click={themeManager.toggle} {about} />
     {:else}
-      <Moon on:click={themeManager.toggle} />
+      <Moon on:click={themeManager.toggle} {about} />
     {/if}
-    <Nav />
+    <Nav bind:currentPage={currentPage} />
     <div class="section">
       <Route path="projects" component={Projects} />
       <Route path="about" component={Me} />
