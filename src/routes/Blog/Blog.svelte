@@ -11,12 +11,12 @@
 </script>
 
 <style lang="scss">
-  .container {
+  .blog-container {
     width: 100%;
-    font-family: "Montserrat", sans-serif;
-    :global(*) {
-      font-family: "Montserrat", sans-serif;
-    }
+    font-family: "Playfair Display", sans-serif;
+  }
+  :global(html.dark *) {
+    color: #c3c3c3 !important;
   }
   .posts {
     list-style-type: none;
@@ -25,7 +25,10 @@
   }
 
   .posts li {
-    margin: 30px 0;
+    border-bottom: 1px solid #a8a8a84a;
+    padding-bottom: 10px;
+    margin: 0;
+    margin-bottom: 30px;
   }
 
   .posts li > * {
@@ -33,10 +36,11 @@
   }
 
   :global(.posts .title a) {
-    font-size: 24px;
+    // font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 600;
     text-decoration: none !important;
-    font-variant: small-caps;
+    // font-variant: small-caps;
     color: var(--text-color);
     line-height: 30px;
   }
@@ -46,15 +50,19 @@
   }
 
   .posts p {
-    line-height: 1rem;
+    line-height: 2rem;
+    font-size: 1.3rem;
+    margin: 20px 0;
   }
 
   .posts .date {
-    font-size: 12px;
+    // font-size: 12px;
+    font-size: 1rem;
   }
 
   .posts .subtitle {
-    font-size: 16px;
+    // font-size: 16px;
+    font-size: 1.25rem;
     margin: 20px 0;
   }
 
@@ -63,20 +71,29 @@
   }
 
   @media (max-width: 1500px) {
-    .container {
+    .blog-container {
       margin-left: 10%;
     }
   }
 
   @media (max-width: 800px) {
-    .container {
+    .blog-container {
       margin: 0;
     }
-    .posts p {
-      line-height: 1.5rem;
+    :global(.posts .title a) {
+      font-size: 24px !important;
+      font-variant: small-caps;
     }
-    .posts li {
-      
+    .posts .date {
+      font-size: 14px;
+    }
+    .posts .subtitle {
+      font-size: 16px;
+      line-height: 25px;
+    }
+
+    .posts {
+      margin-top: 50px;
     }
   }
 </style>
@@ -85,7 +102,7 @@
   <title>Writings | Sibtain Jafferi</title>
 </svelte:head>
 
-<div class="container">
+<div class="blog-container">
 
   <Router>
     <Route path="/">

@@ -39154,7 +39154,7 @@
     	return child_ctx;
     }
 
-    // (77:31) <Link to={slug}>
+    // (90:31) <Link to={slug}>
     function create_default_slot_4(ctx) {
     	let t_value = /*title*/ ctx[4] + "";
     	let t;
@@ -39176,7 +39176,7 @@
     	};
     }
 
-    // (82:16) <Tag>
+    // (95:16) <Tag>
     function create_default_slot_3(ctx) {
     	let t_value = /*tag*/ ctx[11] + "";
     	let t;
@@ -39198,7 +39198,7 @@
     	};
     }
 
-    // (81:14) {#each tags as tag}
+    // (94:14) {#each tags as tag}
     function create_each_block_2$1(ctx) {
     	let current;
 
@@ -39244,7 +39244,7 @@
     	};
     }
 
-    // (75:8) {#each posts as { title, slug, subtitle, date, tags }}
+    // (88:8) {#each posts as { title, slug, subtitle, date, tags }}
     function create_each_block_1$2(ctx) {
     	let li;
     	let div0;
@@ -39335,11 +39335,11 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "title svelte-1ioij9k");
-    			attr(p0, "class", "date svelte-1ioij9k");
-    			attr(p1, "class", "subtitle svelte-1ioij9k");
-    			attr(div1, "class", "tags svelte-1ioij9k");
-    			attr(li, "class", "svelte-1ioij9k");
+    			attr(div0, "class", "title svelte-m3y3im");
+    			attr(p0, "class", "date svelte-m3y3im");
+    			attr(p1, "class", "subtitle svelte-m3y3im");
+    			attr(div1, "class", "tags svelte-m3y3im");
+    			attr(li, "class", "svelte-m3y3im");
     		},
     		m(target, anchor) {
     			insert(target, li, anchor);
@@ -39426,7 +39426,7 @@
     	};
     }
 
-    // (73:4) <Route path="/">
+    // (86:4) <Route path="/">
     function create_default_slot_2$1(ctx) {
     	let ul;
     	let current;
@@ -39463,7 +39463,7 @@
     			this.h();
     		},
     		h() {
-    			attr(ul, "class", "posts svelte-1ioij9k");
+    			attr(ul, "class", "posts svelte-m3y3im");
     		},
     		m(target, anchor) {
     			insert(target, ul, anchor);
@@ -39527,7 +39527,7 @@
     	};
     }
 
-    // (91:6) <Route path={post.slug}>
+    // (104:6) <Route path={post.slug}>
     function create_default_slot_1$1(ctx) {
     	let t;
     	let current;
@@ -39577,7 +39577,7 @@
     	};
     }
 
-    // (90:4) {#each Posts as post}
+    // (103:4) {#each Posts as post}
     function create_each_block$4(ctx) {
     	let current;
 
@@ -39624,7 +39624,7 @@
     	};
     }
 
-    // (72:2) <Router>
+    // (85:2) <Router>
     function create_default_slot$4(ctx) {
     	let t;
     	let each_1_anchor;
@@ -39777,7 +39777,7 @@
     		},
     		h() {
     			document.title = "Writings | Sibtain Jafferi";
-    			attr(div, "class", "container svelte-1ioij9k");
+    			attr(div, "class", "blog-container svelte-m3y3im");
     		},
     		m(target, anchor) {
     			insert(target, t, anchor);
@@ -40356,7 +40356,7 @@
     	}
     }
 
-    var css$2 = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway:wght@500;600&family=Amiri&display=swap\");\nbody {\n  font-family: \"Raleway\", sans-serif !important;\n  overflow-x: hidden; }\n\nhtml {\n  --light-theme-text-color-1: black;\n  --light-theme-text-color: #333;\n  --light-theme-background-color: linear-gradient(\n    to left bottom,\n    #ffffff,\n    #fcc28cbd,\n    #ff6e65\n  );\n  --dark-theme-text-color-1: white;\n  --dark-theme-text-color: #cacaca;\n  --dark-theme-background-color: linear-gradient(\n    to left bottom,\n    black,\n    #262626,\n    #6a6a6a,\n    #bbc3c7\n  );\n  --theme-changer-top: 0;\n  --theme-changer-left: 0;\n  transition: color, background-color 500ms linear;\n  width: 100%;\n  height: 100%; }\n  html * {\n    transition: color 500ms linear; }\n  @media (max-width: 800px) {\n    html {\n      --dark-theme-background-color: #333; } }\n\nhtml.dark {\n  background: var(--dark-theme-background-color);\n  color: var(--dark-theme-text-color);\n  --text-color-1: var(--dark-theme-text-color-1);\n  --text-color: var(--dark-theme-text-color);\n  --background-color: var(--dark-theme-text-color); }\n\nhtml.light {\n  background: var(--light-theme-background-color);\n  color: var(--light-theme-text-color);\n  --text-color-1: var(--light-theme-text-color-1);\n  --text-color: var(--light-theme-text-color);\n  --background-color: var(--light-theme-text-color); }\n\nhtml * {\n  color: var(--text-color); }\n";
+    var css$2 = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway:wght@500;600&family=Amiri&Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap\");\nbody {\n  font-family: \"Raleway\", sans-serif !important;\n  overflow-x: hidden; }\n\nhtml {\n  --light-theme-text-color-1: black;\n  --light-theme-text-color: #333;\n  --light-theme-background-color: linear-gradient(\n    to left bottom,\n    #ffffff,\n    #fcc28cbd,\n    #ff6e65\n  );\n  --dark-theme-text-color-1: white;\n  --dark-theme-text-color: #cacaca;\n  --dark-theme-background-color: #333;\n  --theme-changer-top: 0;\n  --theme-changer-left: 0;\n  background-repeat: no-repeat;\n  background-size: cover;\n  transition: color, background, background-color 500ms linear;\n  width: 100%;\n  min-height: 100%;\n  height: fit-content; }\n  html * {\n    transition: color 500ms linear; }\n  @media (max-width: 800px) {\n    html {\n      --dark-theme-background-color: #333; } }\n\nhtml.dark {\n  background: var(--dark-theme-background-color);\n  color: var(--dark-theme-text-color);\n  --text-color-1: var(--dark-theme-text-color-1);\n  --text-color: var(--dark-theme-text-color);\n  --background-color: var(--dark-theme-text-color); }\n\nhtml.light {\n  background: var(--light-theme-background-color);\n  color: var(--light-theme-text-color);\n  --text-color-1: var(--light-theme-text-color-1);\n  --text-color: var(--light-theme-text-color);\n  --background-color: var(--light-theme-text-color); }\n\nhtml * {\n  color: var(--text-color); }\n";
     styleInject(css$2);
 
     /* src/App.svelte generated by Svelte v3.17.1 */
@@ -40674,6 +40674,7 @@
 
     	onMount(() => {
     		themeManager.initialize();
+    		themeManager.toggle();
 
     		if (location.pathname === "/") {
     			location.href = "/about";

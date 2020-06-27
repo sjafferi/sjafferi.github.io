@@ -44,7 +44,15 @@
   md.use(plugin);
 </script>
 
-<style>
+<style lang="scss">
+  @mixin headings {
+      :global(
+        h1, h2, h3,
+        h4, h5, h6
+      ) {
+          @content;
+      }
+  }
   :global(.markdown h1, .page h1) {
     font-feature-settings: "smcp";
     font-size: 1.75em;
@@ -54,10 +62,18 @@
 
   :global(.page h1, .markdown h1, .markdown h2, .markdown h3, .markdown
       h4, .markdown h5, .markdown h6) {
-    margin: 1.25em 0 0.5em 0;
+    margin: 1em 0;
     font-weight: bold;
     position: relative;
   }
+
+  // :global(.page .markdown) {
+  //   @include headings {
+  //     margin: 1em 0;
+  //     font-weight: bold;
+  //     position: relative;
+  //   }
+  // }
 
   :global(.markdown h2) {
     text-transform: uppercase;
