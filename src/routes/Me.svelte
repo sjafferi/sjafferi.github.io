@@ -31,11 +31,11 @@
       --theme-changer-top: 60%;
     }
 
-      @media (max-height: 1090px) {
-        :global(.about > *) {
-          --theme-changer-top: 65%;
-        }
+    @media (max-height: 1090px) {
+      :global(.about > *) {
+        --theme-changer-top: 65%;
       }
+    }
 
     @media (max-width: 800px) {
       :global(.about > *) {
