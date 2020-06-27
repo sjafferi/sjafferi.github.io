@@ -185,13 +185,13 @@
   .animate {
     &.animate {
       #star {
-        transform: rotate(-500deg) scale(0.4) !important;
+        transform: scale(0.5) !important;
       }
       #star1 {
-        transform: rotate(-500deg) scale(0.5) !important;
+        transform: scale(0.6) !important;
       }
       #star2 {
-        transform: rotate(-500deg) scale(0.4) !important;
+        transform: scale(0.5) !important;
       }
     }
   }

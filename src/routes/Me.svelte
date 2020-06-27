@@ -23,11 +23,25 @@
     top: calc(var(--theme-changer-top) - 525px);
     position: absolute;
     pointer-events: none;
+    min-height: 700px;
   }
 
   @media (max-height: 1575px) {
-    :global(.about-container > *) {
+    :global(.about > *) {
       --theme-changer-top: 60%;
+    }
+
+      @media (max-height: 1090px) {
+        :global(.about > *) {
+          --theme-changer-top: 65%;
+        }
+      }
+
+    @media (max-width: 800px) {
+      :global(.about > *) {
+        --theme-changer-top: 18%;
+        --theme-changer-left: calc(50% - 33px);
+      }
     }
   }
 

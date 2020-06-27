@@ -84,6 +84,7 @@
       max-width: 100vw;
     }
   }
+
 </style>
 
 <svelte:head>

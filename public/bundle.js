@@ -2216,16 +2216,16 @@
     		},
     		h() {
     			attr(div0, "id", "star");
-    			attr(div0, "class", "svelte-17m6a1a");
+    			attr(div0, "class", "svelte-1a2v8gr");
     			attr(div1, "id", "star1");
-    			attr(div1, "class", "svelte-17m6a1a");
+    			attr(div1, "class", "svelte-1a2v8gr");
     			attr(div2, "id", "star2");
-    			attr(div2, "class", "svelte-17m6a1a");
+    			attr(div2, "class", "svelte-1a2v8gr");
     			attr(div3, "id", "moon");
-    			attr(div3, "class", "svelte-17m6a1a");
+    			attr(div3, "class", "svelte-1a2v8gr");
     			attr(div4, "id", "moon-shadow");
-    			attr(div4, "class", "svelte-17m6a1a");
-    			attr(div5, "class", "moon-container svelte-17m6a1a");
+    			attr(div4, "class", "svelte-1a2v8gr");
+    			attr(div5, "class", "moon-container svelte-1a2v8gr");
     			toggle_class(div5, "animate", /*animate*/ ctx[1]);
     			toggle_class(div5, "about", /*about*/ ctx[0]);
     		},
@@ -39154,7 +39154,7 @@
     	return child_ctx;
     }
 
-    // (73:31) <Link to={slug}>
+    // (77:31) <Link to={slug}>
     function create_default_slot_4(ctx) {
     	let t_value = /*title*/ ctx[4] + "";
     	let t;
@@ -39176,7 +39176,7 @@
     	};
     }
 
-    // (78:16) <Tag>
+    // (82:16) <Tag>
     function create_default_slot_3(ctx) {
     	let t_value = /*tag*/ ctx[11] + "";
     	let t;
@@ -39198,7 +39198,7 @@
     	};
     }
 
-    // (77:14) {#each tags as tag}
+    // (81:14) {#each tags as tag}
     function create_each_block_2$1(ctx) {
     	let current;
 
@@ -39244,7 +39244,7 @@
     	};
     }
 
-    // (71:8) {#each posts as { title, slug, subtitle, date, tags }}
+    // (75:8) {#each posts as { title, slug, subtitle, date, tags }}
     function create_each_block_1$2(ctx) {
     	let li;
     	let div0;
@@ -39335,11 +39335,11 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "title svelte-1onu21o");
-    			attr(p0, "class", "date svelte-1onu21o");
-    			attr(p1, "class", "subtitle svelte-1onu21o");
-    			attr(div1, "class", "tags svelte-1onu21o");
-    			attr(li, "class", "svelte-1onu21o");
+    			attr(div0, "class", "title svelte-1ioij9k");
+    			attr(p0, "class", "date svelte-1ioij9k");
+    			attr(p1, "class", "subtitle svelte-1ioij9k");
+    			attr(div1, "class", "tags svelte-1ioij9k");
+    			attr(li, "class", "svelte-1ioij9k");
     		},
     		m(target, anchor) {
     			insert(target, li, anchor);
@@ -39426,7 +39426,7 @@
     	};
     }
 
-    // (69:4) <Route path="/">
+    // (73:4) <Route path="/">
     function create_default_slot_2$1(ctx) {
     	let ul;
     	let current;
@@ -39463,7 +39463,7 @@
     			this.h();
     		},
     		h() {
-    			attr(ul, "class", "posts svelte-1onu21o");
+    			attr(ul, "class", "posts svelte-1ioij9k");
     		},
     		m(target, anchor) {
     			insert(target, ul, anchor);
@@ -39527,7 +39527,7 @@
     	};
     }
 
-    // (87:6) <Route path={post.slug}>
+    // (91:6) <Route path={post.slug}>
     function create_default_slot_1$1(ctx) {
     	let t;
     	let current;
@@ -39577,7 +39577,7 @@
     	};
     }
 
-    // (86:4) {#each Posts as post}
+    // (90:4) {#each Posts as post}
     function create_each_block$4(ctx) {
     	let current;
 
@@ -39624,7 +39624,7 @@
     	};
     }
 
-    // (68:2) <Router>
+    // (72:2) <Router>
     function create_default_slot$4(ctx) {
     	let t;
     	let each_1_anchor;
@@ -39777,7 +39777,7 @@
     		},
     		h() {
     			document.title = "Writings | Sibtain Jafferi";
-    			attr(div, "class", "container svelte-1onu21o");
+    			attr(div, "class", "container svelte-1ioij9k");
     		},
     		m(target, anchor) {
     			insert(target, t, anchor);
@@ -40045,7 +40045,7 @@
     	return child_ctx;
     }
 
-    // (136:4) {#each links as { Logo, link }}
+    // (146:4) {#each links as { Logo, link }}
     function create_each_block$5(ctx) {
     	let a;
     	let t;
@@ -40069,7 +40069,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link svelte-owgm3z");
+    			attr(a, "class", "link svelte-z4snwi");
     			attr(a, "href", a_href_value = /*link*/ ctx[2]);
     			attr(a, "target", "_blank");
     		},
@@ -40230,17 +40230,17 @@
     		},
     		h() {
     			document.title = "Me | Sibtain Jafferi";
-    			attr(h1, "class", "svelte-owgm3z");
-    			attr(p, "class", "phonetic-spelling svelte-owgm3z");
-    			attr(span0, "class", "header svelte-owgm3z");
-    			attr(span1, "class", "inner-text-1 svelte-owgm3z");
-    			attr(span2, "class", "inner-text-1 svelte-owgm3z");
-    			attr(span3, "class", "inner-text-2 svelte-owgm3z");
-    			attr(span4, "class", "inner-text-3 svelte-owgm3z");
-    			attr(span5, "class", "text svelte-owgm3z");
-    			attr(div0, "class", "description svelte-owgm3z");
-    			attr(div1, "class", "links svelte-owgm3z");
-    			attr(div2, "class", "about-container svelte-owgm3z");
+    			attr(h1, "class", "svelte-z4snwi");
+    			attr(p, "class", "phonetic-spelling svelte-z4snwi");
+    			attr(span0, "class", "header svelte-z4snwi");
+    			attr(span1, "class", "inner-text-1 svelte-z4snwi");
+    			attr(span2, "class", "inner-text-1 svelte-z4snwi");
+    			attr(span3, "class", "inner-text-2 svelte-z4snwi");
+    			attr(span4, "class", "inner-text-3 svelte-z4snwi");
+    			attr(span5, "class", "text svelte-z4snwi");
+    			attr(div0, "class", "description svelte-z4snwi");
+    			attr(div1, "class", "links svelte-z4snwi");
+    			attr(div2, "class", "about-container svelte-z4snwi");
     		},
     		m(target, anchor) {
     			insert(target, t0, anchor);
@@ -40397,7 +40397,7 @@
     	};
     }
 
-    // (95:4) {#if theme == "light"}
+    // (96:4) {#if theme == "light"}
     function create_if_block$7(ctx) {
     	let current;
     	const sun = new Sun({ props: { about: /*about*/ ctx[3] } });
@@ -40434,7 +40434,7 @@
     	};
     }
 
-    // (94:2) <Router {url}>
+    // (95:2) <Router {url}>
     function create_default_slot$5(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -40509,7 +40509,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "section svelte-9ro9ng");
+    			attr(div, "class", "section svelte-5bmzb4");
     		},
     		m(target, anchor) {
     			if_blocks[current_block_type_index].m(target, anchor);
@@ -40625,7 +40625,7 @@
     		h() {
     			attr(meta, "name", "viewport");
     			attr(meta, "content", "width=device-width, initial-scale=1");
-    			attr(div, "class", "container svelte-9ro9ng");
+    			attr(div, "class", "container svelte-5bmzb4");
     			toggle_class(div, "about", /*about*/ ctx[3]);
     		},
     		m(target, anchor) {

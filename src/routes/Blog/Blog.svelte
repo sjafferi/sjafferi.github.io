@@ -62,6 +62,12 @@
     display: flex;
   }
 
+  @media (max-width: 1500px) {
+    .container {
+      margin-left: 10%;
+    }
+  }
+
   @media (max-width: 800px) {
     .container {
       margin: 0;
