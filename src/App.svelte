@@ -32,7 +32,7 @@
     }
   })
 
-  $: about = currentPage === 'about';
+  $: about = !currentPage || currentPage === 'about';
 </script>
 
 <style>

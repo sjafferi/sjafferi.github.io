@@ -40705,7 +40705,7 @@
 
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty & /*currentPage*/ 4) {
-    			 $$invalidate(3, about = currentPage === "about");
+    			 $$invalidate(3, about = !currentPage || currentPage === "about");
     		}
     	};
 
