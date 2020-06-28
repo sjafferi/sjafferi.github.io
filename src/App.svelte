@@ -105,7 +105,7 @@
 
   :global(html.light) {
     :global(.inBlogPost .blog-container) {
-      // background: white !important;
+      background: white !important;
     }
   }
 </style>

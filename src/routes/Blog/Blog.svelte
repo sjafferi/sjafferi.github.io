@@ -16,9 +16,9 @@
     width: 100%;
     font-family: "Roboto", sans-serif;
     padding: 25px 40px;
-    // box-shadow: 0 4px 16px 0 rgba(33, 33, 33, 0.2);
+    box-shadow: 0 4px 16px 0 rgba(33, 33, 33, 0.2);
     box-sizing: content-box;
-    // border: grey;
+    border: grey;
     background: none;
   }
 
