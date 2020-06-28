@@ -13,11 +13,9 @@
 <style lang="scss">
   .blog-container {
     width: 100%;
-    font-family: "Playfair Display", sans-serif;
+    font-family: "Roboto", sans-serif;
   }
-  // :global(html.dark .blog-container *) {
-  //   color: #c3c3c3;
-  // }
+
   .posts {
     list-style-type: none;
     margin: 0;
@@ -70,13 +68,13 @@
     display: flex;
   }
 
-  @media (max-width: 1500px) {
-    .blog-container {
+  @media (max-width: 1500px) and (min-width: 850px) {
+    .blog-container ul {
       margin-left: 10%;
     }
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 850px) {
     .blog-container {
       margin: 0;
     }

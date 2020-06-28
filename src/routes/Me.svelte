@@ -24,6 +24,7 @@
     position: absolute;
     pointer-events: none;
     min-height: 700px;
+    overflow: hidden;
   }
  
   @media (max-height: 1575px) {
@@ -32,19 +33,32 @@
     }
 
     @media (max-height: 1090px) {
-      :global(.about > *) {
-        --theme-changer-top: 70%;
-        --sun-size: 120px;
-        --moon-size: 90px;
+      :global(.moon-container), :global(.sun-container), :global(.about > *), .about-container {
+        --theme-changer-top: 70vh;
+        --sun-size: 12.5vh !important;
+        --moon-size: 8vh !important;
+        &.about-container {
+          left: calc(var(--theme-changer-left) - 30vw);
+          top: calc(var(--theme-changer-top) - 55vh);
+        }
       }
     }
 
-    @media (max-width: 800px) {
-      :global(.about > *) {
-        --theme-changer-top: 18%;
-        --theme-changer-left: calc(50% - 33px);
-        --sun-size: 17.5vw;
-        --moon-size: 12.5vw;
+    @media (max-width: 850px) {
+      :global(.moon-container), :global(.sun-container), :global(.about > *), .about-container {
+        --theme-changer-top: 18% !important;
+        --theme-changer-left: calc(50% - 33px) !important;
+        --sun-size: 8vh !important;
+        --moon-size: 5vh !important;
+      }
+    }
+
+    @media (max-width: 650px) and (max-height: 850px) {
+      :global(.moon-container), :global(.sun-container), :global(.about > *), .about-container {
+        --theme-changer-top: 18% !important;
+        --theme-changer-left: calc(50% - 33px) !important;
+        --sun-size: 10vh !important;
+        --moon-size: 7vh !important;
       }
     }
   }
@@ -126,16 +140,14 @@
     }
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 850px) {
     .about-container {
-      margin: 0;
-      padding: 3rem 0.5rem;
-      top: calc(var(--theme-changer-top) + 10vh);
-      left: 50%;
+      margin: 0;;
+      left: 50% !important;
+      top: calc(var(--theme-changer-top) + 5vh + 75px) !important;
       transform: translate(-50%, 0);
-      max-width: 31ch;
-      width: 100%;
-      max-width: 33ch;
+      max-width: 93vw;
+      width: 33ch;
     }
     @media (min-height: 320px) {
       .text {

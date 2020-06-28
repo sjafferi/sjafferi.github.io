@@ -21,30 +21,45 @@
   });
 </script>
 
-<style>
+<style lang="scss">
+  .post-page {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    box-shadow: 0 4px 16px 0 rgba(33, 33, 33, 0.2);
+    background: white;
+    border: grey;
+  }
+
+  :global(html.dark) {
+    .post-page {
+      box-shadow: none;
+      box-shadow: 0 2px 12px 0 rgba(255, 255, 255, 0.2);
+      background: #3c3c3c;
+    }
+  }
+
   .markdown {
     width: 70vw;
     max-width: 85ch;
   }
 
   header h1 {
-    margin: 0.75em 0;
-    margin-top: 0;
-    text-align: center;
+    // text-align: center;
     text-transform: none;
-    font-variant: small-caps;
+    // font-variant: small-caps;
     font-size: 2.5em;
     line-height: 1.15;
     font-weight: 600;
     letter-spacing: -1px;
   }
 
-  .page h1 {
-    font-feature-settings: "smcp";
+  .post-page h1 {
     font-size: 1.75em;
     line-height: 1.25;
-    letter-spacing: -0.75px;
-    margin: 1.25em 0 0.5em -0.75rem;
+    letter-spacing: 0.5px;
+    margin: 1.25em 0 0.5em 0rem;
     font-weight: bold;
     position: relative;
   }
@@ -52,11 +67,12 @@
   .page-metadata {
     display: flex;
     flex-direction: column;
-    margin: 20px 0;
+    margin: 5px 0 25px 0;
   }
   .page-metadata .subtitle {
     text-align: center;
-    font-style: italic;
+    // font-style: italic;
+    font-size: 21px;
   }
   .page-metadata .date {
     font-style: italic;
@@ -65,23 +81,28 @@
     margin-top: 18px;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 850px) {
     .markdown {
       width: auto;
+    }
+    .post-page {
+      box-shadow: none !important;
+      background: none !important;
     }
   }
 </style>
 
-<div class="page">
+<div class="post-page">
   <header>
     <h1>{title}</h1>
   </header>
 
   <article>
     <div class="page-metadata">
-      {#if subtitle}
-      <span class="subtitle">{subtitle}</span>
-      {/if} {#if date}
+      <!-- {#if subtitle}
+        <span class="subtitle">{subtitle}</span>
+      {/if}  -->
+      {#if date}
       <span class="date-container">
         Created:
         <span class="date">

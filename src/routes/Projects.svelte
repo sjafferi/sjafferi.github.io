@@ -85,10 +85,9 @@
     background: #b0afafc9 !important;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 850px) {
     .projects {
       margin: 0;
-      margin-top: 2rem;
       padding: 0;
       width: 100%;
     }

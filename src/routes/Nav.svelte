@@ -81,11 +81,11 @@ import { link } from 'svelte-routing';
     }
 
     :global(.navbar-cta svg) {
-      fill: white;
+      fill: var(--text-color);
     }
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 850px) {
     .navbar {
       flex-flow: column;
       margin: 0;
@@ -108,15 +108,15 @@ import { link } from 'svelte-routing';
 
   .navbar-cta {
     position: absolute;
-    right: 40px;
-    top: 15px;
+    right: 30px;
+    top: 20px;
     width: 20px;
     height: 20px;
-    z-index: 20;
+    z-index: 250;
   }  
 </style>
 
-<MediaQuery query="(max-width: 800px)" let:matches>
+<MediaQuery query="(max-width: 850px)" let:matches>
   {#if matches}
     <div class="navbar" class:closed>
       {#each options as { title, link }}

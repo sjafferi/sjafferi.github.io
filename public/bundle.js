@@ -2216,16 +2216,16 @@
     		},
     		h() {
     			attr(div0, "id", "star");
-    			attr(div0, "class", "svelte-1a2v8gr");
+    			attr(div0, "class", "svelte-qfvx25");
     			attr(div1, "id", "star1");
-    			attr(div1, "class", "svelte-1a2v8gr");
+    			attr(div1, "class", "svelte-qfvx25");
     			attr(div2, "id", "star2");
-    			attr(div2, "class", "svelte-1a2v8gr");
+    			attr(div2, "class", "svelte-qfvx25");
     			attr(div3, "id", "moon");
-    			attr(div3, "class", "svelte-1a2v8gr");
+    			attr(div3, "class", "svelte-qfvx25");
     			attr(div4, "id", "moon-shadow");
-    			attr(div4, "class", "svelte-1a2v8gr");
-    			attr(div5, "class", "moon-container svelte-1a2v8gr");
+    			attr(div4, "class", "svelte-qfvx25");
+    			attr(div5, "class", "moon-container svelte-qfvx25");
     			toggle_class(div5, "animate", /*animate*/ ctx[1]);
     			toggle_class(div5, "about", /*about*/ ctx[0]);
     		},
@@ -2474,7 +2474,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "link svelte-n1gpep");
+    			attr(div, "class", "link svelte-t0fp6c");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -2831,7 +2831,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "navbar svelte-18cyi3q");
+    			attr(div, "class", "navbar svelte-1ld75g9");
     			toggle_class(div, "closed", /*closed*/ ctx[1]);
     		},
     		m(target, anchor) {
@@ -2960,9 +2960,9 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "navbar svelte-18cyi3q");
+    			attr(div0, "class", "navbar svelte-1ld75g9");
     			toggle_class(div0, "closed", /*closed*/ ctx[1]);
-    			attr(div1, "class", "navbar-cta svelte-18cyi3q");
+    			attr(div1, "class", "navbar-cta svelte-1ld75g9");
     		},
     		m(target, anchor) {
     			insert(target, div0, anchor);
@@ -3404,7 +3404,7 @@
     	};
     }
 
-    // (92:0) <MediaQuery query="(max-width: 800px)" let:matches>
+    // (92:0) <MediaQuery query="(max-width: 850px)" let:matches>
     function create_default_slot$1(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -3481,7 +3481,7 @@
 
     	const mediaquery = new MediaQuery({
     			props: {
-    				query: "(max-width: 800px)",
+    				query: "(max-width: 850px)",
     				$$slots: {
     					default: [
     						create_default_slot$1,
@@ -4994,7 +4994,7 @@
     	return child_ctx;
     }
 
-    // (104:8) {#if images && images.length > 0}
+    // (103:8) {#if images && images.length > 0}
     function create_if_block$4(ctx) {
     	let div;
     	let current;
@@ -5017,7 +5017,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "images svelte-1tnp75y");
+    			attr(div, "class", "images svelte-gwsx4k");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -5041,7 +5041,7 @@
     	};
     }
 
-    // (111:12) <Tag>
+    // (110:12) <Tag>
     function create_default_slot$3(ctx) {
     	let t_value = /*tag*/ ctx[12] + "";
     	let t;
@@ -5063,7 +5063,7 @@
     	};
     }
 
-    // (110:10) {#each tags as tag}
+    // (109:10) {#each tags as tag}
     function create_each_block_2(ctx) {
     	let current;
 
@@ -5109,7 +5109,7 @@
     	};
     }
 
-    // (116:8) {#each links as { link, text }}
+    // (115:8) {#each links as { link, text }}
     function create_each_block_1$1(ctx) {
     	let a;
     	let t_value = /*text*/ ctx[9] + "";
@@ -5131,7 +5131,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link-btn svelte-1tnp75y");
+    			attr(a, "class", "link-btn svelte-gwsx4k");
     			attr(a, "target", "_blank");
     			attr(a, "href", a_href_value = /*link*/ ctx[8]);
     		},
@@ -5155,7 +5155,7 @@
     	};
     }
 
-    // (99:2) {#each Projects as { title, titleLink, description, images, tags, links }}
+    // (98:2) {#each Projects as { title, titleLink, description, images, tags, links }}
     function create_each_block$3(ctx) {
     	let div3;
     	let div1;
@@ -5261,14 +5261,14 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "header-link svelte-1tnp75y");
+    			attr(a, "class", "header-link svelte-gwsx4k");
     			attr(a, "href", a_href_value = /*titleLink*/ ctx[1]);
     			attr(a, "target", "_blank");
-    			attr(p, "class", "description svelte-1tnp75y");
-    			attr(div0, "class", "tags svelte-1tnp75y");
-    			attr(div1, "class", "content svelte-1tnp75y");
-    			attr(div2, "class", "links svelte-1tnp75y");
-    			attr(div3, "class", "tile svelte-1tnp75y");
+    			attr(p, "class", "description svelte-gwsx4k");
+    			attr(div0, "class", "tags svelte-gwsx4k");
+    			attr(div1, "class", "content svelte-gwsx4k");
+    			attr(div2, "class", "links svelte-gwsx4k");
+    			attr(div3, "class", "tile svelte-gwsx4k");
     		},
     		m(target, anchor) {
     			insert(target, div3, anchor);
@@ -5427,7 +5427,7 @@
     		},
     		h() {
     			document.title = "Projects | Sibtain Jafferi";
-    			attr(div, "class", "projects svelte-1tnp75y");
+    			attr(div, "class", "projects svelte-gwsx4k");
     		},
     		m(target, anchor) {
     			insert(target, t, anchor);
@@ -38573,7 +38573,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "markdown");
+    			attr(div, "class", "markdown svelte-1cxts5q");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -38804,45 +38804,11 @@
 
     /* src/components/Post/Page.svelte generated by Svelte v3.17.1 */
 
-    function create_if_block_1$2(ctx) {
-    	let span;
-    	let t;
-
-    	return {
-    		c() {
-    			span = element("span");
-    			t = text(/*subtitle*/ ctx[2]);
-    			this.h();
-    		},
-    		l(nodes) {
-    			span = claim_element(nodes, "SPAN", { class: true });
-    			var span_nodes = children(span);
-    			t = claim_text(span_nodes, /*subtitle*/ ctx[2]);
-    			span_nodes.forEach(detach);
-    			this.h();
-    		},
-    		h() {
-    			attr(span, "class", "subtitle svelte-1mm2kr7");
-    		},
-    		m(target, anchor) {
-    			insert(target, span, anchor);
-    			append(span, t);
-    		},
-    		p(ctx, dirty) {
-    			if (dirty & /*subtitle*/ 4) set_data(t, /*subtitle*/ ctx[2]);
-    		},
-    		d(detaching) {
-    			if (detaching) detach(span);
-    		}
-    	};
-    }
-
-    // (84:12) {#if date}
     function create_if_block$6(ctx) {
     	let span1;
     	let t0;
     	let span0;
-    	let t1_value = moment(/*date*/ ctx[3], "MM/DD/YYYY").format("MMM Do YYYY") + "";
+    	let t1_value = moment(/*date*/ ctx[2], "MM/DD/YYYY").format("MMM Do YYYY") + "";
     	let t1;
 
     	return {
@@ -38865,8 +38831,8 @@
     			this.h();
     		},
     		h() {
-    			attr(span0, "class", "date svelte-1mm2kr7");
-    			attr(span1, "class", "date-container svelte-1mm2kr7");
+    			attr(span0, "class", "date svelte-i579is");
+    			attr(span1, "class", "date-container svelte-i579is");
     		},
     		m(target, anchor) {
     			insert(target, span1, anchor);
@@ -38875,7 +38841,7 @@
     			append(span0, t1);
     		},
     		p(ctx, dirty) {
-    			if (dirty & /*date*/ 8 && t1_value !== (t1_value = moment(/*date*/ ctx[3], "MM/DD/YYYY").format("MMM Do YYYY") + "")) set_data(t1, t1_value);
+    			if (dirty & /*date*/ 4 && t1_value !== (t1_value = moment(/*date*/ ctx[2], "MM/DD/YYYY").format("MMM Do YYYY") + "")) set_data(t1, t1_value);
     		},
     		d(detaching) {
     			if (detaching) detach(span1);
@@ -38892,13 +38858,11 @@
     	let article;
     	let div0;
     	let t2;
-    	let t3;
     	let div1;
-    	let t4;
+    	let t3;
     	let div2;
     	let current;
-    	let if_block0 = /*subtitle*/ ctx[2] && create_if_block_1$2(ctx);
-    	let if_block1 = /*date*/ ctx[3] && create_if_block$6(ctx);
+    	let if_block = /*date*/ ctx[2] && create_if_block$6(ctx);
     	const toc = new TOC({ props: { content: /*content*/ ctx[0] } });
     	const markdown = new Markdown({ props: { content: /*content*/ ctx[0] } });
 
@@ -38911,13 +38875,11 @@
     			t1 = space();
     			article = element("article");
     			div0 = element("div");
-    			if (if_block0) if_block0.c();
+    			if (if_block) if_block.c();
     			t2 = space();
-    			if (if_block1) if_block1.c();
-    			t3 = space();
     			div1 = element("div");
     			create_component(toc.$$.fragment);
-    			t4 = space();
+    			t3 = space();
     			div2 = element("div");
     			create_component(markdown.$$.fragment);
     			this.h();
@@ -38937,16 +38899,14 @@
     			var article_nodes = children(article);
     			div0 = claim_element(article_nodes, "DIV", { class: true });
     			var div0_nodes = children(div0);
-    			if (if_block0) if_block0.l(div0_nodes);
-    			t2 = claim_space(div0_nodes);
-    			if (if_block1) if_block1.l(div0_nodes);
+    			if (if_block) if_block.l(div0_nodes);
     			div0_nodes.forEach(detach);
-    			t3 = claim_space(article_nodes);
+    			t2 = claim_space(article_nodes);
     			div1 = claim_element(article_nodes, "DIV", { class: true });
     			var div1_nodes = children(div1);
     			claim_component(toc.$$.fragment, div1_nodes);
     			div1_nodes.forEach(detach);
-    			t4 = claim_space(article_nodes);
+    			t3 = claim_space(article_nodes);
     			div2 = claim_element(article_nodes, "DIV", { class: true });
     			var div2_nodes = children(div2);
     			claim_component(markdown.$$.fragment, div2_nodes);
@@ -38956,12 +38916,12 @@
     			this.h();
     		},
     		h() {
-    			attr(h1, "class", "svelte-1mm2kr7");
-    			attr(header, "class", "svelte-1mm2kr7");
-    			attr(div0, "class", "page-metadata svelte-1mm2kr7");
+    			attr(h1, "class", "svelte-i579is");
+    			attr(header, "class", "svelte-i579is");
+    			attr(div0, "class", "page-metadata svelte-i579is");
     			attr(div1, "class", "table-of-contents");
-    			attr(div2, "class", "markdown svelte-1mm2kr7");
-    			attr(div3, "class", "page svelte-1mm2kr7");
+    			attr(div2, "class", "markdown svelte-i579is");
+    			attr(div3, "class", "post-page svelte-i579is");
     		},
     		m(target, anchor) {
     			insert(target, div3, anchor);
@@ -38971,13 +38931,11 @@
     			append(div3, t1);
     			append(div3, article);
     			append(article, div0);
-    			if (if_block0) if_block0.m(div0, null);
-    			append(div0, t2);
-    			if (if_block1) if_block1.m(div0, null);
-    			append(article, t3);
+    			if (if_block) if_block.m(div0, null);
+    			append(article, t2);
     			append(article, div1);
     			mount_component(toc, div1, null);
-    			append(article, t4);
+    			append(article, t3);
     			append(article, div2);
     			mount_component(markdown, div2, null);
     			current = true;
@@ -38985,30 +38943,17 @@
     		p(ctx, [dirty]) {
     			if (!current || dirty & /*title*/ 2) set_data(t0, /*title*/ ctx[1]);
 
-    			if (/*subtitle*/ ctx[2]) {
-    				if (if_block0) {
-    					if_block0.p(ctx, dirty);
+    			if (/*date*/ ctx[2]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
     				} else {
-    					if_block0 = create_if_block_1$2(ctx);
-    					if_block0.c();
-    					if_block0.m(div0, t2);
+    					if_block = create_if_block$6(ctx);
+    					if_block.c();
+    					if_block.m(div0, null);
     				}
-    			} else if (if_block0) {
-    				if_block0.d(1);
-    				if_block0 = null;
-    			}
-
-    			if (/*date*/ ctx[3]) {
-    				if (if_block1) {
-    					if_block1.p(ctx, dirty);
-    				} else {
-    					if_block1 = create_if_block$6(ctx);
-    					if_block1.c();
-    					if_block1.m(div0, null);
-    				}
-    			} else if (if_block1) {
-    				if_block1.d(1);
-    				if_block1 = null;
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
     			}
 
     			const toc_changes = {};
@@ -39031,8 +38976,7 @@
     		},
     		d(detaching) {
     			if (detaching) detach(div3);
-    			if (if_block0) if_block0.d();
-    			if (if_block1) if_block1.d();
+    			if (if_block) if_block.d();
     			destroy_component(toc);
     			destroy_component(markdown);
     		}
@@ -39059,14 +39003,14 @@
 
     	$$self.$set = $$props => {
     		if ("title" in $$props) $$invalidate(1, title = $$props.title);
-    		if ("subtitle" in $$props) $$invalidate(2, subtitle = $$props.subtitle);
-    		if ("date" in $$props) $$invalidate(3, date = $$props.date);
+    		if ("subtitle" in $$props) $$invalidate(3, subtitle = $$props.subtitle);
+    		if ("date" in $$props) $$invalidate(2, date = $$props.date);
     		if ("tags" in $$props) $$invalidate(4, tags = $$props.tags);
     		if ("content" in $$props) $$invalidate(0, content = $$props.content);
     		if ("slug" in $$props) $$invalidate(5, slug = $$props.slug);
     	};
 
-    	return [content, title, subtitle, date, tags, slug];
+    	return [content, title, date, subtitle, tags, slug];
     }
 
     class Page extends SvelteComponent {
@@ -39075,8 +39019,8 @@
 
     		init(this, options, instance$i, create_fragment$j, safe_not_equal, {
     			title: 1,
-    			subtitle: 2,
-    			date: 3,
+    			subtitle: 3,
+    			date: 2,
     			tags: 4,
     			content: 0,
     			slug: 5
@@ -39335,11 +39279,11 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "title svelte-ktaq54");
-    			attr(p0, "class", "date svelte-ktaq54");
-    			attr(p1, "class", "subtitle svelte-ktaq54");
-    			attr(div1, "class", "tags svelte-ktaq54");
-    			attr(li, "class", "svelte-ktaq54");
+    			attr(div0, "class", "title svelte-1nxia1f");
+    			attr(p0, "class", "date svelte-1nxia1f");
+    			attr(p1, "class", "subtitle svelte-1nxia1f");
+    			attr(div1, "class", "tags svelte-1nxia1f");
+    			attr(li, "class", "svelte-1nxia1f");
     		},
     		m(target, anchor) {
     			insert(target, li, anchor);
@@ -39463,7 +39407,7 @@
     			this.h();
     		},
     		h() {
-    			attr(ul, "class", "posts svelte-ktaq54");
+    			attr(ul, "class", "posts svelte-1nxia1f");
     		},
     		m(target, anchor) {
     			insert(target, ul, anchor);
@@ -39777,7 +39721,7 @@
     		},
     		h() {
     			document.title = "Writings | Sibtain Jafferi";
-    			attr(div, "class", "blog-container svelte-ktaq54");
+    			attr(div, "class", "blog-container svelte-1nxia1f");
     		},
     		m(target, anchor) {
     			insert(target, t, anchor);
@@ -40045,7 +39989,7 @@
     	return child_ctx;
     }
 
-    // (167:4) {#each links as { Logo, link }}
+    // (176:4) {#each links as { Logo, link }}
     function create_each_block$5(ctx) {
     	let a;
     	let t;
@@ -40069,7 +40013,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link svelte-1wppwy5");
+    			attr(a, "class", "link svelte-jecwsq");
     			attr(a, "href", a_href_value = /*link*/ ctx[2]);
     			attr(a, "target", "_blank");
     		},
@@ -40230,17 +40174,17 @@
     		},
     		h() {
     			document.title = "Me | Sibtain Jafferi";
-    			attr(h1, "class", "svelte-1wppwy5");
-    			attr(p, "class", "phonetic-spelling svelte-1wppwy5");
-    			attr(span0, "class", "header svelte-1wppwy5");
-    			attr(span1, "class", "inner-text-1 svelte-1wppwy5");
-    			attr(span2, "class", "inner-text-1 svelte-1wppwy5");
-    			attr(span3, "class", "inner-text-2 svelte-1wppwy5");
-    			attr(span4, "class", "inner-text-3 svelte-1wppwy5");
-    			attr(span5, "class", "text svelte-1wppwy5");
-    			attr(div0, "class", "description svelte-1wppwy5");
-    			attr(div1, "class", "links svelte-1wppwy5");
-    			attr(div2, "class", "about-container svelte-1wppwy5");
+    			attr(h1, "class", "svelte-jecwsq");
+    			attr(p, "class", "phonetic-spelling svelte-jecwsq");
+    			attr(span0, "class", "header svelte-jecwsq");
+    			attr(span1, "class", "inner-text-1 svelte-jecwsq");
+    			attr(span2, "class", "inner-text-1 svelte-jecwsq");
+    			attr(span3, "class", "inner-text-2 svelte-jecwsq");
+    			attr(span4, "class", "inner-text-3 svelte-jecwsq");
+    			attr(span5, "class", "text svelte-jecwsq");
+    			attr(div0, "class", "description svelte-jecwsq");
+    			attr(div1, "class", "links svelte-jecwsq");
+    			attr(div2, "class", "about-container svelte-jecwsq");
     		},
     		m(target, anchor) {
     			insert(target, t0, anchor);
@@ -40356,7 +40300,7 @@
     	}
     }
 
-    var css$2 = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway:wght@500;600&family=Amiri&Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap\");\nbody {\n  font-family: \"Raleway\", sans-serif !important;\n  overflow-x: hidden; }\n\nhtml {\n  --light-theme-text-color-1: black;\n  --light-theme-text-color: #333;\n  --light-theme-background-color: linear-gradient(\n    to left bottom,\n    #ffffff,\n    #fcc28cbd,\n    #ff6e65\n  );\n  --dark-theme-text-color-1: white;\n  --dark-theme-text-color: #cacaca;\n  --dark-theme-background-color: #333;\n  --theme-changer-top: 0;\n  --theme-changer-left: 0;\n  background-repeat: no-repeat;\n  background-size: cover;\n  transition: color, background, background-color 500ms linear;\n  width: 100%;\n  min-height: 100%;\n  height: fit-content; }\n  html * {\n    transition: color 500ms linear; }\n  @media (max-width: 800px) {\n    html {\n      --dark-theme-background-color: #333; } }\n\nhtml.dark {\n  background: var(--dark-theme-background-color);\n  color: var(--dark-theme-text-color);\n  --text-color-1: var(--dark-theme-text-color-1);\n  --text-color: var(--dark-theme-text-color);\n  --background-color: var(--dark-theme-text-color); }\n\nhtml.light {\n  background: var(--light-theme-background-color);\n  color: var(--light-theme-text-color);\n  --text-color-1: var(--light-theme-text-color-1);\n  --text-color: var(--light-theme-text-color);\n  --background-color: var(--light-theme-text-color); }\n\nhtml * {\n  color: var(--text-color); }\n\n.no-scroll {\n  overflow: hidden; }\n";
+    var css$2 = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway:wght@500;600&family=Amiri&Roboto:ital,wght@0,400;0,600;1,400&display=swap\");\nbody {\n  font-family: \"Raleway\", sans-serif !important;\n  overflow-x: hidden; }\n\nhtml {\n  --light-theme-text-color-1: black;\n  --light-theme-text-color: #333;\n  --light-theme-background-color: linear-gradient(\n    to left bottom,\n    #ffffff,\n    #fcc28cbd,\n    #ff6e65\n  );\n  --dark-theme-text-color-1: white;\n  --dark-theme-text-color: #cacaca;\n  --dark-theme-background-color: #333;\n  --theme-changer-top: 0;\n  --theme-changer-left: 0;\n  background-repeat: no-repeat;\n  background-size: cover;\n  transition: color, background, background-color 500ms linear;\n  width: 100%;\n  min-height: 100%;\n  height: fit-content; }\n  html * {\n    transition: color 500ms linear; }\n  @media (max-width: 850px) {\n    html {\n      --dark-theme-background-color: #333; } }\n\nhtml.dark {\n  background: var(--dark-theme-background-color);\n  color: var(--dark-theme-text-color);\n  --text-color-1: var(--dark-theme-text-color-1);\n  --text-color: var(--dark-theme-text-color);\n  --background-color: var(--dark-theme-text-color); }\n\nhtml.light {\n  background: var(--light-theme-background-color);\n  color: var(--light-theme-text-color);\n  --text-color-1: var(--light-theme-text-color-1);\n  --text-color: var(--light-theme-text-color);\n  --background-color: var(--light-theme-text-color); }\n\nhtml * {\n  color: var(--text-color); }\n\n.no-scroll {\n  overflow: hidden; }\n";
     styleInject(css$2);
 
     /* src/App.svelte generated by Svelte v3.17.1 */
@@ -40397,7 +40341,7 @@
     	};
     }
 
-    // (94:4) {#if theme == "light"}
+    // (98:4) {#if theme == "light"}
     function create_if_block$7(ctx) {
     	let current;
     	const sun = new Sun({ props: { about: /*about*/ ctx[3] } });
@@ -40434,7 +40378,7 @@
     	};
     }
 
-    // (93:2) <Router {url}>
+    // (97:2) <Router {url}>
     function create_default_slot$5(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -40509,7 +40453,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "section svelte-cd0v87");
+    			attr(div, "class", "section svelte-1wkz0j8");
     		},
     		m(target, anchor) {
     			if_blocks[current_block_type_index].m(target, anchor);
@@ -40613,7 +40557,7 @@
     		},
     		l(nodes) {
     			const head_nodes = query_selector_all("[data-svelte=\"svelte-7doa5z\"]", document.head);
-    			meta = claim_element(head_nodes, "META", { name: true, content: true });
+    			meta = claim_element(head_nodes, "META", { name: true, content: true, class: true });
     			head_nodes.forEach(detach);
     			t = claim_space(nodes);
     			div = claim_element(nodes, "DIV", { class: true });
@@ -40625,7 +40569,8 @@
     		h() {
     			attr(meta, "name", "viewport");
     			attr(meta, "content", "width=device-width, initial-scale=1");
-    			attr(div, "class", "container svelte-cd0v87");
+    			attr(meta, "class", "svelte-1wkz0j8");
+    			attr(div, "class", "container svelte-1wkz0j8");
     			toggle_class(div, "about", /*about*/ ctx[3]);
     		},
     		m(target, anchor) {

@@ -67,6 +67,11 @@
     margin-top: 5rem;
   }
 
+  :root {
+    --theme-changer-top: 0;
+    --theme-changer-left: 0;
+  }
+
   .about {
     --theme-changer-top: 45%;
     --theme-changer-left: 60%;
@@ -74,12 +79,14 @@
     --moon-size: 100px;
   }
 
-  @media (max-width: 800px) {
-    :global(.about > *) {
-      --theme-changer-top: 18%;
-      --theme-changer-left: calc(50% - 33px);
-      --sun-size: 50px;
-      --moon-size: 50px;
+  @media (max-width: 850px) {
+    :not(.about) {
+      :global(.moon-container), :global(.sun-container) {
+        --theme-changer-top: 0 !important;
+        --theme-changer-left: 0 !important;
+        --sun-size: 13vw !important;
+        --moon-size: 12vw !important;
+      }
     }
     .container {
       overflow-x: hidden;

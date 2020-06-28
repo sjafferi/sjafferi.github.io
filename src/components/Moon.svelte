@@ -49,10 +49,6 @@
     box-shadow: inset -40px 30px 10px -20px rgba(0, 0, 0, 0.48),
       10px 1px 20px 0px rgba(0, 0, 0, 0.3);
     transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
-    /* -webkit-transition: all 1s cubic-bezier(0.740, -0.600, 0.455, 1.650);
-     -moz-transition: all 1s cubic-bezier(0.740, -0.600, 0.455, 1.650);
-       -o-transition: all 1s cubic-bezier(0.740, -0.600, 0.455, 1.650);
-          transition: all 1s cubic-bezier(0.740, -0.600, 0.455, 1.650);   */
     transition-delay: 0.4s;
 
     &:hover {
@@ -72,7 +68,7 @@
     transform: scale(2.5);
     z-index: -1;
     animation: glowing 5s infinite;
-    transition: all 1s cubic-bezier(0.74, -0.6, 0.455, 1.65);
+    transition: all 1s cubic-bezier(0.74, -0.6, 0.455, 1.65), width,height,top,left,bottom,right 2s cubic-bezier(0.74, -0.6, 0.455, 1.65);
     transition-delay: 0.4s;
     z-index: -4;
   }
@@ -196,7 +192,7 @@
     }
   }
 }
-  @media (max-width: 800px) {
+  @media (max-width: 850px) {
     .moon-container {
       --moon-size: 50px;
     }
