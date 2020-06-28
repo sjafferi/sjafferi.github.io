@@ -16,16 +16,16 @@
     width: 100%;
     font-family: "Roboto", sans-serif;
     padding: 25px 40px;
-    box-shadow: 0 4px 16px 0 rgba(33, 33, 33, 0.2);
+    // box-shadow: 0 4px 16px 0 rgba(33, 33, 33, 0.2);
     box-sizing: content-box;
-    border: grey;
+    // border: grey;
     background: none;
   }
 
   :global(html.dark) {
     .blog-container {
-      box-shadow: 0 2px 12px 0 rgba(114, 114, 114, 0.2);
-      background: #1b1b1ba6;
+      // box-shadow: 0 2px 12px 0 rgba(114, 114, 114, 0.2);
+      // background: #1b1b1ba6;
     }
   }
 
@@ -52,8 +52,9 @@
   }
 
   :global(.posts .title a) {
-    font-size: 1.6rem;
+    font-size: 1.75rem;
     font-weight: 600;
+    font-variant: small-caps;
     text-decoration: none !important;
     color: var(--text-color);
     line-height: 30px;

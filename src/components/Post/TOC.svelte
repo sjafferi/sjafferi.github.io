@@ -67,6 +67,13 @@
 </script>
 
 <style lang="scss">
+  @mixin list-indices {
+    .toc {
+      :global(ol > li:before), :global(ol ol > li:before) {
+        @content;
+      }
+    }
+  }
   :global(.toc a) {
     color: var(--text-color);
     text-decoration: none;
@@ -87,21 +94,25 @@
     text-indent: 0;
     padding: 0;
   }
-  :global(ol) {
+  :global(.toc ol) {
     counter-reset: item;
+    list-style-type: none;
   }
 
-  :global(ol > li) {
+  :global(.toc ol > li) {
     counter-increment: item;
+  }
+
+  :global(.toc > ol > li > a) {
+    color: var(--text-color-1);
   }
 
   :global(.toc ol ol > li) {
     display: block;
-    font-size: 0.9em;
     padding: 3px 5px;
+    font-size: 0.9em !important;
   }
-
-  :global(.toc ol ol > li:before) {
+  @include list-indices {
     content: counters(item, ".") ". ";
     margin-left: -20px;
   }
@@ -110,7 +121,7 @@
     max-width: 40ch;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
-    margin: 0 2rem 1.5rem 0;
+    margin: 0 2.25rem 1.75rem 0;
     line-height: 1.25;
     padding: 5px 15px;
     position: relative;
@@ -119,6 +130,17 @@
   :global(html.dark) {
     .toc {
       background-color: #2424243b;
+      border-color: #686868;
+    }
+    @include list-indices {
+      color: #8e8e8e;
+    }
+  }
+
+  @media (max-width: 850px) {
+    .toc {
+      max-width: 85vw;
+      margin: auto;
     }
   }
 </style>

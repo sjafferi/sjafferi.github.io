@@ -120,6 +120,8 @@
         --sun-size: 10vh !important;
         --moon-size: 7vh !important;
       }
+
+
     }
   }
 
@@ -213,7 +215,7 @@
         top: calc(var(--theme-changer-top) + 5vh + 75px) !important;
         transform: translate(-50%, 0);
         max-width: 93vw;
-        width: 33ch;
+        width: 34ch;
       }
 
       @media (min-height: 320px) {

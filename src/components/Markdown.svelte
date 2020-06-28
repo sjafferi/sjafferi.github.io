@@ -1,13 +1,13 @@
 <script>
   import { Remarkable } from "remarkable";
   import hljs from "highlight.js";
-  import "highlight.js/scss/agate.scss";
 
   import { toSlug } from "util/index.js";
 
   export let content;
 
   const md = new Remarkable({
+    langPrefix: 'hljs language-',
     highlight: function (str, lang) {
       if (lang && hljs.getLanguage(lang)) {
         try {
@@ -47,45 +47,72 @@
 <style lang="scss">
   @mixin headings {
       :global(
-        h1, h2, h3,
-        h4, h5, h6
+        .page h1, .markdown h1, .markdown h2, .markdown h3, .markdown
+        h4, .markdown h5, .markdown h6
       ) {
           @content;
       }
   }
-  :global(.markdown h1, .page h1) {
-    font-feature-settings: "smcp";
-    font-size: 1.75em;
-    line-height: 1.25;
-    letter-spacing: -0.75px;
+  @mixin text {
+      :global(
+        .markdown p, .markdown ul, .markdown ol, .markdown a
+      ) {
+          @content;
+      }
+  }
+  @mixin mobile {
+    @media screen and (max-width: 850px) {
+      @content;
+    }
+  }
+  @mixin lists {
+    :global(.markdown ul, .markdown ol, .markdown li) {
+      @content;
+    } 
   }
 
-  :global(.page h1, .markdown h1, .markdown h2, .markdown h3, .markdown
-      h4, .markdown h5, .markdown h6) {
-    margin: 1em 0;
+  :global(.markdown) {
+    @include text {
+      overflow: hidden;
+      font-size: 21px;
+      line-height: 1.25;
+      word-break: break-word;
+      hyphens: auto;
+    }
+    ol {
+      line-height: 23px;
+    }
+  }
+  
+  @include headings {
+    margin: 1.5em 0 0.75em 0;
     font-weight: bold;
     position: relative;
-    padding: 0 0.5em 0 0;
+    padding: 0 0 5px 0;
     line-height: 1.25;
     font-size: 1rem;
-  }
-  :global(.markdown h1) {
-    font-size: 1.75em;
-  }
-
-  :global(.markdown h2) {
-    font-size: 1.5em;
-  }
-  :global(.markdown h3) {
-    font-size: 1.25em;
+    box-shadow: 0 -1px 0px 0 #848484 inset, 0 -1px 0 0 #000 inset;
+    overflow: hidden;
   }
 
-  :global(.markdown p, .markdown li) {
+  :global(.markdown h1, .page h1) {
+    font-feature-settings: "smcp";
+    font-size: 2em;
     line-height: 1.25;
-    font-size: 21px;
+    box-shadow: 0 -1px 0px 0 #848484 inset, 0 -2px 0 0 #888 inset;
   }
 
-  :global(.markdown ul li) {
+  @for $index from 1 through 4 {
+    :global(.markdown h#{$index}) {
+      font-size: 2em - 0.25em * $index;
+    }
+  }
+
+  @include lists {
+    font-size: 19px;
+  }
+
+  :global(.markdown ul li, .markdown ol li) {
     margin: 10px 5px;
   }
 
@@ -100,12 +127,13 @@
   :global(.markdown p.image-container) {
     display: flex;
     justify-content: center;
+    margin: 1em 0;
   }
 
   :global(.markdown p.image-container img) {
-    max-width: 100%;
-    margin: 30px 0;
-    box-shadow: 0 4px 16px 0 rgba(33, 33, 33, 0.2);
+    max-width: 99%;
+    box-shadow: 3px 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 9px 0;
   }
 
   :global(.markdown p.image-container + em) {
@@ -113,42 +141,27 @@
     text-align: center;
   }
 
-  :global(.markdown code) {
-    background-color: rgba(27, 31, 35, 0.05);
-    border-radius: 3px;
-    margin: 0;
-    padding: 0.2em 0.4em;
-  }
-
-  :global(.markdown pre) {
-    word-wrap: normal;
-  }
-
   :global(.markdown pre > code) {
-    background: transparent;
     border: 0;
     margin: 0;
     padding: 0;
-    white-space: pre;
-    word-break: normal;
+    word-break: break-all;
+    white-space: pre-wrap;
+    font-size: 1rem;
+    font-family: 'Roboto Mono', monospace;
   }
 
   :global(.markdown .highlight) {
     margin-bottom: 16px;
   }
 
-  :global(.markdown .highlight pre) {
-    margin-bottom: 0;
-    word-break: normal;
-  }
-
-  :global(.markdown .highlight pre),
   :global(.markdown pre) {
-    background-color: #2b2b2b;
-    border-radius: 3px;
+    margin: 16px 0;
     line-height: 1.45;
-    overflow: auto;
-    padding: 16px;
+    border-radius: 3px;
+    word-break: normal;
+    overflow: hidden !important;
+    background: #f6f8fa;
   }
 
   :global(.markdown pre code) {
@@ -164,25 +177,27 @@
     word-wrap: normal;
   }
 
-  :global(.markdown ol > li) {
-    margin: 10px 0;
-  }
-
-  @media screen and (max-width: 850px) {
+  @include mobile {
     .markdown {
       max-width: 95vw;
     }
-    :global(.markdown p.image-container img) {
-      margin: 30px 0;
+    @include headings {
+      margin: 0.75em 0 0.65em 0;
     }
-    :global(.markdown p, .markdown li) {
-      font-size: 16px;
+    @include text {
+      font-size: 19px;
+    }
+    :global(.markdown pre > code) {
+      font-size: 12px;
     }
   }
 
   :global(html.dark) {
       :global(.markdown a) {
         color: #baffdc !important;
+      }
+      :global(.markdown pre) {
+        background: transparent !important;
       }
   }
 </style>

@@ -30,31 +30,21 @@
   }
 
   .content {
-    display: flex;
+    // display: flex;
   }
 
   .markdown {
-    // width: 90vw;
-    max-width: 115ch;
+    max-width: 55rem;
   }
 
   header h1 {
     text-align: center;
     text-transform: none;
-    font-size: 2.5em;
-    line-height: 1.15;
-    font-weight: 600;
-    letter-spacing: -1px;
-    font-family: Raleway, sans-serif;
-  }
-
-  .post-page h1 {
-    font-size: 1.75em;
+    font-size: 2.25em;
     line-height: 1.25;
+    font-weight: 600;
     letter-spacing: 0.5px;
-    margin: 1.25em 0 0.5em 0rem;
-    font-weight: bold;
-    position: relative;
+    font-family: Raleway, sans-serif;
   }
 
   .page-metadata {
@@ -77,10 +67,15 @@
   @media (max-width: 850px) {
     .markdown {
       width: auto;
+      float: right;
     }
     .post-page {
       box-shadow: none !important;
       background: none !important;
+
+      header h1 {
+        font-size: 1.5em;
+      }
     }
   }
 </style>

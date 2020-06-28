@@ -10,12 +10,12 @@ By the end of each section, you should have the tools necessary to come up with 
 
 The plan of attack is as follows:
 
-- Understand the underlying theory behind each data structure
-  - Implementation, applications, complexities, traversals
-- Study problems representative of the data structure
-  - Core problems that can be used to derive solutions to many other problems
-- Iterate until perfect
-  - Use spaced repetition (linked Anki cards) to commit learnings to long term memory
+1. Understand the underlying theory behind each data structure
+   - Implementation, applications, complexities, traversals
+2. Study problems representative of the data structure
+   - Core problems that can be used to derive solutions to many other problems
+3. Iterate until perfect
+   - Use spaced repetition (linked Anki cards) to commit learnings to long term memory
 
 ## Spaced Repetiton with Anki Cards
 
