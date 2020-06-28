@@ -74,8 +74,8 @@
 
   .about {
     --theme-changer-top: 45%;
-    --theme-changer-left: 60%;
-    --sun-size: 125px;
+    --theme-changer-left: 57%;
+    --sun-size: 140px;
     --moon-size: 100px;
   }
 

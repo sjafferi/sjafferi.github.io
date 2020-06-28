@@ -1,4 +1,5 @@
 <script>
+  import { slide, fade } from "svelte/transition";
   export let about = true;
   let hovering = false;
 </script>
@@ -206,7 +207,7 @@
 {/if} -->
 
 <div class="overlay" />
-<div class="sun-container" on:click class:about>
+<div class="sun-container" on:click class:about transition:fade>
   <div id="sun" class="animate"  on:mouseover={() => { hovering = true; }} on:mouseout={() => { hovering = false; }}>
     <div class="outreaching-rays" />
   </div>

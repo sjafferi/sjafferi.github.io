@@ -242,6 +242,22 @@
     }
   }
 
+  @keyframes bounce-7 {
+    0%   { transform: scale(1,1)      translateY(0); }
+    10%  { transform: scale(1.1,.9)   translateY(0); }
+    30%  { transform: scale(.9,1.1)   translateY(-100px); }
+    50%  { transform: scale(1.05,.95) translateY(0); }
+    57%  { transform: scale(1,1)      translateY(-7px); }
+    64%  { transform: scale(1,1)      translateY(0); }
+    100% { transform: scale(1,1)      translateY(0); }
+  }
+
+  .bounce {
+    animation: bounce-7 2s 2;
+    animation-delay: 3s;
+    animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+  }
+
   .info-msg {
     display: flex;
     position: absolute;
@@ -281,7 +297,7 @@
   }
 </style>
 
-<div class="moon-container" on:click class:animate class:about>
+<div class="moon-container bounce" on:click class:animate class:about transition:fade>
   <div id="moon" on:mouseover="{toggleAnimation}">
     <!-- {#if showMessage}
     <span class="info-msg" transition:slide>Tap <span>me</span></span>

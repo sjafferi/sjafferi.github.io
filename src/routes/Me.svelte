@@ -19,8 +19,8 @@
     flex-wrap: wrap;
     font-family: "Montserrat", sans-serif;
     max-width: 48rem;
-    left: calc(var(--theme-changer-left) - 525px);
-    top: calc(var(--theme-changer-top) - 525px);
+    left: calc(var(--theme-changer-left) - 540px);
+    top: calc(var(--theme-changer-top) - 560px);
     position: absolute;
     pointer-events: none;
     min-height: 700px;
