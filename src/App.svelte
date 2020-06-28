@@ -17,7 +17,7 @@
   onMount(() => {
     router.initialize();
     themeManager.initialize();
-    // themeManager.toggle();
+    themeManager.toggle();
     if (location.pathname === '/') {
       location.href = '/about'
     }

@@ -75,8 +75,8 @@
 
   #star {
     position: absolute;
-    left: 9vw;
-    top: 0;
+    left: 10em;
+    top: 2em;
     height: 90px;
     width: 1px;
     background: radial-gradient(ellipse at center, #f9f9f9 9%, #1e5799 98%);
@@ -107,8 +107,8 @@
 
   #star1 {
     position: absolute;
-    left: 6vw;
-    top: 8vh;
+    left: 7em;
+    top: 8em;
     height: 60px;
     width: 1px;
     background: radial-gradient(ellipse at center, #f9f9f9 29%, #1e5799 98%);
@@ -140,8 +140,8 @@
 
   #star2 {
     position: absolute;
-    left: 3vw;
-    top: 8vh;
+    left: 4em;
+    top: 8em;
     height: 60px;
     width: 1px;
     background: radial-gradient(ellipse at center, #f9f9f9 29%, #1e5799 98%);
@@ -245,7 +245,7 @@
   @keyframes bounce-7 {
     0%   { transform: scale(1,1)      translateY(0); }
     10%  { transform: scale(1.1,.9)   translateY(0); }
-    30%  { transform: scale(.9,1.1)   translateY(-100px); }
+    30%  { transform: scale(.9,1.1)   translateY(-50px); }
     50%  { transform: scale(1.05,.95) translateY(0); }
     57%  { transform: scale(1,1)      translateY(-7px); }
     64%  { transform: scale(1,1)      translateY(0); }

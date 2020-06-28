@@ -38,10 +38,6 @@ html {
   * {
     transition: color, background, background-color 500ms linear;
   }
-
-  @media (max-width: 850px) {
-    --dark-theme-background-color: #333;
-  }
 }
 
 %load-light-theme {
@@ -57,7 +53,7 @@ html.dark {
   --theme: "dark";
   --text-color-1: var(--dark-theme-text-color-1);
   --text-color: var(--dark-theme-text-color);
-  --background-color: var(--dark-theme-text-color);
+  --background-color: var(--dark-theme-background-color);
   @extend %load-dark-theme;
 }
 
