@@ -40010,7 +40010,7 @@
     	return child_ctx;
     }
 
-    // (257:4) {#each links as { Logo, link }}
+    // (271:4) {#each links as { Logo, link }}
     function create_each_block$5(ctx) {
     	let a;
     	let t;
@@ -40034,7 +40034,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link svelte-iz0iob");
+    			attr(a, "class", "link svelte-1n9n2t8");
     			attr(a, "href", a_href_value = /*link*/ ctx[2]);
     			attr(a, "target", "_blank");
     		},
@@ -40195,17 +40195,17 @@
     		},
     		h() {
     			document.title = "Me | Sibtain Jafferi";
-    			attr(h1, "class", "svelte-iz0iob");
-    			attr(p, "class", "phonetic-spelling svelte-iz0iob");
-    			attr(span0, "class", "header svelte-iz0iob");
-    			attr(span1, "class", "inner-text-1 svelte-iz0iob");
-    			attr(span2, "class", "inner-text-1 svelte-iz0iob");
-    			attr(span3, "class", "inner-text-2 svelte-iz0iob");
-    			attr(span4, "class", "inner-text-3 svelte-iz0iob");
-    			attr(span5, "class", "text svelte-iz0iob");
-    			attr(div0, "class", "description svelte-iz0iob");
-    			attr(div1, "class", "links svelte-iz0iob");
-    			attr(div2, "class", "about-container svelte-iz0iob");
+    			attr(h1, "class", "svelte-1n9n2t8");
+    			attr(p, "class", "phonetic-spelling svelte-1n9n2t8");
+    			attr(span0, "class", "header svelte-1n9n2t8");
+    			attr(span1, "class", "inner-text-1 svelte-1n9n2t8");
+    			attr(span2, "class", "inner-text-1 svelte-1n9n2t8");
+    			attr(span3, "class", "inner-text-2 svelte-1n9n2t8");
+    			attr(span4, "class", "inner-text-3 svelte-1n9n2t8");
+    			attr(span5, "class", "text svelte-1n9n2t8");
+    			attr(div0, "class", "description svelte-1n9n2t8");
+    			attr(div1, "class", "links svelte-1n9n2t8");
+    			attr(div2, "class", "about-container svelte-1n9n2t8");
     			attr(div2, "id", "about-container");
     		},
     		m(target, anchor) {

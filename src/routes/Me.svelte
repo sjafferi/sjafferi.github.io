@@ -100,6 +100,17 @@
             }
         }
       }
+
+      @media (min-height: 1000px) {
+          @include variable-change {
+            --theme-changer-top: 65vh !important;
+            --theme-changer-left: 65% !important;
+            &.about-container {
+              top: calc(var(--theme-changer-top) - (var(--sun-size) * 2)*2) !important;
+              left: calc(var(--theme-changer-left) - (var(--sun-size) * 2)*2) !important;
+            }
+        }
+      }
     }
 
     @media (min-width: 1650px) {
