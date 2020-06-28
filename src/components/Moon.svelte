@@ -306,5 +306,5 @@
     <div id="star1"></div>
     <div id="star2"></div>
   </div>
-  <div id="moon-shadow bounce"></div>
+  <div id="moon-shadow" class="bounce"></div>
 </div>

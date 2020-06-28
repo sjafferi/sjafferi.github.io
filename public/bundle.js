@@ -2234,7 +2234,7 @@
     			children(div2).forEach(detach);
     			div3_nodes.forEach(detach);
     			t2 = claim_space(div5_nodes);
-    			div4 = claim_element(div5_nodes, "DIV", { id: true });
+    			div4 = claim_element(div5_nodes, "DIV", { id: true, class: true });
     			children(div4).forEach(detach);
     			div5_nodes.forEach(detach);
     			this.h();
@@ -2248,7 +2248,8 @@
     			attr(div2, "class", "svelte-1tkkxpa");
     			attr(div3, "id", "moon");
     			attr(div3, "class", "svelte-1tkkxpa");
-    			attr(div4, "id", "moon-shadow bounce");
+    			attr(div4, "id", "moon-shadow");
+    			attr(div4, "class", "bounce svelte-1tkkxpa");
     			attr(div5, "class", "moon-container bounce svelte-1tkkxpa");
     			toggle_class(div5, "animate", /*animate*/ ctx[1]);
     			toggle_class(div5, "about", /*about*/ ctx[0]);
