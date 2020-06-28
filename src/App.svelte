@@ -1,7 +1,7 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
   import { Router, Route } from "svelte-routing";
-  import { themeManager } from 'stores';
+  import { themeManager, router } from 'stores';
   import Sun from "components/Sun.svelte";
   import Moon from "components/Moon.svelte";
   import Nav from "./routes/Nav.svelte";
@@ -15,40 +15,34 @@
   let currentPage;
   
   onMount(() => {
+    router.initialize();
     themeManager.initialize();
     themeManager.toggle();
     if (location.pathname === '/') {
       location.href = '/about'
     }
     if (!unsubscribe) {
-      unsubscribe = themeManager.theme.subscribe(value => theme = value);
+      unsubscribe = [
+        themeManager.theme.subscribe(value => theme = value),
+        router.currentPage.subscribe(value => currentPage = value)
+      ]
     }
+
     isMounted = true;
   });
 
   onDestroy(() => {
     if (unsubscribe) {
-      unsubscribe();
+      unsubscribe.forEach(unsub => unsub());
       themeManager.destroy();
     }
   })
 
   $: about = !currentPage || currentPage === 'about';
-  // $: if (isMounted && about) {
-  //   themeManager.html.classList.add('no-scroll');
-  // } else {
-  //   themeManager.html.classList.remove('no-scroll');
-  // }
+  $: inBlogPost = currentPage && currentPage.split('/').length > 1;
 </script>
 
 <style lang="scss">
-  img {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    opacity: 0.2;
-  }
-  
   .container {
     max-width: 110ch;
     margin: auto;
@@ -74,16 +68,21 @@
 
   .about {
     --theme-changer-top: 45%;
-    --theme-changer-left: 57%;
-    --sun-size: 140px;
-    --moon-size: 100px;
+    --theme-changer-left: 60%;
+    --sun-size: 120px;
+    --moon-size: 80px;
+  }
+
+  :not(.about) {
+    :global(.moon-container), :global(.sun-container) {
+      --theme-changer-top: 0 !important;
+      --theme-changer-left: 0 !important;
+    }
   }
 
   @media (max-width: 850px) {
     :not(.about) {
       :global(.moon-container), :global(.sun-container) {
-        --theme-changer-top: 0 !important;
-        --theme-changer-left: 0 !important;
         --sun-size: 13vw !important;
         --moon-size: 12vw !important;
       }
@@ -104,20 +103,25 @@
     }
   }
 
+  :global(html.light) {
+    :global(.inBlogPost .blog-container) {
+      background: white !important;
+    }
+  }
 </style>
 
 <svelte:head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </svelte:head>
 
-<div class="container" class:about>
+<div class="container" class:about class:inBlogPost>
   <Router {url}>
     {#if theme == "light"}
       <Sun on:click={themeManager.toggle} {about} />
     {:else}
       <Moon on:click={themeManager.toggle} {about} />
     {/if}
-    <Nav bind:currentPage={currentPage} />
+    <Nav {currentPage} />
     <div class="section">
       <Route path="projects" component={Projects} />
       <Route path="about" component={Me} />

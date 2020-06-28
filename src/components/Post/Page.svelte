@@ -27,32 +27,25 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    box-shadow: 0 4px 16px 0 rgba(33, 33, 33, 0.2);
-    background: white;
-    border: grey;
   }
 
-  :global(html.dark) {
-    .post-page {
-      box-shadow: none;
-      box-shadow: 0 2px 12px 0 rgba(255, 255, 255, 0.2);
-      background: #3c3c3c;
-    }
+  .content {
+    display: flex;
   }
 
   .markdown {
-    width: 70vw;
-    max-width: 85ch;
+    // width: 90vw;
+    max-width: 115ch;
   }
 
   header h1 {
-    // text-align: center;
+    text-align: center;
     text-transform: none;
-    // font-variant: small-caps;
     font-size: 2.5em;
     line-height: 1.15;
     font-weight: 600;
     letter-spacing: -1px;
+    font-family: Raleway, sans-serif;
   }
 
   .post-page h1 {
@@ -111,11 +104,13 @@
       </span>
       {/if}
     </div>
-    <div class="table-of-contents">
-      <TOC {content} />
-    </div>
-    <div class="markdown">
-      <Markdown {content} />
+    <div class="content">
+      <div class="table-of-contents">
+        <TOC {content} />
+      </div>
+      <div class="markdown">
+        <Markdown {content} />
+      </div>
     </div>
   </article>
 </div>

@@ -19,33 +19,93 @@
     flex-wrap: wrap;
     font-family: "Montserrat", sans-serif;
     max-width: 48rem;
-    left: calc(var(--theme-changer-left) - 540px);
-    top: calc(var(--theme-changer-top) - 560px);
+    top: calc(var(--theme-changer-top) -  (var(--sun-size) * 2.5)*2) !important;
+    left: calc(var(--theme-changer-left) - (var(--sun-size) * 2.5)*2) !important;
     position: absolute;
     pointer-events: none;
     min-height: 700px;
     overflow: hidden;
   }
- 
-  @media (max-height: 1575px) {
-    :global(.about > *) {
-      --theme-changer-top: 60%;
-    }
 
+  @mixin variable-change {
+    :global(.moon-container), :global(.sun-container), :global(.about > *), .about-container {
+      @content;
+      &.about-container {
+        @content;
+      }
+    }
+  }
+
+  @media (min-width: 1650px) {
+    @include variable-change {
+      --theme-changer-top: 60%;
+      --theme-changer-left: 55%;
+    }
+  }
+ 
+  @media (max-height: 1650px) {
     @media (max-height: 1090px) {
-      :global(.moon-container), :global(.sun-container), :global(.about > *), .about-container {
-        --theme-changer-top: 70vh;
-        --sun-size: 12.5vh !important;
-        --moon-size: 8vh !important;
-        &.about-container {
-          left: calc(var(--theme-changer-left) - 30vw);
-          top: calc(var(--theme-changer-top) - 55vh);
+      @include variable-change {
+        --theme-changer-top: 67.5vh;
+        --theme-changer-left: 65vw !important;
+        --sun-size: 13vh !important;
+        --moon-size: 8.5vh !important;
+      }
+      &.about-container {
+        left: calc(var(--theme-changer-left) - 33vw);
+        top: calc(var(--theme-changer-top) - 45vh);
+        .description {
+          max-width: 57ch;
+          .header h1 {
+            font-size: 3rem !important; 
+          }
+          .text {
+            font-size: 1.75rem;
+          }
         }
       }
     }
 
+    @media (max-height: 850px) {
+      @include variable-change {
+        --theme-changer-top: 80vh !important;
+        --theme-changer-left: 70% !important;
+      }
+    }
+
+    @media (max-width: 1700px) {
+      @media (max-height: 1550px) {
+          @include variable-change {
+            --theme-changer-top: 65vh !important;
+            --theme-changer-left: 60% !important;
+            --sun-size: 10vh !important;
+            --moon-size: 8vh !important;
+            &.about-container {
+              top: calc(var(--theme-changer-top) - (var(--sun-size) * 2)*2) !important;
+              left: calc(var(--theme-changer-left) - (var(--sun-size) * 2)*2) !important;
+            }
+        }
+      }
+      @media (max-height: 1350px) {
+        @include variable-change {
+          --theme-changer-top: 65vh !important;
+          --theme-changer-left: 60% !important;
+            &.about-container {
+              top: calc(var(--theme-changer-top) - (var(--sun-size) * 2.25)*2) !important;
+              left: calc(var(--theme-changer-left) - (var(--sun-size) * 2.25)*2) !important;
+            }
+        }
+      }
+    }
+
+    @media (min-width: 1650px) {
+      @include variable-change {
+        --theme-changer-left: 60%;
+      }
+    }
+
     @media (max-width: 850px) {
-      :global(.moon-container), :global(.sun-container), :global(.about > *), .about-container {
+      @include variable-change {
         --theme-changer-top: 18% !important;
         --theme-changer-left: calc(50% - 33px) !important;
         --sun-size: 8vh !important;
@@ -54,7 +114,7 @@
     }
 
     @media (max-width: 650px) and (max-height: 850px) {
-      :global(.moon-container), :global(.sun-container), :global(.about > *), .about-container {
+      @include variable-change {
         --theme-changer-top: 18% !important;
         --theme-changer-left: calc(50% - 33px) !important;
         --sun-size: 10vh !important;
@@ -122,6 +182,11 @@
   }
 
   :global(html.dark) {
+    .description {
+      .text {
+        color: #a4a4a4;
+      }
+    }
     .links {
       :global(.link svg) {
         @media(hover: hover) and (pointer: fine) {
@@ -140,51 +205,54 @@
     }
   }
 
-  @media (max-width: 850px) {
-    .about-container {
-      margin: 0;;
-      left: 50% !important;
-      top: calc(var(--theme-changer-top) + 5vh + 75px) !important;
-      transform: translate(-50%, 0);
-      max-width: 93vw;
-      width: 33ch;
-    }
-    @media (min-height: 320px) {
-      .text {
-        font-size: 1rem;
+  @media screen and (max-width: 850px) {
+    #about-container {
+      &.about-container {
+        margin: 0;
+        left: 50% !important;
+        top: calc(var(--theme-changer-top) + 5vh + 75px) !important;
+        transform: translate(-50%, 0);
+        max-width: 93vw;
+        width: 33ch;
       }
-    }
-    .description {
-      h1 {
-        font-size: 2.25rem !important;
-        font-weight: 600;
-      }
-      .phonetic-spelling {
-        font-size: 2rem !important;
-        line-height: 10px !important;
-      }
-      .text {
-        font-size: 1.25rem;
-        color: var(--text-color) !important;
-        .inner-text-1, .inner-text-2, .inner-text-3 {
-          color: var(--text-color) !important;
-          font-weight: normal !important;
-        }
-      }
-      @media (max-width: 320px) {
+
+      @media (min-height: 320px) {
         .text {
-          font-size: 1.15rem;
+          font-size: 1rem;
         }
       }
-    }
-    .links {
-      margin-top: 2rem;
-      > .link {
-        margin: 0 1rem;
+      div.description {
+        h1 {
+          font-size: 2.25rem !important;
+          font-weight: 600;
+        }
+        .phonetic-spelling {
+          font-size: 2rem !important;
+          line-height: 10px !important;
+        }
+        .text {
+          font-size: 1.25rem;
+          color: var(--text-color) !important;
+          .inner-text-1, .inner-text-2, .inner-text-3 {
+            color: var(--text-color) !important;
+            font-weight: normal !important;
+          }
+        }
+        @media (max-width: 320px) {
+          .text {
+            font-size: 1.15rem;
+          }
+        }
       }
-      :global(svg) {
-        width: 2rem !important;
-        height: 2rem !important;
+      .links {
+        margin-top: 2rem;
+        > .link {
+          margin: 0 1rem;
+        }
+        :global(svg) {
+          width: 2rem !important;
+          height: 2rem !important;
+        }
       }
     }
   }
@@ -194,7 +262,7 @@
   <title>Me | Sibtain Jafferi</title>
 </svelte:head>
 
-<div class="about-container">
+<div class="about-container" id="about-container">
   <div class="description">
     <span class="header">
       <h1>I'm Sibtain</h1>

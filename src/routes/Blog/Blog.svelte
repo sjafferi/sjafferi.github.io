@@ -2,18 +2,31 @@
   import moment from "moment";
   import { Router, Link, Route } from "svelte-routing";
   import { groupBy } from "util/index.js";
+  import { router } from 'stores'
   import Post from "components/Post/Page.svelte";
   import List from "components/List.svelte";
   import Tag from "components/Tag.svelte";
   import Posts from "metadata/posts.js";
 
-  const posts = Posts.sort((a, b) => moment(a.date, "MM/DD/YYYY").isBefore(moment(b.date, "MM/DD/YYY")) ? 1 : -1); // descending order of date
+  const posts = Posts.slice(0).sort((a, b) => moment(a.date, "MM/DD/YYYY").isBefore(moment(b.date, "MM/DD/YYY")) ? 1 : -1); // descending order of date
 </script>
 
 <style lang="scss">
   .blog-container {
     width: 100%;
     font-family: "Roboto", sans-serif;
+    padding: 25px 40px;
+    box-shadow: 0 4px 16px 0 rgba(33, 33, 33, 0.2);
+    box-sizing: content-box;
+    border: grey;
+    background: none;
+  }
+
+  :global(html.dark) {
+    .blog-container {
+      box-shadow: 0 2px 12px 0 rgba(114, 114, 114, 0.2);
+      background: #1b1b1ba6;
+    }
   }
 
   .posts {
@@ -29,18 +42,24 @@
     margin-bottom: 30px;
   }
 
+  .posts li:last-child {
+    border-bottom: none;
+    margin: 0;
+  }
+
   .posts li > * {
     margin: 15px 0;
   }
 
   :global(.posts .title a) {
-    // font-size: 24px;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 600;
     text-decoration: none !important;
-    font-variant: small-caps;
     color: var(--text-color);
     line-height: 30px;
+    font-variant: petite-caps;
+    letter-spacing: 1.25px;
+    font-family: Raleway, sans-serif;
   }
 
   :global(.posts .title a:hover) {
@@ -54,12 +73,11 @@
   }
 
   .posts .date {
-    // font-size: 12px;
     font-size: 1rem;
+    line-height: 0.5rem;
   }
 
   .posts .subtitle {
-    // font-size: 16px;
     font-size: 1.25rem;
     margin: 20px 0;
   }
@@ -74,13 +92,15 @@
     }
   }
 
-  @media (max-width: 850px) {
+  @media (max-width: 1350px) {
     .blog-container {
       margin: 0;
+      padding: 0;
+      box-shadow: none !important;
+      background: transparent !important;
     }
     :global(.posts .title a) {
       font-size: 24px !important;
-      font-variant: small-caps;
     }
     .posts .date {
       font-size: 14px;
@@ -107,7 +127,7 @@
       <ul class="posts">
         {#each posts as { title, slug, subtitle, date, tags }}
           <li>
-            <div class="title"><Link to={slug}>{title}</Link></div>
+            <div class="title" ><Link on:click={() => router.go(`writings/${slug}`)} to={slug}>{title}</Link></div>
             <p class="date">Created: {moment(date, 'MM/DD/YYYY').format('MMM Do YYYY')}</p>
             <p class="subtitle">{subtitle}</p>
             <div class="tags">

@@ -65,26 +65,19 @@
     margin: 1em 0;
     font-weight: bold;
     position: relative;
-    // color: #a6ffd6 !important;
-  }
-
-  // :global(.page .markdown) {
-  //   @include headings {
-  //     margin: 1em 0;
-  //     font-weight: bold;
-  //     position: relative;
-  //   }
-  // }
-
-  :global(.markdown h2) {
-    // text-transform: uppercase;
-    font-size: 1.3em;
     padding: 0 0.5em 0 0;
     line-height: 1.25;
+    font-size: 1rem;
+  }
+  :global(.markdown h1) {
+    font-size: 1.75em;
   }
 
-  :global(.markdown h5) {
-    font-size: 1em;
+  :global(.markdown h2) {
+    font-size: 1.5em;
+  }
+  :global(.markdown h3) {
+    font-size: 1.25em;
   }
 
   :global(.markdown p, .markdown li) {
@@ -97,7 +90,7 @@
   }
 
   :global(.markdown a) {
-    color: #baffdc !important;
+    color: #a00000 !important;
   }
 
   :global(.markdown table th, .markdown table td) {
@@ -112,6 +105,7 @@
   :global(.markdown p.image-container img) {
     max-width: 100%;
     margin: 30px 0;
+    box-shadow: 0 4px 16px 0 rgba(33, 33, 33, 0.2);
   }
 
   :global(.markdown p.image-container + em) {
@@ -176,7 +170,7 @@
 
   @media screen and (max-width: 850px) {
     .markdown {
-      max-width: 99vw;
+      max-width: 95vw;
     }
     :global(.markdown p.image-container img) {
       margin: 30px 0;
@@ -184,6 +178,12 @@
     :global(.markdown p, .markdown li) {
       font-size: 16px;
     }
+  }
+
+  :global(html.dark) {
+      :global(.markdown a) {
+        color: #baffdc !important;
+      }
   }
 </style>
 

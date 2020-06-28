@@ -116,11 +116,6 @@
     position: relative;
     z-index: 1;
   }
-  .wide {
-    max-width: 80ch;
-    width: 80ch;
-  }
-
   :global(html.dark) {
     .toc {
       background-color: #2424243b;

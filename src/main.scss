@@ -36,7 +36,7 @@ html {
   min-height: 100%;
   height: fit-content;
   * {
-    transition: color 500ms linear;
+    transition: color, background, background-color 500ms linear;
   }
 
   @media (max-width: 850px) {

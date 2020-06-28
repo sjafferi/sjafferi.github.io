@@ -1,29 +1,28 @@
 <script>
   import { onMount } from 'svelte';
   import { slide, fade } from 'svelte/transition';
+  import { link } from 'svelte-routing';
+  import { router } from 'stores';
   import MediaQuery from "svelte-media-query";
   import NavLink from "components/NavLink.svelte";
   import Menu from "components/Icons/Menu.svelte";
   import Close from "components/Icons/Close.svelte";
-import { link } from 'svelte-routing';
 
+  export let currentPage;
+
+  let closed = true;
+  
   const options = [
     {title: 'writings', link: '/writings'},
     {title: 'projects', link: '/projects'},
     {title: 'about', link: '/about'}
   ]
-  let closed = true;
-  export let currentPage;
+  
   const close_menu = () => closed = !closed;
   const select_menu_option = (link) => {
-    currentPage = link.slice(1);
+    router.go(link.slice(1));
     closed = true;
   }
-
-  onMount(() => {
-    currentPage = location.pathname.split("/")[1];
-  });
-
 </script>
 
 <style type="text/scss">
@@ -120,7 +119,7 @@ import { link } from 'svelte-routing';
   {#if matches}
     <div class="navbar" class:closed>
       {#each options as { title, link }}
-        {#if !closed || link.includes(currentPage)}
+        {#if !closed || (currentPage && currentPage.includes(link.slice(1)))}
         <div transition:slide|local>
           <NavLink
             to={link} 

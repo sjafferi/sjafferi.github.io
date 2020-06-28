@@ -329,9 +329,6 @@
     function add_render_callback(fn) {
         render_callbacks.push(fn);
     }
-    function add_flush_callback(fn) {
-        flush_callbacks.push(fn);
-    }
     function flush() {
         const seen_callbacks = new Set();
         do {
@@ -629,14 +626,6 @@
     }
     function get_spread_object(spread_props) {
         return typeof spread_props === 'object' && spread_props !== null ? spread_props : {};
-    }
-
-    function bind(component, name, callback) {
-        const index = component.$$.props[name];
-        if (index !== undefined) {
-            component.$$.bound[index] = callback;
-            callback(component.$$.ctx[index]);
-        }
     }
     function create_component(block) {
         block && block.c();
@@ -2027,6 +2016,23 @@
 
     let themeManager = new ThemeManager();
 
+    class Router$1 {
+      constructor() {
+        this.go = this.go.bind(this);
+        this.initialize = this.initialize.bind(this);
+      }
+
+      initialize() {
+        this.currentPage = writable(location.pathname.slice(1));
+      }
+
+      go(url) {
+        this.currentPage.set(url);
+      }
+    }
+
+    let router = new Router$1();
+
     function cubicOut(t) {
         const f = t - 1.0;
         return f * f * f + 1.0;
@@ -2228,23 +2234,22 @@
     			children(div2).forEach(detach);
     			div3_nodes.forEach(detach);
     			t2 = claim_space(div5_nodes);
-    			div4 = claim_element(div5_nodes, "DIV", { id: true, class: true });
+    			div4 = claim_element(div5_nodes, "DIV", { id: true });
     			children(div4).forEach(detach);
     			div5_nodes.forEach(detach);
     			this.h();
     		},
     		h() {
     			attr(div0, "id", "star");
-    			attr(div0, "class", "svelte-1npm1fr");
+    			attr(div0, "class", "svelte-1014n7i");
     			attr(div1, "id", "star1");
-    			attr(div1, "class", "svelte-1npm1fr");
+    			attr(div1, "class", "svelte-1014n7i");
     			attr(div2, "id", "star2");
-    			attr(div2, "class", "svelte-1npm1fr");
+    			attr(div2, "class", "svelte-1014n7i");
     			attr(div3, "id", "moon");
-    			attr(div3, "class", "svelte-1npm1fr");
-    			attr(div4, "id", "moon-shadow");
-    			attr(div4, "class", "svelte-1npm1fr");
-    			attr(div5, "class", "moon-container bounce svelte-1npm1fr");
+    			attr(div3, "class", "svelte-1014n7i");
+    			attr(div4, "id", "moon-shadow bounce");
+    			attr(div5, "class", "moon-container bounce svelte-1014n7i");
     			toggle_class(div5, "animate", /*animate*/ ctx[1]);
     			toggle_class(div5, "about", /*about*/ ctx[0]);
     		},
@@ -2828,7 +2833,7 @@
     	return child_ctx;
     }
 
-    // (119:2) {:else}
+    // (118:2) {:else}
     function create_else_block_1(ctx) {
     	let div;
     	let current;
@@ -2934,7 +2939,7 @@
     	};
     }
 
-    // (93:2) {#if matches}
+    // (92:2) {#if matches}
     function create_if_block$1(ctx) {
     	let div0;
     	let t;
@@ -3011,7 +3016,7 @@
     			current = true;
     		},
     		p(ctx, dirty) {
-    			if (dirty & /*closed, options, currentPage, select_menu_option*/ 23) {
+    			if (dirty & /*closed, currentPage, options, select_menu_option*/ 23) {
     				each_value = /*options*/ ctx[2];
     				let i;
 
@@ -3096,7 +3101,7 @@
     	};
     }
 
-    // (122:10) <NavLink             to={link}             on:click={() => select_menu_option(link)}           >
+    // (121:10) <NavLink             to={link}             on:click={() => select_menu_option(link)}           >
     function create_default_slot_2(ctx) {
     	let t0_value = /*title*/ ctx[8] + "";
     	let t0;
@@ -3123,7 +3128,7 @@
     	};
     }
 
-    // (121:6) {#each options as { title, link }}
+    // (120:6) {#each options as { title, link }}
     function create_each_block_1(ctx) {
     	let current;
 
@@ -3177,7 +3182,7 @@
     	};
     }
 
-    // (96:8) {#if !closed || link.includes(currentPage)}
+    // (95:8) {#if !closed || (currentPage && currentPage.includes(link.slice(1)))}
     function create_if_block_2(ctx) {
     	let div;
     	let t;
@@ -3258,7 +3263,7 @@
     	};
     }
 
-    // (98:10) <NavLink             to={link}              on:click={() => select_menu_option(link)}           >
+    // (97:10) <NavLink             to={link}              on:click={() => select_menu_option(link)}           >
     function create_default_slot_1(ctx) {
     	let t_value = /*title*/ ctx[8] + "";
     	let t;
@@ -3280,9 +3285,9 @@
     	};
     }
 
-    // (95:6) {#each options as { title, link }}
+    // (94:6) {#each options as { title, link }}
     function create_each_block(ctx) {
-    	let show_if = !/*closed*/ ctx[1] || /*link*/ ctx[9].includes(/*currentPage*/ ctx[0]);
+    	let show_if = !/*closed*/ ctx[1] || /*currentPage*/ ctx[0] && /*currentPage*/ ctx[0].includes(/*link*/ ctx[9].slice(1));
     	let if_block_anchor;
     	let current;
     	let if_block = show_if && create_if_block_2(ctx);
@@ -3302,7 +3307,7 @@
     			current = true;
     		},
     		p(ctx, dirty) {
-    			if (dirty & /*closed, currentPage*/ 3) show_if = !/*closed*/ ctx[1] || /*link*/ ctx[9].includes(/*currentPage*/ ctx[0]);
+    			if (dirty & /*closed, currentPage*/ 3) show_if = !/*closed*/ ctx[1] || /*currentPage*/ ctx[0] && /*currentPage*/ ctx[0].includes(/*link*/ ctx[9].slice(1));
 
     			if (show_if) {
     				if (if_block) {
@@ -3340,7 +3345,7 @@
     	};
     }
 
-    // (113:6) {:else}
+    // (112:6) {:else}
     function create_else_block$1(ctx) {
     	let div;
     	let div_intro;
@@ -3389,7 +3394,7 @@
     	};
     }
 
-    // (109:6) {#if closed}
+    // (108:6) {#if closed}
     function create_if_block_1$1(ctx) {
     	let div;
     	let div_intro;
@@ -3438,7 +3443,7 @@
     	};
     }
 
-    // (92:0) <MediaQuery query="(max-width: 850px)" let:matches>
+    // (91:0) <MediaQuery query="(max-width: 850px)" let:matches>
     function create_default_slot$1(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -3563,24 +3568,21 @@
     }
 
     function instance$9($$self, $$props, $$invalidate) {
+    	let { currentPage } = $$props;
+    	let closed = true;
+
     	const options = [
     		{ title: "writings", link: "/writings" },
     		{ title: "projects", link: "/projects" },
     		{ title: "about", link: "/about" }
     	];
 
-    	let closed = true;
-    	let { currentPage } = $$props;
     	const close_menu = () => $$invalidate(1, closed = !closed);
 
     	const select_menu_option = link => {
-    		$$invalidate(0, currentPage = link.slice(1));
+    		router.go(link.slice(1));
     		$$invalidate(1, closed = true);
     	};
-
-    	onMount(() => {
-    		$$invalidate(0, currentPage = location.pathname.split("/")[1]);
-    	});
 
     	const click_handler = link => select_menu_option(link);
     	const click_handler_1 = link => select_menu_option(link);
@@ -38607,7 +38609,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "markdown svelte-1cxts5q");
+    			attr(div, "class", "markdown svelte-11tqi9q");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -38697,7 +38699,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "toc svelte-daegoa");
+    			attr(div, "class", "toc svelte-n7gwa8");
     			toggle_class(div, "wide", /*maxDepth*/ ctx[1] > 3);
     		},
     		m(target, anchor) {
@@ -38865,8 +38867,8 @@
     			this.h();
     		},
     		h() {
-    			attr(span0, "class", "date svelte-i579is");
-    			attr(span1, "class", "date-container svelte-i579is");
+    			attr(span0, "class", "date svelte-1i2i9eu");
+    			attr(span1, "class", "date-container svelte-1i2i9eu");
     		},
     		m(target, anchor) {
     			insert(target, span1, anchor);
@@ -38884,7 +38886,7 @@
     }
 
     function create_fragment$j(ctx) {
-    	let div3;
+    	let div4;
     	let header;
     	let h1;
     	let t0;
@@ -38892,6 +38894,7 @@
     	let article;
     	let div0;
     	let t2;
+    	let div3;
     	let div1;
     	let t3;
     	let div2;
@@ -38902,7 +38905,7 @@
 
     	return {
     		c() {
-    			div3 = element("div");
+    			div4 = element("div");
     			header = element("header");
     			h1 = element("h1");
     			t0 = text(/*title*/ ctx[1]);
@@ -38911,6 +38914,7 @@
     			div0 = element("div");
     			if (if_block) if_block.c();
     			t2 = space();
+    			div3 = element("div");
     			div1 = element("div");
     			create_component(toc.$$.fragment);
     			t3 = space();
@@ -38919,58 +38923,63 @@
     			this.h();
     		},
     		l(nodes) {
-    			div3 = claim_element(nodes, "DIV", { class: true });
-    			var div3_nodes = children(div3);
-    			header = claim_element(div3_nodes, "HEADER", { class: true });
+    			div4 = claim_element(nodes, "DIV", { class: true });
+    			var div4_nodes = children(div4);
+    			header = claim_element(div4_nodes, "HEADER", { class: true });
     			var header_nodes = children(header);
     			h1 = claim_element(header_nodes, "H1", { class: true });
     			var h1_nodes = children(h1);
     			t0 = claim_text(h1_nodes, /*title*/ ctx[1]);
     			h1_nodes.forEach(detach);
     			header_nodes.forEach(detach);
-    			t1 = claim_space(div3_nodes);
-    			article = claim_element(div3_nodes, "ARTICLE", {});
+    			t1 = claim_space(div4_nodes);
+    			article = claim_element(div4_nodes, "ARTICLE", {});
     			var article_nodes = children(article);
     			div0 = claim_element(article_nodes, "DIV", { class: true });
     			var div0_nodes = children(div0);
     			if (if_block) if_block.l(div0_nodes);
     			div0_nodes.forEach(detach);
     			t2 = claim_space(article_nodes);
-    			div1 = claim_element(article_nodes, "DIV", { class: true });
+    			div3 = claim_element(article_nodes, "DIV", { class: true });
+    			var div3_nodes = children(div3);
+    			div1 = claim_element(div3_nodes, "DIV", { class: true });
     			var div1_nodes = children(div1);
     			claim_component(toc.$$.fragment, div1_nodes);
     			div1_nodes.forEach(detach);
-    			t3 = claim_space(article_nodes);
-    			div2 = claim_element(article_nodes, "DIV", { class: true });
+    			t3 = claim_space(div3_nodes);
+    			div2 = claim_element(div3_nodes, "DIV", { class: true });
     			var div2_nodes = children(div2);
     			claim_component(markdown.$$.fragment, div2_nodes);
     			div2_nodes.forEach(detach);
-    			article_nodes.forEach(detach);
     			div3_nodes.forEach(detach);
+    			article_nodes.forEach(detach);
+    			div4_nodes.forEach(detach);
     			this.h();
     		},
     		h() {
-    			attr(h1, "class", "svelte-i579is");
-    			attr(header, "class", "svelte-i579is");
-    			attr(div0, "class", "page-metadata svelte-i579is");
+    			attr(h1, "class", "svelte-1i2i9eu");
+    			attr(header, "class", "svelte-1i2i9eu");
+    			attr(div0, "class", "page-metadata svelte-1i2i9eu");
     			attr(div1, "class", "table-of-contents");
-    			attr(div2, "class", "markdown svelte-i579is");
-    			attr(div3, "class", "post-page svelte-i579is");
+    			attr(div2, "class", "markdown svelte-1i2i9eu");
+    			attr(div3, "class", "content svelte-1i2i9eu");
+    			attr(div4, "class", "post-page svelte-1i2i9eu");
     		},
     		m(target, anchor) {
-    			insert(target, div3, anchor);
-    			append(div3, header);
+    			insert(target, div4, anchor);
+    			append(div4, header);
     			append(header, h1);
     			append(h1, t0);
-    			append(div3, t1);
-    			append(div3, article);
+    			append(div4, t1);
+    			append(div4, article);
     			append(article, div0);
     			if (if_block) if_block.m(div0, null);
     			append(article, t2);
-    			append(article, div1);
+    			append(article, div3);
+    			append(div3, div1);
     			mount_component(toc, div1, null);
-    			append(article, t3);
-    			append(article, div2);
+    			append(div3, t3);
+    			append(div3, div2);
     			mount_component(markdown, div2, null);
     			current = true;
     		},
@@ -39009,7 +39018,7 @@
     			current = false;
     		},
     		d(detaching) {
-    			if (detaching) detach(div3);
+    			if (detaching) detach(div4);
     			if (if_block) if_block.d();
     			destroy_component(toc);
     			destroy_component(markdown);
@@ -39112,29 +39121,29 @@
 
     function get_each_context$4(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[1] = list[i];
+    	child_ctx[2] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_2$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[11] = list[i];
+    	child_ctx[12] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[4] = list[i].title;
-    	child_ctx[5] = list[i].slug;
-    	child_ctx[6] = list[i].subtitle;
-    	child_ctx[7] = list[i].date;
-    	child_ctx[8] = list[i].tags;
+    	child_ctx[5] = list[i].title;
+    	child_ctx[6] = list[i].slug;
+    	child_ctx[7] = list[i].subtitle;
+    	child_ctx[8] = list[i].date;
+    	child_ctx[9] = list[i].tags;
     	return child_ctx;
     }
 
-    // (88:31) <Link to={slug}>
+    // (107:32) <Link on:click={() => router.go(`writings/${slug}`)} to={slug}>
     function create_default_slot_4(ctx) {
-    	let t_value = /*title*/ ctx[4] + "";
+    	let t_value = /*title*/ ctx[5] + "";
     	let t;
 
     	return {
@@ -39154,9 +39163,9 @@
     	};
     }
 
-    // (93:16) <Tag>
+    // (112:16) <Tag>
     function create_default_slot_3(ctx) {
-    	let t_value = /*tag*/ ctx[11] + "";
+    	let t_value = /*tag*/ ctx[12] + "";
     	let t;
 
     	return {
@@ -39176,7 +39185,7 @@
     	};
     }
 
-    // (92:14) {#each tags as tag}
+    // (111:14) {#each tags as tag}
     function create_each_block_2$1(ctx) {
     	let current;
 
@@ -39201,7 +39210,7 @@
     		p(ctx, dirty) {
     			const tag_changes = {};
 
-    			if (dirty & /*$$scope*/ 16384) {
+    			if (dirty & /*$$scope*/ 32768) {
     				tag_changes.$$scope = { dirty, ctx };
     			}
 
@@ -39222,33 +39231,38 @@
     	};
     }
 
-    // (86:8) {#each posts as { title, slug, subtitle, date, tags }}
+    // (105:8) {#each posts as { title, slug, subtitle, date, tags }}
     function create_each_block_1$2(ctx) {
     	let li;
     	let div0;
     	let t0;
     	let p0;
     	let t1;
-    	let t2_value = moment(/*date*/ ctx[7], "MM/DD/YYYY").format("MMM Do YYYY") + "";
+    	let t2_value = moment(/*date*/ ctx[8], "MM/DD/YYYY").format("MMM Do YYYY") + "";
     	let t2;
     	let t3;
     	let p1;
-    	let t4_value = /*subtitle*/ ctx[6] + "";
+    	let t4_value = /*subtitle*/ ctx[7] + "";
     	let t4;
     	let t5;
     	let div1;
     	let t6;
     	let current;
 
+    	function click_handler(...args) {
+    		return /*click_handler*/ ctx[1](/*slug*/ ctx[6], ...args);
+    	}
+
     	const link = new Link({
     			props: {
-    				to: /*slug*/ ctx[5],
+    				to: /*slug*/ ctx[6],
     				$$slots: { default: [create_default_slot_4] },
     				$$scope: { ctx }
     			}
     		});
 
-    	let each_value_2 = /*tags*/ ctx[8];
+    	link.$on("click", click_handler);
+    	let each_value_2 = /*tags*/ ctx[9];
     	let each_blocks = [];
 
     	for (let i = 0; i < each_value_2.length; i += 1) {
@@ -39313,11 +39327,11 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "title svelte-1nxia1f");
-    			attr(p0, "class", "date svelte-1nxia1f");
-    			attr(p1, "class", "subtitle svelte-1nxia1f");
-    			attr(div1, "class", "tags svelte-1nxia1f");
-    			attr(li, "class", "svelte-1nxia1f");
+    			attr(div0, "class", "title svelte-3e138n");
+    			attr(p0, "class", "date svelte-3e138n");
+    			attr(p1, "class", "subtitle svelte-3e138n");
+    			attr(div1, "class", "tags svelte-3e138n");
+    			attr(li, "class", "svelte-3e138n");
     		},
     		m(target, anchor) {
     			insert(target, li, anchor);
@@ -39340,17 +39354,18 @@
     			append(li, t6);
     			current = true;
     		},
-    		p(ctx, dirty) {
+    		p(new_ctx, dirty) {
+    			ctx = new_ctx;
     			const link_changes = {};
 
-    			if (dirty & /*$$scope*/ 16384) {
+    			if (dirty & /*$$scope*/ 32768) {
     				link_changes.$$scope = { dirty, ctx };
     			}
 
     			link.$set(link_changes);
 
     			if (dirty & /*posts*/ 1) {
-    				each_value_2 = /*tags*/ ctx[8];
+    				each_value_2 = /*tags*/ ctx[9];
     				let i;
 
     				for (i = 0; i < each_value_2.length; i += 1) {
@@ -39404,7 +39419,7 @@
     	};
     }
 
-    // (84:4) <Route path="/">
+    // (103:4) <Route path="/">
     function create_default_slot_2$1(ctx) {
     	let ul;
     	let current;
@@ -39441,7 +39456,7 @@
     			this.h();
     		},
     		h() {
-    			attr(ul, "class", "posts svelte-1nxia1f");
+    			attr(ul, "class", "posts svelte-3e138n");
     		},
     		m(target, anchor) {
     			insert(target, ul, anchor);
@@ -39453,7 +39468,7 @@
     			current = true;
     		},
     		p(ctx, dirty) {
-    			if (dirty & /*posts, moment*/ 1) {
+    			if (dirty & /*posts, moment, router*/ 1) {
     				each_value_1 = /*posts*/ ctx[0];
     				let i;
 
@@ -39505,11 +39520,11 @@
     	};
     }
 
-    // (102:6) <Route path={post.slug}>
+    // (121:6) <Route path={post.slug}>
     function create_default_slot_1$1(ctx) {
     	let t;
     	let current;
-    	const post_spread_levels = [/*post*/ ctx[1]];
+    	const post_spread_levels = [/*post*/ ctx[2]];
     	let post_props = {};
 
     	for (let i = 0; i < post_spread_levels.length; i += 1) {
@@ -39534,7 +39549,7 @@
     		},
     		p(ctx, dirty) {
     			const post_changes = (dirty & /*Posts*/ 0)
-    			? get_spread_update(post_spread_levels, [get_spread_object(/*post*/ ctx[1])])
+    			? get_spread_update(post_spread_levels, [get_spread_object(/*post*/ ctx[2])])
     			: {};
 
     			post.$set(post_changes);
@@ -39555,13 +39570,13 @@
     	};
     }
 
-    // (101:4) {#each Posts as post}
+    // (120:4) {#each Posts as post}
     function create_each_block$4(ctx) {
     	let current;
 
     	const route = new Route({
     			props: {
-    				path: /*post*/ ctx[1].slug,
+    				path: /*post*/ ctx[2].slug,
     				$$slots: { default: [create_default_slot_1$1] },
     				$$scope: { ctx }
     			}
@@ -39581,7 +39596,7 @@
     		p(ctx, dirty) {
     			const route_changes = {};
 
-    			if (dirty & /*$$scope*/ 16384) {
+    			if (dirty & /*$$scope*/ 32768) {
     				route_changes.$$scope = { dirty, ctx };
     			}
 
@@ -39602,7 +39617,7 @@
     	};
     }
 
-    // (83:2) <Router>
+    // (102:2) <Router>
     function create_default_slot$4(ctx) {
     	let t;
     	let each_1_anchor;
@@ -39662,7 +39677,7 @@
     		p(ctx, dirty) {
     			const route_changes = {};
 
-    			if (dirty & /*$$scope*/ 16384) {
+    			if (dirty & /*$$scope*/ 32768) {
     				route_changes.$$scope = { dirty, ctx };
     			}
 
@@ -39729,7 +39744,7 @@
     	let div;
     	let current;
 
-    	const router = new Router({
+    	const router_1 = new Router({
     			props: {
     				$$slots: { default: [create_default_slot$4] },
     				$$scope: { ctx }
@@ -39740,7 +39755,7 @@
     		c() {
     			t = space();
     			div = element("div");
-    			create_component(router.$$.fragment);
+    			create_component(router_1.$$.fragment);
     			this.h();
     		},
     		l(nodes) {
@@ -39749,52 +39764,53 @@
     			t = claim_space(nodes);
     			div = claim_element(nodes, "DIV", { class: true });
     			var div_nodes = children(div);
-    			claim_component(router.$$.fragment, div_nodes);
+    			claim_component(router_1.$$.fragment, div_nodes);
     			div_nodes.forEach(detach);
     			this.h();
     		},
     		h() {
     			document.title = "Writings | Sibtain Jafferi";
-    			attr(div, "class", "blog-container svelte-1nxia1f");
+    			attr(div, "class", "blog-container svelte-3e138n");
     		},
     		m(target, anchor) {
     			insert(target, t, anchor);
     			insert(target, div, anchor);
-    			mount_component(router, div, null);
+    			mount_component(router_1, div, null);
     			current = true;
     		},
     		p(ctx, [dirty]) {
-    			const router_changes = {};
+    			const router_1_changes = {};
 
-    			if (dirty & /*$$scope*/ 16384) {
-    				router_changes.$$scope = { dirty, ctx };
+    			if (dirty & /*$$scope*/ 32768) {
+    				router_1_changes.$$scope = { dirty, ctx };
     			}
 
-    			router.$set(router_changes);
+    			router_1.$set(router_1_changes);
     		},
     		i(local) {
     			if (current) return;
-    			transition_in(router.$$.fragment, local);
+    			transition_in(router_1.$$.fragment, local);
     			current = true;
     		},
     		o(local) {
-    			transition_out(router.$$.fragment, local);
+    			transition_out(router_1.$$.fragment, local);
     			current = false;
     		},
     		d(detaching) {
     			if (detaching) detach(t);
     			if (detaching) detach(div);
-    			destroy_component(router);
+    			destroy_component(router_1);
     		}
     	};
     }
 
     function instance$j($$self) {
-    	const posts$1 = posts.sort((a, b) => moment(a.date, "MM/DD/YYYY").isBefore(moment(b.date, "MM/DD/YYY"))
+    	const posts$1 = posts.slice(0).sort((a, b) => moment(a.date, "MM/DD/YYYY").isBefore(moment(b.date, "MM/DD/YYY"))
     	? 1
     	: -1);
 
-    	return [posts$1];
+    	const click_handler = slug => router.go(`writings/${slug}`);
+    	return [posts$1, click_handler];
     }
 
     class Blog extends SvelteComponent {
@@ -40023,7 +40039,7 @@
     	return child_ctx;
     }
 
-    // (176:4) {#each links as { Logo, link }}
+    // (251:4) {#each links as { Logo, link }}
     function create_each_block$5(ctx) {
     	let a;
     	let t;
@@ -40047,7 +40063,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link svelte-y007cy");
+    			attr(a, "class", "link svelte-1ni0p2t");
     			attr(a, "href", a_href_value = /*link*/ ctx[2]);
     			attr(a, "target", "_blank");
     		},
@@ -40152,7 +40168,7 @@
     			const head_nodes = query_selector_all("[data-svelte=\"svelte-ztz2i2\"]", document.head);
     			head_nodes.forEach(detach);
     			t0 = claim_space(nodes);
-    			div2 = claim_element(nodes, "DIV", { class: true });
+    			div2 = claim_element(nodes, "DIV", { class: true, id: true });
     			var div2_nodes = children(div2);
     			div0 = claim_element(div2_nodes, "DIV", { class: true });
     			var div0_nodes = children(div0);
@@ -40208,17 +40224,18 @@
     		},
     		h() {
     			document.title = "Me | Sibtain Jafferi";
-    			attr(h1, "class", "svelte-y007cy");
-    			attr(p, "class", "phonetic-spelling svelte-y007cy");
-    			attr(span0, "class", "header svelte-y007cy");
-    			attr(span1, "class", "inner-text-1 svelte-y007cy");
-    			attr(span2, "class", "inner-text-1 svelte-y007cy");
-    			attr(span3, "class", "inner-text-2 svelte-y007cy");
-    			attr(span4, "class", "inner-text-3 svelte-y007cy");
-    			attr(span5, "class", "text svelte-y007cy");
-    			attr(div0, "class", "description svelte-y007cy");
-    			attr(div1, "class", "links svelte-y007cy");
-    			attr(div2, "class", "about-container svelte-y007cy");
+    			attr(h1, "class", "svelte-1ni0p2t");
+    			attr(p, "class", "phonetic-spelling svelte-1ni0p2t");
+    			attr(span0, "class", "header svelte-1ni0p2t");
+    			attr(span1, "class", "inner-text-1 svelte-1ni0p2t");
+    			attr(span2, "class", "inner-text-1 svelte-1ni0p2t");
+    			attr(span3, "class", "inner-text-2 svelte-1ni0p2t");
+    			attr(span4, "class", "inner-text-3 svelte-1ni0p2t");
+    			attr(span5, "class", "text svelte-1ni0p2t");
+    			attr(div0, "class", "description svelte-1ni0p2t");
+    			attr(div1, "class", "links svelte-1ni0p2t");
+    			attr(div2, "class", "about-container svelte-1ni0p2t");
+    			attr(div2, "id", "about-container");
     		},
     		m(target, anchor) {
     			insert(target, t0, anchor);
@@ -40334,7 +40351,7 @@
     	}
     }
 
-    var css$2 = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway:wght@500;600&family=Amiri&Roboto:ital,wght@0,400;0,600;1,400&display=swap\");\nbody {\n  font-family: \"Raleway\", sans-serif !important;\n  overflow-x: hidden; }\n\nhtml {\n  --light-theme-text-color-1: black;\n  --light-theme-text-color: #333;\n  --light-theme-background-color: linear-gradient(\n    to left bottom,\n    #ffffff,\n    #fcc28cbd,\n    #ff6e65\n  );\n  --dark-theme-text-color-1: white;\n  --dark-theme-text-color: #cacaca;\n  --dark-theme-background-color: #333;\n  --theme-changer-top: 0;\n  --theme-changer-left: 0;\n  background-repeat: no-repeat;\n  background-size: cover;\n  transition: color, background, background-color 500ms linear;\n  width: 100%;\n  min-height: 100%;\n  height: fit-content; }\n  html * {\n    transition: color 500ms linear; }\n  @media (max-width: 850px) {\n    html {\n      --dark-theme-background-color: #333; } }\n\nhtml.dark {\n  background: var(--dark-theme-background-color);\n  color: var(--dark-theme-text-color);\n  --text-color-1: var(--dark-theme-text-color-1);\n  --text-color: var(--dark-theme-text-color);\n  --background-color: var(--dark-theme-text-color); }\n\nhtml.light {\n  background: var(--light-theme-background-color);\n  color: var(--light-theme-text-color);\n  --text-color-1: var(--light-theme-text-color-1);\n  --text-color: var(--light-theme-text-color);\n  --background-color: var(--light-theme-text-color); }\n\nhtml * {\n  color: var(--text-color); }\n\n.no-scroll {\n  overflow: hidden; }\n";
+    var css$2 = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway:wght@500;600&family=Amiri&Roboto:ital,wght@0,400;0,600;1,400&display=swap\");\nbody {\n  font-family: \"Raleway\", sans-serif !important;\n  overflow-x: hidden; }\n\nhtml {\n  --light-theme-text-color-1: black;\n  --light-theme-text-color: #333;\n  --light-theme-background-color: linear-gradient(\n    to left bottom,\n    #ffffff,\n    #fcc28cbd,\n    #ff6e65\n  );\n  --dark-theme-text-color-1: white;\n  --dark-theme-text-color: #cacaca;\n  --dark-theme-background-color: #333;\n  --theme-changer-top: 0;\n  --theme-changer-left: 0;\n  background-repeat: no-repeat;\n  background-size: cover;\n  transition: color, background, background-color 500ms linear;\n  width: 100%;\n  min-height: 100%;\n  height: fit-content; }\n  html * {\n    transition: color, background, background-color 500ms linear; }\n  @media (max-width: 850px) {\n    html {\n      --dark-theme-background-color: #333; } }\n\nhtml.dark {\n  background: var(--dark-theme-background-color);\n  color: var(--dark-theme-text-color);\n  --text-color-1: var(--dark-theme-text-color-1);\n  --text-color: var(--dark-theme-text-color);\n  --background-color: var(--dark-theme-text-color); }\n\nhtml.light {\n  background: var(--light-theme-background-color);\n  color: var(--light-theme-text-color);\n  --text-color-1: var(--light-theme-text-color-1);\n  --text-color: var(--light-theme-text-color);\n  --background-color: var(--light-theme-text-color); }\n\nhtml * {\n  color: var(--text-color); }\n\n.no-scroll {\n  overflow: hidden; }\n";
     styleInject(css$2);
 
     /* src/App.svelte generated by Svelte v3.17.1 */
@@ -40417,7 +40434,6 @@
     	let current_block_type_index;
     	let if_block;
     	let t0;
-    	let updating_currentPage;
     	let t1;
     	let div;
     	let t2;
@@ -40434,18 +40450,9 @@
     	current_block_type_index = select_block_type(ctx);
     	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
 
-    	function nav_currentPage_binding(value) {
-    		/*nav_currentPage_binding*/ ctx[6].call(null, value);
-    	}
-
-    	let nav_props = {};
-
-    	if (/*currentPage*/ ctx[2] !== void 0) {
-    		nav_props.currentPage = /*currentPage*/ ctx[2];
-    	}
-
-    	const nav = new Nav({ props: nav_props });
-    	binding_callbacks.push(() => bind(nav, "currentPage", nav_currentPage_binding));
+    	const nav = new Nav({
+    			props: { currentPage: /*currentPage*/ ctx[2] }
+    		});
 
     	const route0 = new Route({
     			props: { path: "projects", component: Projects_1 }
@@ -40487,7 +40494,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "section svelte-1htzcjl");
+    			attr(div, "class", "section svelte-n56h1n");
     		},
     		m(target, anchor) {
     			if_blocks[current_block_type_index].m(target, anchor);
@@ -40528,13 +40535,7 @@
     			}
 
     			const nav_changes = {};
-
-    			if (!updating_currentPage && dirty & /*currentPage*/ 4) {
-    				updating_currentPage = true;
-    				nav_changes.currentPage = /*currentPage*/ ctx[2];
-    				add_flush_callback(() => updating_currentPage = false);
-    			}
-
+    			if (dirty & /*currentPage*/ 4) nav_changes.currentPage = /*currentPage*/ ctx[2];
     			nav.$set(nav_changes);
     		},
     		i(local) {
@@ -40573,7 +40574,7 @@
     	let div;
     	let current;
 
-    	const router = new Router({
+    	const router_1 = new Router({
     			props: {
     				url: /*url*/ ctx[0],
     				$$slots: { default: [create_default_slot$5] },
@@ -40586,7 +40587,7 @@
     			meta = element("meta");
     			t = space();
     			div = element("div");
-    			create_component(router.$$.fragment);
+    			create_component(router_1.$$.fragment);
     			this.h();
     		},
     		l(nodes) {
@@ -40596,62 +40597,68 @@
     			t = claim_space(nodes);
     			div = claim_element(nodes, "DIV", { class: true });
     			var div_nodes = children(div);
-    			claim_component(router.$$.fragment, div_nodes);
+    			claim_component(router_1.$$.fragment, div_nodes);
     			div_nodes.forEach(detach);
     			this.h();
     		},
     		h() {
     			attr(meta, "name", "viewport");
     			attr(meta, "content", "width=device-width, initial-scale=1");
-    			attr(meta, "class", "svelte-1htzcjl");
-    			attr(div, "class", "container svelte-1htzcjl");
+    			attr(meta, "class", "svelte-n56h1n");
+    			attr(div, "class", "container svelte-n56h1n");
     			toggle_class(div, "about", /*about*/ ctx[3]);
+    			toggle_class(div, "inBlogPost", /*inBlogPost*/ ctx[4]);
     		},
     		m(target, anchor) {
     			append(document.head, meta);
     			insert(target, t, anchor);
     			insert(target, div, anchor);
-    			mount_component(router, div, null);
+    			mount_component(router_1, div, null);
     			current = true;
     		},
     		p(ctx, [dirty]) {
-    			const router_changes = {};
-    			if (dirty & /*url*/ 1) router_changes.url = /*url*/ ctx[0];
+    			const router_1_changes = {};
+    			if (dirty & /*url*/ 1) router_1_changes.url = /*url*/ ctx[0];
 
     			if (dirty & /*$$scope, currentPage, theme, about*/ 142) {
-    				router_changes.$$scope = { dirty, ctx };
+    				router_1_changes.$$scope = { dirty, ctx };
     			}
 
-    			router.$set(router_changes);
+    			router_1.$set(router_1_changes);
 
     			if (dirty & /*about*/ 8) {
     				toggle_class(div, "about", /*about*/ ctx[3]);
     			}
+
+    			if (dirty & /*inBlogPost*/ 16) {
+    				toggle_class(div, "inBlogPost", /*inBlogPost*/ ctx[4]);
+    			}
     		},
     		i(local) {
     			if (current) return;
-    			transition_in(router.$$.fragment, local);
+    			transition_in(router_1.$$.fragment, local);
     			current = true;
     		},
     		o(local) {
-    			transition_out(router.$$.fragment, local);
+    			transition_out(router_1.$$.fragment, local);
     			current = false;
     		},
     		d(detaching) {
     			detach(meta);
     			if (detaching) detach(t);
     			if (detaching) detach(div);
-    			destroy_component(router);
+    			destroy_component(router_1);
     		}
     	};
     }
 
     function instance$l($$self, $$props, $$invalidate) {
     	let { url = "" } = $$props;
-    	let theme, unsubscribe, isMounted = false;
+    	let theme, unsubscribe;
     	let currentPage;
 
     	onMount(() => {
+    		router.initialize();
     		themeManager.initialize();
     		themeManager.toggle();
 
@@ -40660,45 +40667,38 @@
     		}
 
     		if (!unsubscribe) {
-    			unsubscribe = themeManager.theme.subscribe(value => $$invalidate(1, theme = value));
+    			unsubscribe = [
+    				themeManager.theme.subscribe(value => $$invalidate(1, theme = value)),
+    				router.currentPage.subscribe(value => $$invalidate(2, currentPage = value))
+    			];
     		}
-
-    		isMounted = true;
     	});
 
     	onDestroy(() => {
     		if (unsubscribe) {
-    			unsubscribe();
+    			unsubscribe.forEach(unsub => unsub());
     			themeManager.destroy();
     		}
     	});
-
-    	function nav_currentPage_binding(value) {
-    		currentPage = value;
-    		$$invalidate(2, currentPage);
-    	}
 
     	$$self.$set = $$props => {
     		if ("url" in $$props) $$invalidate(0, url = $$props.url);
     	};
 
     	let about;
+    	let inBlogPost;
 
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty & /*currentPage*/ 4) {
     			 $$invalidate(3, about = !currentPage || currentPage === "about");
     		}
+
+    		if ($$self.$$.dirty & /*currentPage*/ 4) {
+    			 $$invalidate(4, inBlogPost = currentPage && currentPage.split("/").length > 1);
+    		}
     	};
 
-    	return [
-    		url,
-    		theme,
-    		currentPage,
-    		about,
-    		unsubscribe,
-    		isMounted,
-    		nav_currentPage_binding
-    	];
+    	return [url, theme, currentPage, about, inBlogPost];
     }
 
     class App extends SvelteComponent {

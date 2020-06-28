@@ -75,8 +75,8 @@
 
   #star {
     position: absolute;
-    left: 10rem;
-    top: 2rem;
+    left: 9vw;
+    top: 0;
     height: 90px;
     width: 1px;
     background: radial-gradient(ellipse at center, #f9f9f9 9%, #1e5799 98%);
@@ -107,13 +107,13 @@
 
   #star1 {
     position: absolute;
-    left: 7rem;
-    top: 8rem;
+    left: 6vw;
+    top: 8vh;
     height: 60px;
     width: 1px;
     background: radial-gradient(ellipse at center, #f9f9f9 29%, #1e5799 98%);
     border-radius: 50%;
-    transform: rotate(55deg) scale(0.5);
+    transform: rotate(55deg) scale(0.35);
     transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 
@@ -140,8 +140,8 @@
 
   #star2 {
     position: absolute;
-    left: 4rem;
-    top: 8rem;
+    left: 3vw;
+    top: 8vh;
     height: 60px;
     width: 1px;
     background: radial-gradient(ellipse at center, #f9f9f9 29%, #1e5799 98%);
@@ -181,13 +181,13 @@
   .animate {
     &.animate {
       #star {
-        transform: scale(0.5) !important;
+        transform: scale(0.25) !important;
       }
       #star1 {
-        transform: scale(0.6) !important;
+        transform: scale(0.4) !important;
       }
       #star2 {
-        transform: scale(0.5) !important;
+        transform: scale(0.3) !important;
       }
     }
   }
@@ -252,7 +252,7 @@
     100% { transform: scale(1,1)      translateY(0); }
   }
 
-  .bounce {
+  .about.bounce {
     animation: bounce-7 2s 2;
     animation-delay: 3s;
     animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
@@ -306,5 +306,5 @@
     <div id="star1"></div>
     <div id="star2"></div>
   </div>
-  <div id="moon-shadow"></div>
+  <div id="moon-shadow bounce"></div>
 </div>
