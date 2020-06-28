@@ -44,16 +44,16 @@
   }
  
   @media (max-height: 1650px) {
-    @media (max-height: 1090px) {
+    @media (max-height: 1250px) {
       @include variable-change {
-        --theme-changer-top: 67.5vh;
-        --theme-changer-left: 65vw !important;
+        --theme-changer-top: 72.5vh !important;
+        --theme-changer-left: 65% !important;
         --sun-size: 13vh !important;
         --moon-size: 8.5vh !important;
       }
       &.about-container {
-        left: calc(var(--theme-changer-left) - 33vw);
-        top: calc(var(--theme-changer-top) - 45vh);
+        top: calc(var(--theme-changer-top) -  (var(--sun-size) * 1.8)*2) !important;
+        left: calc(var(--theme-changer-left) - (var(--sun-size) * 1.8)*2) !important;
         .description {
           max-width: 57ch;
           .header h1 {
@@ -66,26 +66,18 @@
       }
     }
 
-    @media (max-height: 850px) {
+    @media (max-height: 950px) {
       @include variable-change {
-        --theme-changer-top: 80vh !important;
-        --theme-changer-left: 70% !important;
+        --theme-changer-top: 70vh !important;
+        --theme-changer-left: 60% !important;
+        &.about-container {
+          top: calc(var(--theme-changer-top) -  (var(--sun-size) * 2)*2) !important;
+          left: calc(var(--theme-changer-left) - (var(--sun-size) * 2)*2) !important;
+        }
       }
     }
 
     @media (max-width: 1700px) {
-      @media (max-height: 1550px) {
-          @include variable-change {
-            --theme-changer-top: 65vh !important;
-            --theme-changer-left: 60% !important;
-            --sun-size: 10vh !important;
-            --moon-size: 8vh !important;
-            &.about-container {
-              top: calc(var(--theme-changer-top) - (var(--sun-size) * 2)*2) !important;
-              left: calc(var(--theme-changer-left) - (var(--sun-size) * 2)*2) !important;
-            }
-        }
-      }
       @media (max-height: 1350px) {
         @include variable-change {
           --theme-changer-top: 65vh !important;
@@ -93,6 +85,18 @@
             &.about-container {
               top: calc(var(--theme-changer-top) - (var(--sun-size) * 2.25)*2) !important;
               left: calc(var(--theme-changer-left) - (var(--sun-size) * 2.25)*2) !important;
+            }
+        }
+      }
+      @media (max-height: 1550px) {
+          @include variable-change {
+            --theme-changer-top: 65vh !important;
+            --theme-changer-left: 60% !important;
+            --sun-size: 10vh !important;
+            --moon-size: 8vh !important;
+            &.about-container {
+              top: calc(var(--theme-changer-top) - (var(--sun-size) * 2.5)*2) !important;
+              left: calc(var(--theme-changer-left) - (var(--sun-size) * 3)*2) !important;
             }
         }
       }
