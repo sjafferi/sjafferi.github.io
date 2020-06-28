@@ -2241,15 +2241,15 @@
     		},
     		h() {
     			attr(div0, "id", "star");
-    			attr(div0, "class", "svelte-1gqaqep");
+    			attr(div0, "class", "svelte-1tkkxpa");
     			attr(div1, "id", "star1");
-    			attr(div1, "class", "svelte-1gqaqep");
+    			attr(div1, "class", "svelte-1tkkxpa");
     			attr(div2, "id", "star2");
-    			attr(div2, "class", "svelte-1gqaqep");
+    			attr(div2, "class", "svelte-1tkkxpa");
     			attr(div3, "id", "moon");
-    			attr(div3, "class", "svelte-1gqaqep");
+    			attr(div3, "class", "svelte-1tkkxpa");
     			attr(div4, "id", "moon-shadow bounce");
-    			attr(div5, "class", "moon-container bounce svelte-1gqaqep");
+    			attr(div5, "class", "moon-container bounce svelte-1tkkxpa");
     			toggle_class(div5, "animate", /*animate*/ ctx[1]);
     			toggle_class(div5, "about", /*about*/ ctx[0]);
     		},

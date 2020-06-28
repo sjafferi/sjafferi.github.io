@@ -75,13 +75,13 @@
 
   #star {
     position: absolute;
-    left: 10em;
-    top: 2em;
+    left: 130%;
+    top: 7%;
     height: 90px;
     width: 1px;
     background: radial-gradient(ellipse at center, #f9f9f9 9%, #1e5799 98%);
     border-radius: 50%;
-    transform: rotate(13deg) scale(0.4);
+    transform: rotate(13deg) scale(0.35);
     transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 
@@ -107,8 +107,8 @@
 
   #star1 {
     position: absolute;
-    left: 7em;
-    top: 8em;
+    left: 115%;
+    top: 72.5%;
     height: 60px;
     width: 1px;
     background: radial-gradient(ellipse at center, #f9f9f9 29%, #1e5799 98%);
@@ -140,13 +140,13 @@
 
   #star2 {
     position: absolute;
-    left: 4em;
-    top: 8em;
+    left: 50%;
+    top: 95%;
     height: 60px;
     width: 1px;
     background: radial-gradient(ellipse at center, #f9f9f9 29%, #1e5799 98%);
     border-radius: 50%;
-    transform: rotate(31deg) scale(0.4);
+    transform: rotate(31deg) scale(0.35);
   }
 
   #star2:before {
