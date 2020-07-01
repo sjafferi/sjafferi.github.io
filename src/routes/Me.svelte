@@ -45,6 +45,7 @@
  
   @media (max-height: 1650px) {
     @media (max-height: 1250px) {
+      // height <= 1250
       @include variable-change {
         --theme-changer-top: 72.5vh !important;
         --theme-changer-left: 65% !important;
@@ -67,6 +68,7 @@
     }
 
     @media (max-height: 950px) {
+      // height <= 950
       @include variable-change {
         --theme-changer-top: 70vh !important;
         --theme-changer-left: 60% !important;
@@ -78,7 +80,9 @@
     }
 
     @media (max-width: 1700px) {
+      // height <= 1650 and width <= 1700
       @media (max-height: 1350px) {
+        // height <= 1350 and width <= 1700
         @include variable-change {
           --theme-changer-top: 65vh !important;
           --theme-changer-left: 60% !important;
@@ -89,6 +93,7 @@
         }
       }
       @media (max-height: 1550px) {
+        // height <= 1550 and width <= 1700
           @include variable-change {
             --theme-changer-top: 65vh !important;
             --theme-changer-left: 60% !important;
@@ -101,7 +106,8 @@
         }
       }
 
-      @media (min-height: 1000px) {
+      @media (min-height: 900px) {
+          // 900 <= height <= 1650 and width <= 1700
           @include variable-change {
             --theme-changer-top: 65vh !important;
             --theme-changer-left: 65% !important;
@@ -114,12 +120,14 @@
     }
 
     @media (min-width: 1650px) {
+      // height <= 1650 and width <= 1650
       @include variable-change {
         --theme-changer-left: 60%;
       }
     }
 
     @media (max-width: 850px) {
+      // height <= 1650 and width <= 850
       @include variable-change {
         --theme-changer-top: 18% !important;
         --theme-changer-left: calc(50% - 33px) !important;
