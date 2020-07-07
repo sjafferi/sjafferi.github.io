@@ -44,9 +44,9 @@
 
 <style lang="scss">
   .container {
-    max-width: 110ch;
-    margin: auto;
-    padding: 0 20px;
+    width: calc(100vw - 40px);
+    height: 100vh;
+    position: relative;
     display: flex;
     flex-direction: column;
 
@@ -58,6 +58,9 @@
   .section {
     width: 100%;
     z-index: 300;
+    max-width: 110ch;
+    margin: auto;
+    padding: 0 20px;
     margin-top: 5rem;
   }
 

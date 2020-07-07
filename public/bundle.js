@@ -40391,7 +40391,7 @@
     	};
     }
 
-    // (98:4) {#if theme == "light"}
+    // (101:4) {#if theme == "light"}
     function create_if_block$7(ctx) {
     	let current;
     	const sun = new Sun({ props: { about: /*about*/ ctx[3] } });
@@ -40428,7 +40428,7 @@
     	};
     }
 
-    // (97:2) <Router {url}>
+    // (100:2) <Router {url}>
     function create_default_slot$5(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -40493,7 +40493,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "section svelte-n56h1n");
+    			attr(div, "class", "section svelte-1vhfwm6");
     		},
     		m(target, anchor) {
     			if_blocks[current_block_type_index].m(target, anchor);
@@ -40603,8 +40603,8 @@
     		h() {
     			attr(meta, "name", "viewport");
     			attr(meta, "content", "width=device-width, initial-scale=1");
-    			attr(meta, "class", "svelte-n56h1n");
-    			attr(div, "class", "container svelte-n56h1n");
+    			attr(meta, "class", "svelte-1vhfwm6");
+    			attr(div, "class", "container svelte-1vhfwm6");
     			toggle_class(div, "about", /*about*/ ctx[3]);
     			toggle_class(div, "inBlogPost", /*inBlogPost*/ ctx[4]);
     		},
