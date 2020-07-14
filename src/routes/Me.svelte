@@ -106,8 +106,8 @@
         }
       }
 
-      @media (min-height: 900px) {
-          // 900 <= height <= 1650 and width <= 1700
+      @media (min-height: 1000px) {
+          // 1000 <= height <= 1650 and width <= 1700
           @include variable-change {
             --theme-changer-top: 65vh !important;
             --theme-changer-left: 65% !important;

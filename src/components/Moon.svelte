@@ -297,7 +297,7 @@
   }
 </style>
 
-<div class="moon-container bounce" on:click class:animate class:about transition:fade>
+<div class="moon-container" on:click class:animate class:about transition:fade>
   <div id="moon" on:mouseover="{toggleAnimation}">
     <!-- {#if showMessage}
     <span class="info-msg" transition:slide>Tap <span>me</span></span>
@@ -306,5 +306,5 @@
     <div id="star1"></div>
     <div id="star2"></div>
   </div>
-  <div id="moon-shadow" class="bounce"></div>
+  <div id="moon-shadow"></div>
 </div>

@@ -2249,8 +2249,8 @@
     			attr(div3, "id", "moon");
     			attr(div3, "class", "svelte-1tkkxpa");
     			attr(div4, "id", "moon-shadow");
-    			attr(div4, "class", "bounce svelte-1tkkxpa");
-    			attr(div5, "class", "moon-container bounce svelte-1tkkxpa");
+    			attr(div4, "class", "svelte-1tkkxpa");
+    			attr(div5, "class", "moon-container svelte-1tkkxpa");
     			toggle_class(div5, "animate", /*animate*/ ctx[1]);
     			toggle_class(div5, "about", /*about*/ ctx[0]);
     		},
@@ -40035,7 +40035,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link svelte-ll9t4g");
+    			attr(a, "class", "link svelte-1n9n2t8");
     			attr(a, "href", a_href_value = /*link*/ ctx[2]);
     			attr(a, "target", "_blank");
     		},
@@ -40196,17 +40196,17 @@
     		},
     		h() {
     			document.title = "Me | Sibtain Jafferi";
-    			attr(h1, "class", "svelte-ll9t4g");
-    			attr(p, "class", "phonetic-spelling svelte-ll9t4g");
-    			attr(span0, "class", "header svelte-ll9t4g");
-    			attr(span1, "class", "inner-text-1 svelte-ll9t4g");
-    			attr(span2, "class", "inner-text-1 svelte-ll9t4g");
-    			attr(span3, "class", "inner-text-2 svelte-ll9t4g");
-    			attr(span4, "class", "inner-text-3 svelte-ll9t4g");
-    			attr(span5, "class", "text svelte-ll9t4g");
-    			attr(div0, "class", "description svelte-ll9t4g");
-    			attr(div1, "class", "links svelte-ll9t4g");
-    			attr(div2, "class", "about-container svelte-ll9t4g");
+    			attr(h1, "class", "svelte-1n9n2t8");
+    			attr(p, "class", "phonetic-spelling svelte-1n9n2t8");
+    			attr(span0, "class", "header svelte-1n9n2t8");
+    			attr(span1, "class", "inner-text-1 svelte-1n9n2t8");
+    			attr(span2, "class", "inner-text-1 svelte-1n9n2t8");
+    			attr(span3, "class", "inner-text-2 svelte-1n9n2t8");
+    			attr(span4, "class", "inner-text-3 svelte-1n9n2t8");
+    			attr(span5, "class", "text svelte-1n9n2t8");
+    			attr(div0, "class", "description svelte-1n9n2t8");
+    			attr(div1, "class", "links svelte-1n9n2t8");
+    			attr(div2, "class", "about-container svelte-1n9n2t8");
     			attr(div2, "id", "about-container");
     		},
     		m(target, anchor) {
