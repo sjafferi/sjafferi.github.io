@@ -40035,7 +40035,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link svelte-1n9n2t8");
+    			attr(a, "class", "link svelte-1b4a700");
     			attr(a, "href", a_href_value = /*link*/ ctx[2]);
     			attr(a, "target", "_blank");
     		},
@@ -40196,17 +40196,17 @@
     		},
     		h() {
     			document.title = "Me | Sibtain Jafferi";
-    			attr(h1, "class", "svelte-1n9n2t8");
-    			attr(p, "class", "phonetic-spelling svelte-1n9n2t8");
-    			attr(span0, "class", "header svelte-1n9n2t8");
-    			attr(span1, "class", "inner-text-1 svelte-1n9n2t8");
-    			attr(span2, "class", "inner-text-1 svelte-1n9n2t8");
-    			attr(span3, "class", "inner-text-2 svelte-1n9n2t8");
-    			attr(span4, "class", "inner-text-3 svelte-1n9n2t8");
-    			attr(span5, "class", "text svelte-1n9n2t8");
-    			attr(div0, "class", "description svelte-1n9n2t8");
-    			attr(div1, "class", "links svelte-1n9n2t8");
-    			attr(div2, "class", "about-container svelte-1n9n2t8");
+    			attr(h1, "class", "svelte-1b4a700");
+    			attr(p, "class", "phonetic-spelling svelte-1b4a700");
+    			attr(span0, "class", "header svelte-1b4a700");
+    			attr(span1, "class", "inner-text-1 svelte-1b4a700");
+    			attr(span2, "class", "inner-text-1 svelte-1b4a700");
+    			attr(span3, "class", "inner-text-2 svelte-1b4a700");
+    			attr(span4, "class", "inner-text-3 svelte-1b4a700");
+    			attr(span5, "class", "text svelte-1b4a700");
+    			attr(div0, "class", "description svelte-1b4a700");
+    			attr(div1, "class", "links svelte-1b4a700");
+    			attr(div2, "class", "about-container svelte-1b4a700");
     			attr(div2, "id", "about-container");
     		},
     		m(target, anchor) {
@@ -40391,7 +40391,7 @@
     	};
     }
 
-    // (101:4) {#if theme == "light"}
+    // (102:4) {#if theme == "light"}
     function create_if_block$7(ctx) {
     	let current;
     	const sun = new Sun({ props: { about: /*about*/ ctx[3] } });
@@ -40428,7 +40428,7 @@
     	};
     }
 
-    // (100:2) <Router {url}>
+    // (101:2) <Router {url}>
     function create_default_slot$5(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -40493,7 +40493,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "section svelte-1vhfwm6");
+    			attr(div, "class", "section svelte-qb3rpt");
     		},
     		m(target, anchor) {
     			if_blocks[current_block_type_index].m(target, anchor);
@@ -40603,8 +40603,8 @@
     		h() {
     			attr(meta, "name", "viewport");
     			attr(meta, "content", "width=device-width, initial-scale=1");
-    			attr(meta, "class", "svelte-1vhfwm6");
-    			attr(div, "class", "container svelte-1vhfwm6");
+    			attr(meta, "class", "svelte-qb3rpt");
+    			attr(div, "class", "container svelte-qb3rpt");
     			toggle_class(div, "about", /*about*/ ctx[3]);
     			toggle_class(div, "inBlogPost", /*inBlogPost*/ ctx[4]);
     		},

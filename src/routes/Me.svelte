@@ -96,7 +96,7 @@
         // height <= 1550 and width <= 1700
           @include variable-change {
             --theme-changer-top: 65vh !important;
-            --theme-changer-left: 60% !important;
+            --theme-changer-left: 70% !important;
             --sun-size: 10vh !important;
             --moon-size: 8vh !important;
             &.about-container {

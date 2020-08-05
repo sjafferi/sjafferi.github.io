@@ -94,6 +94,7 @@
       overflow-x: hidden;
       flex-flow: column;
       padding: 0;
+      width: 100%;
     }
 
     .section {
