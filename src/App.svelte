@@ -6,6 +6,7 @@
   import Moon from "components/Moon.svelte";
   import Nav from "./routes/Nav.svelte";
   import Projects from "./routes/Projects.svelte";
+  import ThemeSwitcher from "components/ThemeSwitcher.svelte";
   import Blog from "./routes/Blog/Blog.svelte";
   import Me from "./routes/Me.svelte";
   import "./main.scss";
@@ -13,11 +14,14 @@
   export let url = "";
   let theme, unsubscribe, isMounted = false;
   let currentPage;
+
+  let onThemeChange = () => {}
   
   onMount(() => {
     router.initialize();
     themeManager.initialize();
     themeManager.toggle();
+    onThemeChange = themeManager.toggle;
     if (location.pathname === '/') {
       location.href = '/about'
     }
@@ -55,6 +59,13 @@
     }
   }
 
+  .theme-switcher-container {
+    position: absolute;
+    top: 4vw;
+    right: 3rem;
+    transition: all 500ms linear;
+  }
+
   .section {
     width: 100%;
     z-index: 300;
@@ -84,6 +95,9 @@
   }
 
   @media (max-width: 850px) {
+    .theme-switcher-container {
+      left: 0.5rem;
+    }
     :not(.about) {
       :global(.moon-container), :global(.sun-container) {
         --sun-size: 13vw !important;
@@ -125,6 +139,7 @@
     {:else}
       <Moon on:click={themeManager.toggle} {about} />
     {/if}
+
     <Nav {currentPage} />
     <div class="section">
       <Route path="projects" component={Projects} />
@@ -132,4 +147,8 @@
       <Route path="writings/*" component={Blog} />
     </div>
   </Router>
+</div>
+
+<div class="theme-switcher-container">
+  <ThemeSwitcher theme={theme} on:click={onThemeChange} />
 </div>

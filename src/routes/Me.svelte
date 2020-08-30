@@ -8,7 +8,7 @@
   const links = [
     { Logo: Github, link: 'https://github.com/sjafferi' },
     { Logo: Medium, link: 'https://medium.com/@sjafferi' },
-    { Logo: LinkedIn, link: 'https://www.linkedin.com/in/mohammad-sibtain-jafferi-a6ab79a2/' }
+    { Logo: LinkedIn, link: 'https://www.linkedin.com/in/sibtain-jafferi' }
   ]
 </script>
 
