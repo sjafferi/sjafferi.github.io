@@ -8,7 +8,7 @@
   import Tag from "components/Tag.svelte";
   import Posts from "metadata/posts.js";
 
-  const posts = Posts.slice(0).sort((a, b) => moment(a.date, "MM/DD/YYYY").isBefore(moment(b.date, "MM/DD/YYY")) ? 1 : -1); // descending order of date
+  const posts = Posts.slice(0).sort((a, b) => moment(a.date, "MM/DD/YYYY").isAfter(moment(b.date, "MM/DD/YYY")) ? 1 : -1); // ascending order of date
 </script>
 
 <style lang="scss">

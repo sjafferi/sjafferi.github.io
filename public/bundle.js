@@ -39862,7 +39862,7 @@
     }
 
     function instance$k($$self) {
-    	const posts$1 = posts.slice(0).sort((a, b) => moment(a.date, "MM/DD/YYYY").isBefore(moment(b.date, "MM/DD/YYY"))
+    	const posts$1 = posts.slice(0).sort((a, b) => moment(a.date, "MM/DD/YYYY").isAfter(moment(b.date, "MM/DD/YYY"))
     	? 1
     	: -1);
 
