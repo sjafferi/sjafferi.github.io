@@ -27,6 +27,7 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    font-family: "Open Sans", sans-serif;
   }
 
   .content {
@@ -44,7 +45,6 @@
     line-height: 1.25;
     font-weight: 600;
     letter-spacing: 0.5px;
-    font-family: Raleway, sans-serif;
   }
 
   .page-metadata {

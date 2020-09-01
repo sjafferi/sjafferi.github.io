@@ -14,7 +14,7 @@
 <style lang="scss">
   .blog-container {
     width: 100%;
-    font-family: "Roboto", sans-serif;
+    font-family: "Open Sans", sans-serif;
     padding: 25px 40px;
     box-shadow: 0 4px 16px 0 rgba(33, 33, 33, 0.2);
     box-sizing: content-box;
@@ -60,7 +60,6 @@
     line-height: 30px;
     font-variant: petite-caps;
     letter-spacing: 1.25px;
-    font-family: Raleway, sans-serif;
   }
 
   :global(.posts .title a:hover) {

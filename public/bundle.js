@@ -38924,8 +38924,8 @@
     			this.h();
     		},
     		h() {
-    			attr(span0, "class", "date svelte-nvs32t");
-    			attr(span1, "class", "date-container svelte-nvs32t");
+    			attr(span0, "class", "date svelte-uk80xr");
+    			attr(span1, "class", "date-container svelte-uk80xr");
     		},
     		m(target, anchor) {
     			insert(target, span1, anchor);
@@ -39014,13 +39014,13 @@
     			this.h();
     		},
     		h() {
-    			attr(h1, "class", "svelte-nvs32t");
-    			attr(header, "class", "svelte-nvs32t");
-    			attr(div0, "class", "page-metadata svelte-nvs32t");
+    			attr(h1, "class", "svelte-uk80xr");
+    			attr(header, "class", "svelte-uk80xr");
+    			attr(div0, "class", "page-metadata svelte-uk80xr");
     			attr(div1, "class", "table-of-contents");
-    			attr(div2, "class", "markdown svelte-nvs32t");
+    			attr(div2, "class", "markdown svelte-uk80xr");
     			attr(div3, "class", "content");
-    			attr(div4, "class", "post-page svelte-nvs32t");
+    			attr(div4, "class", "post-page svelte-uk80xr");
     		},
     		m(target, anchor) {
     			insert(target, div4, anchor);
@@ -39198,7 +39198,7 @@
     	return child_ctx;
     }
 
-    // (104:32) <Link on:click={() => router.go(`writings/${slug}`)} to={slug}>
+    // (103:32) <Link on:click={() => router.go(`writings/${slug}`)} to={slug}>
     function create_default_slot_4(ctx) {
     	let t_value = /*title*/ ctx[5] + "";
     	let t;
@@ -39220,7 +39220,7 @@
     	};
     }
 
-    // (109:16) <Tag>
+    // (108:16) <Tag>
     function create_default_slot_3(ctx) {
     	let t_value = /*tag*/ ctx[12] + "";
     	let t;
@@ -39242,7 +39242,7 @@
     	};
     }
 
-    // (108:14) {#each tags as tag}
+    // (107:14) {#each tags as tag}
     function create_each_block_2$1(ctx) {
     	let current;
 
@@ -39288,7 +39288,7 @@
     	};
     }
 
-    // (102:8) {#each posts as { title, slug, subtitle, date, tags }}
+    // (101:8) {#each posts as { title, slug, subtitle, date, tags }}
     function create_each_block_1$2(ctx) {
     	let li;
     	let div0;
@@ -39384,11 +39384,11 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "title svelte-1cvl0jo");
-    			attr(p0, "class", "date svelte-1cvl0jo");
-    			attr(p1, "class", "subtitle svelte-1cvl0jo");
-    			attr(div1, "class", "tags svelte-1cvl0jo");
-    			attr(li, "class", "svelte-1cvl0jo");
+    			attr(div0, "class", "title svelte-fbhrlv");
+    			attr(p0, "class", "date svelte-fbhrlv");
+    			attr(p1, "class", "subtitle svelte-fbhrlv");
+    			attr(div1, "class", "tags svelte-fbhrlv");
+    			attr(li, "class", "svelte-fbhrlv");
     		},
     		m(target, anchor) {
     			insert(target, li, anchor);
@@ -39476,7 +39476,7 @@
     	};
     }
 
-    // (100:4) <Route path="/">
+    // (99:4) <Route path="/">
     function create_default_slot_2$1(ctx) {
     	let ul;
     	let current;
@@ -39513,7 +39513,7 @@
     			this.h();
     		},
     		h() {
-    			attr(ul, "class", "posts svelte-1cvl0jo");
+    			attr(ul, "class", "posts svelte-fbhrlv");
     		},
     		m(target, anchor) {
     			insert(target, ul, anchor);
@@ -39577,7 +39577,7 @@
     	};
     }
 
-    // (118:6) <Route path={post.slug}>
+    // (117:6) <Route path={post.slug}>
     function create_default_slot_1$1(ctx) {
     	let t;
     	let current;
@@ -39627,7 +39627,7 @@
     	};
     }
 
-    // (117:4) {#each Posts as post}
+    // (116:4) {#each Posts as post}
     function create_each_block$4(ctx) {
     	let current;
 
@@ -39674,7 +39674,7 @@
     	};
     }
 
-    // (99:2) <Router>
+    // (98:2) <Router>
     function create_default_slot$4(ctx) {
     	let t;
     	let each_1_anchor;
@@ -39827,7 +39827,7 @@
     		},
     		h() {
     			document.title = "Writings | Sibtain Jafferi";
-    			attr(div, "class", "blog-container svelte-1cvl0jo");
+    			attr(div, "class", "blog-container svelte-fbhrlv");
     		},
     		m(target, anchor) {
     			insert(target, t, anchor);
@@ -40435,7 +40435,7 @@
       }
     }
 
-    var css$1 = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway:wght@500;600&family=Amiri&Roboto:ital,wght@0,400;0,600;1,400&family=Roboto+Mono:wght@400;600&display=swap\");\nbody {\n  font-family: \"Raleway\", sans-serif !important;\n  overflow-x: hidden; }\n\nhtml {\n  --light-theme-text-color-1: black;\n  --light-theme-text-color: #333;\n  --light-theme-background-color: linear-gradient(\n    to left bottom,\n    #ffffff,\n    #fcc28cbd,\n    #ff6e65\n  );\n  --dark-theme-text-color-1: #e2e2e2;\n  --dark-theme-text-color: #cacaca;\n  --dark-theme-background-color: #1b1b1bfc;\n  --theme-changer-top: 0;\n  --theme-changer-left: 0;\n  background-repeat: no-repeat;\n  background-size: cover;\n  transition: color, background, background-color 500ms linear;\n  width: 100%;\n  min-height: 100%;\n  height: fit-content; }\n  html * {\n    transition: color, background, background-color 500ms linear; }\n\nhtml.light {\n  /*\n\ngithub.com style (c) Vasily Polovnyov <vast@whiteants.net>\n\n*/ }\n  html.light .hljs {\n    display: block;\n    overflow-x: auto;\n    padding: 0.5em;\n    color: #333;\n    background: #f8f8f8; }\n  html.light .hljs-comment,\n  html.light .hljs-quote {\n    color: #998;\n    font-style: italic; }\n  html.light .hljs-keyword,\n  html.light .hljs-selector-tag,\n  html.light .hljs-subst {\n    color: #0024ad;\n    font-weight: bold; }\n  html.light .hljs-number,\n  html.light .hljs-literal,\n  html.light .hljs-variable,\n  html.light .hljs-template-variable,\n  html.light .hljs-tag .hljs-attr {\n    color: #008080; }\n  html.light .hljs-string,\n  html.light .hljs-doctag {\n    color: #d14; }\n  html.light .hljs-title,\n  html.light .hljs-section,\n  html.light .hljs-selector-id {\n    color: #900;\n    font-weight: bold; }\n  \n  html.light .hljs-subst {\n    font-weight: normal; }\n  html.light .hljs-type,\n  html.light .hljs-class .hljs-title {\n    color: #458;\n    font-weight: bold; }\n  html.light .hljs-tag,\n  html.light .hljs-name,\n  html.light .hljs-attribute {\n    color: #000080;\n    font-weight: normal; }\n  html.light .hljs-regexp,\n  html.light .hljs-link {\n    color: #009926; }\n  html.light .hljs-symbol,\n  html.light .hljs-bullet {\n    color: #990073; }\n  html.light .hljs-built_in,\n  html.light .hljs-builtin-name {\n    color: #0086b3; }\n  html.light .hljs-meta {\n    color: #999;\n    font-weight: bold; }\n  html.light .hljs-deletion {\n    background: #fdd; }\n  html.light .hljs-addition {\n    background: #dfd; }\n  html.light .hljs-emphasis {\n    font-style: italic; }\n  html.light .hljs-strong {\n    font-weight: bold; }\n\nhtml.dark {\n  /*!\n * Agate by Taufik Nurrohman <https://github.com/tovic>\n * ----------------------------------------------------\n *\n * #ade5fc\n * #a2fca2\n * #c6b4f0\n * #d36363\n * #fcc28c\n * #fc9b9b\n * #ffa\n * #fff\n * #333\n * #62c8f3\n * #888\n *\n */ }\n  html.dark .hljs {\n    display: block;\n    overflow-x: auto;\n    padding: 0.5em;\n    background: #333;\n    color: white; }\n  html.dark .hljs-name,\n  html.dark .hljs-strong {\n    font-weight: bold; }\n  html.dark .hljs-code,\n  html.dark .hljs-emphasis {\n    font-style: italic; }\n  html.dark .hljs-tag {\n    color: #62c8f3; }\n  html.dark .hljs-variable,\n  html.dark .hljs-template-variable,\n  html.dark .hljs-selector-id,\n  html.dark .hljs-selector-class {\n    color: #ade5fc; }\n  html.dark .hljs-string,\n  html.dark .hljs-bullet {\n    color: #a2fca2; }\n  html.dark .hljs-type,\n  html.dark .hljs-title,\n  html.dark .hljs-section,\n  html.dark .hljs-attribute,\n  html.dark .hljs-quote,\n  html.dark .hljs-built_in,\n  html.dark .hljs-builtin-name {\n    color: #ffa; }\n  html.dark .hljs-number,\n  html.dark .hljs-symbol,\n  html.dark .hljs-bullet {\n    color: #d36363; }\n  html.dark .hljs-keyword,\n  html.dark .hljs-selector-tag,\n  html.dark .hljs-literal {\n    color: #fcc28c; }\n  html.dark .hljs-comment,\n  html.dark .hljs-deletion, html.dark .hljs-code {\n    color: #888; }\n  html.dark .hljs-regexp,\n  html.dark .hljs-link {\n    color: #c6b4f0; }\n  html.dark .hljs-meta {\n    color: #fc9b9b; }\n  \n  html.dark .hljs-deletion {\n    background-color: #fc9b9b;\n    color: #333; }\n  html.dark .hljs-addition {\n    background-color: #a2fca2;\n    color: #333; }\n  html.dark .hljs a {\n    color: inherit; }\n  html.dark .hljs a:focus,\n  html.dark .hljs a:hover {\n    color: inherit;\n    text-decoration: underline; }\n\nhtml.dark {\n  background: var(--dark-theme-background-color);\n  color: var(--dark-theme-text-color);\n  --theme: \"dark\";\n  --text-color-1: var(--dark-theme-text-color-1);\n  --text-color: var(--dark-theme-text-color);\n  --background-color: var(--dark-theme-background-color); }\n\nhtml.light {\n  background: var(--light-theme-background-color);\n  color: var(--light-theme-text-color);\n  --theme: \"light\";\n  --text-color-1: var(--light-theme-text-color-1);\n  --text-color: var(--light-theme-text-color);\n  --background-color: var(--light-theme-text-color); }\n\nhtml * {\n  color: var(--text-color); }\n\n.no-scroll {\n  overflow: hidden; }\n";
+    var css$1 = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Raleway:wght@500;600&family=Amiri&Roboto:ital,wght@0,400;0,600;1,400&family=Roboto+Mono:wght@400;600&family=Open+Sans&display=swap\");\nbody {\n  font-family: \"Raleway\", sans-serif !important;\n  overflow-x: hidden; }\n\nhtml {\n  --light-theme-text-color-1: black;\n  --light-theme-text-color: #333;\n  --light-theme-background-color: linear-gradient(\n    to left bottom,\n    #ffffff,\n    #fcc28cbd,\n    #ff6e65\n  );\n  --dark-theme-text-color-1: #e2e2e2;\n  --dark-theme-text-color: #cacaca;\n  --dark-theme-background-color: #1b1b1bfc;\n  --theme-changer-top: 0;\n  --theme-changer-left: 0;\n  background-repeat: no-repeat;\n  background-size: cover;\n  transition: color, background, background-color 500ms linear;\n  width: 100%;\n  min-height: 100%;\n  height: fit-content; }\n  html * {\n    transition: color, background, background-color 500ms linear; }\n\nhtml.light {\n  /*\n\ngithub.com style (c) Vasily Polovnyov <vast@whiteants.net>\n\n*/ }\n  html.light .hljs {\n    display: block;\n    overflow-x: auto;\n    padding: 0.5em;\n    color: #333;\n    background: #f8f8f8; }\n  html.light .hljs-comment,\n  html.light .hljs-quote {\n    color: #998;\n    font-style: italic; }\n  html.light .hljs-keyword,\n  html.light .hljs-selector-tag,\n  html.light .hljs-subst {\n    color: #0024ad;\n    font-weight: bold; }\n  html.light .hljs-number,\n  html.light .hljs-literal,\n  html.light .hljs-variable,\n  html.light .hljs-template-variable,\n  html.light .hljs-tag .hljs-attr {\n    color: #008080; }\n  html.light .hljs-string,\n  html.light .hljs-doctag {\n    color: #d14; }\n  html.light .hljs-title,\n  html.light .hljs-section,\n  html.light .hljs-selector-id {\n    color: #900;\n    font-weight: bold; }\n  \n  html.light .hljs-subst {\n    font-weight: normal; }\n  html.light .hljs-type,\n  html.light .hljs-class .hljs-title {\n    color: #458;\n    font-weight: bold; }\n  html.light .hljs-tag,\n  html.light .hljs-name,\n  html.light .hljs-attribute {\n    color: #000080;\n    font-weight: normal; }\n  html.light .hljs-regexp,\n  html.light .hljs-link {\n    color: #009926; }\n  html.light .hljs-symbol,\n  html.light .hljs-bullet {\n    color: #990073; }\n  html.light .hljs-built_in,\n  html.light .hljs-builtin-name {\n    color: #0086b3; }\n  html.light .hljs-meta {\n    color: #999;\n    font-weight: bold; }\n  html.light .hljs-deletion {\n    background: #fdd; }\n  html.light .hljs-addition {\n    background: #dfd; }\n  html.light .hljs-emphasis {\n    font-style: italic; }\n  html.light .hljs-strong {\n    font-weight: bold; }\n\nhtml.dark {\n  /*!\n * Agate by Taufik Nurrohman <https://github.com/tovic>\n * ----------------------------------------------------\n *\n * #ade5fc\n * #a2fca2\n * #c6b4f0\n * #d36363\n * #fcc28c\n * #fc9b9b\n * #ffa\n * #fff\n * #333\n * #62c8f3\n * #888\n *\n */ }\n  html.dark .hljs {\n    display: block;\n    overflow-x: auto;\n    padding: 0.5em;\n    background: #333;\n    color: white; }\n  html.dark .hljs-name,\n  html.dark .hljs-strong {\n    font-weight: bold; }\n  html.dark .hljs-code,\n  html.dark .hljs-emphasis {\n    font-style: italic; }\n  html.dark .hljs-tag {\n    color: #62c8f3; }\n  html.dark .hljs-variable,\n  html.dark .hljs-template-variable,\n  html.dark .hljs-selector-id,\n  html.dark .hljs-selector-class {\n    color: #ade5fc; }\n  html.dark .hljs-string,\n  html.dark .hljs-bullet {\n    color: #a2fca2; }\n  html.dark .hljs-type,\n  html.dark .hljs-title,\n  html.dark .hljs-section,\n  html.dark .hljs-attribute,\n  html.dark .hljs-quote,\n  html.dark .hljs-built_in,\n  html.dark .hljs-builtin-name {\n    color: #ffa; }\n  html.dark .hljs-number,\n  html.dark .hljs-symbol,\n  html.dark .hljs-bullet {\n    color: #d36363; }\n  html.dark .hljs-keyword,\n  html.dark .hljs-selector-tag,\n  html.dark .hljs-literal {\n    color: #fcc28c; }\n  html.dark .hljs-comment,\n  html.dark .hljs-deletion, html.dark .hljs-code {\n    color: #888; }\n  html.dark .hljs-regexp,\n  html.dark .hljs-link {\n    color: #c6b4f0; }\n  html.dark .hljs-meta {\n    color: #fc9b9b; }\n  \n  html.dark .hljs-deletion {\n    background-color: #fc9b9b;\n    color: #333; }\n  html.dark .hljs-addition {\n    background-color: #a2fca2;\n    color: #333; }\n  html.dark .hljs a {\n    color: inherit; }\n  html.dark .hljs a:focus,\n  html.dark .hljs a:hover {\n    color: inherit;\n    text-decoration: underline; }\n\nhtml.dark {\n  background: var(--dark-theme-background-color);\n  color: var(--dark-theme-text-color);\n  --theme: \"dark\";\n  --text-color-1: var(--dark-theme-text-color-1);\n  --text-color: var(--dark-theme-text-color);\n  --background-color: var(--dark-theme-background-color); }\n\nhtml.light {\n  background: var(--light-theme-background-color);\n  color: var(--light-theme-text-color);\n  --theme: \"light\";\n  --text-color-1: var(--light-theme-text-color-1);\n  --text-color: var(--light-theme-text-color);\n  --background-color: var(--light-theme-text-color); }\n\nhtml * {\n  color: var(--text-color); }\n\n.no-scroll {\n  overflow: hidden; }\n";
     styleInject(css$1);
 
     /* src/App.svelte generated by Svelte v3.17.1 */
