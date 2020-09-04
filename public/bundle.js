@@ -4973,6 +4973,7 @@
           },
         ],
       },
+
       {
         title: "Grub Grab",
         titleLink: "https://grubgrab.io",
@@ -5000,6 +5001,77 @@
           {
             link: "https://explorer.grubgrab.io",
             text: "Application Page",
+          },
+        ],
+      },
+
+      {
+        title: "Interactive Story",
+        titleLink: "https://story.sibta.in",
+        description: "Portfolio site used to tell an interactive story.",
+        images: [
+          {
+            thumbnail: "images/projects/story-1.png",
+            src: "images/projects/story-1-full.png",
+          },
+          {
+            thumbnail: "images/projects/story-2.png",
+            src: "images/projects/story-2-full.png",
+          },
+        ],
+        tags: ["ThreeJS", "React", "HTML5", "JavaScript"],
+        links: [
+          {
+            link: "https://story.sibta.in",
+            text: "Demo",
+          },
+        ],
+      },
+
+      {
+        title: "Svelte Images",
+        titleLink: "https://github.com/sjafferi/svelte-images",
+        description:
+          "Svelte component for displaying lazy loaded images in a gallery or stand-alone (the pics below use this)",
+        images: [
+          {
+            thumbnail: "images/projects/svelte-images-1.jpg",
+            src: "images/projects/story-1-full.jpg",
+          },
+          {
+            thumbnail: "images/projects/svelte-images-2.jpg",
+            src: "images/projects/svelte-images-2-full.jpg",
+          },
+          {
+            thumbnail: "images/projects/svelte-images-3.jpg",
+            src: "images/projects/svelte-images-3-full.jpg",
+          },
+        ],
+        tags: ["Open Source", "SvelteJS", "Javasciprt", "HTML5", "CSS3"],
+        links: [
+          {
+            link: "https://github.com/sjafferi/svelte-images",
+            text: "Code",
+          },
+        ],
+      },
+
+      {
+        title: "Studio Ki",
+        titleLink: "http://studioki.sibta.in",
+        description:
+          "Your friendly boutique web design firm creating pixel perfect sites for businesses worldwide. Main services include end-to-end implementation of web and mobile applications.",
+        images: [
+          {
+            thumbnail: "images/projects/ki-1.png",
+            src: "images/projects/ki-1-full.png",
+          },
+        ],
+        tags: ["React", "JavaScript", "NodeJS", "HTML5", "CSS3"],
+        links: [
+          {
+            link: "http://studioki.sibta.in",
+            text: "Landing Page",
           },
         ],
       },
@@ -5031,7 +5103,7 @@
     	return child_ctx;
     }
 
-    // (103:8) {#if images && images.length > 0}
+    // (104:8) {#if images && images.length > 0}
     function create_if_block$4(ctx) {
     	let div;
     	let current;
@@ -5054,7 +5126,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "images svelte-gwsx4k");
+    			attr(div, "class", "images svelte-1mtvp19");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -5078,7 +5150,7 @@
     	};
     }
 
-    // (110:12) <Tag>
+    // (111:12) <Tag>
     function create_default_slot$3(ctx) {
     	let t_value = /*tag*/ ctx[12] + "";
     	let t;
@@ -5100,7 +5172,7 @@
     	};
     }
 
-    // (109:10) {#each tags as tag}
+    // (110:10) {#each tags as tag}
     function create_each_block_2(ctx) {
     	let current;
 
@@ -5146,7 +5218,7 @@
     	};
     }
 
-    // (115:8) {#each links as { link, text }}
+    // (116:8) {#each links as { link, text }}
     function create_each_block_1$1(ctx) {
     	let a;
     	let t_value = /*text*/ ctx[9] + "";
@@ -5168,7 +5240,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link-btn svelte-gwsx4k");
+    			attr(a, "class", "link-btn svelte-1mtvp19");
     			attr(a, "target", "_blank");
     			attr(a, "href", a_href_value = /*link*/ ctx[8]);
     		},
@@ -5192,7 +5264,7 @@
     	};
     }
 
-    // (98:2) {#each Projects as { title, titleLink, description, images, tags, links }}
+    // (99:2) {#each Projects as { title, titleLink, description, images, tags, links }}
     function create_each_block$3(ctx) {
     	let div3;
     	let div1;
@@ -5298,14 +5370,14 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "header-link svelte-gwsx4k");
+    			attr(a, "class", "header-link svelte-1mtvp19");
     			attr(a, "href", a_href_value = /*titleLink*/ ctx[1]);
     			attr(a, "target", "_blank");
-    			attr(p, "class", "description svelte-gwsx4k");
-    			attr(div0, "class", "tags svelte-gwsx4k");
-    			attr(div1, "class", "content svelte-gwsx4k");
-    			attr(div2, "class", "links svelte-gwsx4k");
-    			attr(div3, "class", "tile svelte-gwsx4k");
+    			attr(p, "class", "description svelte-1mtvp19");
+    			attr(div0, "class", "tags svelte-1mtvp19");
+    			attr(div1, "class", "content svelte-1mtvp19");
+    			attr(div2, "class", "links svelte-1mtvp19");
+    			attr(div3, "class", "tile svelte-1mtvp19");
     		},
     		m(target, anchor) {
     			insert(target, div3, anchor);
@@ -5464,7 +5536,7 @@
     		},
     		h() {
     			document.title = "Projects | Sibtain Jafferi";
-    			attr(div, "class", "projects svelte-gwsx4k");
+    			attr(div, "class", "projects svelte-1mtvp19");
     		},
     		m(target, anchor) {
     			insert(target, t, anchor);
@@ -5566,10 +5638,10 @@
     		},
     		h() {
     			attr(input, "type", "checkbox");
-    			attr(input, "class", "checkbox svelte-1hgog8v");
-    			attr(div0, "class", "icon svelte-1hgog8v");
+    			attr(input, "class", "checkbox svelte-1dblm84");
+    			attr(div0, "class", "icon svelte-1dblm84");
     			attr(div1, "id", "switch");
-    			attr(div1, "class", "svelte-1hgog8v");
+    			attr(div1, "class", "svelte-1dblm84");
     			toggle_class(div1, "dark", /*dark_mode_enabled*/ ctx[0]);
     		},
     		m(target, anchor) {
@@ -38665,7 +38737,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "markdown svelte-1hm8h1o");
+    			attr(div, "class", "markdown svelte-m5pzqb");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);

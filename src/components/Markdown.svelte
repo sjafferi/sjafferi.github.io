@@ -74,7 +74,7 @@
   :global(.markdown) {
     @include text {
       overflow: hidden;
-      font-size: 21px;
+      font-size: 1rem;
       line-height: 1.25;
       word-break: break-word;
       hyphens: auto;
@@ -106,10 +106,6 @@
     :global(.markdown h#{$index}) {
       font-size: 2em - 0.25em * $index;
     }
-  }
-
-  @include lists {
-    font-size: 19px;
   }
 
   :global(.markdown ul li, .markdown ol li) {
@@ -148,7 +144,7 @@
     word-break: break-all;
     white-space: pre-wrap;
     font-size: 1rem;
-    font-family: 'Roboto Mono', monospace;
+    // font-family: 'Roboto Mono', monospace;
   }
 
   :global(.markdown .highlight) {
@@ -183,9 +179,6 @@
     }
     @include headings {
       margin: 0.75em 0 0.65em 0;
-    }
-    @include text {
-      font-size: 19px;
     }
     :global(.markdown pre > code) {
       font-size: 12px;

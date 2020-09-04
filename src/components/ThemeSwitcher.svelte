@@ -38,6 +38,10 @@
 }
 #switch.dark {
   background-color:rgba(51, 51, 51, 1);
+  opacity: 0.68;
+  &:hover {
+    opacity: 0.8;
+  }
 }
 #switch .icon {
   position:absolute;

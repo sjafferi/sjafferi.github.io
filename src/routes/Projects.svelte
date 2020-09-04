@@ -30,6 +30,7 @@
     justify-content: center;
   }
   .link-btn {
+    min-width: 160px;
     display: inline-block;
     padding: 0.5em 1em;
     margin: 0.1em 0.65em 1em 0;

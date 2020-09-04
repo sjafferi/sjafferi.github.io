@@ -30,6 +30,7 @@ export default [
       },
     ],
   },
+
   {
     title: "Grub Grab",
     titleLink: "https://grubgrab.io",
@@ -57,6 +58,77 @@ export default [
       {
         link: "https://explorer.grubgrab.io",
         text: "Application Page",
+      },
+    ],
+  },
+
+  {
+    title: "Interactive Story",
+    titleLink: "https://story.sibta.in",
+    description: "Portfolio site used to tell an interactive story.",
+    images: [
+      {
+        thumbnail: "images/projects/story-1.png",
+        src: "images/projects/story-1-full.png",
+      },
+      {
+        thumbnail: "images/projects/story-2.png",
+        src: "images/projects/story-2-full.png",
+      },
+    ],
+    tags: ["ThreeJS", "React", "HTML5", "JavaScript"],
+    links: [
+      {
+        link: "https://story.sibta.in",
+        text: "Demo",
+      },
+    ],
+  },
+
+  {
+    title: "Svelte Images",
+    titleLink: "https://github.com/sjafferi/svelte-images",
+    description:
+      "Svelte component for displaying lazy loaded images in a gallery or stand-alone (the pics below use this)",
+    images: [
+      {
+        thumbnail: "images/projects/svelte-images-1.jpg",
+        src: "images/projects/story-1-full.jpg",
+      },
+      {
+        thumbnail: "images/projects/svelte-images-2.jpg",
+        src: "images/projects/svelte-images-2-full.jpg",
+      },
+      {
+        thumbnail: "images/projects/svelte-images-3.jpg",
+        src: "images/projects/svelte-images-3-full.jpg",
+      },
+    ],
+    tags: ["Open Source", "SvelteJS", "Javasciprt", "HTML5", "CSS3"],
+    links: [
+      {
+        link: "https://github.com/sjafferi/svelte-images",
+        text: "Code",
+      },
+    ],
+  },
+
+  {
+    title: "Studio Ki",
+    titleLink: "http://studioki.sibta.in",
+    description:
+      "Your friendly boutique web design firm creating pixel perfect sites for businesses worldwide. Main services include end-to-end implementation of web and mobile applications.",
+    images: [
+      {
+        thumbnail: "images/projects/ki-1.png",
+        src: "images/projects/ki-1-full.png",
+      },
+    ],
+    tags: ["React", "JavaScript", "NodeJS", "HTML5", "CSS3"],
+    links: [
+      {
+        link: "http://studioki.sibta.in",
+        text: "Landing Page",
       },
     ],
   },
