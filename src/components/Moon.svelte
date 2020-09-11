@@ -5,19 +5,20 @@
   const MESSAGE_DELAY = 5000;
   let animate = true,
     showMessage = true;
-  
+
   export let about;
 
   const toggleAnimation = () => {
     animate = true;
     setTimeout(() => (animate = false), ANIMATION_DELAY);
   };
-  
+
   onMount(() => {
     toggleAnimation();
     // setTimeout(() => (showMessage = false), MESSAGE_DELAY);
   });
 </script>
+
 <style lang="scss">
   .moon-container {
     top: var(--theme-changer-top);
@@ -48,7 +49,7 @@
     -moz-box-shadow: inset -40px 30px 10px -20px rgba(0, 0, 0, 0.48);
     box-shadow: inset -40px 30px 10px -20px rgba(0, 0, 0, 0.48),
       10px 1px 20px 0px rgba(0, 0, 0, 0.3);
-    transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition: all 2s cubic-bezier(0.215, 0.61, 0.355, 1);
     transition-delay: 0.4s;
 
     &:hover {
@@ -68,7 +69,8 @@
     transform: scale(2.5);
     z-index: -1;
     animation: glowing 5s infinite;
-    transition: all 1s cubic-bezier(0.74, -0.6, 0.455, 1.65), width,height,top,left,bottom,right 2s cubic-bezier(0.74, -0.6, 0.455, 1.65);
+    transition: all 1s cubic-bezier(0.74, -0.6, 0.455, 1.65), width, height, top,
+      left, bottom, right 2s cubic-bezier(0.74, -0.6, 0.455, 1.65);
     transition-delay: 0.4s;
     z-index: -4;
   }
@@ -82,7 +84,7 @@
     background: radial-gradient(ellipse at center, #f9f9f9 9%, #1e5799 98%);
     border-radius: 50%;
     transform: rotate(13deg) scale(0.35);
-    transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition: all 2s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
   #star:before {
@@ -114,7 +116,7 @@
     background: radial-gradient(ellipse at center, #f9f9f9 29%, #1e5799 98%);
     border-radius: 50%;
     transform: rotate(55deg) scale(0.35);
-    transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition: all 2s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
   #star1:before {
@@ -175,23 +177,59 @@
   #star2 {
     transition: transform 1000ms ease-in-out;
     transition-delay: 0 !important;
-    transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition: all 2s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
-@media(hover: hover) and (pointer: fine) {
-  .animate {
-    &.animate {
-      #star {
-        transform: scale(0.25) !important;
-      }
-      #star1 {
-        transform: scale(0.4) !important;
-      }
-      #star2 {
-        transform: scale(0.3) !important;
+
+  @media (hover: hover) and (pointer: fine) {
+    .animate {
+      &.animate {
+        #star {
+          transform: scale(0.25) !important;
+        }
+        #star1 {
+          transform: scale(0.4) !important;
+        }
+        #star2 {
+          transform: scale(0.3) !important;
+        }
       }
     }
   }
-}
+
+  #star1 {
+    opacity: 0;
+  }
+
+  @media (min-width: 850px) {
+    .about {
+      #star,
+      #star1,
+      #star2 {
+        opacity: 1;
+      }
+    }
+  }
+
+  @media (max-width: 1400px) and (min-width: 850px) {
+    #star,
+    #star1,
+    #star2,
+    #moon,
+    #moon-shadow {
+      opacity: 0;
+    }
+
+    .about {
+      #star,
+      #star1,
+      #star2,
+      #moon,
+      #moon-shadow {
+        opacity: 1;
+      }
+    }
+  }
+
   @media (max-width: 850px) {
     .moon-container {
       --moon-size: 50px;
@@ -199,15 +237,15 @@
     #star,
     #star1,
     #star2 {
-      display: none;
+      opacity: 0;
     }
-    
+
     .about {
       #star,
       #star1 {
-        display: block;
+        opacity: 1;
       }
-    
+
       #star {
         left: 140%;
         top: -58%;
@@ -243,19 +281,33 @@
   }
 
   @keyframes bounce-7 {
-    0%   { transform: scale(1,1)      translateY(0); }
-    10%  { transform: scale(1.1,.9)   translateY(0); }
-    30%  { transform: scale(.9,1.1)   translateY(-50px); }
-    50%  { transform: scale(1.05,.95) translateY(0); }
-    57%  { transform: scale(1,1)      translateY(-7px); }
-    64%  { transform: scale(1,1)      translateY(0); }
-    100% { transform: scale(1,1)      translateY(0); }
+    0% {
+      transform: scale(1, 1) translateY(0);
+    }
+    10% {
+      transform: scale(1.1, 0.9) translateY(0);
+    }
+    30% {
+      transform: scale(0.9, 1.1) translateY(-50px);
+    }
+    50% {
+      transform: scale(1.05, 0.95) translateY(0);
+    }
+    57% {
+      transform: scale(1, 1) translateY(-7px);
+    }
+    64% {
+      transform: scale(1, 1) translateY(0);
+    }
+    100% {
+      transform: scale(1, 1) translateY(0);
+    }
   }
 
   .about.bounce {
     animation: bounce-7 2s 2;
     animation-delay: 3s;
-    animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+    animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
   }
 
   .info-msg {
@@ -298,13 +350,13 @@
 </style>
 
 <div class="moon-container" on:click class:animate class:about transition:fade>
-  <div id="moon" on:mouseover="{toggleAnimation}">
+  <div id="moon" on:mouseover={toggleAnimation}>
     <!-- {#if showMessage}
     <span class="info-msg" transition:slide>Tap <span>me</span></span>
     {/if} -->
-    <div id="star"></div>
-    <div id="star1"></div>
-    <div id="star2"></div>
+    <div id="star" />
+    <div id="star1" />
+    <div id="star2" />
   </div>
-  <div id="moon-shadow"></div>
+  <div id="moon-shadow" />
 </div>

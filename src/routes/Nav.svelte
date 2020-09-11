@@ -23,6 +23,9 @@
     router.go(link.slice(1));
     closed = true;
   }
+  const is_active_link = (link) => {
+    return (currentPage || location.pathname).includes(link.slice(1));
+  }
 </script>
 
 <style type="text/scss">
@@ -37,10 +40,9 @@
 
   :global(.navbar .link) {
     min-width: 75px;
-    border: 1px solid #939393;
     display: flex;
     justify-content: center;
-    margin: 0 !important;
+    margin: 0 15px !important;
     transition: all 100ms ease-in;
     @media(hover: hover) and (pointer: fine) {
       &:hover {
@@ -53,7 +55,7 @@
   }
 
   :global(.navbar a) {
-    font-size: 1rem !important;
+    font-size: 1.3rem !important;
     text-align: center;
     font-weight: 300 !important;
     text-transform: uppercase;
@@ -61,6 +63,12 @@
     letter-spacing: 6px;
     padding: 6px 20px;
     color: var(--text-color) !important;
+  }
+
+  :global(.navbar .link) {
+    a.active {
+      border-bottom: 2px solid #939393;
+    }
   }
 
   :global(.navbar div + div) {
@@ -97,10 +105,13 @@
     }
     :global(.navbar .link) {
       position: relative;
-    }
-    :global(.navbar .link) {
-      &:active {
-
+      border: 1px solid #939393 !important;
+      margin: 0 !important;
+      a {
+        font-size: 1rem !important;
+      }
+      a.active {
+        border-bottom: none;
       }
     }
   }
@@ -119,7 +130,7 @@
   {#if matches}
     <div class="navbar" class:closed>
       {#each options as { title, link }}
-        {#if !closed || (currentPage && currentPage.includes(link.slice(1)))}
+        {#if !closed || is_active_link(link)}
         <div transition:slide|local>
           <NavLink
             to={link} 

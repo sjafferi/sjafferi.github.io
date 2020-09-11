@@ -1,6 +1,11 @@
 {
   "editor.formatOnSave": true,
+  "svelte.plugin.svelte.format.enable": true,
   "files.exclude": {
     "**/public": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[svelte]": {
+    "editor.defaultFormatter": "svelte.svelte-vscode"
   }
 }

@@ -2241,16 +2241,16 @@
     		},
     		h() {
     			attr(div0, "id", "star");
-    			attr(div0, "class", "svelte-1tkkxpa");
+    			attr(div0, "class", "svelte-jjl978");
     			attr(div1, "id", "star1");
-    			attr(div1, "class", "svelte-1tkkxpa");
+    			attr(div1, "class", "svelte-jjl978");
     			attr(div2, "id", "star2");
-    			attr(div2, "class", "svelte-1tkkxpa");
+    			attr(div2, "class", "svelte-jjl978");
     			attr(div3, "id", "moon");
-    			attr(div3, "class", "svelte-1tkkxpa");
+    			attr(div3, "class", "svelte-jjl978");
     			attr(div4, "id", "moon-shadow");
-    			attr(div4, "class", "svelte-1tkkxpa");
-    			attr(div5, "class", "moon-container svelte-1tkkxpa");
+    			attr(div4, "class", "svelte-jjl978");
+    			attr(div5, "class", "moon-container svelte-jjl978");
     			toggle_class(div5, "animate", /*animate*/ ctx[1]);
     			toggle_class(div5, "about", /*about*/ ctx[0]);
     		},
@@ -2822,23 +2822,23 @@
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[8] = list[i].title;
-    	child_ctx[9] = list[i].link;
+    	child_ctx[9] = list[i].title;
+    	child_ctx[10] = list[i].link;
     	return child_ctx;
     }
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[8] = list[i].title;
-    	child_ctx[9] = list[i].link;
+    	child_ctx[9] = list[i].title;
+    	child_ctx[10] = list[i].link;
     	return child_ctx;
     }
 
-    // (118:2) {:else}
+    // (129:2) {:else}
     function create_else_block_1(ctx) {
     	let div;
     	let current;
-    	let each_value_1 = /*options*/ ctx[2];
+    	let each_value_1 = /*options*/ ctx[1];
     	let each_blocks = [];
 
     	for (let i = 0; i < each_value_1.length; i += 1) {
@@ -2871,8 +2871,8 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "navbar svelte-1ld75g9");
-    			toggle_class(div, "closed", /*closed*/ ctx[1]);
+    			attr(div, "class", "navbar svelte-16f0r48");
+    			toggle_class(div, "closed", /*closed*/ ctx[0]);
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -2884,8 +2884,8 @@
     			current = true;
     		},
     		p(ctx, dirty) {
-    			if (dirty & /*options, select_menu_option*/ 20) {
-    				each_value_1 = /*options*/ ctx[2];
+    			if (dirty & /*options, select_menu_option*/ 10) {
+    				each_value_1 = /*options*/ ctx[1];
     				let i;
 
     				for (i = 0; i < each_value_1.length; i += 1) {
@@ -2911,8 +2911,8 @@
     				check_outros();
     			}
 
-    			if (dirty & /*closed*/ 2) {
-    				toggle_class(div, "closed", /*closed*/ ctx[1]);
+    			if (dirty & /*closed*/ 1) {
+    				toggle_class(div, "closed", /*closed*/ ctx[0]);
     			}
     		},
     		i(local) {
@@ -2940,7 +2940,7 @@
     	};
     }
 
-    // (92:2) {#if matches}
+    // (103:2) {#if matches}
     function create_if_block$1(ctx) {
     	let div0;
     	let t;
@@ -2948,7 +2948,7 @@
     	let current_block_type_index;
     	let if_block;
     	let current;
-    	let each_value = /*options*/ ctx[2];
+    	let each_value = /*options*/ ctx[1];
     	let each_blocks = [];
 
     	for (let i = 0; i < each_value.length; i += 1) {
@@ -2963,7 +2963,7 @@
     	const if_blocks = [];
 
     	function select_block_type_1(ctx, dirty) {
-    		if (/*closed*/ ctx[1]) return 0;
+    		if (/*closed*/ ctx[0]) return 0;
     		return 1;
     	}
 
@@ -3000,9 +3000,9 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "navbar svelte-1ld75g9");
-    			toggle_class(div0, "closed", /*closed*/ ctx[1]);
-    			attr(div1, "class", "navbar-cta svelte-1ld75g9");
+    			attr(div0, "class", "navbar svelte-16f0r48");
+    			toggle_class(div0, "closed", /*closed*/ ctx[0]);
+    			attr(div1, "class", "navbar-cta svelte-16f0r48");
     		},
     		m(target, anchor) {
     			insert(target, div0, anchor);
@@ -3017,8 +3017,8 @@
     			current = true;
     		},
     		p(ctx, dirty) {
-    			if (dirty & /*closed, currentPage, options, select_menu_option*/ 23) {
-    				each_value = /*options*/ ctx[2];
+    			if (dirty & /*closed, is_active_link, options, select_menu_option*/ 27) {
+    				each_value = /*options*/ ctx[1];
     				let i;
 
     				for (i = 0; i < each_value.length; i += 1) {
@@ -3044,8 +3044,8 @@
     				check_outros();
     			}
 
-    			if (dirty & /*closed*/ 2) {
-    				toggle_class(div0, "closed", /*closed*/ ctx[1]);
+    			if (dirty & /*closed*/ 1) {
+    				toggle_class(div0, "closed", /*closed*/ ctx[0]);
     			}
 
     			let previous_block_index = current_block_type_index;
@@ -3102,9 +3102,9 @@
     	};
     }
 
-    // (121:10) <NavLink             to={link}             on:click={() => select_menu_option(link)}           >
+    // (132:10) <NavLink             to={link}             on:click={() => select_menu_option(link)}           >
     function create_default_slot_2(ctx) {
-    	let t0_value = /*title*/ ctx[8] + "";
+    	let t0_value = /*title*/ ctx[9] + "";
     	let t0;
     	let t1;
 
@@ -3129,17 +3129,17 @@
     	};
     }
 
-    // (120:6) {#each options as { title, link }}
+    // (131:6) {#each options as { title, link }}
     function create_each_block_1(ctx) {
     	let current;
 
     	function click_handler_1(...args) {
-    		return /*click_handler_1*/ ctx[6](/*link*/ ctx[9], ...args);
+    		return /*click_handler_1*/ ctx[7](/*link*/ ctx[10], ...args);
     	}
 
     	const navlink = new NavLink({
     			props: {
-    				to: /*link*/ ctx[9],
+    				to: /*link*/ ctx[10],
     				$$slots: { default: [create_default_slot_2] },
     				$$scope: { ctx }
     			}
@@ -3162,7 +3162,7 @@
     			ctx = new_ctx;
     			const navlink_changes = {};
 
-    			if (dirty & /*$$scope*/ 16384) {
+    			if (dirty & /*$$scope*/ 32768) {
     				navlink_changes.$$scope = { dirty, ctx };
     			}
 
@@ -3183,7 +3183,7 @@
     	};
     }
 
-    // (95:8) {#if !closed || (currentPage && currentPage.includes(link.slice(1)))}
+    // (106:8) {#if !closed || is_active_link(link)}
     function create_if_block_2(ctx) {
     	let div;
     	let t;
@@ -3191,12 +3191,12 @@
     	let current;
 
     	function click_handler(...args) {
-    		return /*click_handler*/ ctx[5](/*link*/ ctx[9], ...args);
+    		return /*click_handler*/ ctx[6](/*link*/ ctx[10], ...args);
     	}
 
     	const navlink = new NavLink({
     			props: {
-    				to: /*link*/ ctx[9],
+    				to: /*link*/ ctx[10],
     				$$slots: { default: [create_default_slot_1] },
     				$$scope: { ctx }
     			}
@@ -3227,7 +3227,7 @@
     			ctx = new_ctx;
     			const navlink_changes = {};
 
-    			if (dirty & /*$$scope*/ 16384) {
+    			if (dirty & /*$$scope*/ 32768) {
     				navlink_changes.$$scope = { dirty, ctx };
     			}
 
@@ -3264,9 +3264,9 @@
     	};
     }
 
-    // (97:10) <NavLink             to={link}              on:click={() => select_menu_option(link)}           >
+    // (108:10) <NavLink             to={link}              on:click={() => select_menu_option(link)}           >
     function create_default_slot_1(ctx) {
-    	let t_value = /*title*/ ctx[8] + "";
+    	let t_value = /*title*/ ctx[9] + "";
     	let t;
 
     	return {
@@ -3286,9 +3286,9 @@
     	};
     }
 
-    // (94:6) {#each options as { title, link }}
+    // (105:6) {#each options as { title, link }}
     function create_each_block(ctx) {
-    	let show_if = !/*closed*/ ctx[1] || /*currentPage*/ ctx[0] && /*currentPage*/ ctx[0].includes(/*link*/ ctx[9].slice(1));
+    	let show_if = !/*closed*/ ctx[0] || /*is_active_link*/ ctx[4](/*link*/ ctx[10]);
     	let if_block_anchor;
     	let current;
     	let if_block = show_if && create_if_block_2(ctx);
@@ -3308,7 +3308,7 @@
     			current = true;
     		},
     		p(ctx, dirty) {
-    			if (dirty & /*closed, currentPage*/ 3) show_if = !/*closed*/ ctx[1] || /*currentPage*/ ctx[0] && /*currentPage*/ ctx[0].includes(/*link*/ ctx[9].slice(1));
+    			if (dirty & /*closed*/ 1) show_if = !/*closed*/ ctx[0] || /*is_active_link*/ ctx[4](/*link*/ ctx[10]);
 
     			if (show_if) {
     				if (if_block) {
@@ -3346,13 +3346,13 @@
     	};
     }
 
-    // (112:6) {:else}
+    // (123:6) {:else}
     function create_else_block$1(ctx) {
     	let div;
     	let div_intro;
     	let current;
     	const close = new Close({});
-    	close.$on("click", /*close_menu*/ ctx[3]);
+    	close.$on("click", /*close_menu*/ ctx[2]);
 
     	return {
     		c() {
@@ -3395,13 +3395,13 @@
     	};
     }
 
-    // (108:6) {#if closed}
+    // (119:6) {#if closed}
     function create_if_block_1$1(ctx) {
     	let div;
     	let div_intro;
     	let current;
     	const menu = new Menu({});
-    	menu.$on("click", /*close_menu*/ ctx[3]);
+    	menu.$on("click", /*close_menu*/ ctx[2]);
 
     	return {
     		c() {
@@ -3444,7 +3444,7 @@
     	};
     }
 
-    // (91:0) <MediaQuery query="(max-width: 850px)" let:matches>
+    // (102:0) <MediaQuery query="(max-width: 850px)" let:matches>
     function create_default_slot$1(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -3454,7 +3454,7 @@
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (/*matches*/ ctx[7]) return 0;
+    		if (/*matches*/ ctx[8]) return 0;
     		return 1;
     	}
 
@@ -3525,8 +3525,8 @@
     				$$slots: {
     					default: [
     						create_default_slot$1,
-    						({ matches }) => ({ 7: matches }),
-    						({ matches }) => matches ? 128 : 0
+    						({ matches }) => ({ 8: matches }),
+    						({ matches }) => matches ? 256 : 0
     					]
     				},
     				$$scope: { ctx }
@@ -3547,7 +3547,7 @@
     		p(ctx, [dirty]) {
     			const mediaquery_changes = {};
 
-    			if (dirty & /*$$scope, matches, closed, currentPage*/ 16515) {
+    			if (dirty & /*$$scope, matches, closed*/ 33025) {
     				mediaquery_changes.$$scope = { dirty, ctx };
     			}
 
@@ -3578,26 +3578,31 @@
     		{ title: "about", link: "/about" }
     	];
 
-    	const close_menu = () => $$invalidate(1, closed = !closed);
+    	const close_menu = () => $$invalidate(0, closed = !closed);
 
     	const select_menu_option = link => {
     		router.go(link.slice(1));
-    		$$invalidate(1, closed = true);
+    		$$invalidate(0, closed = true);
+    	};
+
+    	const is_active_link = link => {
+    		return (currentPage || location.pathname).includes(link.slice(1));
     	};
 
     	const click_handler = link => select_menu_option(link);
     	const click_handler_1 = link => select_menu_option(link);
 
     	$$self.$set = $$props => {
-    		if ("currentPage" in $$props) $$invalidate(0, currentPage = $$props.currentPage);
+    		if ("currentPage" in $$props) $$invalidate(5, currentPage = $$props.currentPage);
     	};
 
     	return [
-    		currentPage,
     		closed,
     		options,
     		close_menu,
     		select_menu_option,
+    		is_active_link,
+    		currentPage,
     		click_handler,
     		click_handler_1
     	];
@@ -3606,7 +3611,7 @@
     class Nav extends SvelteComponent {
     	constructor(options) {
     		super();
-    		init(this, options, instance$9, create_fragment$9, safe_not_equal, { currentPage: 0 });
+    		init(this, options, instance$9, create_fragment$9, safe_not_equal, { currentPage: 5 });
     	}
     }
 
