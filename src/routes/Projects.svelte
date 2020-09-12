@@ -63,7 +63,9 @@
     text-decoration: none;
     font-size: 1.75em;
     font-weight: 600;
+    width: fit-content;
   }
+
   .header-link:hover {
     opacity: 0.75;
   }
@@ -91,6 +93,9 @@
       margin: 0;
       padding: 0;
       width: 100%;
+    }
+    .header-link {
+      margin: auto;
     }
     .tile {
       flex-flow: column;

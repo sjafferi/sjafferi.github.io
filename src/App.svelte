@@ -91,7 +91,7 @@
 
   @media (max-width: 850px) {
     .theme-switcher-container {
-      top: calc(4vw + 3px);
+      top: calc(4vw + 2px);
       left: 0.5rem;
     }
     :not(.about) {

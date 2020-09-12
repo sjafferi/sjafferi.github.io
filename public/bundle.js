@@ -2109,11 +2109,11 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "overlay svelte-jkgprz");
-    			attr(div1, "class", "outreaching-rays svelte-jkgprz");
+    			attr(div0, "class", "overlay svelte-17zl1pg");
+    			attr(div1, "class", "outreaching-rays svelte-17zl1pg");
     			attr(div2, "id", "sun");
-    			attr(div2, "class", "animate svelte-jkgprz");
-    			attr(div3, "class", "sun-container svelte-jkgprz");
+    			attr(div2, "class", "animate svelte-17zl1pg");
+    			attr(div3, "class", "sun-container svelte-17zl1pg");
     			toggle_class(div3, "about", /*about*/ ctx[0]);
     		},
     		m(target, anchor) {
@@ -2241,16 +2241,16 @@
     		},
     		h() {
     			attr(div0, "id", "star");
-    			attr(div0, "class", "svelte-1u8id3h");
+    			attr(div0, "class", "svelte-r3ah0c");
     			attr(div1, "id", "star1");
-    			attr(div1, "class", "svelte-1u8id3h");
+    			attr(div1, "class", "svelte-r3ah0c");
     			attr(div2, "id", "star2");
-    			attr(div2, "class", "svelte-1u8id3h");
+    			attr(div2, "class", "svelte-r3ah0c");
     			attr(div3, "id", "moon");
-    			attr(div3, "class", "svelte-1u8id3h");
+    			attr(div3, "class", "svelte-r3ah0c");
     			attr(div4, "id", "moon-shadow");
-    			attr(div4, "class", "svelte-1u8id3h");
-    			attr(div5, "class", "moon-container svelte-1u8id3h");
+    			attr(div4, "class", "svelte-r3ah0c");
+    			attr(div5, "class", "moon-container svelte-r3ah0c");
     			toggle_class(div5, "animate", /*animate*/ ctx[1]);
     			toggle_class(div5, "about", /*about*/ ctx[0]);
     		},
@@ -2834,7 +2834,7 @@
     	return child_ctx;
     }
 
-    // (127:2) {:else}
+    // (128:2) {:else}
     function create_else_block_1(ctx) {
     	let div;
     	let current;
@@ -2871,7 +2871,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "navbar svelte-lp9qsn");
+    			attr(div, "class", "navbar svelte-14qibfc");
     			toggle_class(div, "closed", /*closed*/ ctx[0]);
     		},
     		m(target, anchor) {
@@ -2940,7 +2940,7 @@
     	};
     }
 
-    // (104:2) {#if matches}
+    // (105:2) {#if matches}
     function create_if_block$1(ctx) {
     	let div0;
     	let t;
@@ -3000,9 +3000,9 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "navbar svelte-lp9qsn");
+    			attr(div0, "class", "navbar svelte-14qibfc");
     			toggle_class(div0, "closed", /*closed*/ ctx[0]);
-    			attr(div1, "class", "navbar-cta svelte-lp9qsn");
+    			attr(div1, "class", "navbar-cta svelte-14qibfc");
     		},
     		m(target, anchor) {
     			insert(target, div0, anchor);
@@ -3102,7 +3102,7 @@
     	};
     }
 
-    // (130:8) <NavLink to={link} on:click={() => select_menu_option(link)}>
+    // (131:8) <NavLink to={link} on:click={() => select_menu_option(link)}>
     function create_default_slot_2(ctx) {
     	let t0_value = /*title*/ ctx[9] + "";
     	let t0;
@@ -3129,7 +3129,7 @@
     	};
     }
 
-    // (129:6) {#each options as { title, link }}
+    // (130:6) {#each options as { title, link }}
     function create_each_block_1(ctx) {
     	let current;
 
@@ -3183,7 +3183,7 @@
     	};
     }
 
-    // (107:8) {#if !closed || is_active_link(link)}
+    // (108:8) {#if !closed || is_active_link(link)}
     function create_if_block_2(ctx) {
     	let div;
     	let t;
@@ -3264,7 +3264,7 @@
     	};
     }
 
-    // (109:12) <NavLink to={link} on:click={() => select_menu_option(link)}>
+    // (110:12) <NavLink to={link} on:click={() => select_menu_option(link)}>
     function create_default_slot_1(ctx) {
     	let t_value = /*title*/ ctx[9] + "";
     	let t;
@@ -3286,7 +3286,7 @@
     	};
     }
 
-    // (106:6) {#each options as { title, link }}
+    // (107:6) {#each options as { title, link }}
     function create_each_block(ctx) {
     	let show_if = !/*closed*/ ctx[0] || /*is_active_link*/ ctx[4](/*link*/ ctx[10]);
     	let if_block_anchor;
@@ -3346,7 +3346,7 @@
     	};
     }
 
-    // (121:6) {:else}
+    // (122:6) {:else}
     function create_else_block$1(ctx) {
     	let div;
     	let div_intro;
@@ -3395,7 +3395,7 @@
     	};
     }
 
-    // (117:6) {#if closed}
+    // (118:6) {#if closed}
     function create_if_block_1$1(ctx) {
     	let div;
     	let div_intro;
@@ -3444,7 +3444,7 @@
     	};
     }
 
-    // (103:0) <MediaQuery query="(max-width: 850px)" let:matches>
+    // (104:0) <MediaQuery query="(max-width: 850px)" let:matches>
     function create_default_slot$1(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -5108,7 +5108,7 @@
     	return child_ctx;
     }
 
-    // (107:8) {#if images && images.length > 0}
+    // (110:8) {#if images && images.length > 0}
     function create_if_block$4(ctx) {
     	let div;
     	let current;
@@ -5131,7 +5131,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "images svelte-1ikz7xu");
+    			attr(div, "class", "images svelte-1r3fgq6");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -5155,7 +5155,7 @@
     	};
     }
 
-    // (114:12) <Tag>
+    // (117:12) <Tag>
     function create_default_slot$3(ctx) {
     	let t_value = /*tag*/ ctx[12] + "";
     	let t;
@@ -5177,7 +5177,7 @@
     	};
     }
 
-    // (113:10) {#each tags as tag}
+    // (116:10) {#each tags as tag}
     function create_each_block_2(ctx) {
     	let current;
 
@@ -5223,7 +5223,7 @@
     	};
     }
 
-    // (119:8) {#each links as { link, text }}
+    // (122:8) {#each links as { link, text }}
     function create_each_block_1$1(ctx) {
     	let a;
     	let t_value = /*text*/ ctx[9] + "";
@@ -5245,7 +5245,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link-btn svelte-1ikz7xu");
+    			attr(a, "class", "link-btn svelte-1r3fgq6");
     			attr(a, "target", "_blank");
     			attr(a, "href", a_href_value = /*link*/ ctx[8]);
     		},
@@ -5269,7 +5269,7 @@
     	};
     }
 
-    // (102:2) {#each Projects as { title, titleLink, description, images, tags, links }}
+    // (105:2) {#each Projects as { title, titleLink, description, images, tags, links }}
     function create_each_block$3(ctx) {
     	let div3;
     	let div1;
@@ -5375,14 +5375,14 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "header-link svelte-1ikz7xu");
+    			attr(a, "class", "header-link svelte-1r3fgq6");
     			attr(a, "href", a_href_value = /*titleLink*/ ctx[1]);
     			attr(a, "target", "_blank");
-    			attr(p, "class", "description svelte-1ikz7xu");
-    			attr(div0, "class", "tags svelte-1ikz7xu");
-    			attr(div1, "class", "content svelte-1ikz7xu");
-    			attr(div2, "class", "links svelte-1ikz7xu");
-    			attr(div3, "class", "tile svelte-1ikz7xu");
+    			attr(p, "class", "description svelte-1r3fgq6");
+    			attr(div0, "class", "tags svelte-1r3fgq6");
+    			attr(div1, "class", "content svelte-1r3fgq6");
+    			attr(div2, "class", "links svelte-1r3fgq6");
+    			attr(div3, "class", "tile svelte-1r3fgq6");
     		},
     		m(target, anchor) {
     			insert(target, div3, anchor);
@@ -5541,7 +5541,7 @@
     		},
     		h() {
     			document.title = "Projects | Sibtain Jafferi";
-    			attr(div, "class", "projects svelte-1ikz7xu");
+    			attr(div, "class", "projects svelte-1r3fgq6");
     		},
     		m(target, anchor) {
     			insert(target, t, anchor);
@@ -41057,7 +41057,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "section svelte-1yy7qr1");
+    			attr(div, "class", "section svelte-1a5ynio");
     		},
     		m(target, anchor) {
     			if_blocks[current_block_type_index].m(target, anchor);
@@ -41182,9 +41182,9 @@
     		h() {
     			attr(meta, "name", "viewport");
     			attr(meta, "content", "width=device-width, initial-scale=1");
-    			attr(meta, "class", "svelte-1yy7qr1");
-    			attr(div0, "class", "theme-switcher-container svelte-1yy7qr1");
-    			attr(div1, "class", "container svelte-1yy7qr1");
+    			attr(meta, "class", "svelte-1a5ynio");
+    			attr(div0, "class", "theme-switcher-container svelte-1a5ynio");
+    			attr(div1, "class", "container svelte-1a5ynio");
     			toggle_class(div1, "about", /*about*/ ctx[4]);
     			toggle_class(div1, "inBlogPost", /*inBlogPost*/ ctx[5]);
     		},

@@ -36,6 +36,7 @@
     z-index: 200;
     width: fit-content;
     align-self: center;
+    z-index: 40000 !important;
   }
 
   :global(.navbar .link) {
