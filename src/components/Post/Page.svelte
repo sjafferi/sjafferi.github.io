@@ -27,7 +27,8 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Source Serif Pro", "Apple Garamond", "Times New Roman",
+      "Droid Serif", "Times", serif;
   }
 
   .content {
@@ -39,12 +40,14 @@
   }
 
   header h1 {
+    margin: 0.75em 0;
     text-align: center;
     text-transform: none;
-    font-size: 2.25em;
-    line-height: 1.25;
+    font-variant: small-caps;
+    font-size: 2.5em !important;
+    line-height: 1.15;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: -1px;
   }
 
   .page-metadata {
@@ -72,10 +75,7 @@
     .post-page {
       box-shadow: none !important;
       background: none !important;
-
-      header h1 {
-        font-size: 1.5em;
-      }
+      margin-top: 1rem;
     }
   }
 </style>
@@ -91,12 +91,9 @@
         <span class="subtitle">{subtitle}</span>
       {/if}  -->
       {#if date}
-      <span class="date-container">
-        Created:
-        <span class="date">
-          {moment(date, 'MM/DD/YYYY').format('MMM Do YYYY')}
+        <span class="date-container">
+          Created: <span class="date"> {moment(date, 'MM/DD/YYYY').format('MMM Do YYYY')} </span>
         </span>
-      </span>
       {/if}
     </div>
     <div class="content">

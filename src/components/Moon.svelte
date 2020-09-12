@@ -280,53 +280,6 @@
     }
   }
 
-  @keyframes bounce-7 {
-    0% {
-      transform: scale(1, 1) translateY(0);
-    }
-    10% {
-      transform: scale(1.1, 0.9) translateY(0);
-    }
-    30% {
-      transform: scale(0.9, 1.1) translateY(-50px);
-    }
-    50% {
-      transform: scale(1.05, 0.95) translateY(0);
-    }
-    57% {
-      transform: scale(1, 1) translateY(-7px);
-    }
-    64% {
-      transform: scale(1, 1) translateY(0);
-    }
-    100% {
-      transform: scale(1, 1) translateY(0);
-    }
-  }
-
-  .about.bounce {
-    animation: bounce-7 2s 2;
-    animation-delay: 3s;
-    animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
-  }
-
-  .info-msg {
-    display: flex;
-    position: absolute;
-    top: 38%;
-    left: 33%;
-    color: #676767;
-    font-size: 0.5rem;
-    font-weight: 300 !important;
-    text-transform: uppercase;
-    font-family: "Montserrat", sans-serif;
-    letter-spacing: 6px;
-
-    span {
-      color: #c5c5c5;
-    }
-  }
-
   .about {
     &.moon-container {
       z-index: 100;
@@ -351,9 +304,6 @@
 
 <div class="moon-container" on:click class:animate class:about transition:fade>
   <div id="moon" on:mouseover={toggleAnimation}>
-    <!-- {#if showMessage}
-    <span class="info-msg" transition:slide>Tap <span>me</span></span>
-    {/if} -->
     <div id="star" />
     <div id="star1" />
     <div id="star2" />

@@ -124,18 +124,18 @@
     }
 
     .section {
-      margin-top: 2rem;
-      padding: 0.6rem;
+      margin-top: 0;
+      padding: 0 0.6rem;
     }
 
     img {
       max-width: 100vw;
     }
-  }
 
-  :global(html.light) {
-    :global(.inBlogPost .blog-container) {
-      background: white !important;
+    :global(html.light) {
+      .container.inBlogPost {
+        background: white !important;
+      }
     }
   }
 </style>
@@ -145,6 +145,10 @@
 </svelte:head>
 
 <div class="container" class:about class:inBlogPost>
+  <div class="theme-switcher-container">
+    <ThemeSwitcher {theme} on:click={onThemeChange} />
+  </div>
+
   <Router {url}>
     {#if theme == 'light'}
       <Sun on:click={themeManager.toggle} {about} />
@@ -159,8 +163,4 @@
       <Route path="writings/*" component={Blog} />
     </div>
   </Router>
-</div>
-
-<div class="theme-switcher-container">
-  <ThemeSwitcher {theme} on:click={onThemeChange} />
 </div>

@@ -7,7 +7,7 @@
   export let content;
 
   const md = new Remarkable({
-    langPrefix: 'hljs language-',
+    langPrefix: "hljs language-",
     highlight: function (str, lang) {
       if (lang && hljs.getLanguage(lang)) {
         try {
@@ -46,19 +46,15 @@
 
 <style lang="scss">
   @mixin headings {
-      :global(
-        .page h1, .markdown h1, .markdown h2, .markdown h3, .markdown
-        h4, .markdown h5, .markdown h6
-      ) {
-          @content;
-      }
+    :global(.page h1, .markdown h1, .markdown h2, .markdown h3, .markdown
+        h4, .markdown h5, .markdown h6) {
+      @content;
+    }
   }
   @mixin text {
-      :global(
-        .markdown p, .markdown ul, .markdown ol, .markdown a
-      ) {
-          @content;
-      }
+    :global(.markdown p, .markdown ul, .markdown ol, .markdown a) {
+      @content;
+    }
   }
   @mixin mobile {
     @media screen and (max-width: 850px) {
@@ -68,13 +64,13 @@
   @mixin lists {
     :global(.markdown ul, .markdown ol, .markdown li) {
       @content;
-    } 
+    }
   }
 
   :global(.markdown) {
     @include text {
       overflow: hidden;
-      font-size: 1rem;
+      font-size: 1.2rem;
       line-height: 1.25;
       word-break: break-word;
       hyphens: auto;
@@ -83,16 +79,18 @@
       line-height: 23px;
     }
   }
-  
+
   @include headings {
     margin: 1.5em 0 0.75em 0;
     font-weight: bold;
     position: relative;
     padding: 0 0 5px 0;
     line-height: 1.25;
-    font-size: 1rem;
+    font-size: 1.25em;
     box-shadow: 0 -1px 0px 0 #848484 inset, 0 -1px 0 0 #000 inset;
     overflow: hidden;
+    text-transform: uppercase;
+    padding: 0 0.5em 0 0;
   }
 
   :global(.markdown h1, .page h1) {
@@ -122,6 +120,8 @@
 
   :global(.markdown p.image-container) {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     margin: 1em 0;
   }
@@ -144,7 +144,6 @@
     word-break: break-all;
     white-space: pre-wrap;
     font-size: 1rem;
-    // font-family: 'Roboto Mono', monospace;
   }
 
   :global(.markdown .highlight) {
@@ -186,12 +185,12 @@
   }
 
   :global(html.dark) {
-      :global(.markdown a) {
-        color: #baffdc !important;
-      }
-      :global(.markdown pre) {
-        background: transparent !important;
-      }
+    :global(.markdown a) {
+      color: #9693ff !important;
+    }
+    :global(.markdown pre) {
+      background: transparent !important;
+    }
   }
 </style>
 

@@ -1,8 +1,8 @@
 <script>
-  import { onMount } from 'svelte';
-  import { slide, fade } from 'svelte/transition';
-  import { link } from 'svelte-routing';
-  import { router } from 'stores';
+  import { onMount } from "svelte";
+  import { slide, fade } from "svelte/transition";
+  import { link } from "svelte-routing";
+  import { router } from "stores";
   import MediaQuery from "svelte-media-query";
   import NavLink from "components/NavLink.svelte";
   import Menu from "components/Icons/Menu.svelte";
@@ -11,21 +11,21 @@
   export let currentPage;
 
   let closed = true;
-  
+
   const options = [
-    {title: 'writings', link: '/writings'},
-    {title: 'projects', link: '/projects'},
-    {title: 'about', link: '/about'}
-  ]
-  
-  const close_menu = () => closed = !closed;
+    { title: "writings", link: "/writings" },
+    { title: "projects", link: "/projects" },
+    { title: "about", link: "/about" },
+  ];
+
+  const close_menu = () => (closed = !closed);
   const select_menu_option = (link) => {
     router.go(link.slice(1));
     closed = true;
-  }
+  };
   const is_active_link = (link) => {
     return (currentPage || location.pathname).includes(link.slice(1));
-  }
+  };
 </script>
 
 <style type="text/scss">
@@ -43,8 +43,8 @@
     display: flex;
     justify-content: center;
     margin: 0 15px !important;
-    transition: all 100ms ease-in;
-    @media(hover: hover) and (pointer: fine) {
+    transition: all 25ms ease-in;
+    @media (hover: hover) and (pointer: fine) {
       &:hover {
         > a {
           background: #333;
@@ -63,6 +63,7 @@
     letter-spacing: 6px;
     padding: 6px 20px;
     color: var(--text-color) !important;
+    transition: all 150ms ease-in-out;
   }
 
   :global(.navbar .link) {
@@ -77,7 +78,7 @@
 
   :global(html.dark) {
     :global(.navbar .link) {
-      @media(hover: hover) and (pointer: fine) {
+      @media (hover: hover) and (pointer: fine) {
         &:hover {
           > a {
             background: #fff !important;
@@ -123,7 +124,7 @@
     width: 20px;
     height: 20px;
     z-index: 250;
-  }  
+  }
 </style>
 
 <MediaQuery query="(max-width: 850px)" let:matches>
@@ -131,37 +132,31 @@
     <div class="navbar" class:closed>
       {#each options as { title, link }}
         {#if !closed || is_active_link(link)}
-        <div transition:slide|local>
-          <NavLink
-            to={link} 
-            on:click={() => select_menu_option(link)}
-          >
-            {title}
-          </NavLink>
-        </div>
+          <div transition:slide|local>
+            <NavLink to={link} on:click={() => select_menu_option(link)}>
+              {title}
+            </NavLink>
+          </div>
         {/if}
       {/each}
     </div>
     <div class="navbar-cta">
       {#if closed}
-      <div in:fade>
-        <Menu on:click={close_menu} />
-      </div>
+        <div in:fade>
+          <Menu on:click={close_menu} />
+        </div>
       {:else}
-      <div in:fade>
-        <Close on:click={close_menu} />
-      </div>
+        <div in:fade>
+          <Close on:click={close_menu} />
+        </div>
       {/if}
     </div>
   {:else}
     <div class="navbar" class:closed>
       {#each options as { title, link }}
-          <NavLink
-            to={link}
-            on:click={() => select_menu_option(link)}
-          >
-            {title}
-          </NavLink>
+        <NavLink to={link} on:click={() => select_menu_option(link)}>
+          {title}
+        </NavLink>
       {/each}
     </div>
   {/if}

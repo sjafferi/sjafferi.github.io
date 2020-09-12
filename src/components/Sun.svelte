@@ -4,7 +4,6 @@
   let hovering = false;
 </script>
 
-
 <style type="text/scss">
   :root {
     --sun-size: 150px;
@@ -15,7 +14,7 @@
     top: var(--theme-changer-top);
     left: var(--theme-changer-left);
     position: absolute;
-    transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition: all 2s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
   :global(html.dark .sun-container) {
@@ -29,11 +28,31 @@
     width: 100vw;
     height: 100vh;
     /* background: rgba(0, 0, 0, 0.31); */
-    background: #FC0101;
-    background: -webkit-linear-gradient(bottom right, #FC0101, #FFD6D6);
-    background: -moz-linear-gradient(bottom right, #FC0101, #FFD6D6);
-    background: linear-gradient(to top left, #FC0101, #FFD6D6);
+    background: #fc0101;
+    background: -webkit-linear-gradient(bottom right, #fc0101, #ffd6d6);
+    background: -moz-linear-gradient(bottom right, #fc0101, #ffd6d6);
+    background: linear-gradient(to top left, #fc0101, #ffd6d6);
     z-index: 0;
+  }
+
+  :global(::-webkit-full-page-media, _:future, :root) #sun {
+    &::after {
+      background: radial-gradient(
+          yellow,
+          orange 27%,
+          transparent calc(27% + 3px) 100%
+        ),
+        repeating-radial-gradient(
+          gold 34.87%,
+          rgba(255, 0, 0, 0) 67.65%,
+          rgba(251, 198, 170, 0) 81.93%
+        ),
+        repeating-conic-gradient(
+          from 0deg,
+          gold 0deg 5deg,
+          transparent 5deg 7deg
+        );
+    }
   }
 
   #sun {
@@ -44,7 +63,13 @@
     width: var(--sun-size);
     transform: scale(2);
     border-radius: 50%;
-    background: radial-gradient(#f1c40f 70%, #e74c3c 100%);
+    background: #ffe789;
+    background: radial-gradient(
+      circle farthest-corner at center center,
+      #ffe789 69%,
+      #ffb70f 100%
+    );
+    // clip-path: ellipse(229% 209% at 109% 119%);
     transition: background 1s cubic-bezier(0.74, 0, 0.455, 1);
     /* transition-delay: 0.4s; */
     opacity: 0;
@@ -75,17 +100,18 @@
     }
 
     &::after {
+      background: yellow;
       background: radial-gradient(
           yellow,
           orange 27%,
           transparent calc(27% + 3px) 100%
         ),
-        radial-gradient(gold, transparent 70%),
-        repeating-conic-gradient(
-          from 0deg,
-          gold 0deg 5deg,
-          transparent 5deg 7deg
-        );
+        repeating-radial-gradient(
+          gold 34.87%,
+          rgba(255, 0, 0, 0) 67.65%,
+          rgb(255, 215, 19) 81.93%
+        ),
+        repeating-conic-gradient(from 0deg, gold 0deg 5deg, #ff0c0c5c 5deg 7deg);
       transform: rotate(15deg);
       animation: rotate 360s linear, scale 2s linear;
       width: 200%;
@@ -96,7 +122,7 @@
 
     &.animate {
       animation: rays 2s;
-      opacity: 0.75;
+      opacity: 0.6;
       &::before {
         opacity: 0.5;
       }
@@ -104,7 +130,7 @@
         opacity: 0.55;
       }
       &:hover {
-        opacity: 1;
+        opacity: 0.75;
         animation: rays 1.5s infinite;
         cursor: pointer;
 
@@ -117,7 +143,11 @@
             width: 150%;
             height: 150%;
             border-radius: 15%;
-            background: repeating-conic-gradient(from 0deg, white 0deg 3deg, transparent 5deg 10deg);
+            background: repeating-conic-gradient(
+              from 0deg,
+              white 0deg 3deg,
+              transparent 5deg 10deg
+            );
           }
         }
       }
@@ -130,7 +160,11 @@
       width: 250%;
       height: 250%;
       border-radius: 15%;
-      background: repeating-conic-gradient(from 0deg, gold 0deg 5deg, transparent 5deg 10deg);
+      background: repeating-conic-gradient(
+        from 0deg,
+        gold 0deg 5deg,
+        transparent 5deg 10deg
+      );
       z-index: -2;
       opacity: 0.35;
       animation: scale 2s linear;
@@ -195,7 +229,7 @@
     }
   }
 
-  @supports (-moz-appearance:none) {
+  @supports (-moz-appearance: none) {
     .sun-container {
       display: none;
     }
@@ -208,7 +242,15 @@
 
 <div class="overlay" />
 <div class="sun-container" on:click class:about transition:fade>
-  <div id="sun" class="animate"  on:mouseover={() => { hovering = true; }} on:mouseout={() => { hovering = false; }}>
+  <div
+    id="sun"
+    class="animate"
+    on:mouseover={() => {
+      hovering = true;
+    }}
+    on:mouseout={() => {
+      hovering = false;
+    }}>
     <div class="outreaching-rays" />
   </div>
 </div>

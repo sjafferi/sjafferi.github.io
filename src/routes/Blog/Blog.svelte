@@ -2,13 +2,15 @@
   import moment from "moment";
   import { Router, Link, Route } from "svelte-routing";
   import { groupBy } from "util/index.js";
-  import { router } from 'stores'
+  import { router } from "stores";
   import Post from "components/Post/Page.svelte";
   import List from "components/List.svelte";
   import Tag from "components/Tag.svelte";
   import Posts from "metadata/posts.js";
 
-  const posts = Posts.slice(0).sort((a, b) => moment(a.date, "MM/DD/YYYY").isAfter(moment(b.date, "MM/DD/YYY")) ? 1 : -1); // ascending order of date
+  const posts = Posts.slice(0).sort((a, b) =>
+    moment(a.date, "MM/DD/YYYY").isAfter(moment(b.date, "MM/DD/YYY")) ? 1 : -1
+  ); // ascending order of date
 </script>
 
 <style lang="scss">
@@ -16,17 +18,9 @@
     width: 100%;
     font-family: "Open Sans", sans-serif;
     padding: 25px 40px;
-    box-shadow: 0 4px 16px 0 rgba(33, 33, 33, 0.2);
     box-sizing: content-box;
     border: grey;
     background: none;
-  }
-
-  :global(html.dark) {
-    .blog-container {
-      // box-shadow: 0 2px 12px 0 rgba(114, 114, 114, 0.2);
-      // background: #1b1b1ba6;
-    }
   }
 
   .posts {
@@ -121,14 +115,19 @@
 </svelte:head>
 
 <div class="blog-container">
-
   <Router>
     <Route path="/">
       <ul class="posts">
         {#each posts as { title, slug, subtitle, date, tags }}
           <li>
-            <div class="title" ><Link on:click={() => router.go(`writings/${slug}`)} to={slug}>{title}</Link></div>
-            <p class="date">Created: {moment(date, 'MM/DD/YYYY').format('MMM Do YYYY')}</p>
+            <div class="title">
+              <Link on:click={() => router.go(`writings/${slug}`)} to={slug}>
+                {title}
+              </Link>
+            </div>
+            <p class="date">
+              Created: {moment(date, 'MM/DD/YYYY').format('MMM Do YYYY')}
+            </p>
             <p class="subtitle">{subtitle}</p>
             <div class="tags">
               {#each tags as tag}
@@ -146,5 +145,4 @@
       </Route>
     {/each}
   </Router>
-
 </div>

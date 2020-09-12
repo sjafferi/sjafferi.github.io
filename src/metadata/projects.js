@@ -93,7 +93,7 @@ export default [
     images: [
       {
         thumbnail: "images/projects/svelte-images-1.jpg",
-        src: "images/projects/story-1-full.jpg",
+        src: "images/projects/svelte-images-1-full.jpg",
       },
       {
         thumbnail: "images/projects/svelte-images-2.jpg",
@@ -117,7 +117,7 @@ export default [
     title: "Studio Ki",
     titleLink: "http://studioki.sibta.in",
     description:
-      "Your friendly boutique web design firm creating pixel perfect sites for businesses worldwide. Main services include end-to-end implementation of web and mobile applications.",
+      "Your friendly boutique web design firm creating pixel perfect sites for businesses worldwide.",
     images: [
       {
         thumbnail: "images/projects/ki-1.png",

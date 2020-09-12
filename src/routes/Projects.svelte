@@ -1,6 +1,6 @@
 <script>
   import { Images } from "svelte-images";
-  import { fade } from 'svelte/transition';
+  import { fade } from "svelte/transition";
   import Tag from "components/Tag.svelte";
   import Projects from "metadata/projects.js";
 </script>
@@ -96,11 +96,15 @@
       flex-flow: column;
       padding: 20px;
     }
+    .description {
+      font-size: 1rem;
+    }
     .tags {
       flex-flow: wrap;
       justify-content: center;
     }
-    a, p {
+    a,
+    p {
       text-align: center;
     }
     :global(.svelte-images-gallery) {
