@@ -2241,16 +2241,16 @@
     		},
     		h() {
     			attr(div0, "id", "star");
-    			attr(div0, "class", "svelte-jjl978");
+    			attr(div0, "class", "svelte-163shrb");
     			attr(div1, "id", "star1");
-    			attr(div1, "class", "svelte-jjl978");
+    			attr(div1, "class", "svelte-163shrb");
     			attr(div2, "id", "star2");
-    			attr(div2, "class", "svelte-jjl978");
+    			attr(div2, "class", "svelte-163shrb");
     			attr(div3, "id", "moon");
-    			attr(div3, "class", "svelte-jjl978");
+    			attr(div3, "class", "svelte-163shrb");
     			attr(div4, "id", "moon-shadow");
-    			attr(div4, "class", "svelte-jjl978");
-    			attr(div5, "class", "moon-container svelte-jjl978");
+    			attr(div4, "class", "svelte-163shrb");
+    			attr(div5, "class", "moon-container svelte-163shrb");
     			toggle_class(div5, "animate", /*animate*/ ctx[1]);
     			toggle_class(div5, "about", /*about*/ ctx[0]);
     		},
@@ -40553,7 +40553,7 @@
     	};
     }
 
-    // (114:4) {#if theme == "light"}
+    // (122:4) {#if theme == 'light'}
     function create_if_block$7(ctx) {
     	let current;
     	const sun = new Sun({ props: { about: /*about*/ ctx[4] } });
@@ -40590,7 +40590,7 @@
     	};
     }
 
-    // (113:2) <Router {url}>
+    // (121:2) <Router {url}>
     function create_default_slot$5(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -40655,7 +40655,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "section svelte-noh9lh");
+    			attr(div, "class", "section svelte-1ivrox8");
     		},
     		m(target, anchor) {
     			if_blocks[current_block_type_index].m(target, anchor);
@@ -40781,11 +40781,11 @@
     		h() {
     			attr(meta, "name", "viewport");
     			attr(meta, "content", "width=device-width, initial-scale=1");
-    			attr(meta, "class", "svelte-noh9lh");
-    			attr(div0, "class", "container svelte-noh9lh");
+    			attr(meta, "class", "svelte-1ivrox8");
+    			attr(div0, "class", "container svelte-1ivrox8");
     			toggle_class(div0, "about", /*about*/ ctx[4]);
     			toggle_class(div0, "inBlogPost", /*inBlogPost*/ ctx[5]);
-    			attr(div1, "class", "theme-switcher-container svelte-noh9lh");
+    			attr(div1, "class", "theme-switcher-container svelte-1ivrox8");
     		},
     		m(target, anchor) {
     			append(document.head, meta);

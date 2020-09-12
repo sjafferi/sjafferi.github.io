@@ -210,25 +210,25 @@
     }
   }
 
-  @media (max-width: 1400px) and (min-width: 850px) {
-    #star,
-    #star1,
-    #star2,
-    #moon,
-    #moon-shadow {
-      opacity: 0;
-    }
+  // @media (max-width: 1400px) and (min-width: 850px) {
+  //   #star,
+  //   #star1,
+  //   #star2,
+  //   #moon,
+  //   #moon-shadow {
+  //     opacity: 0;
+  //   }
 
-    .about {
-      #star,
-      #star1,
-      #star2,
-      #moon,
-      #moon-shadow {
-        opacity: 1;
-      }
-    }
-  }
+  //   .about {
+  //     #star,
+  //     #star1,
+  //     #star2,
+  //     #moon,
+  //     #moon-shadow {
+  //       opacity: 1;
+  //     }
+  //   }
+  // }
 
   @media (max-width: 850px) {
     .moon-container {

@@ -1,7 +1,7 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount, onDestroy } from "svelte";
   import { Router, Route } from "svelte-routing";
-  import { themeManager, router } from 'stores';
+  import { themeManager, router } from "stores";
   import Sun from "components/Sun.svelte";
   import Moon from "components/Moon.svelte";
   import Nav from "./routes/Nav.svelte";
@@ -12,24 +12,26 @@
   import "./main.scss";
   // Used for SSR. A falsy value is ignored by the Router.
   export let url = "";
-  let theme, unsubscribe, isMounted = false;
+  let theme,
+    unsubscribe,
+    isMounted = false;
   let currentPage;
 
-  let onThemeChange = () => {}
-  
+  let onThemeChange = () => {};
+
   onMount(() => {
     router.initialize();
     themeManager.initialize();
     themeManager.toggle();
     onThemeChange = themeManager.toggle;
-    if (location.pathname === '/') {
-      location.href = '/about'
+    if (location.pathname === "/") {
+      location.href = "/about";
     }
     if (!unsubscribe) {
       unsubscribe = [
-        themeManager.theme.subscribe(value => theme = value),
-        router.currentPage.subscribe(value => currentPage = value)
-      ]
+        themeManager.theme.subscribe((value) => (theme = value)),
+        router.currentPage.subscribe((value) => (currentPage = value)),
+      ];
     }
 
     isMounted = true;
@@ -37,13 +39,13 @@
 
   onDestroy(() => {
     if (unsubscribe) {
-      unsubscribe.forEach(unsub => unsub());
+      unsubscribe.forEach((unsub) => unsub());
       themeManager.destroy();
     }
-  })
+  });
 
-  $: about = !currentPage || currentPage === 'about';
-  $: inBlogPost = currentPage && currentPage.split('/').length > 1;
+  $: about = !currentPage || currentPage === "about";
+  $: inBlogPost = currentPage && currentPage.split("/").length > 1;
 </script>
 
 <style lang="scss">
@@ -61,7 +63,7 @@
 
   .theme-switcher-container {
     position: absolute;
-    top: 4vw;
+    top: calc(4vw + 6px);
     right: 3rem;
     transition: all 500ms linear;
   }
@@ -88,9 +90,17 @@
   }
 
   :not(.about) {
-    :global(.moon-container), :global(.sun-container) {
+    :global(.moon-container),
+    :global(.sun-container) {
       --theme-changer-top: 0 !important;
       --theme-changer-left: 0 !important;
+    }
+  }
+
+  :not(.about) {
+    :global(.moon-container),
+    :global(.sun-container) {
+      opacity: 0 !important;
     }
   }
 
@@ -99,7 +109,8 @@
       left: 0.5rem;
     }
     :not(.about) {
-      :global(.moon-container), :global(.sun-container) {
+      :global(.moon-container),
+      :global(.sun-container) {
         --sun-size: 13vw !important;
         --moon-size: 12vw !important;
       }
@@ -134,7 +145,7 @@
 
 <div class="container" class:about class:inBlogPost>
   <Router {url}>
-    {#if theme == "light"}
+    {#if theme == 'light'}
       <Sun on:click={themeManager.toggle} {about} />
     {:else}
       <Moon on:click={themeManager.toggle} {about} />
@@ -150,5 +161,5 @@
 </div>
 
 <div class="theme-switcher-container">
-  <ThemeSwitcher theme={theme} on:click={onThemeChange} />
+  <ThemeSwitcher {theme} on:click={onThemeChange} />
 </div>
