@@ -51,7 +51,7 @@
 <style lang="scss">
   .container {
     width: calc(100vw - 40px);
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
     display: flex;
     flex-direction: column;

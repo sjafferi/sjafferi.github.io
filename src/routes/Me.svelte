@@ -381,7 +381,7 @@
     }
     h2 {
       font-family: "Montserrat", sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.35rem;
     }
     .pop-up {
       position: absolute;
