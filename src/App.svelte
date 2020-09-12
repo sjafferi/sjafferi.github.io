@@ -77,24 +77,9 @@
     margin-top: 5rem;
   }
 
-  :root {
-    --theme-changer-top: 0;
-    --theme-changer-left: 0;
-  }
-
   .about {
-    --theme-changer-top: 45%;
-    --theme-changer-left: 60%;
     --sun-size: 120px;
     --moon-size: 80px;
-  }
-
-  :not(.about) {
-    :global(.moon-container),
-    :global(.sun-container) {
-      --theme-changer-top: 0 !important;
-      --theme-changer-left: 0 !important;
-    }
   }
 
   :not(.about) {

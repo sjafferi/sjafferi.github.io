@@ -27,6 +27,7 @@
     display: none;
     --moon-size: 125px;
     transition: all 1s ease-in-out;
+    z-index: 30000;
     // transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
     // transition: all 1s cubic-bezier(0.74, 0, 0.455, 1);
   }
@@ -281,10 +282,6 @@
   }
 
   .about {
-    &.moon-container {
-      z-index: 100;
-    }
-
     #star {
       left: 140%;
       top: -58%;

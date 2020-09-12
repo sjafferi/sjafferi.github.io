@@ -15,6 +15,7 @@
     left: var(--theme-changer-left);
     position: absolute;
     transition: all 2s cubic-bezier(0.215, 0.61, 0.355, 1);
+    z-index: 30000;
   }
 
   :global(html.dark .sun-container) {
@@ -192,12 +193,6 @@
     opacity: 0.5;
     pointer-events: none;
     z-index: 200;
-  }
-
-  .about {
-    &.sun-container {
-      z-index: 100;
-    }
   }
 
   /* ANIMATIONS */

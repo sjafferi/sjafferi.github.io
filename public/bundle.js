@@ -2109,11 +2109,11 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "overlay svelte-1tdepmk");
-    			attr(div1, "class", "outreaching-rays svelte-1tdepmk");
+    			attr(div0, "class", "overlay svelte-jkgprz");
+    			attr(div1, "class", "outreaching-rays svelte-jkgprz");
     			attr(div2, "id", "sun");
-    			attr(div2, "class", "animate svelte-1tdepmk");
-    			attr(div3, "class", "sun-container svelte-1tdepmk");
+    			attr(div2, "class", "animate svelte-jkgprz");
+    			attr(div3, "class", "sun-container svelte-jkgprz");
     			toggle_class(div3, "about", /*about*/ ctx[0]);
     		},
     		m(target, anchor) {
@@ -2241,16 +2241,16 @@
     		},
     		h() {
     			attr(div0, "id", "star");
-    			attr(div0, "class", "svelte-1q0sgku");
+    			attr(div0, "class", "svelte-r3ah0c");
     			attr(div1, "id", "star1");
-    			attr(div1, "class", "svelte-1q0sgku");
+    			attr(div1, "class", "svelte-r3ah0c");
     			attr(div2, "id", "star2");
-    			attr(div2, "class", "svelte-1q0sgku");
+    			attr(div2, "class", "svelte-r3ah0c");
     			attr(div3, "id", "moon");
-    			attr(div3, "class", "svelte-1q0sgku");
+    			attr(div3, "class", "svelte-r3ah0c");
     			attr(div4, "id", "moon-shadow");
-    			attr(div4, "class", "svelte-1q0sgku");
-    			attr(div5, "class", "moon-container svelte-1q0sgku");
+    			attr(div4, "class", "svelte-r3ah0c");
+    			attr(div5, "class", "moon-container svelte-r3ah0c");
     			toggle_class(div5, "animate", /*animate*/ ctx[1]);
     			toggle_class(div5, "about", /*about*/ ctx[0]);
     		},
@@ -40310,7 +40310,7 @@
     	return child_ctx;
     }
 
-    // (430:4) {#each links as { Logo, link }}
+    // (377:4) {#each links as { Logo, link }}
     function create_each_block_1$3(ctx) {
     	let a;
     	let t;
@@ -40334,7 +40334,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link svelte-6t15o0");
+    			attr(a, "class", "link svelte-svg4tn");
     			attr(a, "href", a_href_value = /*link*/ ctx[12]);
     			attr(a, "target", "_blank");
     		},
@@ -40361,7 +40361,7 @@
     	};
     }
 
-    // (449:6) {#each credits as { feature, name, link }
+    // (396:6) {#each credits as { feature, name, link }
     function create_each_block$5(ctx) {
     	let span;
     	let h3;
@@ -40404,8 +40404,8 @@
     			this.h();
     		},
     		h() {
-    			attr(h3, "class", "svelte-6t15o0");
-    			attr(span, "class", "credit svelte-6t15o0");
+    			attr(h3, "class", "svelte-svg4tn");
+    			attr(span, "class", "credit svelte-svg4tn");
     		},
     		m(target, anchor) {
     			insert(target, span, anchor);
@@ -40434,7 +40434,7 @@
     	};
     }
 
-    // (438:0) <ClickOutside   on:clickoutside={close_credits}   exclude={[popup_elem, ...credit_elems]}>
+    // (385:0) <ClickOutside   on:clickoutside={close_credits}   exclude={[popup_elem, ...credit_elems]}>
     function create_default_slot$5(ctx) {
     	let button;
     	let h2;
@@ -40483,9 +40483,9 @@
     			this.h();
     		},
     		h() {
-    			attr(h2, "class", "svelte-6t15o0");
-    			attr(div, "class", "pop-up svelte-6t15o0");
-    			attr(button, "class", "credits svelte-6t15o0");
+    			attr(h2, "class", "svelte-svg4tn");
+    			attr(div, "class", "pop-up svelte-svg4tn");
+    			attr(button, "class", "credits svelte-svg4tn");
     		},
     		m(target, anchor) {
     			insert(target, button, anchor);
@@ -40683,17 +40683,17 @@
     		},
     		h() {
     			document.title = "Me | Sibtain Jafferi";
-    			attr(h1, "class", "svelte-6t15o0");
-    			attr(p, "class", "phonetic-spelling svelte-6t15o0");
-    			attr(span0, "class", "header svelte-6t15o0");
-    			attr(span1, "class", "inner-text-1 svelte-6t15o0");
-    			attr(span2, "class", "inner-text-1 svelte-6t15o0");
-    			attr(span3, "class", "inner-text-2 svelte-6t15o0");
-    			attr(span4, "class", "inner-text-3 svelte-6t15o0");
-    			attr(span5, "class", "text svelte-6t15o0");
-    			attr(div0, "class", "description svelte-6t15o0");
-    			attr(div1, "class", "links svelte-6t15o0");
-    			attr(div2, "class", "about-container svelte-6t15o0");
+    			attr(h1, "class", "svelte-svg4tn");
+    			attr(p, "class", "phonetic-spelling svelte-svg4tn");
+    			attr(span0, "class", "header svelte-svg4tn");
+    			attr(span1, "class", "inner-text-1 svelte-svg4tn");
+    			attr(span2, "class", "inner-text-1 svelte-svg4tn");
+    			attr(span3, "class", "inner-text-2 svelte-svg4tn");
+    			attr(span4, "class", "inner-text-3 svelte-svg4tn");
+    			attr(span5, "class", "text svelte-svg4tn");
+    			attr(div0, "class", "description svelte-svg4tn");
+    			attr(div1, "class", "links svelte-svg4tn");
+    			attr(div2, "class", "about-container svelte-svg4tn");
     			attr(div2, "id", "about-container");
     		},
     		m(target, anchor) {
@@ -40955,7 +40955,7 @@
     	};
     }
 
-    // (126:4) {#if theme == 'light'}
+    // (115:4) {#if theme == 'light'}
     function create_if_block$7(ctx) {
     	let current;
     	const sun = new Sun({ props: { about: /*about*/ ctx[4] } });
@@ -40992,7 +40992,7 @@
     	};
     }
 
-    // (125:2) <Router {url}>
+    // (114:2) <Router {url}>
     function create_default_slot$6(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -41057,7 +41057,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "section svelte-1ym2yeb");
+    			attr(div, "class", "section svelte-1yy7qr1");
     		},
     		m(target, anchor) {
     			if_blocks[current_block_type_index].m(target, anchor);
@@ -41182,9 +41182,9 @@
     		h() {
     			attr(meta, "name", "viewport");
     			attr(meta, "content", "width=device-width, initial-scale=1");
-    			attr(meta, "class", "svelte-1ym2yeb");
-    			attr(div0, "class", "theme-switcher-container svelte-1ym2yeb");
-    			attr(div1, "class", "container svelte-1ym2yeb");
+    			attr(meta, "class", "svelte-1yy7qr1");
+    			attr(div0, "class", "theme-switcher-container svelte-1yy7qr1");
+    			attr(div1, "class", "container svelte-1yy7qr1");
     			toggle_class(div1, "about", /*about*/ ctx[4]);
     			toggle_class(div1, "inBlogPost", /*inBlogPost*/ ctx[5]);
     		},

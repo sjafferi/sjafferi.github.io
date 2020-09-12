@@ -74,10 +74,17 @@
     }
   }
 
+  @media (min-width: 850px) {
+    @include variable-change {
+      --theme-changer-top: 66% !important;
+      --theme-changer-left: 57% !important;
+    }
+  }
+
   @media (min-width: 1650px) {
     @include variable-change {
-      --theme-changer-top: 60%;
-      --theme-changer-left: 55%;
+      // --theme-changer-top: 60%;
+      // --theme-changer-left: 55%;
     }
   }
 
@@ -85,8 +92,8 @@
     @media (max-height: 1250px) {
       // height <= 1250
       @include variable-change {
-        --theme-changer-top: 72.5vh !important;
-        --theme-changer-left: 65% !important;
+        // --theme-changer-top: 72.5vh !important;
+        // --theme-changer-left: 65% !important;
         --sun-size: 13vh !important;
         --moon-size: 8.5vh !important;
       }
@@ -112,8 +119,8 @@
     @media (max-height: 950px) {
       // height <= 950
       @include variable-change {
-        --theme-changer-top: 70vh !important;
-        --theme-changer-left: 60% !important;
+        // --theme-changer-top: 70vh !important;
+        // --theme-changer-left: 60% !important;
         &.about-container {
           top: calc(
             var(--theme-changer-top) - (var(--sun-size) * 2) * 2
@@ -130,8 +137,8 @@
       @media (max-height: 1350px) {
         // height <= 1350 and width <= 1700
         @include variable-change {
-          --theme-changer-top: 65vh !important;
-          --theme-changer-left: 60% !important;
+          // --theme-changer-top: 65vh !important;
+          // --theme-changer-left: 60% !important;
           &.about-container {
             top: calc(
               var(--theme-changer-top) - (var(--sun-size) * 2.25) * 2
@@ -145,8 +152,8 @@
       @media (max-height: 1550px) {
         // height <= 1550 and width <= 1700
         @include variable-change {
-          --theme-changer-top: 65vh !important;
-          --theme-changer-left: 70% !important;
+          // --theme-changer-top: 65vh !important;
+          // --theme-changer-left: 70% !important;
           --sun-size: 10vh !important;
           --moon-size: 8vh !important;
           &.about-container {
@@ -163,8 +170,8 @@
       @media (min-height: 1000px) {
         // 1000 <= height <= 1650 and width <= 1700
         @include variable-change {
-          --theme-changer-top: 65vh !important;
-          --theme-changer-left: 65% !important;
+          // --theme-changer-top: 65vh !important;
+          // --theme-changer-left: 40% !important;
           &.about-container {
             top: calc(
               var(--theme-changer-top) - (var(--sun-size) * 2) * 2
@@ -180,7 +187,7 @@
     @media (min-width: 1650px) {
       // height <= 1650 and width <= 1650
       @include variable-change {
-        --theme-changer-left: 60%;
+        // --theme-changer-left: 60%;
       }
     }
 
@@ -293,12 +300,14 @@
   @media screen and (max-width: 850px) {
     #about-container {
       &.about-container {
-        margin: 0;
-        left: 50% !important;
-        top: calc(var(--theme-changer-top) + 5vh + 75px) !important;
-        transform: translate(-50%, 0);
-        max-width: 93vw;
-        width: 34ch;
+        position: relative;
+        margin-top: 27vh;
+        max-width: 95vw;
+        width: 100%;
+        left: unset !important;
+        top: unset !important;
+        display: flex;
+        align-items: flex-end;
       }
 
       @media (min-height: 320px) {
@@ -307,6 +316,7 @@
         }
       }
       div.description {
+        max-width: 34ch;
         h1 {
           font-size: 2.25rem !important;
           font-weight: 600;
@@ -332,7 +342,8 @@
         }
       }
       .links {
-        margin-top: 2rem;
+        margin: 2rem auto 0 17px;
+
         > .link {
           margin: 0 1rem;
         }
@@ -344,7 +355,7 @@
     }
 
     .credits {
-      display: none;
+      display: none !important;
     }
   }
 
