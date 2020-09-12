@@ -5643,10 +5643,10 @@
     		},
     		h() {
     			attr(input, "type", "checkbox");
-    			attr(input, "class", "checkbox svelte-1dblm84");
-    			attr(div0, "class", "icon svelte-1dblm84");
+    			attr(input, "class", "checkbox svelte-g0aiyk");
+    			attr(div0, "class", "icon svelte-g0aiyk");
     			attr(div1, "id", "switch");
-    			attr(div1, "class", "svelte-1dblm84");
+    			attr(div1, "class", "svelte-g0aiyk");
     			toggle_class(div1, "dark", /*dark_mode_enabled*/ ctx[0]);
     		},
     		m(target, anchor) {
@@ -40553,7 +40553,7 @@
     	};
     }
 
-    // (122:4) {#if theme == 'light'}
+    // (123:4) {#if theme == 'light'}
     function create_if_block$7(ctx) {
     	let current;
     	const sun = new Sun({ props: { about: /*about*/ ctx[4] } });
@@ -40590,7 +40590,7 @@
     	};
     }
 
-    // (121:2) <Router {url}>
+    // (122:2) <Router {url}>
     function create_default_slot$5(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -40655,7 +40655,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "section svelte-1ivrox8");
+    			attr(div, "class", "section svelte-9gbw4b");
     		},
     		m(target, anchor) {
     			if_blocks[current_block_type_index].m(target, anchor);
@@ -40781,11 +40781,11 @@
     		h() {
     			attr(meta, "name", "viewport");
     			attr(meta, "content", "width=device-width, initial-scale=1");
-    			attr(meta, "class", "svelte-1ivrox8");
-    			attr(div0, "class", "container svelte-1ivrox8");
+    			attr(meta, "class", "svelte-9gbw4b");
+    			attr(div0, "class", "container svelte-9gbw4b");
     			toggle_class(div0, "about", /*about*/ ctx[4]);
     			toggle_class(div0, "inBlogPost", /*inBlogPost*/ ctx[5]);
-    			attr(div1, "class", "theme-switcher-container svelte-1ivrox8");
+    			attr(div1, "class", "theme-switcher-container svelte-9gbw4b");
     		},
     		m(target, anchor) {
     			append(document.head, meta);

@@ -63,8 +63,8 @@
 
   .theme-switcher-container {
     position: absolute;
-    top: calc(4vw + 6px);
-    right: 3rem;
+    top: calc(3vw + 14px);
+    right: 7rem;
     transition: all 500ms linear;
   }
 
@@ -106,6 +106,7 @@
 
   @media (max-width: 850px) {
     .theme-switcher-container {
+      top: calc(4vw + 3px);
       left: 0.5rem;
     }
     :not(.about) {
