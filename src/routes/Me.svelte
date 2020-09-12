@@ -446,6 +446,7 @@
 </div>
 
 <ClickOutside
+  className="credits-container"
   on:clickoutside={close_credits}
   exclude={[popup_elem, ...credit_elems]}>
   <button

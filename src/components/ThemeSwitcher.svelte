@@ -141,7 +141,7 @@
   @media (max-width: 850px) {
     #switch {
       width: 65px;
-      height: 25px;
+      height: 26.5px;
     }
     #switch:after {
       left: 37px;

@@ -2241,16 +2241,16 @@
     		},
     		h() {
     			attr(div0, "id", "star");
-    			attr(div0, "class", "svelte-r3ah0c");
+    			attr(div0, "class", "svelte-1u8id3h");
     			attr(div1, "id", "star1");
-    			attr(div1, "class", "svelte-r3ah0c");
+    			attr(div1, "class", "svelte-1u8id3h");
     			attr(div2, "id", "star2");
-    			attr(div2, "class", "svelte-r3ah0c");
+    			attr(div2, "class", "svelte-1u8id3h");
     			attr(div3, "id", "moon");
-    			attr(div3, "class", "svelte-r3ah0c");
+    			attr(div3, "class", "svelte-1u8id3h");
     			attr(div4, "id", "moon-shadow");
-    			attr(div4, "class", "svelte-r3ah0c");
-    			attr(div5, "class", "moon-container svelte-r3ah0c");
+    			attr(div4, "class", "svelte-1u8id3h");
+    			attr(div5, "class", "moon-container svelte-1u8id3h");
     			toggle_class(div5, "animate", /*animate*/ ctx[1]);
     			toggle_class(div5, "about", /*about*/ ctx[0]);
     		},
@@ -5643,10 +5643,10 @@
     		},
     		h() {
     			attr(input, "type", "checkbox");
-    			attr(input, "class", "checkbox svelte-g0aiyk");
-    			attr(div0, "class", "icon svelte-g0aiyk");
+    			attr(input, "class", "checkbox svelte-1oosjzo");
+    			attr(div0, "class", "icon svelte-1oosjzo");
     			attr(div1, "id", "switch");
-    			attr(div1, "class", "svelte-g0aiyk");
+    			attr(div1, "class", "svelte-1oosjzo");
     			toggle_class(div1, "dark", /*dark_mode_enabled*/ ctx[0]);
     		},
     		m(target, anchor) {
@@ -40043,7 +40043,6 @@
 
     	function onClickOutside(event) {
     		if (!isExcluded(event.target)) {
-    			event.preventDefault();
     			dispatch("clickoutside", event.target);
     		}
     	}
@@ -40361,7 +40360,7 @@
     	};
     }
 
-    // (396:6) {#each credits as { feature, name, link }
+    // (397:6) {#each credits as { feature, name, link }
     function create_each_block$5(ctx) {
     	let span;
     	let h3;
@@ -40434,7 +40433,7 @@
     	};
     }
 
-    // (385:0) <ClickOutside   on:clickoutside={close_credits}   exclude={[popup_elem, ...credit_elems]}>
+    // (385:0) <ClickOutside   className="credits-container"   on:clickoutside={close_credits}   exclude={[popup_elem, ...credit_elems]}>
     function create_default_slot$5(ctx) {
     	let button;
     	let h2;
@@ -40576,6 +40575,7 @@
 
     	const clickoutside = new ClickOutside$1({
     			props: {
+    				className: "credits-container",
     				exclude: [/*popup_elem*/ ctx[0], .../*credit_elems*/ ctx[1]],
     				$$slots: { default: [create_default_slot$5] },
     				$$scope: { ctx }
