@@ -63,8 +63,8 @@
 
   .theme-switcher-container {
     position: absolute;
-    top: calc(3vw + 14px);
-    right: 7rem;
+    top: calc(3vw + 15px);
+    right: 2vw;
     transition: all 500ms linear;
   }
 

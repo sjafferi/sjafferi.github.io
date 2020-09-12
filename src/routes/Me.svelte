@@ -1,9 +1,11 @@
 <script>
   import { Router, Link, Route } from "svelte-routing";
+  import ClickOutside from "components/ClickOutside.svelte";
   import List from "components/List.svelte";
   import Github from "components/Icons/Github.svelte";
   import LinkedIn from "components/Icons/LinkedIn.svelte";
   import Medium from "components/Icons/Medium.svelte";
+  import App from "../App.svelte";
 
   const links = [
     { Logo: Github, link: "https://github.com/sjafferi" },
@@ -13,7 +15,7 @@
 
   const credits = [
     {
-      feature: "Sun & Moon",
+      feature: "Moon Inspiration",
       name: "@DeMichieli",
       link: "https://codepen.io/DeMichieli",
     },
@@ -28,6 +30,17 @@
       link: "https://www.flaticon.com/authors/freepik",
     },
   ];
+
+  let popup_elem,
+    credit_elems = new Array(credits.length);
+  let credits_open = false;
+
+  const close_credits = (e) => {
+    if (credit_elems.indexOf(e.target) >= 0) {
+      return;
+    }
+    credits_open = false;
+  };
 </script>
 
 <style lang="scss">
@@ -346,8 +359,16 @@
     outline: none !important;
     margin: 0;
     padding: 0;
-    h2 {
+    z-index: -1;
+    h2,
+    h3 {
       color: #94949496;
+
+      &:hover {
+        color: grey;
+      }
+    }
+    h2 {
       font-family: "Montserrat", sans-serif;
       font-size: 1.5rem;
     }
@@ -359,6 +380,10 @@
       left: 105px;
       text-align: left;
       display: none;
+      z-index: 20000;
+      .credit:hover {
+        opacity: 0.75;
+      }
     }
     &:focus {
       .pop-up {
@@ -368,8 +393,15 @@
   }
 
   :global(html.dark) {
-    .credits h2 {
-      color: #adadad96;
+    .credits {
+      h1,
+      h2 {
+        color: #adadad96;
+
+        &:hover {
+          color: grey;
+        }
+      }
     }
   }
 </style>
@@ -402,13 +434,25 @@
   </div>
 </div>
 
-<button class="credits">
-  <h2>Credits</h2>
-  <div class="pop-up">
-    {#each credits as { feature, name, link }}
-      <span class="credit">
-        <h3>{feature} -- <a href={link}>{name}</a></h3>
-      </span>
-    {/each}
-  </div>
-</button>
+<ClickOutside
+  on:clickoutside={close_credits}
+  exclude={[popup_elem, ...credit_elems]}>
+  <button
+    class="credits"
+    on:click={(e) => {
+      credits_open = true;
+      e.preventDefault();
+    }}>
+    <h2>Credits</h2>
+    <div class="pop-up" bind:this={popup_elem}>
+      {#each credits as { feature, name, link }, idx}
+        <span
+          class="credit"
+          bind:this={credit_elems[idx]}
+          on:click={() => window.open(link, '_blank')}>
+          <h3>{feature} -- {name}</h3>
+        </span>
+      {/each}
+    </div>
+  </button>
+</ClickOutside>

@@ -42,7 +42,7 @@
     min-width: 75px;
     display: flex;
     justify-content: center;
-    margin: 0 15px !important;
+    margin: 0 25px !important;
     transition: all 25ms ease-in;
     @media (hover: hover) and (pointer: fine) {
       &:hover {
