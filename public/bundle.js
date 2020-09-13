@@ -2109,11 +2109,11 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "overlay svelte-17zl1pg");
-    			attr(div1, "class", "outreaching-rays svelte-17zl1pg");
+    			attr(div0, "class", "overlay svelte-4pqgbc");
+    			attr(div1, "class", "outreaching-rays svelte-4pqgbc");
     			attr(div2, "id", "sun");
-    			attr(div2, "class", "animate svelte-17zl1pg");
-    			attr(div3, "class", "sun-container svelte-17zl1pg");
+    			attr(div2, "class", "animate svelte-4pqgbc");
+    			attr(div3, "class", "sun-container svelte-4pqgbc");
     			toggle_class(div3, "about", /*about*/ ctx[0]);
     		},
     		m(target, anchor) {
@@ -2241,16 +2241,16 @@
     		},
     		h() {
     			attr(div0, "id", "star");
-    			attr(div0, "class", "svelte-r3ah0c");
+    			attr(div0, "class", "svelte-1evseuq");
     			attr(div1, "id", "star1");
-    			attr(div1, "class", "svelte-r3ah0c");
+    			attr(div1, "class", "svelte-1evseuq");
     			attr(div2, "id", "star2");
-    			attr(div2, "class", "svelte-r3ah0c");
+    			attr(div2, "class", "svelte-1evseuq");
     			attr(div3, "id", "moon");
-    			attr(div3, "class", "svelte-r3ah0c");
+    			attr(div3, "class", "svelte-1evseuq");
     			attr(div4, "id", "moon-shadow");
-    			attr(div4, "class", "svelte-r3ah0c");
-    			attr(div5, "class", "moon-container svelte-r3ah0c");
+    			attr(div4, "class", "svelte-1evseuq");
+    			attr(div5, "class", "moon-container svelte-1evseuq");
     			toggle_class(div5, "animate", /*animate*/ ctx[1]);
     			toggle_class(div5, "about", /*about*/ ctx[0]);
     		},
@@ -5052,7 +5052,7 @@
             src: "images/projects/svelte-images-3-full.jpg",
           },
         ],
-        tags: ["Open Source", "SvelteJS", "Javasciprt", "HTML5", "CSS3"],
+        tags: ["Open Source", "SvelteJS", "JavaScript", "HTML5", "CSS3"],
         links: [
           {
             link: "https://github.com/sjafferi/svelte-images",
@@ -5063,7 +5063,7 @@
 
       {
         title: "Studio Ki",
-        titleLink: "http://studioki.sibta.in",
+        titleLink: "https://ki.sibta.in",
         description:
           "Your friendly boutique web design firm creating pixel perfect sites for businesses worldwide.",
         images: [
@@ -5075,7 +5075,7 @@
         tags: ["React", "JavaScript", "NodeJS", "HTML5", "CSS3"],
         links: [
           {
-            link: "http://studioki.sibta.in",
+            link: "https://ki.sibta.in",
             text: "Landing Page",
           },
         ],
@@ -40333,7 +40333,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link svelte-m5jc3a");
+    			attr(a, "class", "link svelte-19oyadh");
     			attr(a, "href", a_href_value = /*link*/ ctx[12]);
     			attr(a, "target", "_blank");
     		},
@@ -40403,8 +40403,8 @@
     			this.h();
     		},
     		h() {
-    			attr(h3, "class", "svelte-m5jc3a");
-    			attr(span, "class", "credit svelte-m5jc3a");
+    			attr(h3, "class", "svelte-19oyadh");
+    			attr(span, "class", "credit svelte-19oyadh");
     		},
     		m(target, anchor) {
     			insert(target, span, anchor);
@@ -40482,9 +40482,9 @@
     			this.h();
     		},
     		h() {
-    			attr(h2, "class", "svelte-m5jc3a");
-    			attr(div, "class", "pop-up svelte-m5jc3a");
-    			attr(button, "class", "credits svelte-m5jc3a");
+    			attr(h2, "class", "svelte-19oyadh");
+    			attr(div, "class", "pop-up svelte-19oyadh");
+    			attr(button, "class", "credits svelte-19oyadh");
     		},
     		m(target, anchor) {
     			insert(target, button, anchor);
@@ -40683,17 +40683,17 @@
     		},
     		h() {
     			document.title = "Me | Sibtain Jafferi";
-    			attr(h1, "class", "svelte-m5jc3a");
-    			attr(p, "class", "phonetic-spelling svelte-m5jc3a");
-    			attr(span0, "class", "header svelte-m5jc3a");
-    			attr(span1, "class", "inner-text-1 svelte-m5jc3a");
-    			attr(span2, "class", "inner-text-1 svelte-m5jc3a");
-    			attr(span3, "class", "inner-text-2 svelte-m5jc3a");
-    			attr(span4, "class", "inner-text-3 svelte-m5jc3a");
-    			attr(span5, "class", "text svelte-m5jc3a");
-    			attr(div0, "class", "description svelte-m5jc3a");
-    			attr(div1, "class", "links svelte-m5jc3a");
-    			attr(div2, "class", "about-container svelte-m5jc3a");
+    			attr(h1, "class", "svelte-19oyadh");
+    			attr(p, "class", "phonetic-spelling svelte-19oyadh");
+    			attr(span0, "class", "header svelte-19oyadh");
+    			attr(span1, "class", "inner-text-1 svelte-19oyadh");
+    			attr(span2, "class", "inner-text-1 svelte-19oyadh");
+    			attr(span3, "class", "inner-text-2 svelte-19oyadh");
+    			attr(span4, "class", "inner-text-3 svelte-19oyadh");
+    			attr(span5, "class", "text svelte-19oyadh");
+    			attr(div0, "class", "description svelte-19oyadh");
+    			attr(div1, "class", "links svelte-19oyadh");
+    			attr(div2, "class", "about-container svelte-19oyadh");
     			attr(div2, "id", "about-container");
     		},
     		m(target, anchor) {
@@ -40955,7 +40955,7 @@
     	};
     }
 
-    // (115:4) {#if theme == 'light'}
+    // (117:4) {#if theme == 'light'}
     function create_if_block$7(ctx) {
     	let current;
     	const sun = new Sun({ props: { about: /*about*/ ctx[4] } });
@@ -40992,7 +40992,7 @@
     	};
     }
 
-    // (114:2) <Router {url}>
+    // (116:2) <Router {url}>
     function create_default_slot$6(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -41057,7 +41057,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "section svelte-et0sx3");
+    			attr(div, "class", "section svelte-pibjuf");
     		},
     		m(target, anchor) {
     			if_blocks[current_block_type_index].m(target, anchor);
@@ -41182,9 +41182,9 @@
     		h() {
     			attr(meta, "name", "viewport");
     			attr(meta, "content", "width=device-width, initial-scale=1");
-    			attr(meta, "class", "svelte-et0sx3");
-    			attr(div0, "class", "theme-switcher-container svelte-et0sx3");
-    			attr(div1, "class", "container svelte-et0sx3");
+    			attr(meta, "class", "svelte-pibjuf");
+    			attr(div0, "class", "theme-switcher-container svelte-pibjuf");
+    			attr(div1, "class", "container svelte-pibjuf");
     			toggle_class(div1, "about", /*about*/ ctx[4]);
     			toggle_class(div1, "inBlogPost", /*inBlogPost*/ ctx[5]);
     		},

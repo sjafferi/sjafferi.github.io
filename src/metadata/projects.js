@@ -104,7 +104,7 @@ export default [
         src: "images/projects/svelte-images-3-full.jpg",
       },
     ],
-    tags: ["Open Source", "SvelteJS", "Javasciprt", "HTML5", "CSS3"],
+    tags: ["Open Source", "SvelteJS", "JavaScript", "HTML5", "CSS3"],
     links: [
       {
         link: "https://github.com/sjafferi/svelte-images",
@@ -115,7 +115,7 @@ export default [
 
   {
     title: "Studio Ki",
-    titleLink: "http://studioki.sibta.in",
+    titleLink: "https://ki.sibta.in",
     description:
       "Your friendly boutique web design firm creating pixel perfect sites for businesses worldwide.",
     images: [
@@ -127,7 +127,7 @@ export default [
     tags: ["React", "JavaScript", "NodeJS", "HTML5", "CSS3"],
     links: [
       {
-        link: "http://studioki.sibta.in",
+        link: "https://ki.sibta.in",
         text: "Landing Page",
       },
     ],

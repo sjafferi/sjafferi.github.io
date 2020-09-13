@@ -242,6 +242,9 @@
     }
 
     .about {
+      &.moon-container {
+        z-index: 40001 !important;
+      }
       #star,
       #star1 {
         opacity: 1;

@@ -70,7 +70,7 @@
 
   .section {
     width: 100%;
-    z-index: 300;
+    z-index: 40000;
     max-width: 110ch;
     margin: auto;
     padding: 0 20px;
@@ -93,6 +93,12 @@
     .theme-switcher-container {
       top: calc(4vw + 2px);
       left: 0.5rem;
+    }
+    .about {
+      .section {
+        overflow: hidden;
+        // max-height: calc(100vh - 46px);
+      }
     }
     :not(.about) {
       :global(.moon-container),

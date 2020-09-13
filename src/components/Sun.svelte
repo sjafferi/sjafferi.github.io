@@ -190,9 +190,9 @@
     width: 100vw;
     height: 100vh;
     background: #ffeee3;
-    opacity: 0.5;
+    opacity: 0.25;
     pointer-events: none;
-    z-index: 200;
+    z-index: 30001;
   }
 
   /* ANIMATIONS */
@@ -227,6 +227,14 @@
   @supports (-moz-appearance: none) {
     .sun-container {
       display: none;
+    }
+  }
+
+  @media (max-width: 850px) {
+    .about {
+      &.sun-container {
+        z-index: 40001 !important;
+      }
     }
   }
 </style>
