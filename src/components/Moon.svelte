@@ -231,6 +231,10 @@
   //   }
   // }
 
+  :global(::-webkit-full-page-media, _:future, :root) #moon {
+    box-shadow: inset -25px 21px 7px -13px rgba(0, 0, 0, 0.25);
+  }
+
   @media (max-width: 850px) {
     .moon-container {
       --moon-size: 50px;

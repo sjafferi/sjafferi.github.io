@@ -2241,16 +2241,16 @@
     		},
     		h() {
     			attr(div0, "id", "star");
-    			attr(div0, "class", "svelte-1evseuq");
+    			attr(div0, "class", "svelte-t1wd4l");
     			attr(div1, "id", "star1");
-    			attr(div1, "class", "svelte-1evseuq");
+    			attr(div1, "class", "svelte-t1wd4l");
     			attr(div2, "id", "star2");
-    			attr(div2, "class", "svelte-1evseuq");
+    			attr(div2, "class", "svelte-t1wd4l");
     			attr(div3, "id", "moon");
-    			attr(div3, "class", "svelte-1evseuq");
+    			attr(div3, "class", "svelte-t1wd4l");
     			attr(div4, "id", "moon-shadow");
-    			attr(div4, "class", "svelte-1evseuq");
-    			attr(div5, "class", "moon-container svelte-1evseuq");
+    			attr(div4, "class", "svelte-t1wd4l");
+    			attr(div5, "class", "moon-container svelte-t1wd4l");
     			toggle_class(div5, "animate", /*animate*/ ctx[1]);
     			toggle_class(div5, "about", /*about*/ ctx[0]);
     		},
@@ -40333,7 +40333,7 @@
     			this.h();
     		},
     		h() {
-    			attr(a, "class", "link svelte-19oyadh");
+    			attr(a, "class", "link svelte-1vu7t2x");
     			attr(a, "href", a_href_value = /*link*/ ctx[12]);
     			attr(a, "target", "_blank");
     		},
@@ -40403,8 +40403,8 @@
     			this.h();
     		},
     		h() {
-    			attr(h3, "class", "svelte-19oyadh");
-    			attr(span, "class", "credit svelte-19oyadh");
+    			attr(h3, "class", "svelte-1vu7t2x");
+    			attr(span, "class", "credit svelte-1vu7t2x");
     		},
     		m(target, anchor) {
     			insert(target, span, anchor);
@@ -40482,9 +40482,9 @@
     			this.h();
     		},
     		h() {
-    			attr(h2, "class", "svelte-19oyadh");
-    			attr(div, "class", "pop-up svelte-19oyadh");
-    			attr(button, "class", "credits svelte-19oyadh");
+    			attr(h2, "class", "svelte-1vu7t2x");
+    			attr(div, "class", "pop-up svelte-1vu7t2x");
+    			attr(button, "class", "credits svelte-1vu7t2x");
     		},
     		m(target, anchor) {
     			insert(target, button, anchor);
@@ -40683,17 +40683,17 @@
     		},
     		h() {
     			document.title = "Me | Sibtain Jafferi";
-    			attr(h1, "class", "svelte-19oyadh");
-    			attr(p, "class", "phonetic-spelling svelte-19oyadh");
-    			attr(span0, "class", "header svelte-19oyadh");
-    			attr(span1, "class", "inner-text-1 svelte-19oyadh");
-    			attr(span2, "class", "inner-text-1 svelte-19oyadh");
-    			attr(span3, "class", "inner-text-2 svelte-19oyadh");
-    			attr(span4, "class", "inner-text-3 svelte-19oyadh");
-    			attr(span5, "class", "text svelte-19oyadh");
-    			attr(div0, "class", "description svelte-19oyadh");
-    			attr(div1, "class", "links svelte-19oyadh");
-    			attr(div2, "class", "about-container svelte-19oyadh");
+    			attr(h1, "class", "svelte-1vu7t2x");
+    			attr(p, "class", "phonetic-spelling svelte-1vu7t2x");
+    			attr(span0, "class", "header svelte-1vu7t2x");
+    			attr(span1, "class", "inner-text-1 svelte-1vu7t2x");
+    			attr(span2, "class", "inner-text-1 svelte-1vu7t2x");
+    			attr(span3, "class", "inner-text-2 svelte-1vu7t2x");
+    			attr(span4, "class", "inner-text-3 svelte-1vu7t2x");
+    			attr(span5, "class", "text svelte-1vu7t2x");
+    			attr(div0, "class", "description svelte-1vu7t2x");
+    			attr(div1, "class", "links svelte-1vu7t2x");
+    			attr(div2, "class", "about-container svelte-1vu7t2x");
     			attr(div2, "id", "about-container");
     		},
     		m(target, anchor) {
@@ -40955,7 +40955,7 @@
     	};
     }
 
-    // (117:4) {#if theme == 'light'}
+    // (118:4) {#if theme == 'light'}
     function create_if_block$7(ctx) {
     	let current;
     	const sun = new Sun({ props: { about: /*about*/ ctx[4] } });
@@ -40992,7 +40992,7 @@
     	};
     }
 
-    // (116:2) <Router {url}>
+    // (117:2) <Router {url}>
     function create_default_slot$6(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -41057,7 +41057,7 @@
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "section svelte-pibjuf");
+    			attr(div, "class", "section svelte-1ss3gcu");
     		},
     		m(target, anchor) {
     			if_blocks[current_block_type_index].m(target, anchor);
@@ -41182,9 +41182,9 @@
     		h() {
     			attr(meta, "name", "viewport");
     			attr(meta, "content", "width=device-width, initial-scale=1");
-    			attr(meta, "class", "svelte-pibjuf");
-    			attr(div0, "class", "theme-switcher-container svelte-pibjuf");
-    			attr(div1, "class", "container svelte-pibjuf");
+    			attr(meta, "class", "svelte-1ss3gcu");
+    			attr(div0, "class", "theme-switcher-container svelte-1ss3gcu");
+    			attr(div1, "class", "container svelte-1ss3gcu");
     			toggle_class(div1, "about", /*about*/ ctx[4]);
     			toggle_class(div1, "inBlogPost", /*inBlogPost*/ ctx[5]);
     		},

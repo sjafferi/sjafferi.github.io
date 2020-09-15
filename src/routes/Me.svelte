@@ -194,7 +194,7 @@
     @media (max-width: 850px) {
       // height <= 1650 and width <= 850
       @include variable-change {
-        --theme-changer-top: 15% !important;
+        --theme-changer-top: 20% !important;
         --theme-changer-left: calc(50% - 33px) !important;
         --sun-size: 8vh !important;
         --moon-size: 5vh !important;
@@ -203,7 +203,7 @@
 
     @media (max-width: 650px) and (max-height: 850px) {
       @include variable-change {
-        --theme-changer-top: 15% !important;
+        --theme-changer-top: 20% !important;
         --theme-changer-left: calc(50% - 33px) !important;
         --sun-size: 8vh !important;
         --moon-size: 7vh !important;

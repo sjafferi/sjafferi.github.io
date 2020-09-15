@@ -97,7 +97,7 @@
     .about {
       .section {
         overflow: hidden;
-        // max-height: calc(100vh - 46px);
+        max-height: calc(100vh - 48px);
       }
     }
     :not(.about) {
