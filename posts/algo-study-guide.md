@@ -605,6 +605,67 @@ def concatenated_words(self, words: List[str]) -> List[str]:
     return results
 ```
 
+### Smallest subarry sequentially covering subset
+
+Source: EPI 12.7
+
+Given 2 lists of words P & K, find the length of the smallest subarray in P that _sequentially_ covers all values in P.
+
+```
+Example:
+P = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "2", "4", "6", "1", "0", "1", "0", "1", "0", "3", "2", "1", "0"]
+K = ["0", "2", "9", "4", "6"]
+
+Output: 13
+
+Explanation: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "2", "4", "6"] is the smallest subarray sequentially covering all values
+```
+
+At first glance, this seems like a sliding window problem (described below) as we're trying to minimize a subrange in the input set. However, after some trial and error, it becomes clear that the pointer method is not ideal for a linear solution due to the difficulty in jumping back and forth between candidate sets.
+
+One brute force approach we can use here is to find the smallest subarry ending at the current index by iterating through the previously seen values in P.
+
+The intuition that leads to a cleaner algorithm follow from optimizing the brute force approach. This is because the brute force approach fails to take advantage of the fact that we've already seen the previous elements. In order to do this, we need to be able to calculate the subarray length for each candidate index based on some past computation.
+
+This leads to the following DP solution
+
+```
+S(i) = Shortest subarray in P[:i+1] sequentially containing all values in K[:j] (let j = last seen keyword idx in K + 1)
+        if P[i] not in K[:j] => -1
+        else => S(k) + (i - k) where k = last seen keyword idx in P
+```
+
+Implementation
+
+```python
+def find_smallest_sequentially_covering_subset(paragraph, keywords):
+    ans = Subarray(0, len(paragraph))
+
+    keywords_to_idx = {key: idx for idx, key in enumerate(keywords)}
+    last_seen = collections.defaultdict(lambda: -1)
+    S = [-1] * len(paragraph)
+
+    for idx in range(len(paragraph)):
+        if paragraph[idx] in keywords:
+            keyword = paragraph[idx]
+            keyword_idx = keywords_to_idx[keyword]
+            last_seen[keyword] = idx
+
+            if keyword_idx == 0:
+                S[idx] = 1
+            elif last_seen[keywords[keyword_idx - 1]] != -1:
+                last_key_idx = last_seen[keywords[keyword_idx - 1]]
+                S[idx] = S[last_key_idx] + (idx - last_key_idx)
+            else:
+                last_seen[keyword] = -1
+
+            if last_seen[keyword] != -1 and keyword_idx == len(keywords) - 1:
+                if ans[1] - ans[0] > S[idx] - 1:
+                    ans = Subarray(idx - S[idx] + 1, idx)
+
+    return ans
+```
+
 ### Sliding Window Problems
 
 [This blog post](https://medium.com/outco/how-to-solve-sliding-window-problems-28d67601a66) goes over sliding window problems very well.
@@ -2838,22 +2899,19 @@ This ensures that the min heap is always the larger half and hence contains the 
 **Solution**
 
 ```python
-def stream_median(nums):
-    min_heap, max_heap = [], []
-    result = []
+def stream_median(sequence: Iterator[int]) -> List[float]:
+    min_heap, max_heap, median = [], [], []
 
-    for x in nums:
-        heapq.heappush(max_heap, -heapq.heappushpop(min_heap, x))
+    for num in sequence:
+        heapq.heappush(min_heap, -heapq.heappushpop(max_heap, -num))
 
-        if len(max_heap) > len(min_heap):
-            heapq.heappush(min_heap, -heapq.heappop(max_heap))
+        if len(max_heap) == len(min_heap) - 1:
+            heapq.heappush(max_heap, -heapq.heappop(min_heap))
+            median.append(-max_heap[0])
+        else:
+            median.append((min_heap[0] + -max_heap[0]) / 2)
 
-        result.append(0.5 * (min_heap[0] + -max_heap[0]) if len(max_heap) == len(min_heap) else min_heap[0])
-
-    return result
-
-test_1 = [1, 0, 3, 5, 9, 7]
-test(stream_median(test_1), [1, 0.5, 1, 2, 3, 4])
+    return median
 ```
 
 ### K Closest Stars (Amazon Question)
@@ -2882,13 +2940,43 @@ def k_closest_stars(distances, k):
             heapq.heappop(max_heap)
 
     return sorted([-x for x in max_heap]) # sort is not needed, doing for testing output
-
-test_1 = [52, 33, 24, 67, 28, 19, 13, 76, 7, 412, 331, 13, 1312, 31, 3, 331, 56, 52, 32]
-test(k_closest_stars([52, 33, 24, 67, 28, 19, 13], 4), [13, 19, 24, 28])
-test(k_closest_stars(test_1, 10), sorted(test_1)[0:10])
 ```
 
-### Merge sorted arrays
+### Sort an almost sorted array
+
+**Problem statement**
+
+Sort an almost sorted array. An almost sorted array is one in which each element is at most k away from it's position.
+
+**Approach**
+
+Since each element is at most k away from it's actual spot, we can use a min heap with k values containing all of the valid elements for our particular index. If we advance through the array sequentially, popping the min of these values will give the correct element.
+
+The approach we'll take will be very similar to the K closest stars question described above.
+
+Advance through the array, adding nums to a min heap.
+
+After the heap has at least k elems, pop min into our result.
+
+**Solution**
+
+```python
+def sort_approximately_sorted_array(sequence: Iterator[int],
+                                    k: int) -> List[int]:
+    min_heap = []
+    ans = []
+
+    for i, num in enumerate(sequence):
+        heapq.heappush(min_heap, num)
+
+        if len(min_heap) > k:
+            ans.append(heapq.heappop(min_heap))
+
+    while min_heap:
+        ans.append(heapq.heappop(min_heap))
+
+    return ans
+```
 
 ## Hashmaps
 
