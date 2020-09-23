@@ -31,322 +31,511 @@ This guide includes Anki cards for each major topic (theory + problems) that can
 
 # Algorithms
 
-## Divide and Conquer
+## Backtracking / Comprehensive Search
 
-Divide and conquer involves dividing the problem into smaller parts, solving those individually, and then combining them back together for a meaningful result. Merge sort is a classic example of divide and conquer.
+From Algorithm Design Manual, 7.1
 
-[This set of slides](https://www.ics.uci.edu/~goodrich/teach/cs260P/notes/DivideAndConquer.pdf) goes over merge sort and recurrence relations in divide and conquer problems.
+> Backtracking is a systematic way to iterate through all the possible configurations of a search space. These configurations may represent all possible arrangements of objects (permutations), or all possible ways of building a collection of them (subsets).
 
-Formally:
+> What these problems have in common is that we must generate each possible configuration exactly once. Avoiding both repitions and missing configurations means that we must define a systematic generation order.
 
-- Divide the problem instance I into smaller subproblems `I1...In`
-- Solve `I1... In` recursively to get solutions `S1...Sn`
-- Use `S1...Sn` to compute `S`.
+> We will model our combinatorial search solution as a vector a = <a1, ... , an> where each element ai is selected from a finite ordered set Si. Such a vector might represent an arrangement where ai contains the ith element in the permutation or some subset correspnding to the ith element in the search space, or a sequence of moves in a game or a path in a graph...etc
 
-Let's explore a couple of problems.
+> At each step in the backtracking algorithm, we try to extend a given partial solution a = <a1, ... , ak> by adding another element at the end. Once we extend it, we have to test whether this what we now have is a solution and do something with it. If not, we must continue the search if the partial solution is still potentially extendible to some complete solution.
 
-### Merge-sort
+This creates a tree of partial solutions; where each vertex represents a partial solution. There is an edge from x to y if node y was created by advancing from x. This tree of parital solutions provides an alterantive way to think about backtracking.
 
-A classic divide & conquer algorithm. Merge sort is a recursive algorithm that continually splits a list in half. If the list is empty or has one item, it is sorted by definition (the base case). If the list has more than one item, we split the list and recursively invoke a merge sort on both halves. Once the two halves are sorted, a merge is performed.
+> Backtracking ensures correctness by enumerating all possibilities. It ensures efficiency by never visiting a state more than once.
 
-The basic routine of merge sort:
+This chapter from Skiena's text was a true mind opener for me. Realizing that the solution space of any search related problem can be traversed through one subroutine that gaurentees correctness is pretty cool. The following realization was that many of these problems involve enumerating permutations or creating subsets of the solution space in a directed manner. The subroutines for these generalized backtracking solutions are presented below and can be modified to _many_ problems.
 
-1. Divide the array into two halves
-2. Recursively sort each half
-3. Merge two halves
+### Generalized Backtracking Algorithm
 
-Merging is the process of taking two smaller sorted lists and combining them together into a single, sorted, new list.
-
-The merge subroutine:
+Given the following subroutines, we can use this generalized backtracking algorithm to complete the the questions in this chapter (their usual implementations will also be given).
 
 ```python
-def merge(array, auxillary_array, lo, mid, hi):
-  for k in range(lo, hi + 1):
-    auxillary_array[k] = array[k]
+class Backtrack:
+    # setting up generalization with required subroutines
+    def __init__(self,
+                 is_a_solution,
+                 process_solution,
+                 construct_candidates,
+                 make_move = None,
+                 unmake_move = None,
+                 is_finished = None
+                ):
+        self.is_a_solution = is_a_solution
+        self.process_solution = process_solution
+        self.construct_candidates = construct_candidates
+        self.make_move = make_move
+        self.unmake_move = unmake_move
+        self.is_finished = is_finished
 
-  i, j = lo, mid + 1
-  for k in range(lo, hi + 1):
-    if i > mid:
-      array[k] = auxillary_array[j]
-      j += 1
-    elif j > hi:
-      array[k] = auxillary_array[i]
-      i += 1
-    elif array[j] < array[i]:
-      array[k] = auxillary_array[j]
-      j += 1
-    else:
-      array[k] = auxillary_array[i]
-      i += 1
-```
-
-```python
-def merge_sort(array):
-  aux = [0] * len(array)
-  sort(array, aux, 0, len(array) - 1)
-  return array
-
-def helper(array, auxillary_array, lo, mid, hi):
-  if (hi <= lo) return
-  mid = lo + (hi - lo) / 2
-  sort(a, aux, lo, mid)
-  helper(a, aux, mid+1, hi)
-  helper(a, aux, lo, mid, hi)
-```
-
-### Non-dominated points
-
-We say a point is non-dominated in a set if there is no other point `(x', y')` in the set such that `x <= x'` and `y <= y'`
-
-![Set of points](https://i.imgur.com/YWPJRpo.png)
-
-The non-dominated point set here is `{A, H, I, G, D}`
-
-We can apply divide and conquer here by:
-
-1. Sort the points lexographically (first by x, then by y if x's are equal).
-2. Split the sorted set of points in half
-3. Find non-dominated points in each half
-4. Combine: Using the observation that any non-dominated point on the left with have to be as high or higher than all non-dominated points on the right, we can filter the left points by checking them against any right point and return `[filtered_left, right]`. (we can use the first element in right as the highest because non-dominated point sets non-increasing).
-
-The code looks like this:
-
-```python
-def non_dominated(points):
-  points = sorted(points, key=lambda p: p.x)
-  if len(points) == 1: return {points[0]}
-  pivot = floor(len(points) / 2)
-  left = non_dominated(points[:i])
-  right = non_dominated(points[pivot + 1:])
-  i = 0
-  while i < len(left) and left[i].y > right[0]:
-    i += 1
-  return left[:i] + right
-```
-
-Complexity...
-
-### Find the Kth largest element
-
-The kth largest element in a set `A` is `sorted(A)[n - k]`. The trivial solution is sorting the set and returning the element with `O(nlogn)` time complexity. Sorting is overkill since we don't need all that computation. Using a heap would reduce the time complexity to `O(nlogk)`. This approach is faster, but still does more than what's required (finds the k largest).
-
-A divide and conquer approach leveraging randomization leads to `quick select`.
-
-1. We pick a random pivot
-2. Partition the elements such that the pivot is < the right half and > the left half
-3. Check if the element is kth largest
-4. If no, recurse on half containing the kth largest
-5. If yes, return left[k - 1]
-
-Code:
-
-```python
-def quick_select(arr, k):
-  pivot = random.randint(0, len(arr) - 1)
-  partition1, partition2 = [x for x in array if x > pivot], [x for x in array if x < pivot]
-  if k - 1 == len(partition1):
-    return pivot
-  elif k - 1 < len(partition1):
-    return quick_select(partition1, k)
-  else:
-    return quick_select(partition2, k - len(patition1) - 1)
-```
-
-Comlexity:
-
-Unlike quicksort, there's only one recursive call in each invocation. On average, the pivot will be good about 50% of the time, where a good pivot is one that is within 25th and 75th percentile inclusive. So on average, every other call would have partitions that are of size at most 75% of the array's size. Therefore, on average the size of the subproblem would be reduced by 25% on every other call, which makes this function `O(n) average case`.
-
-The worst case is the same as quick sort `O(n^2)`, however it can become highly unlikely to hit this worst case as n gets larger.
-
-### Search for an element in a circular sorted array
-
-Given a circular sorted array of distinct integers, search for an element k.
-
-For example,
-
-`search_circular_sorted([8, 9, 10, 2, 5, 6], 10) == 2`
-`search_circular_sorted([9, 10, 2, 5, 6, 8], 5) == 3`
-
-There is a non-divide and conquer solution to this that employs a modified binary search with the same time complexity `O(logn)`.
-
-The divide and conquer solution is similar but solves the problem recursively.
-
-```python
-def dnc_search_cyclically_sorted(arr, k):
-    def helper(left, right):
-        mid = (left + right) // 2
-        if right < left:
-            return -1
-        if arr[mid] == k:
-            return mid
-        if arr[mid] <= arr[right]:
-            if arr[mid] < k <= arr[right]:
-                return helper(mid + 1, right)
-            else:
-                return helper(left, mid - 1)
+    # This is the meat and bones
+    def backtrack(self, a, k, input):
+        if self.is_a_solution(a, k, input):
+            self.process_solution(a, k, input)
         else:
-            if arr[left] <= k < arr[mid]:
-                return helper(left, mid - 1)
-            else:
-                return helper(mid + 1, right)
+            k += 1
+            candidates = self.construct_candidates(a, k, input)
+            for c in candidates:
+                a[k] = c
 
-    return helper(0, len(arr) - 1)
+                if self.make_move:
+                    self.make_move(a, k, input)
+
+                self.backtrack(a, k, input)
+
+                if self.unmake_move:
+                    self.unmake_move(a, k, input)
+
+                if self.is_finished and self.is_finished(a, k, input):
+                    return
 ```
 
-## Greedy
+### Constructing all subsets
 
-Greedy algorithms are often used for optimization problems, which are problems where the goal is to find a solution that both satisfies the problem constraints, and maximizes/minimizes an objective/profit/cost function.
+A power set of a set S is the set of all subsets of S.
 
-We essentially greedily pick the locally optimal solution at every step in order to determine a globally optimal solution (or approximate).
+In order to come up with a way to generate subsets, we can think about how to enumerate all subsets in {1, ..., n}.
 
-Greedy algorithms do no backtracking or lookahead - they only consider the elements of the choice set at each step. That means they are often faster than algorithms that do backtracking, but the solution is possibly not as good. When implementing greedy algorithms, it is often efficient to do a preprocessing step to compute the local evaluation criterion, like sorting the elements of an array.
+Using concrete examples:
 
-For some greedy algorithms, it is possible to always obtain an optimal solution. However, these proofs are often rather difficult.
+```
+Let num_subsets(i) represent the number of subsets for the set {1, ..., i}
 
-### Compute optimum assignment of tasks
+num_subsets(1) = 2
+    {}, {1}
 
-Source: EPI 17.1, page 282
+num_subsets(2) = 4
+    {}, {1}, {2}, {1, 2}
 
-Consider a problem of assigning tasks to workers. Each worker must be assigned exactly two tasks. Each task takes a fixed amount of time. Tasks are independent. Any task can be assigned to any worker.
+num_subsets(3) = 8
+    {}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}
 
-We want to minimize the amount of time it takes for all tasks to be completed.
+...
 
-Example:
-Tasks: [5, 2, 1, 6, 4, 4]
-Assignment: [[5,2], [1,6], [4,4]] (total task time = 8 hours)
-
-A simple greedy heuristic would be to pair the longest task with the shortest one in order to minimize total task time for that worker. This intuition ends up leading to an optimal solution.
-
-Code:
-
-```python
-def optimum_task_assignment(durations):
-  durations.sort()
-  return [
-    [task_durations[i], task_durations[~i]],
-    for i in range(len(task_durations) // 2)
-  ]
+num_subsets(n) = 2^n
+    {}, {1}, {2}, ...  {1, 2, ..., n - 1}, {1, 2, ..., n}
 ```
 
-### The Interval Covering Problem
+We can see that all subsets leading to the original set include an element that was not in it previously. This lends itself to an easy recurisve solution.
 
-Source: EPI 17.2, page 285
+Particularly, we examine all subsets that include a given element and all subsets that don't include that element. Then, the power set at this step (k) is the union of these two sets.
 
-Consider a foreman responsible for visiting a factory to check on the running tasks. In each visit, he can check on all the tasks taking place at the time of the visit. We want to minimize the number of visits.
+For example, if we have {1, 2, 3}
 
-Given a set of intervals containing start and end times for tasks, return the minimum number of visits required to cover each interval.
+We first generate all subsets that include 1 and union it with all subsets that don't include 1.
 
-Input: [[1,2], [2,3], [3,4], [2,3], [3,4], [4,5]]
-Output: 2
+The next recursive call computes all subsets that include 2 and all subsets that don't include 2.
 
-A greedy approach could be to focous on extreme cases. Consider the interval that ends first, i.e. the interval whose right endpoint is minimum. To cover it, we must pick a number that appears in it. Hence we can eliminate any other intervals covered by it, and repeat for the next right endpoint.
+And so on until we reach the end of the list.
+
+This is how that looks like in code.
+
+**Without generalization**
 
 ```python
-import operator
+def generate_all_subsets(input_set):
+    def generate_helper(to_be_selected, selected_so_far):
+        if to_be_selected == len(input_set):
+            result.append(selected_so_far)
+            return
 
-def find_min_visits(intervals):
-    intervals.sort(key=lambda x: x[1])
-    last_visit_time = intervals[0][1]
-    num_visits = 1
-    for interval in intervals:
-        if interval[0] > last_visit_time:
-            last_visit_time = interval[1]
-            num_visits += 1
+        generate_helper(to_be_selected + 1, selected_so_far)
+        generate_helper(to_be_selected + 1, selected_so_far + [input_set[to_be_selected]])
 
-    return num_visits
+
+    result = []
+    generate_helper(0, [])
+    return result
 ```
 
-Complexity: O(nlogn) - Dominated by sort
+Using the generalized algorithm we can define the candidates as either `[]` or `k`. Indicating the inclusion or exclusion of this element from the complete solution.
 
-### Maximum Sum Circular Subarray
-
-Given a circular array of integers, find subarray in it which has the largest sum.
-
-For example,
-
-Input: {2, 1, -5, 4, -3, 1, -3, 4, -1}
-Output: Subarray with the largest sum is {4, -1, 2, 1} with sum 6.
-
-Input: {-3, 1, -3, 4, -1, 2, 1, -5, 4}
-Output: Subarray with the largest sum is {4, -1, 2, 1} with sum 6.
-
-Let's first try to find the max subarray of a regular array. The brute-force algorithm would be to have a nested loop and determine the max at each index, return the total max.
-
-The brute force approach leads to the insight that we're trying to find the max index somehow. We can alter this problem slightly and look for the max ending at an index i. This value can be calculated using the previous max:
-
-`max_at_i = max(max_at_i-1, arr[i])`
-
-This leads to a linear solution:
+**With generalization**
 
 ```python
-def max_subarray(arr):
-    max_sum = 0
-    max_at_i = arr[0]
-    for i in range(1, len(arr)):
-        max_at_i = max(max_at_i + arr[i], arr[i])
-        max_sum = max(max_sum, max_at_i)
+def gen_subsets_is_a_solution(a, k, n):
+    return n - 1 == k
 
-    return max_sum
+def gen_subsets_construct_candidates(a, k, n):
+    return [None, k]
+
+def gen_subsets_process_solution(a, k, n):
+    print([i for i in a if i is not None])
 ```
 
-To find the max of a circular subarray, we can just concatenate the array to itself and find use the max_subarray routine.
+Then, we can call the backtrack subroutine
 
 ```python
-def max_subarray_circular(arr):
-    return max_subarray(arr + arr)
+generate_subsets_backtrack = Backtrack(
+                                gen_subsets_is_a_solution,
+                                gen_subsets_process_solution,
+                                gen_subsets_construct_candidates,
+                            )
+n = 5
+soln_space = [0] * n
+generate_subsets_backtrack.backtrack(soln_space, -1, n)
 ```
 
-### Container with maximum water
+### Constructing all permutations
 
-Let us suppose we have a two dimensional plane where the the length of lines determine the height of a container. We need to determine the maximum capacity of water this kind of an arrangement can hold. The heights are represented by an array.
+A similar enumeration argument can be used to give us an intuition on how to construct all permutations.
 
-Input: [1, 8, 6, 2, 5, 4, 8, 3, 7]
+To enumerate all permatutions of length 5, we consider the number of options for the first position in the permutation, followed by the next, and so on until the very last element.
 
-Output: 49
+```
+n = 5
+Number of options for:
+1st element: 5
+2nd element: 4
+3rd element: 3
+4th element: 2
+5th element: 1
 
-![Max water](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg)
+Total possibilities = 5x4x3x2x1 = 5!
+```
 
-The brute force solution is to have a nested for loop find the max water starting at an index i.
+This leads to a natural recursive solution.
+
+1. Generate candidates for the current element. If this is the first element, this will be the entire array. For the rest, it is a subset of size `n - k` (indexed 0)
+2. Iterate through the list of candidates, and fix one to the current position.
+3. With this element fixed, recurse to the next element `k + 1`
+4. Once `k == n - 1`, stop and print the current permutation
+
+Once the recursive calls return and backtrack, the rest of the candidate set will be considered for each step in the recursion. Hence, this covers all possible permutations.
+
+**Without generalization**
 
 ```python
-def max_area(height: List[int]) {
-    max_area = 0
+def generate_permutations(A):
+    def generate(i):
+        if i == len(A) - 1:
+            result.append(A.copy())
+            return
 
-    for i in range(len(height)):
-        for j in range(i + 1, len(height)):
-          max_area = max(max_area, Math.min(height[i], height[j]) * (j - i))
+        for j in range(i, len(A)):
+            A[i], A[j] = A[j], A[i]
+            generate(i + 1)
+            A[i], A[j] = A[j], A[i]
 
-    return max_area
+    result = []
+    generate(0)
+    return result
+```
+
+**With generalization**
+
+```python
+def gen_permutations_is_a_solution(a, k, n):
+    return n - 1 == k
+
+def gen_permutations_construct_candidates(a, k, n):
+    candidates = []
+    in_perm = [False] * n
+
+    for i in range(k):
+        in_perm[a[i]] = True
+
+    for i in range(n):
+        if not in_perm[i]:
+            candidates.append(i)
+
+    return candidates
+
+def gen_permutations_process_solution(a, k, n):
+    print([i + 1 for i in a])
+```
+
+Then, we can call the backtrack subroutine
+
+```python
+gen_permutations_backtrack = Backtrack(
+                                gen_permutations_is_a_solution,
+                                gen_permutations_process_solution,
+                                gen_permutations_construct_candidates,
+                            )
+n = 5
+soln_space = [-1] * n
+gen_permutations_backtrack.backtrack(soln_space, -1, n)
+```
+
+### Tower of Hanoi
+
+EPI 15.1 - Tower of Hanoi, see [problem description here](https://en.wikipedia.org/wiki/Tower_of_Hanoi)
+
+```python
+def solve_tower_of_hanoi(n):
+    def helper(curr_n, source, to, intermediary):
+        if curr_n <= 0:
+            return
+        # move n - 1 rings to second peg
+        helper(curr_n - 1, source, intermediary, to)
+        # move nth ring to third peg
+        pegs[to].append(pegs[source].pop())
+        # move n - 1 rings from second peg to third using first as intermediary
+        helper(curr_n - 1, intermediary, to, source)
+
+    pegs = [list(reversed(range(1, n + 1)))] + [[]] + [[]]
+    helper(n, 0, 2, 1)
+    return pegs
+```
+
+### Attacking queens
+
+Generate all non attacking placements of n-queens in an nxn board. Also known as the [Eight Queens Puzzle](https://en.wikipedia.org/wiki/Eight_queens_puzzle).
+
+This is a classic backtracking problem as there is no other way to compute the results than comprehensive search.
+
+```python
+def non_attacking_queens(n):
+    def non_attacking_helper(row):
+        if row >= n:
+            result.append(partial_result.copy())
+
+        for col in range(n):
+            if all(
+                    abs(c - col) not in (0, row - i)
+                    for i, c in enumerate(partial_result[:row])):
+                partial_result[row] = col
+                non_attacking_helper(row + 1)
+
+
+    result = []
+    partial_result = [0] * n
+    non_attacking_helper(0)
+    return result
+
+assert non_attacking_queens(4) == [[1, 3, 0, 2], [2, 0, 3, 1]]
+```
+
+### Phone Mnemonics
+
+Older phones had numbers mapped to keys, allowing you to create mnemonics to help remember them. Given a phone number, determine all the possible mnemonics that can be generated from it.
+
+Key mappings are given below.
+
+The format follow very closely to the previous problem.
+
+```python
+KEYS = {
+    "2": "abc",
+    "3": "def",
+    "4": "ghi",
+    "5": "jkl",
+    "6": "mno",
+    "7": "pqrs",
+    "8": "tuv",
+    "9": "wxyz"
 }
+
+def phone_mnemonic(number):
+    def mnemonic_helper(i):
+        if i >= len(number):
+            results.append("".join(partial_result))
+            return
+
+        if number[i] in KEYS:
+            for char in KEYS[number[i]]:
+                partial_result[i] = char
+                mnemonic_helper(i + 1)
+
+    results = []
+    partial_result = [0] * len(number)
+    mnemonic_helper(0)
+    return results
+
+assert "acronym" in phone_mnemonic("2276696")
 ```
 
-The nested loop can be avoided with a heuristic for moving either left or right when considering start and end indices.
+### Generate all subsets of size k
 
-This works because if we move away from a larger tower then we'll definitely decrease our max area since the width decreases and we are limited in area by the height of the shorter towe. Hence, move away from the shorter one.
+Given n and k, generate all subsets of size k in [1, 2, ..., n].
+
+The brute force approach is to generate all possible subsets and filter for sized k subsets. This obviously performs more work than necessary as it continues subset computation for invalid subsets.
+
+We can make this more efficient by implementing the same heuristic as the previous question. i.e. generate all subsets of size k that include some element and all subsets of size k that don't.
+
+For elements that include the element, the remaining size becomes k - 1. The size remains k for the subset that does not include the element.
+
+Instead of using recursive calls to generate all subsets including and not including an element, we'll iterate through the remaining elements and include / disclude them while fixing the current element.
+
+This will make it easier to add exactly k elements.
 
 ```python
-def max_area(height: List[int]) -> int:
-    left, right = 0, len(height) - 1
-    max_area = 0
+def generate_subsets_size_k(n, k):
+    def generate_helper(offset, partial_result):
+        if len(partial_result) == k:
+            result.append(partial_result.copy())
+            return
 
-    while (left < right):
-        area = min(height[left], height[right]) * (right - left)
-        max_area = max(max_area,  area)
-        if height[left] < height[right]:
-            left += 1
-        else:
-            right -= 1
+        num_remaining = k - len(partial_result)
+        i = offset
+        while i <= n and num_remaining <= n - i + 1:
+            generate_helper(offset + 1, partial_result + [i])
+            i += 1
 
-    return max_area
+    result = []
+    generate_helper(1, [])
+    return result
 ```
 
-### Maximum Subarray - Divide & Conquer
+### Generate strings of matched parens
 
-### Subarray Sum - Divid & Conquer
+Given an integer k, return all strings with tahat number of matched pair of parens
+
+The brute force approach would be to generate all possible strings with parens of size 2k, and filter for strings with valid parens.
+
+This approach does too much work because it continues computing strings that could never be a valid parens.
+
+We can perform a more directed search by using the heuristic that at every step of the generation, our partial result has the possibility of becoming a valid string.
+
+We can break this down into cases:
+
+1. Can we add a left paren? If so, add and continue.
+2. Can we add a right paren? If so, add and continue.
+
+In order to answer these questions, we can keep track of how many left parens are remaining and how many right parens are remaining.
+
+```python
+def generate_matched_parens(k):
+    def generate_helper(num_left_parens_remaining, num_right_parens_remaining, partial_result, result = []):
+        if num_left_parens_remaining > 0:
+            generate_helper(num_left_parens_remaining - 1, num_right_parens_remaining, partial_result + '(')
+
+        if num_left_parens_remaining < num_right_parens_remaining:
+            generate_helper(num_left_parens_remaining, num_right_parens_remaining - 1, partial_result + ')')
+
+        if not num_right_parens_remaining:
+            result.append(partial_result)
+
+        return result
+
+    return generate_helper(k, k, "")
+```
+
+### Generate palindromic decompositions
+
+Given a string s, compute all palindromic decompositions of s.
+
+The brute force approach is to compute all possible decompositions of s and filter for palindromic ones (see a pattern here?)
+
+This does too much computation because it continues computing decompositions that aren't palindromic.
+
+We can perform a more directed search by only continuing with decompositions that are palindromic.
+
+So we'll branch off only when we've gotten a valid palindromic decomposition.
+
+```python
+def generate_palindromic_decomps(input_str):
+    def generate_helper(offset, partial_result):
+        if offset == len(input_str):
+            result.append(partial_result.copy())
+            return
+
+        for i in range(offset + 1, len(input_str) + 1):
+            prefix = input_str[offset:i]
+            if prefix == prefix[::-1]: # prefix == reverse(prefix)
+                generate_helper(i, partial_result + [prefix])
+
+
+    result = []
+    generate_helper(0, [])
+    return result
+```
+
+### Generate binary trees
+
+Generate all binary trees with n nodes.
+
+We can perform a directed search by computing all left subtrees of size i and right subtrees of n - i for i in 1 -> n. This can be done without a helper function.
+
+```python
+def generate_binary_trees(n):
+    if n == 0:
+        return [None]
+
+    result = []
+
+    for i in range(n):
+        left_subtrees = generate_binary_trees(i)
+        right_subtrees = generate_binary_trees(n - i - 1)
+        result += [
+            BinaryTreeNode(0, left, right)
+            for left in left_subtrees
+            for right in right_subtrees
+        ]
+
+    return result
+```
+
+### Sudoku solver
+
+Given a partially completed sudoku board, solve the board if possible.
+
+The brute force approach is to try every combination of board completions and filter for the ones that are valid.
+
+This approach does too much work because it does not stop when there is an invalid board.
+
+A more directed search could only continue with valid boards until the board is complete. We can use the fact that our partial result is a valid board to only check new additions for validity instead of the entire board.
+
+### Compute gray code
+
+Write a program that takes n and returns an n-bit [Gray Code](https://en.wikipedia.org/wiki/Gray_code)
+
+The brute force approach would be to enumerate all permuations of 0, ..., 2^n - 1 and stop once we find a gray code.
+
+This approach does too much work because it continues with permutations that cannot be gray codes.
+
+A more directed approach would be to implement a heuristic that creates a partial valid value at every step. We can do this by, starting of with [0000] (if n = 4) and try changing 1 bit to find the next num that is not already in the set. So [0000, 0001, ...].
+
+```python
+def gray_code(n):
+    num_elems = 2**n
+
+    def directed_search(partial_result):
+        def differs_by_one(x, y):
+            bit_difference = x ^ y
+            return bit_difference and not (bit_difference & (bit_difference - 1))
+
+        if len(partial_result) == num_elems:
+            return differs_by_one(result[0], result[-1])
+
+        for i in range(n):
+            previous_code = result[-1]
+            candidate_next_code = previous_code ^ (1 << i)
+            if candidate_next_code not in partial_result:
+                partial_result.add(candidate_next_code)
+                result.append(candidate_next_code)
+                if directed_search(partial_result):
+                    return True
+
+                del result[-1]
+                partial_result.remove(candidate_next_code)
+
+        return False
+
+    result = [0]
+    directed_search(set([0]))
+    return result
+```
 
 ## Dynamic Programming
 
 DP is a generalized technique that enables solving searching, counting and optimization problems by breaking them down into subproblems. It's great for tabulation or memoization when there isn't a clearly efficient solution.
+
+From Algorithm Design Manual, Chapter 8
+
+> Algorithms for optimization problems require proof that they always return the best possiible solution. Greedy algorithms that make the best local decision at each step are typically efficient but usually do not guarentee global optimality. Exhaustive search algorithms that try all possibilities and select the best always produce the optimum result, but usually at a prohibitive cost in terms of time complexity.
+
+> Dynamic programming combines the best of both worlds. It gives us a way to design custom algorithms that systematically search all possibilities while storing results to avoid recomputing.
+
+Skiena recommends starting with the recursive algorithm or definition first, and then optimizing with DP.
+
+> DP is generally the right method for optimization problems on combinatorial objects that have an inherent left to right order among components.
+
+> Left to right objects include character strings, rooted trees, polygons and integer sequences
 
 [Geeks for geeks](https://www.geeksforgeeks.org/optimal-substructure-property-in-dynamic-programming-dp-2/) provides a way of identifying DP problems.
 
@@ -825,30 +1014,89 @@ You have one pointer at the back and one at the front. You move either or both a
 
 ## Graph Theory
 
-### Searching
+From Algorithm Design Manual, 5.1
 
-#### Maze traversal (DFS)
+> Graph theory provides a language for talking about the properties of relationships, and it is amazing how often messy applied problems have simple descriptions and solutions
+
+Creating models using graph analogies allows us to to systematically search the solution space using the relationship modeled edges and nodes. The backtracking model essentially applies a form of depth first search to conduct a comprehensive search. However, if our problem is modeled well enough, searching the entirety of the solution space is not necessary.
+
+This leads to the fundamental problem in graph theory: Visiting every edge and vertex in a systematic way.
+
+### Breadth First Search
+
+BFS conducts a systematic search through the graph by maintaining a queue of undiscovered nodes. This set of nodes is continously dequed and enqueued (when more undiscovered nodes are encountered) until it is empty (i.e. all nodes are discovered).
+
+This is the basic subroutine for BFS
+
+```python
+bfs(g, start):
+    queue = [start]
+    discovered[start] = True
+
+    while queue is not empty:
+        v = deque(queue)
+        processed[v] = True
+        p = g.edges[v]
+        while p:
+            if not processed[p]:
+                process(v, p)
+            else:
+                enqueue(queue, p)
+                discovered[p] = True
+            p = p.next
+```
+
+Common applications for BFS include
+
+- Path finding: Due to the search order of BFS, it will always find the shortest path from the source to a target vertex. This is because vertices proccessed in a first in, first out order. Hence, the starting node's neighbors will always be processed first, followed by the first neighbor's neighbors, second neighbor's neighbors and so on.
+
+- Connected components: An amazing number of seemingly complicated problems reduce to finding or counting connected components (solving Rubik's cube, Sudoku). This can be done by iterating through all of the graph's vertices and running BFS it the current vertex has not yet been discovered (by previous run of BFS). Every undiscovered vertex in this loop will be a different connected component.
+
+- Two-coloring Graphs: Identifying bipartite graphs (graphs that can be colored with 2 colors such that neighboring vertices do not share the same color) can be done with BFS since it processes vertices the same distance from the root sequentially. Hence if a child vertex with the same color as it's parent is found on the search path, it cannot be bipartite.
+
+### Depth First Search
+
+DFS performs a systematic graph traversal through a stack; hence vertices are processed in a last in, first out fashion. A vertex's neighbor is processed completely before it returns back to process the rest of its siblings. This lends itself it a neat recursive implementation.
+
+```python
+dfs(g, v):
+    if (is_finished(g, v)):
+        return
+
+    discovered[v] = True
+    process_vertex_before(v)
+
+    p = g.edges[v]
+    while p:
+        if not discovered[p]:
+            process_edge(v, p)
+            dfs(g, p)
+        elif not processed[p]:
+            process_edge(v, p) # cycle found
+        if is_finished(g, v, p):
+            return
+        p = p.next
+
+    process_vertex_after(v)
+    processed[v] = True
+
+```
+
+Common applications of DFS include
+
+- Finding cycles: Cycles can be found with DFS if an already discovered (but not yet processed) vertex is encountered. A discovered but not processed vertex, v0, entails that v0 has begun its DFS but not yet completed it. In fact, it is in the process of that search as another vertex, v1, is found that has an edge leading back to it. Hence, this must be a cycle.
+
+- Articulation point finding: An articulation point is a vertex with the property that if removed, will disconnect a connected component (a graph with connectivity of 1).
+
+DFS can be used to identify articulation points as it partitions edges into tree edges (a connection to a previously undiscovered node), and back edges (a connection to an ancestor). Any vertices that lie between an ancestor connected by a back edge and a chain of tree edges cannot be an articulation point because the back edge guarentees connectivity if they are removed.
+
+A vertex that does not have this property and is not a leaf is then an articulation point.
+
+### Maze traversal (DFS)
 
 Given a 2D array of black and white entries representing a mazy with designated entrance and exit points, find a path from the entrance to the exit, if one exists.
 
 The question does not ask for shortest possible path, so we can use DFS since the implementation is simpler.
-
-This is a great base problem for DFS. Most DFS's follow a similar pattern in implementation.
-
-```python
-def dfs(graph, s, t):
-    ## Check if search is invalid
-
-    ## Update paths travelled
-
-    ## Check if search has ended
-        ## return True
-
-    ## Search neighbors
-        ## return True if any of the neighbors return True
-
-    ## return False
-```
 
 Let's see in this in action with a maze traversal.
 
@@ -1235,479 +1483,6 @@ assert graph.dijkstra("a", "y") == collections.deque([])
 ### Matching
 
 ### Maximum Flow
-
-## Backtracking / Comprehensive Search
-
-From Algorithm Design Manual, 7.1
-
-> Backtracking is a systematic way to iterate through all the possible configurations of a search space. These configurations may represent all possible arrangements of objects (permutations), or all possible ways of building a collection of them (subsets).
-
-> What these problems have in common is that we must generate each possible configuration exactly once. Avoiding both repitions and missing configurations means that we must define a systematic generation order.
-
-> We will model our combinatorial search solution as a vector a = <a1, ... , an> where each element ai is selected from a finite ordered set Si. Such a vector might represent an arrangement where ai contains the ith element in the permutation or some subset correspnding to the ith element in the search space, or a sequence of moves in a game or a path in a graph...etc
-
-> At each step in the backtracking algorithm, we try to extend a given partial solution a = <a1, ... , ak> by adding another element at the end. Once we extend it, we have to test whether this what we now have is a solution and do something with it. If not, we must continue the search if the partial solution is still potentially extendible to some complete solution.
-
-This creates a tree of partial solutions; where each vertex represents a partial solution. There is an edge from x to y if node y was created by advancing from x. This tree of parital solutions provides an alterantive way to think about backtracking.
-
-> Backtracking ensures correctness by enumerating all possibilities. It ensures efficiency by never visiting a state more than once.
-
-This chapter from Skiena's text was a true mind opener for me. Realizing that the solution space of any search related problem can be traversed through one subroutine that gaurentees correctness is pretty cool. The following realization was that many of these problems involve enumerating permutations or creating subsets of the solution space in a directed manner. The subroutines for these generalized backtracking solutions are presented below and can be modified to _many_ problems.
-
-### Generalized Backtracking Algorithm
-
-Given the following subroutines, we can use this generalized backtracking algorithm to complete the the questions in this chapter (their usual implementations will also be given).
-
-```python
-class Backtrack:
-    # setting up generalization with required subroutines
-    def __init__(self,
-                 is_a_solution,
-                 process_solution,
-                 construct_candidates,
-                 make_move = None,
-                 unmake_move = None,
-                 is_finished = None
-                ):
-        self.is_a_solution = is_a_solution
-        self.process_solution = process_solution
-        self.construct_candidates = construct_candidates
-        self.make_move = make_move
-        self.unmake_move = unmake_move
-        self.is_finished = is_finished
-
-    # This is the meat and bones
-    def backtrack(self, a, k, input):
-        if self.is_a_solution(a, k, input):
-            self.process_solution(a, k, input)
-        else:
-            k += 1
-            candidates = self.construct_candidates(a, k, input)
-            for c in candidates:
-                a[k] = c
-
-                if self.make_move:
-                    self.make_move(a, k, input)
-
-                self.backtrack(a, k, input)
-
-                if self.unmake_move:
-                    self.unmake_move(a, k, input)
-
-                if self.is_finished and self.is_finished(a, k, input):
-                    return
-```
-
-### Constructing all subsets
-
-A power set of a set S is the set of all subsets of S.
-
-In order to come up with a way to generate subsets, we can think about how to enumerate all subsets in {1, ..., n}.
-
-Using concrete examples:
-
-```
-Let num_subsets(i) represent the number of subsets for the set {1, ..., i}
-
-num_subsets(1) = 2
-    {}, {1}
-
-num_subsets(2) = 4
-    {}, {1}, {2}, {1, 2}
-
-num_subsets(3) = 8
-    {}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}
-
-...
-
-num_subsets(n) = 2^n
-    {}, {1}, {2}, ...  {1, 2, ..., n - 1}, {1, 2, ..., n}
-```
-
-We can see that all subsets leading to the original set include an element that was not in it previously. This lends itself to an easy recurisve solution.
-
-Particularly, we examine all subsets that include a given element and all subsets that don't include that element. Then, the power set at this step (k) is the union of these two sets.
-
-For example, if we have {1, 2, 3}
-
-We first generate all subsets that include 1 and union it with all subsets that don't include 1.
-
-The next recursive call computes all subsets that include 2 and all subsets that don't include 2.
-
-And so on until we reach the end of the list.
-
-This is how that looks like in code.
-
-**Without generalization**
-
-```python
-def generate_all_subsets(input_set):
-    def generate_helper(to_be_selected, selected_so_far):
-        if to_be_selected == len(input_set):
-            result.append(selected_so_far)
-            return
-
-        generate_helper(to_be_selected + 1, selected_so_far)
-        generate_helper(to_be_selected + 1, selected_so_far + [input_set[to_be_selected]])
-
-
-    result = []
-    generate_helper(0, [])
-    return result
-```
-
-Using the generalized algorithm we can define the candidates as either `[]` or `k`. Indicating the inclusion or exclusion of this element from the complete solution.
-
-**With generalization**
-
-```python
-def gen_subsets_is_a_solution(a, k, n):
-    return n - 1 == k
-
-def gen_subsets_construct_candidates(a, k, n):
-    return [None, k]
-
-def gen_subsets_process_solution(a, k, n):
-    print([i for i in a if i is not None])
-```
-
-Then, we can call the backtrack subroutine
-
-```python
-generate_subsets_backtrack = Backtrack(
-                                gen_subsets_is_a_solution,
-                                gen_subsets_process_solution,
-                                gen_subsets_construct_candidates,
-                            )
-n = 5
-soln_space = [0] * n
-generate_subsets_backtrack.backtrack(soln_space, -1, n)
-```
-
-### Constructing all permutations
-
-A similar enumeration argument can be used to give us an intuition on how to construct all permutations.
-
-To enumerate all permatutions of length 5, we consider the number of options for the first position in the permutation, followed by the next, and so on until the very last element.
-
-```
-n = 5
-Number of options for:
-1st element: 5
-2nd element: 4
-3rd element: 3
-4th element: 2
-5th element: 1
-
-Total possibilities = 5x4x3x2x1 = 5!
-```
-
-This leads to a natural recursive solution.
-
-1. Generate candidates for the current element. If this is the first element, this will be the entire array. For the rest, it is a subset of size `n - k` (indexed 0)
-2. Iterate through the list of candidates, and fix one to the current position.
-3. With this element fixed, recurse to the next element `k + 1`
-4. Once `k == n - 1`, stop and print the current permutation
-
-Once the recursive calls return and backtrack, the rest of the candidate set will be considered for each step in the recursion. Hence, this covers all possible permutations.
-
-**Without generalization**
-
-```python
-def generate_permutations(A):
-    def generate(i):
-        if i == len(A) - 1:
-            result.append(A.copy())
-            return
-
-        for j in range(i, len(A)):
-            A[i], A[j] = A[j], A[i]
-            generate(i + 1)
-            A[i], A[j] = A[j], A[i]
-
-    result = []
-    generate(0)
-    return result
-```
-
-**With generalization**
-
-```python
-def gen_permutations_is_a_solution(a, k, n):
-    return n - 1 == k
-
-def gen_permutations_construct_candidates(a, k, n):
-    candidates = []
-    in_perm = [False] * n
-
-    for i in range(k):
-        in_perm[a[i]] = True
-
-    for i in range(n):
-        if not in_perm[i]:
-            candidates.append(i)
-
-    return candidates
-
-def gen_permutations_process_solution(a, k, n):
-    print([i + 1 for i in a])
-```
-
-Then, we can call the backtrack subroutine
-
-```python
-gen_permutations_backtrack = Backtrack(
-                                gen_permutations_is_a_solution,
-                                gen_permutations_process_solution,
-                                gen_permutations_construct_candidates,
-                            )
-n = 5
-soln_space = [-1] * n
-gen_permutations_backtrack.backtrack(soln_space, -1, n)
-```
-
-### Attacking queens
-
-Generate all non attacking placements of n-queens in an nxn board. Also known as the [Eight Queens Puzzle](https://en.wikipedia.org/wiki/Eight_queens_puzzle).
-
-This is a classic backtracking problem as there is no other way to compute the results than comprehensive search.
-
-These types of searches will follow a pattern similar to DFS.
-
-Recursive search that has a terminating condition and cycles through all next available possibilities until all valid results are found.
-
-```python
-def non_attacking_queens(n):
-    def non_attacking_helper(row):
-        if row >= n:
-            result.append(partial_result.copy())
-
-        for col in range(n):
-            if all(
-                    abs(c - col) not in (0, row - i)
-                    for i, c in enumerate(partial_result[:row])):
-                partial_result[row] = col
-                non_attacking_helper(row + 1)
-
-
-    result = []
-    partial_result = [0] * n
-    non_attacking_helper(0)
-    return result
-
-assert non_attacking_queens(4) == [[1, 3, 0, 2], [2, 0, 3, 1]]
-```
-
-### Phone Mnemonics
-
-Older phones had numbers mapped to keys, allowing you to create mnemonics to help remember them. Given a phone number, determine all the possible mnemonics that can be generated from it.
-
-Key mappings are given below.
-
-The format follow very closely to the previous problem.
-
-```python
-KEYS = {
-    "2": "abc",
-    "3": "def",
-    "4": "ghi",
-    "5": "jkl",
-    "6": "mno",
-    "7": "pqrs",
-    "8": "tuv",
-    "9": "wxyz"
-}
-
-def phone_mnemonic(number):
-    def mnemonic_helper(i):
-        if i >= len(number):
-            results.append("".join(partial_result))
-            return
-
-        if number[i] in KEYS:
-            for char in KEYS[number[i]]:
-                partial_result[i] = char
-                mnemonic_helper(i + 1)
-
-    results = []
-    partial_result = [0] * len(number)
-    mnemonic_helper(0)
-    return results
-
-assert "acronym" in phone_mnemonic("2276696")
-```
-
-### Generate all subsets of size k
-
-Given n and k, generate all subsets of size k in [1, 2, ..., n].
-
-The brute force approach is to generate all possible subsets and filter for sized k subsets. This obviously performs more work than necessary as it continues subset computation for invalid subsets.
-
-We can make this more efficient by implementing the same heuristic as the previous question. i.e. generate all subsets of size k that include some element and all subsets of size k that don't.
-
-For elements that include the element, the remaining size becomes k - 1. The size remains k for the subset that does not include the element.
-
-Instead of using recursive calls to generate all subsets including and not including an element, we'll iterate through the remaining elements and include / disclude them while fixing the current element.
-
-This will make it easier to add exactly k elements.
-
-```python
-def generate_subsets_size_k(n, k):
-    def generate_helper(offset, partial_result):
-        if len(partial_result) == k:
-            result.append(partial_result.copy())
-            return
-
-        num_remaining = k - len(partial_result)
-        i = offset
-        while i <= n and num_remaining <= n - i + 1:
-            generate_helper(offset + 1, partial_result + [i])
-            i += 1
-
-    result = []
-    generate_helper(1, [])
-    return result
-```
-
-### Generate strings of matched parens
-
-Given an integer k, return all strings with tahat number of matched pair of parens
-
-The brute force approach would be to generate all possible strings with parens of size 2k, and filter for strings with valid parens.
-
-This approach does too much work because it continues computing strings that could never be a valid parens.
-
-We can perform a more directed search by using the heuristic that at every step of the generation, our partial result has the possibility of becoming a valid string.
-
-We can break this down into cases:
-
-1. Can we add a left paren? If so, add and continue.
-2. Can we add a right paren? If so, add and continue.
-
-In order to answer these questions, we can keep track of how many left parens are remaining and how many right parens are remaining.
-
-```python
-def generate_matched_parens(k):
-    def generate_helper(num_left_parens_remaining, num_right_parens_remaining, partial_result, result = []):
-        if num_left_parens_remaining > 0:
-            generate_helper(num_left_parens_remaining - 1, num_right_parens_remaining, partial_result + '(')
-
-        if num_left_parens_remaining < num_right_parens_remaining:
-            generate_helper(num_left_parens_remaining, num_right_parens_remaining - 1, partial_result + ')')
-
-        if not num_right_parens_remaining:
-            result.append(partial_result)
-
-        return result
-
-    return generate_helper(k, k, "")
-```
-
-### Generate palindromic decompositions
-
-Given a string s, compute all palindromic decompositions of s.
-
-The brute force approach is to compute all possible decompositions of s and filter for palindromic ones (see a pattern here?)
-
-This does too much computation because it continues computing decompositions that aren't palindromic.
-
-We can perform a more directed search by only continuing with decompositions that are palindromic.
-
-So we'll branch off only when we've gotten a valid palindromic decomposition.
-
-```python
-def generate_palindromic_decomps(input_str):
-    def generate_helper(offset, partial_result):
-        if offset == len(input_str):
-            result.append(partial_result.copy())
-            return
-
-        for i in range(offset + 1, len(input_str) + 1):
-            prefix = input_str[offset:i]
-            if prefix == prefix[::-1]: # prefix == reverse(prefix)
-                generate_helper(i, partial_result + [prefix])
-
-
-    result = []
-    generate_helper(0, [])
-    return result
-```
-
-### Generate binary trees
-
-Generate all binary trees with n nodes.
-
-We can perform a directed search by computing all left subtrees of size i and right subtrees of n - i for i in 1 -> n. This can be done without a helper function.
-
-```python
-def generate_binary_trees(n):
-    if n == 0:
-        return [None]
-
-    result = []
-
-    for i in range(n):
-        left_subtrees = generate_binary_trees(i)
-        right_subtrees = generate_binary_trees(n - i - 1)
-        result += [
-            BinaryTreeNode(0, left, right)
-            for left in left_subtrees
-            for right in right_subtrees
-        ]
-
-    return result
-```
-
-### Sudoku solver
-
-Given a partially completed sudoku board, solve the board if possible.
-
-The brute force approach is to try every combination of board completions and filter for the ones that are valid.
-
-This approach does too much work because it does not stop when there is an invalid board.
-
-A more directed search could only continue with valid boards until the board is complete. We can use the fact that our partial result is a valid board to only check new additions for validity instead of the entire board.
-
-### Compute gray code
-
-Write a program that takes n and returns an n-bit [Gray Code](https://en.wikipedia.org/wiki/Gray_code)
-
-The brute force approach would be to enumerate all permuations of 0, ..., 2^n - 1 and stop once we find a gray code.
-
-This approach does too much work because it continues with permutations that cannot be gray codes.
-
-A more directed approach would be to implement a heuristic that creates a partial valid value at every step. We can do this by, starting of with [0000] (if n = 4) and try changing 1 bit to find the next num that is not already in the set. So [0000, 0001, ...].
-
-```python
-def gray_code(n):
-    num_elems = 2**n
-
-    def directed_search(partial_result):
-        def differs_by_one(x, y):
-            bit_difference = x ^ y
-            return bit_difference and not (bit_difference & (bit_difference - 1))
-
-        if len(partial_result) == num_elems:
-            return differs_by_one(result[0], result[-1])
-
-        for i in range(n):
-            previous_code = result[-1]
-            candidate_next_code = previous_code ^ (1 << i)
-            if candidate_next_code not in partial_result:
-                partial_result.add(candidate_next_code)
-                result.append(candidate_next_code)
-                if directed_search(partial_result):
-                    return True
-
-                del result[-1]
-                partial_result.remove(candidate_next_code)
-
-        return False
-
-    result = [0]
-    directed_search(set([0]))
-    return result
-```
 
 # Data Structures
 
