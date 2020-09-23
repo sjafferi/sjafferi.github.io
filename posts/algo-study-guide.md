@@ -420,11 +420,6 @@ def edit_distance(str1, str2):
     m = len(str2)
     edit_distances = [[-1] * m for i in range(n)]
     return compute_distances(n - 1, m - 1)
-
-assert edit_distance("saturday", "sunday") == 3
-assert edit_distance("gfcd", "abcd") == 2
-assert edit_distance("gf", "abcd") == 4
-assert edit_distance("", "abcd") == 4
 ```
 
 ### Count number of ways to move down 2d grid
@@ -460,8 +455,6 @@ def num_ways_traverse(A):
 
     num_ways = [[0] * m for _ in range(n)]
     return find_num_ways(n - 1, m - 1)
-
-assert num_ways_traverse([[0] * 5 for _ in range(5)]) == 70
 ```
 
 ### Search for a sequence in a 2D array
@@ -523,17 +516,6 @@ def search_for_sequence(A, P):
         for i in range(len(A))
         for j in range(len(A[i]))
     )
-
-A = [
-    [1, 2, 3],
-    [3, 4, 1],
-    [5, 6, 7]
-]
-assert search_for_sequence(A, [1, 3, 4, 6]) == True
-assert search_for_sequence(A, [6, 4, 1]) == True
-assert search_for_sequence(A, [1, 2, 3, 4]) == False
-assert search_for_sequence(A, [6, 4, 7]) == False
-# assert search_for_sequence(A, [6, 4, 3, 4]) == False -> This one breaks. Can you fix it?
 ```
 
 ### Word break
@@ -665,6 +647,8 @@ def find_smallest_sequentially_covering_subset(paragraph, keywords):
 
     return ans
 ```
+
+### Find the minimum weight path in a triangle
 
 ### Sliding Window Problems
 
@@ -1254,6 +1238,234 @@ assert graph.dijkstra("a", "y") == collections.deque([])
 
 ## Backtracking / Comprehensive Search
 
+From Algorithm Design Manual, 7.1
+
+> Backtracking is a systematic way to iterate through all the possible configurations of a search space. These configurations may represent all possible arrangements of objects (permutations), or all possible ways of building a collection of them (subsets).
+
+> What these problems have in common is that we must generate each possible configuration exactly once. Avoiding both repitions and missing configurations means that we must define a systematic generation order.
+
+> We will model our combinatorial search solution as a vector a = <a1, ... , an> where each element ai is selected from a finite ordered set Si. Such a vector might represent an arrangement where ai contains the ith element in the permutation or some subset correspnding to the ith element in the search space, or a sequence of moves in a game or a path in a graph...etc
+
+> At each step in the backtracking algorithm, we try to extend a given partial solution a = <a1, ... , ak> by adding another element at the end. Once we extend it, we have to test whether this what we now have is a solution and do something with it. If not, we must continue the search if the partial solution is still potentially extendible to some complete solution.
+
+This creates a tree of partial solutions; where each vertex represents a partial solution. There is an edge from x to y if node y was created by advancing from x. This tree of parital solutions provides an alterantive way to think about backtracking.
+
+> Backtracking ensures correctness by enumerating all possibilities. It ensures efficiency by never visiting a state more than once.
+
+This chapter from Skiena's text was a true mind opener for me. Realizing that the solution space of any search related problem can be traversed through one subroutine that gaurentees correctness is pretty cool. The following realization was that many of these problems involve enumerating permutations or creating subsets of the solution space in a directed manner. The subroutines for these generalized backtracking solutions are presented below and can be modified to _many_ problems.
+
+### Generalized Backtracking Algorithm
+
+Given the following subroutines, we can use this generalized backtracking algorithm to complete the the questions in this chapter (their usual implementations will also be given).
+
+```python
+class Backtrack:
+    # setting up generalization with required subroutines
+    def __init__(self,
+                 is_a_solution,
+                 process_solution,
+                 construct_candidates,
+                 make_move = None,
+                 unmake_move = None,
+                 is_finished = None
+                ):
+        self.is_a_solution = is_a_solution
+        self.process_solution = process_solution
+        self.construct_candidates = construct_candidates
+        self.make_move = make_move
+        self.unmake_move = unmake_move
+        self.is_finished = is_finished
+
+    # This is the meat and bones
+    def backtrack(self, a, k, input):
+        if self.is_a_solution(a, k, input):
+            self.process_solution(a, k, input)
+        else:
+            k += 1
+            candidates = self.construct_candidates(a, k, input)
+            for c in candidates:
+                a[k] = c
+
+                if self.make_move:
+                    self.make_move(a, k, input)
+
+                self.backtrack(a, k, input)
+
+                if self.unmake_move:
+                    self.unmake_move(a, k, input)
+
+                if self.is_finished and self.is_finished(a, k, input):
+                    return
+```
+
+### Constructing all subsets
+
+A power set of a set S is the set of all subsets of S.
+
+In order to come up with a way to generate subsets, we can think about how to enumerate all subsets in {1, ..., n}.
+
+Using concrete examples:
+
+```
+Let num_subsets(i) represent the number of subsets for the set {1, ..., i}
+
+num_subsets(1) = 2
+    {}, {1}
+
+num_subsets(2) = 4
+    {}, {1}, {2}, {1, 2}
+
+num_subsets(3) = 8
+    {}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}
+
+...
+
+num_subsets(n) = 2^n
+    {}, {1}, {2}, ...  {1, 2, ..., n - 1}, {1, 2, ..., n}
+```
+
+We can see that all subsets leading to the original set include an element that was not in it previously. This lends itself to an easy recurisve solution.
+
+Particularly, we examine all subsets that include a given element and all subsets that don't include that element. Then, the power set at this step (k) is the union of these two sets.
+
+For example, if we have {1, 2, 3}
+
+We first generate all subsets that include 1 and union it with all subsets that don't include 1.
+
+The next recursive call computes all subsets that include 2 and all subsets that don't include 2.
+
+And so on until we reach the end of the list.
+
+This is how that looks like in code.
+
+**Without generalization**
+
+```python
+def generate_all_subsets(input_set):
+    def generate_helper(to_be_selected, selected_so_far):
+        if to_be_selected == len(input_set):
+            result.append(selected_so_far)
+            return
+
+        generate_helper(to_be_selected + 1, selected_so_far)
+        generate_helper(to_be_selected + 1, selected_so_far + [input_set[to_be_selected]])
+
+
+    result = []
+    generate_helper(0, [])
+    return result
+```
+
+Using the generalized algorithm we can define the candidates as either `[]` or `k`. Indicating the inclusion or exclusion of this element from the complete solution.
+
+**With generalization**
+
+```python
+def gen_subsets_is_a_solution(a, k, n):
+    return n - 1 == k
+
+def gen_subsets_construct_candidates(a, k, n):
+    return [None, k]
+
+def gen_subsets_process_solution(a, k, n):
+    print([i for i in a if i is not None])
+```
+
+Then, we can call the backtrack subroutine
+
+```python
+generate_subsets_backtrack = Backtrack(
+                                gen_subsets_is_a_solution,
+                                gen_subsets_process_solution,
+                                gen_subsets_construct_candidates,
+                            )
+n = 5
+soln_space = [0] * n
+generate_subsets_backtrack.backtrack(soln_space, -1, n)
+```
+
+### Constructing all permutations
+
+A similar enumeration argument can be used to give us an intuition on how to construct all permutations.
+
+To enumerate all permatutions of length 5, we consider the number of options for the first position in the permutation, followed by the next, and so on until the very last element.
+
+```
+n = 5
+Number of options for:
+1st element: 5
+2nd element: 4
+3rd element: 3
+4th element: 2
+5th element: 1
+
+Total possibilities = 5x4x3x2x1 = 5!
+```
+
+This leads to a natural recursive solution.
+
+1. Generate candidates for the current element. If this is the first element, this will be the entire array. For the rest, it is a subset of size `n - k` (indexed 0)
+2. Iterate through the list of candidates, and fix one to the current position.
+3. With this element fixed, recurse to the next element `k + 1`
+4. Once `k == n - 1`, stop and print the current permutation
+
+Once the recursive calls return and backtrack, the rest of the candidate set will be considered for each step in the recursion. Hence, this covers all possible permutations.
+
+**Without generalization**
+
+```python
+def generate_permutations(A):
+    def generate(i):
+        if i == len(A) - 1:
+            result.append(A.copy())
+            return
+
+        for j in range(i, len(A)):
+            A[i], A[j] = A[j], A[i]
+            generate(i + 1)
+            A[i], A[j] = A[j], A[i]
+
+    result = []
+    generate(0)
+    return result
+```
+
+**With generalization**
+
+```python
+def gen_permutations_is_a_solution(a, k, n):
+    return n - 1 == k
+
+def gen_permutations_construct_candidates(a, k, n):
+    candidates = []
+    in_perm = [False] * n
+
+    for i in range(k):
+        in_perm[a[i]] = True
+
+    for i in range(n):
+        if not in_perm[i]:
+            candidates.append(i)
+
+    return candidates
+
+def gen_permutations_process_solution(a, k, n):
+    print([i + 1 for i in a])
+```
+
+Then, we can call the backtrack subroutine
+
+```python
+gen_permutations_backtrack = Backtrack(
+                                gen_permutations_is_a_solution,
+                                gen_permutations_process_solution,
+                                gen_permutations_construct_candidates,
+                            )
+n = 5
+soln_space = [-1] * n
+gen_permutations_backtrack.backtrack(soln_space, -1, n)
+```
+
 ### Attacking queens
 
 Generate all non attacking placements of n-queens in an nxn board. Also known as the [Eight Queens Puzzle](https://en.wikipedia.org/wiki/Eight_queens_puzzle).
@@ -1323,73 +1535,6 @@ def phone_mnemonic(number):
     return results
 
 assert "acronym" in phone_mnemonic("2276696")
-```
-
-### Generate Permutations
-
-Given an array A, generate all permutations of elements in A.
-
-In order to generate all permutations of A, we have to generate all permutations of A[1...n] as well.
-
-Hence, if we pick a candidate for A[0] and then generate all permutations for the rest of the array, we can apply the same logic recursively.
-
-Then, we can swap A[0] with A[1] and find all permutations starting with A[1].
-
-The format of the algorithm follows a similar sort of structure of the above 2, with one key difference, the partial result uses the original array (meaning we must somehow reset the values after computing partial results).
-
-```python
-def generate_permutations(A):
-    def generate(i):
-        if i == len(A) - 1:
-            result.append(A.copy())
-            return
-
-        for j in range(i, len(A)):
-            A[i], A[j] = A[j], A[i]
-            generate(i + 1)
-            A[i], A[j] = A[j], A[i]
-
-    result = []
-    generate(0)
-    return result
-
-assert generate_permutations([5, 3, 6]) == [[5, 3, 6], [5, 6, 3], [3, 5, 6], [3, 6, 5], [6, 3, 5], [6, 5, 3]]
-```
-
-### Generate Power Set
-
-A power set of a set S is the set of all subsets of S.
-
-A common theme for these generation type problems is performing a directed search based on some recursive heuristic. For the previous problem, we generate all permutations by fixing the first element and then generating all permutations for the rest the list.
-
-After you've determined the proper heuristic to perform this directed search, we have to translate that into recursive calls.
-
-For power set generation, a heuristic that works is generating all subsets that include a particular element and all subsets that don't include that element. Then, the power set is the union of the two sets.
-
-For example, if we have {1, 2, 3}
-
-We first generate all subsets that include 1 and union it with all subsets that don't include 1.
-
-This calculation is done recursively, so we continue generation of the rest, updating our partial computation as we go.
-
-The next recursive call computes all subsets that include 2 and all subsets that don't include 2. This computation is done for all subsets that include 1 and all subsets that don't include 1.
-
-And so on until we reach the end of the list.
-
-```python
-def generate_power_set(input_set):
-    def generate_helper(to_be_selected, selected_so_far):
-        if to_be_selected == len(input_set):
-            result.append(selected_so_far)
-            return
-
-        generate_helper(to_be_selected + 1, selected_so_far)
-        generate_helper(to_be_selected + 1, selected_so_far + [input_set[to_be_selected]])
-
-
-    result = []
-    generate_helper(0, [])
-    return result
 ```
 
 ### Generate all subsets of size k
