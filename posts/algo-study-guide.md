@@ -2916,3 +2916,908 @@ def subarray_sum(self, nums: List[int], k: int) -> int:
 
     return num_sums
 ```
+
+# Interview Problems
+
+This section includes harder problems with a detailed explanation of getting to the right answer in an interview environment.
+
+Each problem should include:
+
+1. Clarifying questions to idenfity hidden assumptions
+2. Examples (some provided, some created)
+3. Test cases (written with mocha) -- this step is skipped
+4. Illustrations of thought processes or insights that lead to solutions
+5. Discussion of solutions, alternatives, time complexities and trade offs
+6. Actual code
+7. Discussion of optimizations
+
+## Reorganize string
+
+Source: https://leetcode.com/problems/reorganize-string
+
+Difficulty: Medium
+
+**Problem Description**
+
+Given a string S, check if the letters can be rearranged so that two characters that are adjacent to each other are not the same.
+
+If possible, output any possible result. If not possible, return the empty string.
+
+**Questions**
+
+1. Will differences in case matter here?
+   > Ans: Assume everything will be lowercase
+
+**Examples**
+
+```
+"aab" => "aba"
+"aaa" => ""
+"aaab" => ""
+"aaabb" => "ababa"
+```
+
+**Insights**
+
+A generalization can be made using the examples above: If the frequency of any character is above ceil(len(S) / 2), it can't be rearranged.
+
+_Approach #1_
+
+Sort the array by character frequency, then interleave the most common characters (top half), with the least common characters (bottom half)
+
+TODO: add time complexity
+
+_Approach #2_
+
+Greedy with heap
+
+TODO: add deets
+
+## Strong Password Checker
+
+Source: https://leetcode.com/problems/strong-password-checker/
+
+Difficulty: Hard
+
+**Problem Description**
+
+A password is considered strong if below conditions are all met:
+
+1. It has at least 6 characters and at most 20 characters.
+2. It must contain at least one lowercase letter, at least one uppercase letter, and at least one digit.
+3. It must NOT contain three repeating characters in a row ("...aaa..." is weak, but "...aa...a..." is strong, assuming other conditions are met).
+
+Write a function strongPasswordChecker(s), that takes a string s as input, and return the MINIMUM change required to make s a strong password. If s is already strong, return 0.
+
+Insertion, deletion or replace of any one character are all considered as one change.
+
+**Questions**
+
+1. Are there any constraints on the size of the string?
+
+   > Ans: min. length of 1
+
+2. Would 3 repeating character of different casing "aAa" be considered weak?
+   > Ans: No
+
+**Examples**
+
+For examples, assume min is 4 and max is 7
+
+```
+Below min:
+    ""    => "****" => 4 adds = 4
+    "a"   => "a***" => 3 adds = 3
+    "/_"  => "/***" => 2 adds + 1 replace = 3
+    "aba" => "ab**" => 1 add + 1 replace (missing digit or uppercase) = 2
+    "a1A" => "a1A*" => 1 add = 1
+    "aaa" => "aa**" => 1 add + 1 replace (fixes repeating chars + missing digit / upper) = 2
+
+Above max:
+    "12345678" => "12345**X" => 2 replace (1 lower, 1 upper) + 1 delete = 3
+    "123456aB" => "12345XaB" => 1 delete = 1
+    "111456aB" => "11X456aB" => 1 delete = 1
+    "11145678" => "11*456*X" => 2 replace + 1 delete = 3
+    "aaaaaaaa" => "aa*aa*aX" => 2
+    "aaa11111" => "aaX11*1" => 1 delete (used to break up group of a) + 1 replace (break up group of 1)
+```
+
+This is an important example: It indicates we need to selectively use deletes to break up repeating groups IN SOME CASES. In most cases though, edits work better than deletes to replace groups (when a group is larger than 3)
+
+```
+In range:
+    Repeating chars:
+        "aaaaaaa" => "aa*aa*a" => 2 replace = 2
+        "aaa1111" => "aa*11*1" => 2 replace = 2
+        "aabaaab" => "aabaa**" => 2 replace (1 digit + 1 upper -- takes care of repeating) = 2
+        "bbaaa" => "bba**" => 2 replace = 2
+
+    Missing lower, upper, or digit
+        "abcD" => "ab*D" = 1 replace = 1
+        "abcdeF" => "abcd*F" = 1 replace = 1
+```
+
+**Insights**
+
+First off, let's systematically specify our constraints and cases to approach this question because there's immense potential for error due to the edge cases.
+
+Constraints:
+
+A: Length
+
+B: Casing & digits
+
+C: Repeating characters
+
+Cases:
+
+1. Password is in the range of 6 and 20
+2. Password is less than 6
+3. Password is greater than 20
+
+Case 1)
+
+Since we don't need to do any adds or removes when the password is already in the correct length range, only edits remain. The edits from constraints B & C could be used to satisfy each other so we have to figure out when overlaps occur and how to determine the minimum amount of edits.
+
+Looking at the examples, we can see that any replacement for constraint B could be used to satisfy constraint C
+
+> Example (min = 4, max = 10): `"....." (5 .'s) => "..A.1a" => 3`
+
+> Constraint B requires 3 edits
+
+> Constraint C requires 2 edits
+
+Since they both overlap here we can take the max of constraints B and C
+
+The converse is also true: any replacement for constraint C could be used to satisfy constraint B.
+
+> Example (min = 4, max = 10): `".........A" (9 .'s + 1 A) => "..1..b..*A" => 3`
+
+> Constraint B requires 2 edits
+
+> Constraint C requires 3 edits
+
+Again, the max of both is the answer
+
+Hence we see that the min edits required for this case is `max(B, C)`
+
+The formula for deriving the min edits for constraint C can be observed in these examples
+
+> let L be the length of a repeating sequence. Then min edits for C = `L / 3`
+
+Case 2)
+
+We have to add `min_pass_len - s.length` characters to satisfy constraint A. These characters can be used to satisfy constraints B and C as well.
+
+> Example (min = 6, max = 20): `"aaaGG"` => `"aa1aGG"` (1 add)
+
+> Example (min = 6, max = 20): `"aaaaa"` => `"aa1aaB"` (1 add, 1 replace)
+
+Hence we have `max(A, B, C)`
+
+We need to revise our formula for getting the min edits for C to `Ceil(L / 2) - 1` (because we're using additions instead of replacements)
+
+Case 3)
+
+In order to satisfy constraint A, we need `s.length - max_pass_len` deletes.
+
+The deletes here cannot satisfy any requirements from constraint B since those require replacements or additions.
+
+They can however, satisfy constraint C by breaking up groups of repeating characters. With the caveat that it usually requires more deletes than edits to break up a group of repeating characters.
+
+> Example (min = 2, max = 7): `"aaaaa1BC"` => `"aaaAa1B"` (1 delete, 1 replacement)
+
+Here we used replacements to break up the repeating characters. If we used deletes it would look like this
+
+> Example (min = 2, max = 7): `"aaaaa1BC"` => `"aa1BC"` (3 deletes)
+
+In general, it takes 3 deletes to break up a group of repeating characters with length 5, whereas it would take 1 replacement to do the same thing.
+
+If the group of repeating characters is of length 3, then they take the same amount of edits.
+
+> Example (min = 2, max = 7): `"123aBaaa"` => `"123aBaa"` (1 delete)
+
+In this case, we would prefer to take the delete as it knocks two birds with one stone (A and C).
+
+It takes `L - 2` deletes to break up a repeating sequence of length `L`
+It still takes `L / 3` replacements to break up a repeating sequence
+
+We now need to determine how to place our deletes to optimally break up repeating characters
+
+If we have a repeating sequence of length 6, using 1 delete on it would reduce the number of required replacements from 2 to 1.
+
+A sequence of length 5 would require 3 deletes to bring replacements down by 1 (1 -> 0)
+
+A sequence of length 7 would require 2 deletes to bring replacements down by 1 (2 -> 1)
+
+Generalizing...
+
+Let `K = (L - 2) % 3`. It takes `K if K != 0 else 3` deletes to bring down the number of replacements by 1.
+
+Hence we should allocate our deletes to remove as many replacements as possible.
+
+We can do this by sorting the repeating sequences by number of deletes required to bring it down, and take the smallest ones until we run out of deletes. And then calculate the number of replacements required on the remaining sequences.
+
+Therefore, we need to:
+
+- Remove `X = s.length - max_pass_len` characters to satisfy A
+- Place these removes strategically to break up as many repeating character sequences as possible
+- Replace the remaining repeating sequences (call this `Y`)
+- Replace the violations for constraint B (call this `Z`)
+
+Note: B and C still overlap
+
+Hence we have the formula `X + max(Y, Z)`
+
+**Code**
+
+```javascript
+const isBetweenAscii = (lower, upper) => {
+  const lowerCharCode = lower.charCodeAt(0);
+  const upperCharCode = upper.charCodeAt(0);
+  return (char) => {
+    return (
+      lowerCharCode <= char.charCodeAt(0) && char.charCodeAt(0) <= upperCharCode
+    );
+  };
+};
+
+const isDigit = isBetweenAscii("0", "9");
+
+const isUpper = isBetweenAscii("A", "Z");
+
+const isLower = isBetweenAscii("a", "z");
+
+var strongPasswordChecker = function (s, MIN = 6, MAX = 20) {
+  const n = s.length;
+
+  const sSplit = s.split("").concat("-1"); // have some padding at the end for our iterator below
+
+  const computeConstraintsBC = (
+    repeatingSeqCalc = (val) => Math.floor(val / 3),
+    repeatingSeqCallback
+  ) => {
+    let repeating_seq_len = 1;
+    let constraintC = 0;
+
+    let upper = false,
+      lower = false,
+      digit = false;
+
+    for (let i = 0; i <= s.length; i++) {
+      const char = s.charAt(i);
+
+      if (i > 0 && char === s.charAt(i - 1)) {
+        repeating_seq_len += 1;
+      } else if (i > 0 && repeating_seq_len > 0) {
+        // ended a repeating sequence
+        if (repeating_seq_len > 2) {
+          constraintC += repeatingSeqCalc(repeating_seq_len);
+          if (repeatingSeqCallback) repeatingSeqCallback(repeating_seq_len);
+        }
+        repeating_seq_len = 1;
+      }
+
+      if (isDigit(char)) digit = true;
+      else if (isUpper(char)) upper = true;
+      else if (isLower(char)) lower = true;
+    }
+
+    const constraintB = [lower, upper, digit].filter((isValid) => !isValid)
+      .length;
+
+    return { constraintB, constraintC };
+  };
+
+  // Case 1
+  if (n >= MIN && n <= MAX) {
+    const { constraintB, constraintC } = computeConstraintsBC();
+
+    return Math.max(constraintB, constraintC);
+  }
+
+  // Case 2
+  if (n < MIN) {
+    const constraintA = MIN - n;
+
+    const { constraintB, constraintC } = computeConstraintsBC(
+      (val) => Math.ceil(val / 2) - 1
+    );
+
+    return Math.max(constraintA, constraintB, constraintC);
+  }
+
+  // Case 3: s.length > MAX
+  const constraintA = n - MAX;
+
+  const repeatingSequences = [];
+
+  // calculate how to use deletes to optimally break up repeating chars
+  const { constraintB } = computeConstraintsBC(
+    () => 0,
+    (val) => repeatingSequences.push(val)
+  );
+
+  // function to get number of deletes required to bring down total replacements on sequence
+  const getNumDelForSeq = (seq) => {
+    const num = (seq - 2) % 3;
+    return num === 0 ? 3 : num;
+  };
+
+  // sort by num deletes required to bring replacements down
+  const comparator = (seqA, seqB) =>
+    getNumDelForSeq(seqB) - getNumDelForSeq(seqA);
+
+  repeatingSequences.sort(comparator);
+
+  let numDeletes = constraintA;
+  let j = repeatingSequences.length - 1;
+  while (numDeletes > 0 && j >= 0) {
+    if (repeatingSequences[j] <= 2) {
+      j -= 1;
+      continue;
+    }
+
+    let numDeletesRequired = repeatingSequences[j];
+    if (numDeletesRequired < numDeletes) {
+      numDeletes -= numDeletesRequired;
+      repeatingSequences[j] -= numDeletesRequired;
+    } else {
+      repeatingSequences[j] -= numDeletes;
+      break;
+    }
+  }
+
+  const constraintC = repeatingSequences.reduce((total, seq) => {
+    if (seq > 2) total += Math.floor(seq / 3);
+    return total;
+  }, 0);
+
+  return constraintA + Math.max(constraintB, constraintC);
+};
+```
+
+And tests
+
+```javascript
+describe("Test strongPasswordChecker -- CASE 1", function () {
+  [
+    [".....", 3],
+    [".........A", 3],
+    ["aaab", 2],
+    ["aaa111", 2],
+  ].forEach(([input, output]) =>
+    it(`input: ${input}`, () => {
+      const actual = strongPasswordChecker(input, 4, 10);
+      assert(actual === output, `Expected: ${output}, Actual: ${actual}`);
+    })
+  );
+});
+
+describe("Test strongPasswordChecker -- CASE 2", function () {
+  [
+    ["aaaGG", 1],
+    ["aaaaa", 2],
+  ].forEach(([input, output]) =>
+    it(`input: ${input}`, () => {
+      const actual = strongPasswordChecker(input, 6, 20);
+      assert(actual === output, `Expected: ${output}, Actual: ${actual}`);
+    })
+  );
+});
+
+describe("Test strongPasswordChecker -- CASE 3", function () {
+  [
+    ["aaaaa1BC", 2],
+    ["123aBaaa", 1],
+    ["aaaaaaaaaa", 5],
+    ["11111aaaaaa", 3, 1, 10],
+  ].forEach(([input, output, min = 1, max = 7]) =>
+    it(`input: ${input}`, () => {
+      const actual = strongPasswordChecker(input, min, max);
+      assert(actual === output, `Expected: ${output}, Actual: ${actual}`);
+    })
+  );
+});
+
+mocha.run();
+```
+
+## License Key Formatting
+
+Source: https://leetcode.com/problems/license-key-formatting/
+
+Difficulty: Easy
+
+**Problem Description**
+
+You are given a license key represented as a string S which consists only alphanumeric character and dashes. The string is separated into N+1 groups by N dashes.
+
+Given a number K, we would want to reformat the strings such that each group contains exactly K characters, except for the first group which could be shorter than K, but still must contain at least one character. Furthermore, there must be a dash inserted between two groups and all lowercase letters should be converted to uppercase.
+
+Given a non-empty string S and a number K, format the string according to the rules described above.
+
+**Questions**
+
+This is pretty straightforward, no further clarification is needed really.
+
+**Examples**
+
+```
+S = "5F3Z-2e-9-w", K = 4 => "5F3Z-2E9W"
+
+S = "2-5g-3-J", K = 2 => "2-5G-3J"
+
+S = "1-2-3". K = 3 => "123"
+
+S = "1-2-3". K = 4 => "123"
+
+S = "1-2-3", K = 1 => "1-2-3"
+```
+
+**Insights**
+
+The problem is essentially asking us to remove all dashes and group the elements together such that each group has exactly K elements, except the first which can have 1 <= K.
+
+Therefore, the number of groups can be computed as follows:
+
+Let `L = length of S without dashes`,
+
+If `L < K` then `numGroups = 1` and just return S without dashes (in uppercase)
+
+else `numGroups = Math.ceil(L / K)` and the number of elements in the first group is `L % K`. Hence just return these groups joined by a dash.
+
+**Code**
+
+```javascript
+const licenseKeyFormatting = (S, K) => {
+  const s = S.toUpperCase().split("-").join("");
+
+  if (s.length < K) return s;
+
+  const numGroups = Math.ceil(s.length / K);
+  const firstGroupSize = s.length % K;
+
+  const ans = [];
+
+  if (firstGroupSize !== 0) {
+    ans.push(s.slice(0, firstGroupSize));
+  }
+
+  for (let i = firstGroupSize; i < s.length; i = i + K) {
+    ans.push(s.slice(i, i + K));
+  }
+
+  return ans.join("-");
+};
+```
+
+## Longest Absolute File Path
+
+Source: https://leetcode.com/problems/longest-absolute-file-path/
+
+Difficulty: Medium
+
+**Problem Description**
+
+Suppose we have the file system represented in the following picture:
+
+![File directory](https://assets.leetcode.com/uploads/2020/08/28/mdir.jpg)
+
+We will represent the file system as a string where "\n\t" mean a subdirectory of the main directory, "\n\t\t" means a subdirectory of the subdirectory of the main directory and so on. Each folder will be represented as a string of letters and/or digits. Each file will be in the form "s1.s2" where s1 and s2 are strings of letters and/or digits.
+
+For example, the file system above is represented as
+
+> `"dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext"`.
+
+Given a string input representing the file system in the explained format, return the length of the longest absolute path to a file in the abstracted file system. If there is no file in the system, return 0.
+
+**Examples**
+
+![Longest abs file path example 1](https://assets.leetcode.com/uploads/2020/08/28/dir1.jpg)
+
+```
+"dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext" => 20
+```
+
+Explanation: We have only one file and its path is `"dir/subdir2/file.ext"` of length 20.
+
+The path `"dir/subdir1"` doesn't contain any files.
+
+![Longest abs file path example 2](https://assets.leetcode.com/uploads/2020/08/28/dir1.jpg)
+
+```
+"dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext" => 32
+```
+
+Explanation: We have two files: `"dir/subdir1/file1.ext"` of length 21 `"dir/subdir2/subsubdir2/file2.ext"` of length 32.
+
+We return 32 since it is the longest path to a file.
+
+```
+"a" => 0
+```
+
+Explanation: We do not have any files
+
+**Insights**
+
+The keen reader will notice that the input string is a tree given in depth first format. The problem should be reducible to some graph traversal algorithm but the main hurdle is parsing the input into a usable format.
+
+A few questions initially come to mind...
+
+1. Should we parse it before traversing?
+2. Which traversal algorithm is ideal here?
+
+My intuition is that we can traverse and parse at the same time. That is, if we choose to do a depth first search (since it follows the format already given). I don't think BFS would be suitable for this question because we're not looking for the shortest path and it doesn't match the given format.
+
+How would a DFS + parse as we go strategy look like?
+
+At each step in the DFS, we need the current node, the length of the path so far and the node's children.
+
+Assuming we have the current node and path so far, how can we obtain the children?
+
+If the current node is a leaf, it has no children. Hence calculate the length of the current path and update the answer accordingly.
+
+Otherwise:
+
+If we're at an arbitrary depth `i`, the children of our current node would be specified by `\n` followed by `i + 1` `\t`'s
+
+For example, the children of the root directory are specified by `\n\t{directory or file name}`
+
+We can iterate through our current location in the string and look for substrings matching that specification. As soon as we encounter one, we recurse into that node.
+
+After the recursion for that node is complete, we continue looking for matching directories.
+
+One thing to note here is that we'll have to update our current position in the string after the node we recursed on returns. This is to ensure we don't look through the grandchildren.
+
+Hence each node should return the position of the character it ended on.
+
+We stop if we encounter `\n` followed by <`i` `\t`'s OR if we reach the end of the string.
+
+Due to the necessity of keeping track of the current depth and the longest file path, we should also keep track of of the depth and the length of the current path (without `\t` or `\n`) joined back `/`.
+
+Using example 2, we should traverse the following path:
+
+```
+dir start=0, end=72
+            -> subdir1 start=4, end=37
+                        ->  file1.ext start=15 end=24
+                        ->  subsubdir1 start=27 end=37
+            -> subdir2 start=39, end=72
+                        ->  subsubdir2 start=49, end=72
+                                           -> file2.ext start=63, end=72
+```
+
+Time complexity: `O(n)` Since we're just traversing through the string without repeating computation
+Space complexity: `O(h)` where `h` is the depth of the deepest node (stored in the call stack)
+
+**Code**
+
+```javascript
+const lengthLongestPath = function (input) {
+  const dfs = (start, depth = 0, pathLength = 0) => {
+    if (start === input.length - 1) {
+      return start;
+    }
+
+    const prefix = `\n${"\t".repeat(depth + 1)}`;
+
+    if (!input.startsWith(prefix, start)) {
+      return start;
+    }
+
+    const nextNode = input.indexOf("\n", start + prefix.length);
+    const nextNodeIdx = nextNode !== -1 ? nextNode : input.length;
+    const name = input.substring(start + prefix.length, nextNodeIdx);
+
+    const currPathLength = pathLength + name.length + 1;
+
+    if (name.includes(".")) {
+      // file!
+      ans = Math.max(currPathLength - 1, ans);
+      return nextNodeIdx;
+    }
+
+    let i = nextNodeIdx;
+
+    while (i < input.length) {
+      const end = dfs(i, depth + 1, currPathLength);
+      if (i === end) break;
+      i = end;
+    }
+
+    return i;
+  };
+
+  let ans = 0;
+  input = "\n" + input;
+  dfs(0, -1);
+  return ans;
+};
+```
+
+Test cases
+
+```javascript
+describe("Test longest absolute file path", function () {
+  [
+    [
+      "dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext",
+      32,
+    ],
+    ["dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext", 20],
+    ["a", 0],
+    ["a.txt", 5],
+  ].forEach(([input, output]) =>
+    it(`input: ${input}`, () => {
+      const actual = lengthLongestPath(input);
+      assert(actual === output, `Expected: ${output}, Actual: ${actual}`);
+    })
+  );
+});
+
+mocha.run();
+```
+
+## X of a Kind in a Deck of Cards
+
+Source: https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/
+
+Difficulty: Easy
+
+**Problem Description**
+
+In a deck of cards, each card has an integer written on it.
+
+Return true if and only if you can choose X >= 2 such that it is possible to split the entire deck into 1 or more groups of cards, where:
+
+1. Each group has exactly X cards.
+2. All the cards in each group have the same integer.
+
+Constraints:
+
+1 <= deck.length <= 10^4
+0 <= deck[i] < 10^4
+
+**Examples**
+
+Example 1:
+
+```
+[1,2,3,4,4,3,2,1] => true
+```
+
+Explanation: Possible partition `[1,1],[2,2],[3,3],[4,4]`.
+
+Example 2:
+
+```
+[1,1,1,2,2,2,3,3] => false
+```
+
+Explanation: No possible partition.
+
+Example 3:
+
+```
+[1] => false
+```
+
+Explanation: No possible partition.
+
+Example 4:
+
+```
+[1,1] => true
+```
+
+Explanation: Possible partition `[1,1]`.
+
+Example 4:
+
+```
+[1,1,1] => true
+```
+
+Explanation: Possible partition `[1,1,1]`.
+
+Example 5:
+
+```
+[1,1,2,2,2,2] => true
+```
+
+Explanation: Possible partition `[1,1],[2,2],[2,2]`.
+
+**Insights**
+
+Let's clarify the constraints a bit more.
+
+Find an X such that
+
+1. Total of L / X groups
+2. All groups have X cards
+3. There has to be X groups of matching integers
+4. There has to be at least 2 cards in a group
+
+What are the possible value for X?
+
+`2 <= X <= length of the smallest repeating group`
+
+Hence, a brute force strategy could be to find the frequencies of all unique characters, determine the LCD, return true LCD iff >= 2.
+
+> Example: [3,3,3,3,2,2,2,2,2,2,4,4,4,4,4,4,4,4] => [[3,3], [2,2], ...]
+
+Time complexity would be `O(n^2)` a
+
+Space complexity is `O(n)` since we're storing an map of frequencies.
+
+**Code**
+
+```javascript
+var hasGroupsSizeX = function (deck) {
+  const frequencies = {};
+
+  for (let i = 0; i < deck.length; i++) {
+    if (!frequencies[deck[i]]) frequencies[deck[i]] = 0;
+
+    frequencies[deck[i]] += 1;
+  }
+
+  const frequencyValues = Object.values(frequencies);
+  const lowest = frequencyValues.reduce(
+    (l, x) => Math.min(l, x),
+    Number.POSITIVE_INFINITY
+  );
+
+  if (lowest < 2) return false;
+
+  let i = 2;
+
+  while (i <= lowest) {
+    const temp = i;
+    for (let freq of frequencyValues) {
+      if (freq % i !== 0) {
+        i += 1;
+        break;
+      }
+    }
+    if (i === temp) return true;
+  }
+
+  return false;
+};
+```
+
+## Count Square Submatrices with All Ones
+
+Source: https://leetcode.com/problems/count-square-submatrices-with-all-ones/
+
+Difficulty: Medium
+
+**Problem Description**
+
+Given a m \* n matrix of ones and zeros, return how many square submatrices have all ones.
+
+Constraints:
+
+1 <= arr.length <= 300
+1 <= arr[0].length <= 300
+0 <= arr[i][j] <= 1
+
+**Examples**
+
+Example 1:
+
+```
+[
+  [0,1,1,1],
+  [1,1,1,1],
+  [0,1,1,1]
+] => 15
+```
+
+Explanation:
+There are 10 squares of side 1.
+There are 4 squares of side 2.
+There is 1 square of side 3.
+Total number of squares = 10 + 4 + 1 = 15.
+
+Example 2:
+
+```
+[
+  [1,0,1],
+  [1,1,0],
+  [1,1,0]
+] => 7
+```
+
+Explanation:
+There are 6 squares of side 1.  
+There is 1 square of side 2.
+Total number of squares = 6 + 1 = 7.
+
+**Insights**
+
+At first glance, this seems like a fairly routine connected components question using BFS. However, the code could get quite complex finding inner and outer squares using this method (especially double counting).
+
+A simpler way might be to find all squares starting (top left) at a particular index. This ensures we never double count as a square can only begin in one position.
+
+The brute force way to implement this approach could be to go left to right, top to bottom, and for each '1' in the grid, check all of the elements below and to the right of it to see how many squares begin at this point.
+
+This however, fails to take advantage of previous computations.
+
+For example: If we initially search all the squares beginning at 0,1, then later on in the traversal we find all the squares beginning at 1,2, we have to recompute the values at 1,3, 2,2, 2,4 to determine if it has a larger square.
+
+```
+[
+    [0, 1, 1, 1],
+    [1, 1, 1, 1],
+    [0, 1, 1, 1]
+]
+```
+
+But we know that 1,2 must have a larger square ending at 2,4 because we previously determined this while computing the larger square for 0,1.
+
+A DP approach follow from this intuition.
+
+Let S(i, j) be the total number of squares ending at position i, j
+
+Base cases:
+
+M[i,j] = 0 => S(i,j) = 0
+
+M[i,j] = 1 => S(i,j) >= 1
+
+Recursive relation:
+
+if M[i,j] == 1
+S(i,j) = 1 + (S(i - 1, j) - 1) + (S(i, j - 1) - 1)
+
+We're subtracting 1 from the side elements because it indicates that their value is larger than 1, i.e. it has a larger
+
+For the previous example, S would look like:
+
+```
+[
+    [0, 1, 1, 1],
+    [1, 1, 2, 2],
+    [0, 1, 2, 3]
+]
+```
+
+total = 15
+
+S for Example 2:
+
+```
+[
+  [1,0,1],
+  [1,1,0],
+  [1,2,0]
+]
+```
+
+total = 7
+
+Another example
+
+```
+[
+    [1, 1, 0, 1],
+    [1, 1, 1, 0],
+    [1, 1, 1, 1]
+    [1, 1, 0, 1]
+]
+```
+
+```
+[
+    [1, 1, 0, 1],
+    [1, 2, 1, 0],
+    [1, 2, 2, 1]
+    [1, 2, 0, 1]
+]
+```

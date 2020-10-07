@@ -312,4 +312,34 @@ def max_area(height: List[int]) -> int:
 ### Maximum Subarray - Divide & Conquer
 
 ### Subarray Sum - Divid & Conquer
+
+```
+
+var Mocha = require('mocha')
+var assert = require('assert')
+var mocha = new Mocha()
+
+mocha.suite.emit('pre-require', this, 'solution', mocha)
+
+describe('Test rearrange string', function() {
+  [
+    ['aab','aba'],
+    ['aaa', ''],
+    ['aaab', ''],
+    ['aaabb', 'ababa']
+  ].forEach(
+    ([input, output]) => it(`input: ${input}`, () => {
+      const actual = rearrangeString(input);
+      assert(actual === output, `Expected: ${output}, Actual: ${actual}`)
+    }
+  ))
+})
+
+mocha.run()
+
+
+function rearrangeString(S) {
+
+}
+```
 -->
