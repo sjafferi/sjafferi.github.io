@@ -1,5 +1,6 @@
 <script>
   import { Remarkable } from "remarkable";
+  import * as linkify from "remarkable/linkify";
   import hljs from "highlight.js";
 
   import { toSlug } from "util/index.js";
@@ -42,6 +43,7 @@
   }
 
   md.use(plugin);
+  md.use(linkify.linkify);
 </script>
 
 <style lang="scss">

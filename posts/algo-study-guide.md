@@ -3649,7 +3649,7 @@ Hence, a brute force strategy could be to find the frequencies of all unique cha
 
 > Example: [3,3,3,3,2,2,2,2,2,2,4,4,4,4,4,4,4,4] => [[3,3], [2,2], ...]
 
-Time complexity would be `O(n^2)` a
+Time complexity would be `O(n^2)`
 
 Space complexity is `O(n)` since we're storing an map of frequencies.
 
@@ -3767,16 +3767,20 @@ Let S(i, j) be the total number of squares ending at position i, j
 
 Base cases:
 
-M[i,j] = 0 => S(i,j) = 0
+```
+M[i,j] == 0 => S(i,j) == 0
 
-M[i,j] = 1 => S(i,j) >= 1
+M[i,j] == 1 && i == 0 || j == 0  => S(i,j) == 1
+```
 
 Recursive relation:
 
+```
 if M[i,j] == 1
-S(i,j) = 1 + (S(i - 1, j) - 1) + (S(i, j - 1) - 1)
-
-We're subtracting 1 from the side elements because it indicates that their value is larger than 1, i.e. it has a larger
+    S(i,j) = Min(S(i - 1, j), (S(i, j - 1), S(i - 1, j - 1)) + 1
+else
+    S(i,j) = 0
+```
 
 For the previous example, S would look like:
 
@@ -3807,17 +3811,411 @@ Another example
 ```
 [
     [1, 1, 0, 1],
-    [1, 1, 1, 0],
-    [1, 1, 1, 1]
+    [1, 1, 1, 1],
     [1, 1, 0, 1]
+    [1, 1, 1, 1]
 ]
 ```
 
 ```
 [
-    [1, 1, 0, 1],
-    [1, 2, 1, 0],
-    [1, 2, 2, 1]
-    [1, 2, 0, 1]
+    [1, 1, 1, 1],
+    [1, 2, 2, 0],
+    [1, 2, 0, 1],
+    [1, 2, 1, 1]
 ]
 ```
+
+Bottom up implementation of the DP table works well here
+
+**Code**
+
+```javascript
+const countSquares = function (matrix) {
+  const n = matrix.length,
+    m = matrix[0].length;
+  const S = [...Array(n)].map((_) => [...Array(m)].fill(0));
+
+  let ans = 0;
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < m; j++) {
+      if (matrix[i][j] === 0) continue;
+      if (i == 0 || j == 0) S[i][j] = 1;
+      else {
+        S[i][j] = Math.min(S[i - 1][j], S[i][j - 1], S[i - 1][j - 1]) + 1;
+      }
+
+      ans += S[i][j];
+    }
+  }
+
+  return ans;
+};
+```
+
+## Build Array Where You Can Find The Maximum Exactly K Comparisons
+
+Source: https://leetcode.com/problems/build-array-where-you-can-find-the-maximum-exactly-k-comparisons/
+
+Difficulty: Hard
+
+**Problem Description**
+
+Given three integers n, m and k. Consider the following algorithm to find the maximum element of an array of positive integers:
+
+![build array](https://assets.leetcode.com/uploads/2020/04/02/e.png)
+
+You should build the array arr which has the following properties:
+
+1. arr has exactly n integers.
+2. 1 <= arr[i] <= m where (0 <= i < n).
+3. After applying the mentioned algorithm to arr, the value search_cost is equal to k.
+
+Return the number of ways to build the array arr under the mentioned conditions. As the answer may grow large, the answer must be computed modulo 10^9 + 7.
+
+**Examples**
+
+Example 1:
+
+```
+n = 2, m = 3, k = 1
+Output: 6
+```
+
+Explanation: The possible arrays are [1, 1], [2, 1], [2, 2], [3, 1], [3, 2] [3, 3]
+
+Example 2:
+
+```
+n = 5, m = 2, k = 3
+Output: 0
+```
+
+Explanation: There are no possible arrays that satisify the mentioned conditions.
+
+Example 3:
+
+```
+n = 9, m = 1, k = 1
+Output: 1
+```
+
+Explanation: The only possible array is [1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Example 4:
+
+```
+n = 50, m = 100, k = 25
+Output: 34549172
+```
+
+Explanation: Don't forget to compute the answer modulo 1000000007
+
+Example 5:
+
+```
+n = 37, m = 17, k = 7
+Output: 418930126
+```
+
+TODO: come back to this
+
+## Minimum Time Visiting All Points
+
+Source: https://leetcode.com/problems/minimum-time-visiting-all-points/
+
+Difficulty: Easy
+
+**Problem Description**
+
+On a plane there are n points with integer coordinates points[i] = [xi, yi]. Your task is to find the minimum time in seconds to visit all points.
+
+You can move according to the next rules:
+
+- In one second always you can either move vertically, horizontally by one unit or diagonally (it means to move one unit vertically and one unit horizontally in one second).
+- You have to visit the points in the same order as they appear in the array.
+
+Constraints:
+
+- `points.length == n`
+- `1 <= n <= 100`
+- `points[i].length == 2`
+- `-1000 <= points[i][0], points[i][1] <= 1000`
+
+**Examples**
+
+![visiting points example 1](https://assets.leetcode.com/uploads/2019/11/14/1626_example_1.PNG)
+
+```
+points = [[1,1],[3,4],[-1,0]] => 7
+```
+
+Explanation: One optimal path is [1,1] -> [2,2] -> [3,3] -> [3,4] -> [2,3] -> [1,2] -> [0,1] -> [-1,0]  
+Time from [1,1] to [3,4] = 3 seconds
+Time from [3,4] to [-1,0] = 4 seconds
+Total time = 7 seconds
+
+```
+[[3,2],[-2,2]] => 5
+```
+
+**Insights**
+
+It's very important to look at the specifications of the question here because the second rule makes it a much easier problem to solve. I.e. we have to visit the points in the same order they appear in the array (otherwise this would be a closest pairs problem, which is much more involved).
+
+The example lays out a good strategy to connect all points. Iterate through all consecutive pairs of points, find the minimum distance to between then and add to a total count.
+
+The minimum distance subroutine is the main subproblem to solve.
+
+Looking at the example again, we can see that to travel from point (1,1) to (3,4) it takes 3 moves (2 diagonal, 1 upward. This is the same distance as (3,1) to (3,4). Because the diagonal moves allow us to traverse both x and y and the same time, the larger of the 2 distances will always dominate our minimum required distance. We can cover all the required x moves while also making y moves, but still be left with 1 y move since that distance is larger by 1.
+
+Therefore, min distance from p1 to p2 = max(dx, dy), where dx = |x1 - x2| and dy = |y2 - y1|
+
+This leads to the following linear time algorithm
+
+**Code**
+
+```javascript
+const minTimeToVisitAllPoints = function (points) {
+  let ans = 0;
+
+  for (let i = 1; i < points.length; i++) {
+    const [x1, y1] = points[i - 1];
+    const [x2, y2] = points[i];
+
+    const dx = Math.abs(x1 - x2);
+    const dy = Math.abs(y1 - y2);
+
+    ans += Math.max(dx, dy);
+  }
+
+  return ans;
+};
+```
+
+## Subtree of another tree
+
+Source: https://leetcode.com/problems/subtree-of-another-tree/
+
+Difficulty: Easy
+
+**Problem Description**
+
+Given two non-empty binary trees s and t, check whether tree t has exactly the same structure and node values with a subtree of s. A subtree of s is a tree consists of a node in s and all of this node's descendants. The tree s could also be considered as a subtree of itself.
+
+**Examples**
+
+Given tree s:
+
+```
+     3
+    / \
+   4   5
+  / \
+ 1   2
+```
+
+In order: [1,4,2,3,5]
+Preorder: [3,4,1,2,5]
+
+Given tree t:
+
+```
+   4
+  / \
+ 1   2
+```
+
+In order: [1,4,2]
+Preorder: [4,1,2]
+
+Return true, because t has the same structure and node values with a subtree of s.
+
+Using the same t for all subsequent examples
+
+Given tree s:
+
+```
+     3
+    / \
+   4   5
+  / \
+ 1   2
+      \
+       0
+```
+
+In order: [1,4,2,0,3,5]
+Preorder: [3,4,1,2,0,5]
+
+Given tree s:
+
+```
+     3
+    / \
+   5   4
+      / \
+     1   2
+    /
+   0
+```
+
+In order: [5,3,0,1,4,2]
+Preorder: [3,5,4,1,0,2]
+
+False
+
+Given tree s:
+
+```
+     4
+    / \
+   1   2
+```
+
+In order: [1,4,2]
+Preorder: [4,1,2]
+
+True
+
+Given tree s:
+
+```
+     2
+    /
+   4
+  /
+ 1
+```
+
+In order: [1,4,2]
+Preorder: [2,4,1]
+
+False
+
+**Insights**
+
+Observing the preorder and inorder sequences, we can see that the inorder is not always indicative of a matching subtree but the preorder is in most cases.
+
+Lets focus on the false positives for preorder:
+
+Example 2:
+Given tree s:
+
+```
+     3
+    / \
+   4   5
+  / \
+ 1   2
+      \
+       0
+```
+
+Preorder: [3,4,1,2,0,5]
+
+We can solve this by also including null values in the sequence
+
+Preorder: [3,4,1,null,null,2,null,0,5]
+
+Performing a search for a subarray matching the preorder traversal of t within s's preorder traversal (including nulls) gives us the correct answer!
+
+Time Complexity: `O(n*m)`
+
+This leads to the following algorithm
+
+**Code**
+
+```javascript
+const isSubtree = function (s, t) {
+  const getPreorder = (root) => {
+    const stack = [];
+    const preorder = [];
+
+    while (stack.length || root) {
+      if (!root) {
+        preorder.push("null");
+      } else {
+        while (root) {
+          preorder.push(`#${root.val}`);
+          stack.push(root);
+          root = root.left;
+        }
+        preorder.push("null");
+      }
+
+      if (stack.length) {
+        root = stack.pop();
+        root = root.right;
+      }
+    }
+
+    preorder.push("null");
+
+    return preorder.join(" ");
+  };
+
+  const seqS = getPreorder(s);
+  const seqT = getPreorder(t);
+
+  return seqS.includes(seqT);
+};
+```
+
+Note: prepending '#' to node values allows us to use string search instead of array matching (avoids the scenario where "2 null null" matches "12 null null")
+
+## The Maze II
+
+Source: https://leetcode.com/problems/the-maze-ii/
+
+Difficulty: Medium
+
+**Problem Description**
+
+There is a ball in a maze with empty spaces and walls. The ball can go through empty spaces by rolling up, down, left or right, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction.
+
+Given the ball's start position, the destination and the maze, find the shortest distance for the ball to stop at the destination. The distance is defined by the number of empty spaces traveled by the ball from the start position (excluded) to the destination (included). If the ball cannot stop at the destination, return -1.
+
+The maze is represented by a binary 2D array. 1 means the wall and 0 means the empty space. You may assume that the borders of the maze are all walls. The start and destination coordinates are represented by row and column indexes.
+
+**Examples**
+
+![Maze 1](https://assets.leetcode.com/uploads/2018/10/12/maze_1_example_1.png)
+
+```
+Input 1: a maze represented by a 2D array
+
+0 0 1 0 0
+0 0 0 0 0
+0 0 0 1 0
+1 1 0 1 1
+0 0 0 0 0
+
+Input 2: start coordinate (rowStart, colStart) = (0, 4)
+Input 3: destination coordinate (rowDest, colDest) = (4, 4)
+
+Output: 12
+```
+
+Explanation: One shortest way is : left -> down -> left -> down -> right -> down -> right.
+The total distance is 1 + 1 + 3 + 1 + 2 + 2 + 2 = 12.
+
+![Maze 2](https://assets.leetcode.com/uploads/2018/10/13/maze_1_example_2.png)
+
+```
+Input 1: a maze represented by a 2D array
+
+0 0 1 0 0
+0 0 0 0 0
+0 0 0 1 0
+1 1 0 1 1
+0 0 0 0 0
+
+Input 2: start coordinate (rowStart, colStart) = (0, 4)
+Input 3: destination coordinate (rowDest, colDest) = (3, 2)
+
+Output: -1
+```
+
+Explanation: There is no way for the ball to stop at the destination.
